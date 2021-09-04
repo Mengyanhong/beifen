@@ -16,7 +16,7 @@ class user: #用户信息
             token = 'b329f23fc5b2d0aaefb384cef8170c99'
         elif self.test == 'lxcrm':
             app_token = 'a14cc8b00f84e64b438af540390531e4'
-            token = '66dbf0159bdbdbb95f853740a002fc6c'
+            token = '6f9ef83c63f91121407573ae05b62f40'
         else:
             print('传参错误')
             app_token = None
