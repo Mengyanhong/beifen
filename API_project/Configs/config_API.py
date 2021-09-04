@@ -55,7 +55,6 @@ class configuration_file:#配置文件调用
         r=requests.get(configuration_file(self.test).url()+path,headers=self.user.headers(),verify=False)
         data=r.json()['data']
         return data
-
     def staticConfig(self): #来源（contactSource）站配置
         path='companyDetail/staticConfig?namespace=withLevels'
         r=requests.get(configuration_file(self.test).url()+path,headers=self.user.headers(),verify=False)
