@@ -1,0 +1,121 @@
+#yaml基本语法
+#大小写敏感
+#使用缩进表示层级关系
+#缩进不允许使用tab，只允许使用空格
+#缩进空格数不重要，只要相同层级的元素左对齐就行
+##表示注释从他开头到行尾被忽略
+# -表示1个列表
+#'''----------登录类测试数据----------'''
+-
+  URL: TEST_HOST
+  method: post
+- #test_01用例
+  detail: 账户测试未上传的文件
+  data:
+    current_user_token: "Token token=42f0ce329bd6d4ed7ca5be881ead6a60"
+    lixiaoyun: "lixiaoyun"
+    oss_key: "上海.xlsx"
+  resp:
+    error_code: 7002
+    success: "False"
+    message: "该文件不存在"
+    data: {}
+- #test_02用例
+  detail: oss_key为空
+  data:
+    current_user_token: "Token token=42f0ce329bd6d4ed7ca5be881ead6a60"
+    lixiaoyun: "lixiaoyun"
+    oss_key: ""
+  resp:
+    error_code: 7001
+    success: "False"
+    message: "ossKey不能为空"
+    data: {}
+- #test_03用例
+  detail: 试用账户
+  data:
+    current_user_token: "Token token=6515cbdb83db5700c7fc05bfa238e018"
+    lixiaoyun: "lixiaoyun"
+    oss_key: "123.xlsx"
+  resp:
+    error_code: 6001
+    success: "False"
+    message: "试用版用户无权限"
+    data: {}
+- #test_04用例
+  detail: 用户未授权搜客宝
+  data:
+    current_user_token: "Token token=7052fc2afc5522233717d7881b2763b2"
+    lixiaoyun: "lixiaoyun"
+    oss_key: "123.xlsx"
+  resp:
+    error_code: 409
+    success: "False"
+    message: "用户未授权skb"
+    data: {}
+- #test_05用例
+  detail: 缺少用户鉴权信息token
+  data:
+    current_user_token: ""
+    lixiaoyun: "lixiaoyun"
+    oss_key: "123.xlsx"
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}
+- #test_06用例
+  detail: 缺少用户鉴权信息平台
+  data:
+    current_user_token: "Token token=42f0ce329bd6d4ed7ca5be881ead6a60"
+    lixiaoyun: ""
+    oss_key: "123.xlsx"
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}
+- #test_07用例
+  detail: lixiaoyun错误
+  data:
+    current_user_token: "Token token=42f0ce329bd6d4ed7ca5be881ead6a60"
+    lixiaoyun: "lixiao"
+    oss_key: None
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}
+- #test_08用例
+  detail: current_user_token错误
+  data:
+    current_user_token: "Token token"
+    lixiaoyun: "lixiaoyun"
+    oss_key: None
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}
+- #test_09用例
+  detail: oss_key为空
+  data:
+    current_user_token: "Token token=42f0ce329bd6d4ed7ca5be881ead6a60"
+    lixiaoyun: "lixiaoyun"
+    oss_key: None
+  resp:
+    error_code: 7001
+    success: "False"
+    message: "ossKey不能为空"
+    data: {}
+- #test_10用例
+  detail: 非高级数据版账户
+  data:
+    current_user_token: "Token token=6b0ad74170ea551ab7d2e3258d56688f"
+    lixiaoyun: "lixiaoyun"
+    oss_key: None
+  resp:
+    error_code: 406
+    success: "False"
+    message: "无可操作的权限"
+    data: { }

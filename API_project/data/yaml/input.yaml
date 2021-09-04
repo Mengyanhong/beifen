@@ -1,0 +1,54 @@
+# -*- coding: utf-8 -*-
+{
+#  'entName':['信息技术','工程','建筑'],  #str
+#  'opScope':['财务咨询','工程施工','网站设计'],  #str
+#  'baikeInfo':['电子','商务','建筑','工程'],  #list-str
+#  'b2bProduct':['汽车','手套','手表'],  #list-str
+#  'contactAddress':['浙江省','江都市'],  #str
+#  'licenseOffice':['甘南州住建局','归集处'],  #list-str
+#  'licenseContent':['职工停缴','卷烟'],  #list-str
+#  'tenderName':['成交公告','中标公告'],   #list-str
+#  'latest6MonthJobName':['测试','运营','产品'],  #招聘除统计值其余均默认添加前6个月的条件releaseDate
+#  'recruitment.jobDetail':['学习','管理'],
+#  'recruitment.entWelfare':['年假','调休','班车'],
+#  'recruitment.jobName':['总监','经理','工程师'],
+#  'latest3MonthJobName':['前端','设计','老师'],
+#  'latest1MonthJobName':['后端','数据','算法'],
+#  'recruitment.address':['上海','江苏','杭州'],
+#  'semKeyword':['北京地区分类信息','消费电子资讯'],  #list-str
+#  'latest1MonthSemKeyword':['淘宝','家具','礼品'],  #semPromo.keyword(str)&semDate（前1个月）
+#  'semTitle':['厂家直销','报价大全'],   #list-str
+#  'wechatName':['智能光伏','网络能源','财经招聘'],  #list-str
+#  'blogName':['服饰','咨询','酒店'],   #list-str
+#  'appName':['手机服务','音乐播放器','企业技术支持'],  #list-str
+#  'appInfo':['技术交流分享','彩妆'],  #list-str
+#  'ecomShopName':['母婴','家装'],  #list-str
+#  'eProductCategory':['美容','医疗','毛衣'], #list-str
+#  'eMainBrand':['酒仓','同仁堂','FenTeng'], #list-str
+#  'eProductName':['风扇','面膜','手表'],  #list-str
+  'brandName':['香水','手表','汽车']
+#  'seoKeyword':['网站建设','网站设计','做网站','建站'],  #list-str
+#  'seoInfo':['工业','机械制造'],  #list-str
+#  'certL2Name': ['房屋建筑工程乙级','甲级'],  #list-str
+#  'certificate.certOrgName':['建设部','住房','城乡'],  #certificate.certOrgName(str)
+#  'patentName':['运输车','安全性能高'],  #list-str
+#  'trademarkName':['图形','重工'],   #list-str
+#  'softwareProductName':['数据','软件','学习'],  #list-str
+#  'worksName':['图形','广告','教育'],  #list-str
+#  'abnormalInReason':['登记的住所','无法联系'],  #str
+#  'hisAbnormalInReason':['登记的住所','无法联系']  #list-str
+}
+
+#基本信息：企业名称，经营范围，企业百科，主营产品，通讯地址
+#联系方式：
+
+
+#企业发展：
+#经营情况：许可机关，许可内容，招投标项目描述
+#招聘信息：前6个月招聘职位，职位描述（前6个月），企业福利（前6个月）,招聘职位,前3个月招聘职位,前1个月招聘职位,招聘详细地址
+#网络推广：推广关键词，前1个月推广关键词，推广文案
+#产品信息：公众号名称，机构微博名称，移动应用名称，移动应用描述,电商店铺名称,电商产品分类,电商主营品牌,商品名称,品牌名称
+#网站信息：网站关键词，网站描述
+#资质证书：证书名称，发证机构
+#知识产权：专利名称,商标名称,软著名称 ,作品名称
+#风险信息：当前列入经营异常原因,历史列入经营异常原因

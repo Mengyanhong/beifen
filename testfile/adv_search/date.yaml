@@ -1,0 +1,32 @@
+past_key:  #过去时间
+ [#'enterpriseAlterInfo.alterDate',
+#    'esDate',
+    'entAlter.alterDate',
+#    'adminLicense.createDate','enterpriseAlterInfo.alterDate',
+#    'recruitment.releaseDate',
+#    'semDate',
+#    'appLastReleaseDate','eShopCreateDate',  # eShopCreateDate是int
+#    'webLastChangeDate',#list-date
+#    'initCertDate','lastCertDate',
+#    'lastAbnormalInDate','lastAbnormalOutDate',
+#    'patentApplyDate','patentApplyPubDate','trademarkApplyDate' , #list
+#    'lastPenDate'
+  ]
+key: #过去+未来时间
+ [
+#    'adminLicense.expireDate',
+#    'domainExpireDate', #list-date
+#    'certificate.endDate',
+#    'trademarkUseRightDateEnd' #list
+ ]
+#基本信息：成立年限,工商变更日期：entAlter.alterDate
+#联系方式：
+#企业发展：
+#经营情况：行政许可发证日期,招投标发布时间,行政许可到期时间,展会开始时间
+#招聘信息：职位发布时间
+#网络推广：最后推广时间
+#产品信息：移动应用最近更新时间,电商店铺创建时间
+#网站信息：域名到期时间，网站结构更新时间
+#资质证书：初次获证日期,最近获证日期,证书有效截止日期
+#知识产权：专利申请日期,专利公开（公告）日期,商标申请日期，商标专用权结束日期
+#风险信息：最近经营异常列入日期,最近经营异常移出日期,最近行政处罚决定日期

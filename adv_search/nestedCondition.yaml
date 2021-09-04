@@ -1,0 +1,60 @@
+{
+  #时间：2019-1-1 0:0:0--2019-3-1 23:59:59,2020-5-1 0:0:0--2020-7-15 23:59:59，商标专用权2023-1-1 0:0:0--2023-3-1 23:59:59
+#  'certificate':[
+#              {'cn': 'certL2Type','nn':'certificate.type','cr':['IN','NOT_IN'],'cv': ["20000","20001","20002","20003","20004","20005","20006","20007","20008","20009"]},
+#              {'cn': 'certificate.endDate','nn':'certificate.endDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']},
+#              {'cn': 'certL2Name','nn':'certificate.name','cr':['IN','NOT_IN'],'cv': ['甲级','房屋','工程']},
+#              {'cn': 'certificate.certOrgName','nn':'certificate.certOrgName','cr':['IN','NOT_IN'],'cv': ['建设厅','住房','城乡']}
+#              ],
+#  'adminLicense':[
+#              {'cn': 'licenseOffice','nn':'adminLicense.office','cr':['IN','NOT_IN'],'cv': ['监管局','甘南州住建局','归集处']},
+#              {'cn': 'licenseContent','nn':'adminLicense.content','cr':['IN','NOT_IN'],'cv': ['变更','职工停缴','卷烟']},
+#              {'cn': 'adminLicense.createDate','nn':'adminLicense.createDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']},
+#              {'cn': 'adminLicense.expireDate','nn':'adminLicense.expireDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']}
+#      ],
+#  'recruitment':[
+#              {'cn': 'recruitPlatform','nn':'recruitment.platform','cr':['IN','NOT_IN'],'cv': ['53', '12', '54', '51', '102', '13', '112', '50', '48', '20', '47', '42', '55']},
+#              {'cn': 'recruitment.jobDetail','nn':'recruitment.jobDetail','cr':['IN','NOT_IN'],'cv': ['测试','学习','管理']},
+#              {'cn': 'recruitment.releaseDate','nn':'recruitment.releaseDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']}
+#  ],
+#    'semPromo':[
+#                {'cn': 'semPlatform','nn':'semPromo.semPlatform','cr':['IN','NOT_IN'],'cv': ['34', '99', '102']},
+#                {'cn': 'semKeyword','nn':'semPromo.keyword','cr':['IN','NOT_IN'],'cv': ['技术','北京地区分类信息','消费电子资讯']}
+#    ],
+#  'trademark':[
+#              {'cn': 'trademarkType','nn':'trademark.category','cr':['IN','NOT_IN'],'cv': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+#                                     '12', '13', '14', '15', '16','17', '18', '19', '20', '21', '22','23', '24', '25', '26', '27', '28', '29', '30', '31',
+#                                    '32', '33', '34', '35', '36', '37','38', '39', '40', '41', '42', '43', '44', '45']},
+#              {'cn': 'trademarkName','nn':'trademark.name','cr':['IN','NOT_IN'],'cv': ['图形','重工']},
+#              {'cn': 'trademarkApplyDate','nn':'trademark.applyDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']},
+#              {'cn': 'trademarkUseRightDateEnd','nn':'trademark.trademarkUseRightDateEnd','cr':['BETWEEN'],'cv': ['1672502400000-1677686399000']}
+#  ],
+#  'patent':[
+#              {'cn': 'patentType','nn':'patent.type','cr':['IN','NOT_IN'],'cv': ['1', '2', '3', '4']},
+#              {'cn': 'patentName','nn':'patent.name','cr':['IN','NOT_IN'],'cv': ['电子','运输车','安全性能高']},
+#              {'cn': 'patentApplyDate','nn':'patent.applyDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']},
+#              {'cn': 'patentApplyPubDate','nn':'patent.pubDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']}
+#  ],
+    'tender':[
+                {'cn': 'tenderType','nn':'tender.annoType','cr':['IN','NOT_IN'],'cv': ['1000','2000']},
+                {'cn': 'tender.pubDate','nn':'tender.pubDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']},
+                {'cn': 'tenderName','nn':'tender.title','cr':['IN','NOT_IN'],'cv': ['电缆','成交公告','中标公告']}
+        ]
+#    'enterpriseAlterInfo':[
+#    {'cn': 'entAlter.alterCategory','nn':'entAlter.alterCategory','cr':['IN','NOT_IN'],'cv': ['1','2','3','4']},
+#    {'cn': 'entAlter.alterDate','nn':'entAlter.alterDate','cr':['BETWEEN'],'cv': ['1546272000000-1551455999000','1588262400000-1594828799000']}
+#    ]
+}
+
+#nn 里的第一个嵌套中的第一级，第二个为第二级
+
+#1:涵盖证书类型、证书截止日期、证书名称、发证机构
+#2:许可机关、许可内容、行政许可发证日期、行政许可到期时间
+#3:招聘平台、职位描述，职位发布时间、
+#4：推广平台、推广关键词为一组
+#5:涵盖商标类别、商标名称、商标申请日期、商标专用权结束日期为
+#6:涵盖专利类别、专利名称、专利申请日期、专利公开（公告）日期
+#7:招投标公告类型,招投标项目描述、招投标发布时间
+#8:工商变更类型，工商变更日期
+
+

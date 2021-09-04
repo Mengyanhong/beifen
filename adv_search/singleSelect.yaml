@@ -1,0 +1,28 @@
+[
+'hasBrand'
+#  'hasAnnu','hasAaumChange',
+#  'hasMobile','hasFixed','hasEmail','hasQq','isAgency','hasNonAgency',
+#  'hasCap','isChineseTop500','isUnicorn','isGazelle','isListed','isTopTenIndustry',
+#  'hasAdminLicense','hasInvestment','hasAnnualInvestment','isGeneralTaxpayer','hasATaxCredit','hasPatent','hasImportAndExportCredit','hasTradeShow',
+#  'hasRecruit',
+#  'hasSem',
+#  'hasWechat','hasBlog','hasApp','eHasProduct','hasBrand',
+#  'hasIcp','hasSsl','hasFlashModule','hasOnlineChat','isRespTech','hasMobileSite',
+#  'hasCert','hasArchitCert','isHighTech',
+#  'hasTender','hasTrademark','hasSoftware','hasWorks',
+#  'hasAbnormal','isAbnormal','hasPenalty','hasDishonest'
+]
+
+#sepecial: ['isHighTech']
+
+#基本信息：有无企业年报,有无工商变更
+#联系方式：有无手机，有无固话，有无邮箱,有无QQ,有无疑似代理记账号码,有无非疑似代理记账号码
+#企业发展：有无融资历史，是否500强企业，是否独角兽企业，是否瞪羚企业，是否上市企业，是否行业内十强企业？？？？
+#经营情况：有无行政许可，有无对外投资，有无年报对外投资,是否为一般纳税人,是否A级纳税人，有无招投标,有无进出口信用,有无参展
+#招聘信息：有无招聘
+#网络推广：有无推广
+#产品信息：有无公众号,有无机构微博,有无移动应用，有无商品,有无品牌信息
+#网站信息：有无icp备案,有无HTTPS证书,有无flash,有无在线沟通工具,是否响应式技术网站,有无手机端网站
+#资质证书：有无证书,有无建筑资质,是否高新企业
+#知识产权：有无专利,有无商标，有无软著,有无作品著作权
+#风险信息：有无经营异常，当前是否被列入经营异常，有无行政处罚,有无失信被执行人

@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+big_key:
+  ['brandCount'
+#    'regCapUnify','employees','branchCount',#float,int,int
+#    'licenseCount', #int
+#    'jobCount','latest3MonthJobCount','recruitAvgSalary','recruitAmountTotal','latest3MonthRecruitAmount',  #int,int
+#    'semKeywordCount','semUrlCount',
+#    'wechatCount','appCount', 'eShopCount','eProductCount','brandCount',
+#    'icpCount','baiduCover', 'qihu360Cover', 'sougouCover','websiteSpeed', #第一个int, 其他list-int
+#    'patentCount','tradeMarkValidCount','tradeMarkInvalidCount','softwareCount','worksCount','applyPatentCountYear','pubPatentCountYear',   #int,int  #int
+  ],
+
+small_key:
+ [
+#  'capCount', #int   samll
+#  'weiboCount','appDownloadCount','appAvgScore', 'eShopAvgScore', #int  最后两个暂不确定,appDownloadCount要除以1万
+#  'baiduRank','qihu360Rank','sougouRank','baiduPcPage','baiduH5Page','domainAge','domainRecordAge', #domainAge=当前时间-domainCreateDate list,前6list-int
+#  'deadLinkSum','illegalLinkSum', #int
+#  'certL2Count','certL2CountThisYear'  #int,int
+#  'abnormalCount','penaltyCount' ,   #int
+
+  ]
+
+
+#基本信息：注册资本,参保人数,分支机构
+#联系方式：
+#企业发展：融资次数
+#经营情况：行政许可数量
+#招聘信息：当前招聘职位数,前3个月招聘职位数，企业平均薪资，当前招聘总人数，前3个月招聘总人数
+#网络推广：推广关键词数,推广链接数
+#产品信息：公众号数量,机构微博数量,移动应用数量,移动应用下载总量,移动应用平均评分,电商店铺数量,商品数量,电商店铺平均分,品牌数量
+#网站信息：icp备案数量,百度权重PC端,360权重PC端,搜狗权重PC端,百度总收录量,360总收录量,搜狗总收录量,域名年龄,
+         #死链数,非法链接数,平均访问速度,备案年龄,关键词百度网页端排名,关键词百度移动端排名
+#资质证书：证书数量,本年度获证数量
+#知识产权：专利数量,有效状态商标数量,无效状态商标数量，软著数量,作品著作权数量,最近一年申请专利数量,最近一年公开（公告）专利数量
+#风险信息：经营异常数量,行政处罚数量

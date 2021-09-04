@@ -1,0 +1,121 @@
+#yaml基本语法
+#大小写敏感
+#使用缩进表示层级关系
+#缩进不允许使用tab，只允许使用空格
+#缩进空格数不重要，只要相同层级的元素左对齐就行
+##表示注释从他开头到行尾被忽略
+# -表示1个列表
+#'''----------登录类测试数据----------'''
+-
+  URL: TEST_HOST
+  method: post
+- #test_01用例
+  detail: 测试未上传的文件
+  data:
+    current_user_token: "Token token=e576cf1e4cd410f62ced870d8a8701d0"
+    lixiaoyun: "lixiaoyun"
+    file_name: "数据模板不符合要求.xlsx"
+  resp:
+    error_code: 6004
+    success: "False"
+    message: "上传文件失败，文件内容不符合模版要求"
+    data: {file_name: '数据模板不符合要求.xlsx'}
+- #test_02用例
+  detail: 文件内容为空
+  data:
+    current_user_token: "Token token=e576cf1e4cd410f62ced870d8a8701d0"
+    lixiaoyun: "lixiaoyun"
+    file_name: "数据模板空数据.xls"
+  resp:
+    error_code: 6003
+    success: "False"
+    message: "上传文件失败，文件内容为空"
+    data: {file_name: '数据模板空数据.xls'}
+- #test_03用例
+  detail: 文件不符合格式
+  data:
+    current_user_token: "Token token=e576cf1e4cd410f62ced870d8a8701d0"
+    lixiaoyun: "lixiaoyun"
+    file_name: "数据模板不符合格式.xlt"
+  resp:
+    error_code: 6002
+    success: "False"
+    message: "上传文件失败，文件不符合格式"
+    data: {file_name: '数据模板不符合格式.xlt'}
+- #test_04用例
+  detail: 文件上传成功
+  data:
+    current_user_token: "Token token=e576cf1e4cd410f62ced870d8a8701d0"
+    lixiaoyun: "lixiaoyun"
+    file_name: "企鹅2000条数据.xlsx"
+  resp:
+    error_code: 0
+    success: "True"
+    message: ""
+    data: {file_name: '企鹅2000条数据.xlsx'}
+- #test_05用例
+  detail: 试用账户
+  data:
+    current_user_token: "Token token=5d3362e370aaea5ef99f4f7850117aab"
+    lixiaoyun: "lixiaoyun"
+    file_name: "企鹅2000条数据.xlsx"
+  resp:
+    error_code: 6001
+    success: "False"
+    message: "试用版用户无权限"
+    data: {file_name: '企鹅2000条数据.xlsx'}
+- #test_06用例
+  detail: 用户未授权搜客宝
+  data:
+    current_user_token: "Token token=6a40a343ffc991e7a8402ed5d72fa98e"
+    lixiaoyun: "lixiaoyun"
+    file_name: "企鹅2000条数据.xlsx"
+  resp:
+    error_code: 409
+    success: "False"
+    message: "用户未授权skb"
+    data: {}
+- #test_07用例
+  detail: 缺少用户鉴权信息token
+  data:
+    current_user_token: ""
+    lixiaoyun: "lixiaoyun"
+    file_name: "企鹅2000条数据.xlsx"
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}
+- #test_08用例
+  detail: 缺少用户鉴权信息平台
+  data:
+    current_user_token: "Token token=e576cf1e4cd410f62ced870d8a8701d0"
+    lixiaoyun: ""
+    file_name: "企鹅2000条数据.xlsx"
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}
+- #test_09用例
+  detail: 用户鉴权信息错误
+  data:
+    current_user_token: "Token token"
+    lixiaoyun: "lixiaoyun"
+    file_name: "企鹅2000条数据.xlsx"
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}
+- #test_10用例
+  detail: 用户传参错误
+  data:
+    current_user_token: "Token token=e576cf1e4cd410f62ced870d8a8701d0"
+    lixiaoyun: "lixiaoy"
+    file_name: "企鹅2000条数据.xlsx"
+  resp:
+    error_code: 403
+    success: "False"
+    message: "用户鉴权信息已失效"
+    data: {}

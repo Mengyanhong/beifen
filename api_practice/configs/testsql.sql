@@ -1,0 +1,1 @@
+select * from yxy_skb_test.org_sites where oid=5505626
