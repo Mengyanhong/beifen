@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/UC-wwj-push" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UC-wwj-skb-test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/testfile" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lixiaoyun" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/api_practice" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/adv_search" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/backups" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/API_project" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Visitors_identify" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
