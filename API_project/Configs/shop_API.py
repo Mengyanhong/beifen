@@ -31,20 +31,23 @@ class shop:
                            'condition': {'cn': 'composite', 'cr': 'MUST', 'cv': [
                                {'cn': 'category', 'cv': {'categoryL1': [categoryL1], 'categoryL2': []}, 'cr': 'IN'}]}}
         response = requests.post(url=shop(self.test).url(), headers=self.user.headers(), json=Request_payload)
-        if response.json()['error_code'] != 0:
-            print('搜索接口报错', '\n', response.json()['error_code'], response.json()['message'])
-        else:
-            return response.json()
+        # if response.json()['error_code'] != 0:
+        #     print('搜索接口报错', '\n', response.json()['error_code'], response.json()['message'])
+        # else:
+        #     return response.json()
+        return response.json()
+
 
     def categoryL2(self, categoryL2):
         Request_payload = {'shopName': '', 'hasUnfolded': 0, 'hasSyncClue': 0, 'page': 1, 'pagesize': 10,
                            'condition': {'cn': 'composite', 'cr': 'MUST', 'cv': [
                                {'cn': 'category', 'cv': {'categoryL1': [], 'categoryL2': [categoryL2]}, 'cr': 'IN'}]}}
-        response = requests.post(url=shop(self.test).url(), headers=self.user.headers(), json=Request_payload)
-        if response.json()['error_code'] != 0:
-            print('搜索接口报错', '\n', response.json()['error_code'], response.json()['message'])
-        else:
-            return response.json()
+        response = requests.post(url=shop(self.test).url(), headers=self.user.headers(), json=Request_payload).json()
+        # if response['error_code'] != 0:
+        #     print('搜索接口报错', '\n', response['error_code'], response['message'])
+        # else:
+        #     return response
+        return response
 
     def area_province(self, province):
         Request_payload = {"shopName": "", "hasUnfolded": 0, "hasSyncClue": 0, "page": 1, "pagesize": 10,
