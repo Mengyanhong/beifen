@@ -2,10 +2,9 @@
 # @Time : 2021/7/14 13:01
 # @Author : 孟艳红
 # @File : shop_API.py,找店铺接口
-import requests, json
-import urllib3
-
+import requests, json,urllib3
 urllib3.disable_warnings()
+
 from API_project.Configs.config_API import user
 
 
