@@ -1,26 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import requests,json
-import urllib3
-urllib3.disable_warnings()
+import requests,json,urllib3
 from API_project.Configs.config_API import user
+urllib3.disable_warnings()
 
 class search:
     def __init__(self, test):
-        self.test = test
         self.user = user(test)
-    def url(self): #url环境配置
-        if self.test == 'test':
-            URL='https://skb-test.weiwenjia.com/api_skb/v1/advanced_search'
-        elif self.test == 'staging':
-            URL='https://skb-staging.weiwenjia.com/api_skb/v1/advanced_search'
-        elif self.test == 'lxcrm':
-            URL='https://skb.weiwenjia.com/api_skb/v1/advanced_search'
-        else:
-            print('传参错误')
-            URL = None
-        return URL
+
     def search_API(self,cn,cv,cr): #高级搜索单个条件搜索
+        URL = f'https://{self.user.skb_Host()}/api_skb/v1/advanced_search'
         body={
             "isCustomerTemplate": 1,
             "condition": {
@@ -41,15 +30,16 @@ class search:
             "hasUnfolded": 0,
             "sortBy": 0
         }
-        r=requests.post(search(self.test).url(),headers=self.user.headers(),json=body, verify=False)
+        r=requests.post(URL,headers=self.user.headers(),json=body, verify=False)
         if json.loads(r.text)['error_code'] != 0:
             print('搜索接口报错')
         else:
             data=json.loads(r.text)['data']
-            print(search(self.test).url())
+            print(URL)
             return(data)
 
     def nestedSearch_API(self,cn1,nn1,cr1,cv1,cn2,nn2,cr2,cv2): ##高级搜索附加条件搜索
+        URL = f'https://{self.user.skb_Host()}/api_skb/v1/advanced_search'
         body={
             "isCustomerTemplate": 1,
             "condition": {
@@ -78,7 +68,7 @@ class search:
             "hasUnfolded": 0,
             "sortBy": 0
         }
-        r=requests.post(search(self.test).url(),headers=self.user.headers(),json=body, verify=False)
+        r=requests.post(URL,headers=self.user.headers(),json=body, verify=False)
         if json.loads(r.text)['error_code'] != 0:
             print('搜索接口报错')
         else:
@@ -87,22 +77,10 @@ class search:
 
 class getCompanyBaseInfo:
     def __init__(self,test):
-        self.test = test
         self.get_search = user(test)
-    def url(self):
-        if self.test == 'test':
-            url = 'https://test.lixiaoskb.com/api_skb/v1/companyDetail/getCompanyBaseInfo?'
-        elif self.test == 'staging':
-            url = 'https://stage.lixiaoskb.com/api_skb/v1/companyDetail/getCompanyBaseInfo?'
-        elif self.test == 'lxcrm':
-            url = 'https://biz.lixiaoskb.com/api_skb/v1/companyDetail/getCompanyBaseInfo?'
-        else:
-            print('传参错误')
-            url = None
-        return url
 
     def getCompanyBase(self,pid):
-        get_getCompanyBaseInfo = getCompanyBaseInfo(self.test)
+        url = f'https://{self.get_search.biz_url()}/api_skb/v1/companyDetail/getCompanyBaseInfo?'
         params = {'id': f'{pid}',
                   'countSection': 1,
                   'market_source': 'advance_search_list',
@@ -111,7 +89,7 @@ class getCompanyBaseInfo:
                   'search_result_page': 1,
                   }
 
-        re_tag = requests.get(get_getCompanyBaseInfo.url(), params=params,
+        re_tag = requests.get(url, params=params,
                               headers=self.get_search.headers())
         return (re_tag)
 

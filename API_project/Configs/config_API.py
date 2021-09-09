@@ -31,6 +31,30 @@ class user:  # 用户信息
         }
         return Headers
 
+    def skb_Host(self):
+        if self.test == 'test':
+            host = 'skb-test.weiwenjia.com'
+        elif self.test == 'staging':
+            host = 'skb-staging.weiwenjia.com'
+        elif self.test == 'lxcrm':
+            host = 'skb.weiwenjia.com'
+        else:
+            print('传参错误')
+            host = None
+        return host
+
+    def biz_url(self):
+        if self.test == 'test':
+            url = 'test.lixiaoskb.com'
+        elif self.test == 'staging':
+            url = 'stage.lixiaoskb.com'
+        elif self.test == 'lxcrm':
+            url = 'biz.lixiaoskb.com'
+        else:
+            print('传参错误')
+            url = None
+        return url
+
     def shop_headers(self):  # headers环境配置
         if self.test == 'test':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
@@ -42,8 +66,8 @@ class user:  # 用户信息
             platform = 'lixiaoyun'
         elif self.test == 'lxcrm':
             app_token = 'a14cc8b00f84e64b438af540390531e4'
-            Token = 'Token token=6f9ef83c63f91121407573ae05b62f40'
-            platform = 'IK'
+            Token = 'Token token=18033bf7b969d9b12ef830c66c1f2464'
+            platform = 'lixiaoyun'
         else:
             print('传参错误')
             app_token = None
@@ -51,11 +75,23 @@ class user:  # 用户信息
             platform = None
         Headers = {
             'app_token': app_token,
-            'Authorization': Token,
-            'Content-Type': 'application/json',
+            'authorization': Token,
+            'content-type': 'application/json',
             'crm_platform_type': platform
         }
         return Headers
+
+    def visitor_HOST(self): #访客识别域名
+        if self.test == 'test':
+            HOST = 'visitor-test.weiwenjia.com'
+        elif self.test == 'staging':
+            HOST = 'visitor-stage.weiwenjia.com'
+        elif self.test == 'lxcrm':
+            HOST = 'visitor.weiwenjia.com'
+        else:
+            print('传参错误')
+            HOST = None
+        return  HOST
 
     def robot_headers(self):  # headers环境配置
         if self.test == 'test':
@@ -78,6 +114,19 @@ class user:  # 用户信息
             'crmplatformtype': platform
         }
         return Headers
+
+    def robot_Host(self):
+        if self.test == 'test':
+            host = 'jiqiren-test.weiwenjia.com'
+        elif self.test == 'staging':
+            host = 'jiqiren-staging.weiwenjia.com'
+        elif self.test == 'lxcrm':
+            host = 'jiqiren.weiwenjia.com'
+        else:
+            print('传参错误')
+            host = None
+        return host
+
 
 
 class configuration_file:  # 配置文件调用
