@@ -5,6 +5,7 @@
 import requests
 from API_project.Configs.config_API import user
 
+
 class Sync_robot:
     def __init__(self, environment):
         self.User = user(environment)
@@ -21,7 +22,7 @@ class Sync_robot:
             dataColumn = [0]
         else:
             dataColumn = dataColumns
-        url = f'https://{self.User.robot_Host()}/api_skb/v1/clues/sync_robot'
+        url = f'https://{self.User.skb_Host()}/api_skb/v1/clues/sync_robot'
         payload = {
             "from": "syncRobot",
             "useQuota": Quota,  # 是否使用额度
@@ -44,3 +45,21 @@ class Sync_robot:
         response = requests.post(url=url, headers=heade, json=payload)
         return response
 
+    def robot_uncalled(self, query_name=None):  # 查询号码管理内号码是否存在
+        url = f'https://{self.User.robot_Host()}/api/v1/customers/uncalled'
+        headers = self.User.robot_headers()
+        payload = {
+            'page': 1,
+            'per_page': 10,
+        }
+        if query_name is not None:
+            payload.update({'query': query_name, 'queryType': 2})
+        response = requests.get(url, params=payload, headers=headers)
+        return response
+
+    def robot_outcallplan(self, query_name=None):  # 查询外呼计划
+        url = f'https://{self.User.robot_Host()}/api/v1/plan/list'
+        headers = self.User.robot_headers()
+        payload = {"page": 1, "per_page": 10}
+        response = requests.post(url, json=payload, headers=headers)
+        return response
