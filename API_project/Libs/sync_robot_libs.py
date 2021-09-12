@@ -11,7 +11,7 @@ class Sync_robot:
         self.User = user(environment)
 
     def sync(self, pids=None, pages=None, seach_value=None, Quota=True, dataColumns=None, phoneStatus=None,
-             numberCount=0, needCallPlan=False, way=None):
+             numberCount=0, needCallPlan=False,canCover=False, way=None):
         true = True
         false = False
         if phoneStatus is None:
@@ -29,7 +29,7 @@ class Sync_robot:
             "dataColumns": dataColumn,  # 数据字段[0, 1] // 0: 手机，1：固话
             "phoneStatus": phone,  # 手机过滤 [0, 1, 2 , 3] //[0, 1, 3]: 过滤疑似代理记账号码 [0, 1, 2]: 过滤异常号码
             "numberCount": numberCount,  # 号码数量 0: 全部,1: 第一条
-            "canCover": false,
+            "canCover": canCover,
             "needCallPlan": needCallPlan,  # 是否需要创建外呼计划 true / false
         }
         if way is not None:
@@ -45,7 +45,7 @@ class Sync_robot:
         response = requests.post(url=url, headers=heade, json=payload)
         return response
 
-    def robot_uncalled(self, query_name=None):  # 查询号码管理内号码是否存在
+    def robot_uncalled(self, query_name=None,queryType=2):  # 查询号码管理内号码是否存在
         url = f'https://{self.User.robot_Host()}/api/v1/customers/uncalled'
         headers = self.User.robot_headers()
         payload = {
@@ -53,7 +53,7 @@ class Sync_robot:
             'per_page': 10,
         }
         if query_name is not None:
-            payload.update({'query': query_name, 'queryType': 2})
+            payload.update({'query': query_name, 'queryType': queryType})
         response = requests.get(url, params=payload, headers=headers)
         return response
 

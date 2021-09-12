@@ -8,6 +8,7 @@ urllib3.disable_warnings()
 class user:  # 用户信息
     def __init__(self, environment):
         self.test = environment
+        # self.User = user(self.test)
 
     def headers(self):  # headers环境配置
         if self.test == 'test':
@@ -18,7 +19,7 @@ class user:  # 用户信息
             token = 'b329f23fc5b2d0aaefb384cef8170c99'
         elif self.test == 'lxcrm':
             app_token = 'a14cc8b00f84e64b438af540390531e4'
-            token = '6f9ef83c63f91121407573ae05b62f40'
+            token = '18033bf7b969d9b12ef830c66c1f2464'
         else:
             print('传参错误')
             app_token = None
@@ -81,6 +82,15 @@ class user:  # 用户信息
         }
         return Headers
 
+    def skb_userinfo(self,headers=None):  # 查询用户信息
+        url = f'https://{user(self.test).skb_Host()}/api_skb/v1/user/userInfo'
+        if headers == None:
+            header = user(self.test).headers()
+        else:
+            header = headers
+        response = requests.get(url,headers=header)
+        return response
+
     def visitor_HOST(self): #访客识别域名
         if self.test == 'test':
             HOST = 'visitor-test.weiwenjia.com'
@@ -126,7 +136,8 @@ class user:  # 用户信息
             print('传参错误')
             host = None
         return host
-
+if __name__ == '__main__':
+    print(user('lxcrm').skb_userinfo().json())
 
 
 class configuration_file:  # 配置文件调用

@@ -8,6 +8,16 @@ class search:
     def __init__(self, test):
         self.user = user(test)
 
+    def skb_contacts_num(self,headers=None,pid=None):  # 查询联系方式
+        url = f'https://{self.user.skb_Host()}/api_skb/v1/clue/contacts_num'
+        if headers == None:
+            header = self.user.headers()
+        else:
+            header = headers
+        payload ={'pid':pid}
+        response = requests.get(url,params=payload,headers=header)
+        return response
+
     def search_API(self,cn,cv,cr): #高级搜索单个条件搜索
         URL = f'https://{self.user.skb_Host()}/api_skb/v1/advanced_search'
         body={
