@@ -18,6 +18,21 @@ class search:
         response = requests.get(url,params=payload,headers=header)
         return response
 
+    def skb_search(self,keyword="北京",filterUnfold=2,filterSyncRobot=1,filterSync=1,contact=[1,2]):
+        url = f'https://{self.user.skb_Host()}/api_skb/v1/search'
+        payload = {"keyword": keyword,
+                   "filter": {"location": [], "industryshort": [], "secindustryshort": [], "registercapital": [],
+                              "establishment": [], "entstatus": [], "contact": contact, "sortBy": "0", "companysource": [],
+                              "enttype": [0], "employees": [0], "hasrecruit": "0", "hassem": "0", "haswebsite": "0",
+                              "hastrademark": "0", "haspatent": "0", "hastender": "0", "haswechataccnt": "0",
+                              "filterUnfold": filterUnfold, "filterSync": filterSync, "filterSyncRobot": filterSyncRobot, "hasBuildingCert": "0",
+                              "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
+                              "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
+                   "pagesize": 10, "page": 1}
+        header = self.user.shop_headers()
+        response = requests.post(url, headers=header, json=payload, verify=False)  # 搜索未查看，未转机器人的数据
+        return response
+
     def search_API(self,cn,cv,cr): #高级搜索单个条件搜索
         URL = f'https://{self.user.skb_Host()}/api_skb/v1/advanced_search'
         body={
