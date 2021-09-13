@@ -18,7 +18,7 @@
       <excludeFolder url="file://$MODULE_DIR$/lixiaoyun" />
       <excludeFolder url="file://$MODULE_DIR$/testfile" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9" jdkType="Python SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
