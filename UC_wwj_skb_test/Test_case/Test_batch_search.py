@@ -1,9 +1,9 @@
 #执行用例
 import os
 from tools.yamlControl import get_yaml_data
-from Configs.config import HOST
-from Libs.batch_search import upload_batch_search_file
-from Libs.industry_label import industry_labels
+from UC_wwj_skb_test.Configs.config import HOST
+from UC_wwj_skb_test.Libs.batch_search import upload_batch_search_file
+from UC_wwj_skb_test.Libs.industry_label import industry_labels
 DEV_HOST = HOST.search_fin_staging()
 # #1- 获取用例数据
 # file = get_yaml_data('../Data/staging_se_files.yaml')
