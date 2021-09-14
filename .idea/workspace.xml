@@ -25,9 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="sync_robot配置1.2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="sync_robot配置1.2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +56,7 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -165,10 +164,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case01" />
-        <item itemvalue="Python.sync_robot_search_libs (1)" />
         <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot" />
         <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case03" />
         <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case04" />
+        <item itemvalue="Python.sync_robot_search_libs (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -182,7 +181,7 @@
       <updated>1631157179010</updated>
       <workItem from="1631157574628" duration="19678000" />
       <workItem from="1631237144458" duration="286000" />
-      <workItem from="1631625372180" duration="458000" />
+      <workItem from="1631625372180" duration="695000" />
     </task>
     <task id="LOCAL-00001" summary="sync_robot配置">
       <created>1631179911466</created>
@@ -212,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631457498296</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="sync_robot配置1.2">
+      <created>1631625907444</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1631625907444</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,11 +251,19 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sync_robot配置" />
     <MESSAGE value="sync_robot配置1.1" />
-    <MESSAGE value="sync_robot配置1.2" />
     <MESSAGE value="sync_robot配置1.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="sync_robot配置1.6" />
+    <MESSAGE value="sync_robot配置1.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="sync_robot配置1.2" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="488" y="235" key="#Notifications" timestamp="1631626076681">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="488" y="235" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1631626076681" />
+    <state x="147" y="65" key="DiffContextDialog" timestamp="1631625794051">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1631625794051" />
     <state width="1493" height="248" key="GridCell.Tab.0.bottom" timestamp="1631457585188">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
