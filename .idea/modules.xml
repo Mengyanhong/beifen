@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../python_test/UC-wwj-skb-test/.idea/UC-wwj-skb-test.iml" filepath="$PROJECT_DIR$/../python_test/UC-wwj-skb-test/.idea/UC-wwj-skb-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../python_test/UC_wwj_skb_test/.idea/UC_wwj_skb_test.iml" filepath="$PROJECT_DIR$/../python_test/UC_wwj_skb_test/.idea/UC_wwj_skb_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/home.iml" filepath="$PROJECT_DIR$/.idea/home.iml" />
     </modules>
   </component>

@@ -44,9 +44,9 @@ class Test_industry_tag:
         rers=industry_labels(filesBody,DEV_HOST,).industry_tags()
         assert rers["error_code"] == filesData["error_code"]
 if __name__ == '__main__':
-    pytest.main(["Test_batch_search.py","-sq","--alluredir","../report/tmp"])# -s 打印输出,-sq简化打印
+    pytest.main(["Test_batch_search.py","-sq","--alluredir","../report/temp"])# -s 打印输出,-sq简化打印
     # os.system("allure serve ../report/temp")
-    os.system("allure serve ../report/tmp")
+    os.system("allure generate ../report/temp -o ../report/temp --clean")
 """f   用例失败
    E   ERROR
    。  成功的

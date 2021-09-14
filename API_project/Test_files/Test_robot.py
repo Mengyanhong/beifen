@@ -45,7 +45,7 @@ class Test_Sync_robot:
     #     Sync_robot_test.case05(way=way,page=page)
 
 if __name__ == '__main__':
-    pytest.main(["robot_test.py", "-sq", "--alluredir", "API_project/report/tmp"])  # -s 打印输出,-sq简化打印
+    pytest.main(["Test_robot.py", "-sq", "--alluredir", "API_project/report/tmp"])  # -s 打印输出,-sq简化打印
     # os.system("allure serve ../report/temp")
     os.system("allure serve API_project/report/tmp")
 """f   用例失败

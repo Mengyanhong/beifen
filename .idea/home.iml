@@ -20,6 +20,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="UC-wwj-skb-test" />
+    <orderEntry type="module" module-name="UC_wwj_skb_test" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />

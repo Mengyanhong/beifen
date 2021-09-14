@@ -25,61 +25,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="sync_robot配置1.7">
-      <change afterPath="$PROJECT_DIR$/TXT/ES.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TXT/superset.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TXT/用例账户.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TXT/迭代进度文档.txt" afterDir="false" />
+    <list default="true" id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="sync_robot配置1.8">
       <change beforePath="$PROJECT_DIR$/.idea/home.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/home.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Test_files/robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test_files/robot_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Configs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Configs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Configs/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Configs/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Configs/uiconfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Configs/uiconfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Data/staging_industry_tags.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Data/staging_industry_tags.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Data/staging_se_files.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Data/staging_se_files.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Data/staging_se_fin.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Data/staging_se_fin.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Data/test_industry_tags.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Data/test_industry_tags.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Data/test_se_files.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Data/test_se_files.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Data/test_se_fin.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Data/test_se_fin.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Libs/UI/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/UI/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Libs/UI/ui_test_case.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/UI/ui_test_case.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Libs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Libs/batch_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/batch_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Libs/industry_label.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/industry_label.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Libs/login.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Test_case/Test_batch_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Test_case/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Test_search_shop_case/123.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_search_shop_case/123.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Test_search_shop_case/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_search_shop_case/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Test_search_shop_case/店铺分类.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_search_shop_case/店铺分类.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Test_search_shop_case/找店铺地区全量case.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_search_shop_case/找店铺地区全量case.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/Test_search_shop_case/找店铺地区查重.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_search_shop_case/找店铺地区查重.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/package/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/package/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/search/api_skb/v1/advanced_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/search/api_skb/v1/advanced_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/search/api_skb/v1/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/search/api_skb/v1/search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/tools/ExcelControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/tools/ExcelControl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/tools/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/tools/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/tools/yamlControl.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/tools/yamlControl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script/1.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/run_script/1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script/2.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/run_script/2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script/周推比对.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/run_script/周推比对.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script/新日推数据分析.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/run_script/新日推数据分析.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/test_script/Push ritui.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/test_script/Push ritui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/test_script/Push yuetui.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/test_script/Push yuetui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/test_script/Push zhoutui.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/test_script/Push zhoutui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/test_script/xinjianzhoutui.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/test_script/xinjianzhoutui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/test_script/周.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/test_script/周.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/1231233.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/1231233.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/json.array.length获取.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/json.array.length获取.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/req.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/req.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/多线程练习.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/多线程练习.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/店铺分类练习.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/店铺分类练习.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/行.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/行.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/行业搜索.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/行业搜索.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/计算.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/计算.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UC-wwj-skb-test/练习文件/详情页练习.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/练习文件/详情页练习.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Test_files/robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test_files/Test_robot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lixiaoyun/test_case/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/lixiaoyun/test_case/test_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/测试文本.text" beforeDir="false" afterPath="$PROJECT_DIR$/测试文本.text" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +58,7 @@
   </component>
   <component name="JupyterTrust" id="8ccef12b-0772-4682-bbb1-fbd3fa94d135" />
   <component name="ProjectId" id="1xswLPXeW4nHAu0jfi9t92xDoxY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -115,140 +69,38 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python_test/UC_wwj_skb_test" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case\Test_c" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case" />
+      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case\Test_c" />
       <recent name="D:\Program Files\home\TXT" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in robot_test.py">
-    <configuration name="新日推数据分析" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="home" />
+  <component name="RunManager">
+    <configuration name="Python tests in Test_batch_search.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="UC_wwj_skb_test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script/新日推数据分析.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="周推比对" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script/周推比对.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for robot_test.Test_Sync_robot.test_case01" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;robot_test.Test_Sync_robot.test_case01&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for robot_test.Test_Sync_robot.test_case05" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;robot_test.Test_Sync_robot.test_case05&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in Test_batch_search.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case/Test_batch_search.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in robot_test.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API_project/Test_files/robot_test.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.新日推数据分析" />
-      <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case05" />
-      <item itemvalue="Python tests.pytest in Test_batch_search.py" />
-      <item itemvalue="Python tests.pytest in robot_test.py" />
-      <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case01" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in robot_test.py" />
-        <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case01" />
-        <item itemvalue="Python tests.pytest in Test_batch_search.py" />
-        <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case05" />
-        <item itemvalue="Python.新日推数据分析" />
+        <item itemvalue="Python tests.Python tests in Test_batch_search.py" />
       </list>
     </recent_temporary>
   </component>
@@ -262,7 +114,7 @@
       <updated>1631157179010</updated>
       <workItem from="1631157574628" duration="19678000" />
       <workItem from="1631237144458" duration="286000" />
-      <workItem from="1631583036291" duration="6477000" />
+      <workItem from="1631583036291" duration="10825000" />
     </task>
     <task id="LOCAL-00001" summary="sync_robot配置">
       <created>1631179911466</created>
@@ -292,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631527351609</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="sync_robot配置1.8">
+      <created>1631593194468</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1631593194468</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -312,18 +171,20 @@
     <MESSAGE value="sync_robot配置1.1" />
     <MESSAGE value="sync_robot配置1.2" />
     <MESSAGE value="sync_robot配置1.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="sync_robot配置1.7" />
+    <MESSAGE value="sync_robot配置1.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="sync_robot配置1.8" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/home$sync.coverage" NAME="sync Coverage Results" MODIFIED="1631263907640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_testcase01.coverage" NAME="pytest for robot_test.Test_Sync_robot.testcase01 Coverage Results" MODIFIED="1631451627430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case01.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631584866472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case04.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case04 Coverage Results" MODIFIED="1631522680193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_robot_test_py.coverage" NAME="pytest in robot_test.py Coverage Results" MODIFIED="1631585711256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_robot_test_py.coverage" NAME="pytest in Test_robot.py Coverage Results" MODIFIED="1631598424805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/home$config_API.coverage" NAME="config_API Coverage Results" MODIFIED="1631431890469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
     <SUITE FILE_PATH="coverage/home$pytest_for_test_robot_Test_Sync_robot_test_case01.coverage" NAME="pytest for test_robot.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631450021602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_Test_batch_search_py.coverage" NAME="pytest in Test_batch_search.py Coverage Results" MODIFIED="1631584680715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_Test_batch_search_py.coverage" NAME="pytest in Test_batch_search.py Coverage Results" MODIFIED="1631598603290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
     <SUITE FILE_PATH="coverage/home$sync_robot_search_libs__1_.coverage" NAME="sync_robot_search_libs (1) Coverage Results" MODIFIED="1631456390129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_Test_batch_search_Test_search_files.coverage" NAME="pytest for Test_batch_search.Test_search_files Coverage Results" MODIFIED="1631598495103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
     <SUITE FILE_PATH="coverage/home$pytest_for_test_arer_search_Test_arer_test_p_c_d.coverage" NAME="pytest for test_arer_search.Test_arer.test_p_c_d Coverage Results" MODIFIED="1630762838839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
     <SUITE FILE_PATH="coverage/home$pytest_in_sync_advanced_libs_py.coverage" NAME="pytest in sync_advanced_libs.py Coverage Results" MODIFIED="1631259547560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
     <SUITE FILE_PATH="coverage/home$test_area__repetition.coverage" NAME="test_area_ repetition Coverage Results" MODIFIED="1630765564206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -334,7 +195,8 @@
     <SUITE FILE_PATH="coverage/home$pytest_for_test_area_repetition_test_shop_search.coverage" NAME="pytest for test_area_repetition.test_shop_search Coverage Results" MODIFIED="1630809714402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
     <SUITE FILE_PATH="coverage/home$sync_advanced_libs.coverage" NAME="sync_advanced_libs Coverage Results" MODIFIED="1631270046988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
     <SUITE FILE_PATH="coverage/home$pytest_for_test_area__repetition_Test_repet_test_shop_search.coverage" NAME="pytest for test_area_ repetition.Test_repet.test_shop_search Coverage Results" MODIFIED="1630764693875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$.coverage" NAME="周推比对 Coverage Results" MODIFIED="1631523877104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC-wwj-skb-test/点评数据推送/run_script" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_Test_batch_search_py__2_.coverage" NAME="pytest in Test_batch_search.py (2) Coverage Results" MODIFIED="1631612364043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+    <SUITE FILE_PATH="coverage/home$.coverage" NAME=" Coverage Results" MODIFIED="1631615917320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case" />
     <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case02.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case02 Coverage Results" MODIFIED="1631511443287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot.coverage" NAME="pytest for robot_test.Test_Sync_robot Coverage Results" MODIFIED="1631452328222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/home$pytest_in_test_file_py.coverage" NAME="pytest in test_file.py Coverage Results" MODIFIED="1631264517220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
