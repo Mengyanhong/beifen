@@ -6,11 +6,11 @@
       <sourceFolder url="file://$MODULE_DIR$/api_practice" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/adv_search" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Visitors_identify" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/UC-wwj-skb-test" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/UC-wwj-push" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/testfile" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lixiaoyun" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/backups" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/UC_wwj_skb_test" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/UC-wwj-push" />
       <excludeFolder url="file://$MODULE_DIR$/adv_search" />
       <excludeFolder url="file://$MODULE_DIR$/api_practice" />
@@ -18,8 +18,10 @@
       <excludeFolder url="file://$MODULE_DIR$/lixiaoyun" />
       <excludeFolder url="file://$MODULE_DIR$/testfile" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9" jdkType="Python SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="UC-wwj-skb-test" />
+    <orderEntry type="module" module-name="UC_wwj_skb_test" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />

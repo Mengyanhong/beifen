@@ -25,7 +25,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="sync_robot配置1.2" />
+    <list default="true" id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="sync_robot配置1.8">
+      <change beforePath="$PROJECT_DIR$/.idea/home.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/home.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Test_files/robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test_files/Test_robot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lixiaoyun/test_case/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/lixiaoyun/test_case/test_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/测试文本.text" beforeDir="false" afterPath="$PROJECT_DIR$/测试文本.text" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,126 +56,51 @@
       </set>
     </option>
   </component>
-  <component name="JupyterTrust" id="d1a255dc-6bb7-4d21-a17b-8cfe0b6dafff" />
+  <component name="JupyterTrust" id="8ccef12b-0772-4682-bbb1-fbd3fa94d135" />
   <component name="ProjectId" id="1xswLPXeW4nHAu0jfi9t92xDoxY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ChangesTree.GroupingKeys" value="" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python_test/UC_wwj_skb_test" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
-  <component name="RunManager" selected="Python tests.pytest for robot_test.Test_Sync_robot.test_case01">
-    <configuration name="sync_robot_search_libs (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="home" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case\Test_c" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case" />
+      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case\Test_c" />
+      <recent name="D:\Program Files\home\TXT" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Python tests in Test_batch_search.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="UC_wwj_skb_test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Libs" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/API_project/Libs/sync_robot_search_libs.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for robot_test.Test_Sync_robot" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;robot_test.Test_Sync_robot&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case/Test_batch_search.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for robot_test.Test_Sync_robot.test_case01" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;robot_test.Test_Sync_robot.test_case01&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for robot_test.Test_Sync_robot.test_case03" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;robot_test.Test_Sync_robot.test_case03&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for robot_test.Test_Sync_robot.test_case04" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="home" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;robot_test.Test_Sync_robot.test_case04&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.sync_robot_search_libs (1)" />
-      <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case04" />
-      <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case03" />
-      <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot" />
-      <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case01" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case01" />
-        <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot" />
-        <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case03" />
-        <item itemvalue="Python tests.pytest for robot_test.Test_Sync_robot.test_case04" />
-        <item itemvalue="Python.sync_robot_search_libs (1)" />
+        <item itemvalue="Python tests.Python tests in Test_batch_search.py" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +114,7 @@
       <updated>1631157179010</updated>
       <workItem from="1631157574628" duration="19678000" />
       <workItem from="1631237144458" duration="286000" />
-      <workItem from="1631625372180" duration="695000" />
+      <workItem from="1631583036291" duration="10825000" />
     </task>
     <task id="LOCAL-00001" summary="sync_robot配置">
       <created>1631179911466</created>
@@ -204,44 +137,29 @@
       <option name="project" value="LOCAL" />
       <updated>1631444099198</updated>
     </task>
-    <task id="LOCAL-00004" summary="sync_robot配置1.6">
-      <created>1631457498296</created>
+    <task id="LOCAL-00004" summary="sync_robot配置1.7">
+      <created>1631527351609</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1631457498296</updated>
+      <updated>1631527351609</updated>
     </task>
-    <task id="LOCAL-00005" summary="sync_robot配置1.2">
-      <created>1631625907444</created>
+    <task id="LOCAL-00005" summary="sync_robot配置1.8">
+      <created>1631593194468</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1631625907444</updated>
+      <updated>1631593194468</updated>
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -251,89 +169,40 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sync_robot配置" />
     <MESSAGE value="sync_robot配置1.1" />
-    <MESSAGE value="sync_robot配置1.6" />
     <MESSAGE value="sync_robot配置1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="sync_robot配置1.2" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="488" y="235" key="#Notifications" timestamp="1631626076681">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="488" y="235" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1631626076681" />
-    <state x="147" y="65" key="DiffContextDialog" timestamp="1631625794051">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1631625794051" />
-    <state width="1493" height="248" key="GridCell.Tab.0.bottom" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state width="1493" height="248" key="GridCell.Tab.0.center" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state width="1493" height="248" key="GridCell.Tab.0.left" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state width="1493" height="248" key="GridCell.Tab.0.right" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state width="1493" height="248" key="GridCell.Tab.1.bottom" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state width="1493" height="248" key="GridCell.Tab.1.center" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state width="1493" height="248" key="GridCell.Tab.1.left" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state width="1493" height="248" key="GridCell.Tab.1.right" timestamp="1631457585188">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="248" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1631457585188" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1631457512141">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1631457512141" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/API_project/Test_files/robot_test.py</url>
-          <line>29</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="sync_robot配置1.7" />
+    <MESSAGE value="sync_robot配置1.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="sync_robot配置1.8" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_area__repetition_Test_repet_test_shop_search.coverage" NAME="pytest for test_area_ repetition.Test_repet.test_shop_search Coverage Results" MODIFIED="1630764693875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case03.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case03 Coverage Results" MODIFIED="1631451935857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_area__repetition_test_shop_search.coverage" NAME="pytest for test_area_ repetition.test_shop_search Coverage Results" MODIFIED="1630747611136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_testcase01.coverage" NAME="pytest for robot_test.Test_Sync_robot.testcase01 Coverage Results" MODIFIED="1631451627430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_area_repetition_test_Test_repet_test_repetition.coverage" NAME="pytest for area_repetition_test.Test_repet.test_repetition Coverage Results" MODIFIED="1630812763146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_arer_search_Test_arer_test_province.coverage" NAME="pytest for test_arer_search.Test_arer.test_province Coverage Results" MODIFIED="1630764222542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
     <SUITE FILE_PATH="coverage/home$sync.coverage" NAME="sync Coverage Results" MODIFIED="1631263907640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_testcase01.coverage" NAME="pytest for robot_test.Test_Sync_robot.testcase01 Coverage Results" MODIFIED="1631451627430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case01.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631584866472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case04.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case04 Coverage Results" MODIFIED="1631522680193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_robot_test_py.coverage" NAME="pytest in Test_robot.py Coverage Results" MODIFIED="1631598424805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/home$config_API.coverage" NAME="config_API Coverage Results" MODIFIED="1631431890469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
     <SUITE FILE_PATH="coverage/home$pytest_for_test_robot_Test_Sync_robot_test_case01.coverage" NAME="pytest for test_robot.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631450021602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case01.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631457452206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_test_area__repetition_py.coverage" NAME="pytest in test_area_ repetition.py Coverage Results" MODIFIED="1630764856123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$sync_advanced_libs.coverage" NAME="sync_advanced_libs Coverage Results" MODIFIED="1631449484386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_sync_advanced_libs_py.coverage" NAME="pytest in sync_advanced_libs.py Coverage Results" MODIFIED="1631259547560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_area_repetition_test_shop_search.coverage" NAME="pytest for test_area_repetition.test_shop_search Coverage Results" MODIFIED="1630809714402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot.coverage" NAME="pytest for robot_test.Test_Sync_robot Coverage Results" MODIFIED="1631452328222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_Test_batch_search_py.coverage" NAME="pytest in Test_batch_search.py Coverage Results" MODIFIED="1631598603290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
     <SUITE FILE_PATH="coverage/home$sync_robot_search_libs__1_.coverage" NAME="sync_robot_search_libs (1) Coverage Results" MODIFIED="1631456390129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case04.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case04 Coverage Results" MODIFIED="1631451728423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_sync_advanced_libs_Test_Sync_robot_test_case01.coverage" NAME="pytest for sync_advanced_libs.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631259206652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_test_file_py.coverage" NAME="pytest in test_file.py Coverage Results" MODIFIED="1631264517220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$test_area__repetition.coverage" NAME="test_area_ repetition Coverage Results" MODIFIED="1630765564206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_Test_batch_search_Test_search_files.coverage" NAME="pytest for Test_batch_search.Test_search_files Coverage Results" MODIFIED="1631598495103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
     <SUITE FILE_PATH="coverage/home$pytest_for_test_arer_search_Test_arer_test_p_c_d.coverage" NAME="pytest for test_arer_search.Test_arer.test_p_c_d Coverage Results" MODIFIED="1630762838839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_sync_advanced_libs_py.coverage" NAME="pytest in sync_advanced_libs.py Coverage Results" MODIFIED="1631259547560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
+    <SUITE FILE_PATH="coverage/home$test_area__repetition.coverage" NAME="test_area_ repetition Coverage Results" MODIFIED="1630765564206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_test_arer_search_Test_arer_test_province.coverage" NAME="pytest for test_arer_search.Test_arer.test_province Coverage Results" MODIFIED="1630764222542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_sync_advanced_libs_Test_Sync_robot_test_case01.coverage" NAME="pytest for sync_advanced_libs.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631259206652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
     <SUITE FILE_PATH="coverage/home$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1631264552067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case03.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case03 Coverage Results" MODIFIED="1631515363738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_test_area_repetition_test_shop_search.coverage" NAME="pytest for test_area_repetition.test_shop_search Coverage Results" MODIFIED="1630809714402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/home$sync_advanced_libs.coverage" NAME="sync_advanced_libs Coverage Results" MODIFIED="1631270046988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_test_area__repetition_Test_repet_test_shop_search.coverage" NAME="pytest for test_area_ repetition.Test_repet.test_shop_search Coverage Results" MODIFIED="1630764693875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_Test_batch_search_py__2_.coverage" NAME="pytest in Test_batch_search.py (2) Coverage Results" MODIFIED="1631612364043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+    <SUITE FILE_PATH="coverage/home$.coverage" NAME=" Coverage Results" MODIFIED="1631615917320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case02.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case02 Coverage Results" MODIFIED="1631511443287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot.coverage" NAME="pytest for robot_test.Test_Sync_robot Coverage Results" MODIFIED="1631452328222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_test_file_py.coverage" NAME="pytest in test_file.py Coverage Results" MODIFIED="1631264517220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_test_area__repetition_test_shop_search.coverage" NAME="pytest for test_area_ repetition.test_shop_search Coverage Results" MODIFIED="1630747611136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_area_repetition_test_Test_repet_test_repetition.coverage" NAME="pytest for area_repetition_test.Test_repet.test_repetition Coverage Results" MODIFIED="1630812763146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/home$pytest_in_test_area__repetition_py.coverage" NAME="pytest in test_area_ repetition.py Coverage Results" MODIFIED="1630764856123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case05.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case05 Coverage Results" MODIFIED="1631524963630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
   </component>
 </project>

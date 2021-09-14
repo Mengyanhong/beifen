@@ -1,0 +1,110 @@
+
+
+SELECT * from ods_mg_et_enterprisetags  where tag = '3'
+企业标签表
+
+select count(pid) from dws_cert_info_common  where   category_l1 = '医药行业证书' and category_l2 =  '其他资质'
+
+select DISTINCT category_l1,category_l2 from dws_cert_info_common  where  category_l1 = '医药行业证书'
+
+select * from dws_cert_info_common  where  category_l1 = '医药行业证书' and category_l2 =  '其
+
+select * from dwd_mg_et_certinfocommon where pid =
+
+select * from (
+SELECT pid,shopid,shopname,json_array_length(SIMILARSHOP) as lent from skb_data.dwd_mg_et_shopbaseinfo) where  lent is not  null and pid is not null order by lent desc limit 10
+
+select * from skb_data.dwd_mg_et_shopbaseinfo where shopid = '65361900'
+
+select * from skb_data.dwd_mg_et_shopbaseinfo order by SHOPBRANCHES DESC
+
+select * from skb_data.dwd_mg_et_shopbaseinfo where shopname = '热火朝天麻辣香锅店'
+
+select * from skb_data.dwd_mg_twinbeestorage_shopcontact
+
+SELECT shopid,shopname ,lent from (
+SELECT shopid,shopname ,json_array_length(shopbranches) as lent from skb_data.dwd_mg_et_shopbaseinfo )
+where lent is NOT null
+ORDER by lent desc
+LIMIT 10
+
+1021-07-05迭代
+
+SELECT * from skb_data.dws_trademark_address_alter where  pid = 'c80029f2efd6ab509a7ae3fe32276b6d'
+
+select * from skb_data.dws_third_party_trade_mark_sum where  pid = 'c80029f2efd6ab509a7ae3fe32276b6d'
+
+select A.geo_address,B.applyaddr,B.applyno from skb_data.dwd_mg_enterprise_enterprisebaseinfo as A  inner  join
+skb_data.dwd_mg_enterprise_thirdpartytrademark as B  on   A.pid = B.pid  where  A.pid =  '0a72154960bfa93ae3aa3c438b641de5' and
+B.applyno = '38946627' limit  100
+
+select * from skb_data.dwd_mg_enterprise_thirdpartytrademark as a where pid in (select pid from skb_data.dwd_mg_enterprise_enterprisebaseinfo  as  b where a.pid =  'c80029f2efd6ab509a7ae3fe32276b6d')
+
+select b.entname from skb_data.dwd_mg_enterprise_thirdpartytrademark as a inner join  skb_data.dwd_mg_enterprise_enterprisebaseinfo
+as b  on  a.pid = b.pid where  a.applyaddr is  NULL  and  b.geo_address is NULL  limit  10
+
+select b.entname from skb_data.dwd_mg_et_ShopBaseInfo as a inner join  skb_data.dwd_mg_enterprise_enterprisebaseinfo as
+ b on a.pid = b.pid where  a.pid  is not null  limit  10
+
+select * from skb_data.dwd_mg_enterprise_thirdpartytrademark where  applyaddr is NULL
+
+select * from skb_data.dwd_mg_enterprise_enterprisebaseinfo where  pid = 'e5e4c5b3a00bff1748138ce9bcb5653d'
+
+select * from skb_data.dwd_mg_et_ShopBaseInfo where pid is not null  limit  10
+
+select * from skb_data.dwd_mg_twinbeestorage_b2binfo limit 100
+
+
+SELECT * from ods_mg_et_enterprisetags  where tag = '3'
+企业标签表
+
+select count(pid) from dws_cert_info_common  where   category_l1 = '医药行业证书' and category_l2 =  '其他资质'
+
+select DISTINCT category_l1,category_l2 from dws_cert_info_common  where  category_l1 = '医药行业证书'
+
+select * from dws_cert_info_common  where  category_l1 = '医药行业证书' and category_l2 =  '其
+
+select * from dwd_mg_et_certinfocommon where pid =
+
+select * from (
+SELECT pid,shopid,shopname,json_array_length(SIMILARSHOP) as lent from skb_data.dwd_mg_et_shopbaseinfo) where  lent is not  null and pid is not null order by lent desc limit 10
+
+select * from skb_data.dwd_mg_et_shopbaseinfo where shopid = '65361900'
+
+select * from skb_data.dwd_mg_et_shopbaseinfo order by SHOPBRANCHES DESC
+
+select * from skb_data.dwd_mg_et_shopbaseinfo where shopname = '热火朝天麻辣香锅店'
+
+select * from skb_data.dwd_mg_twinbeestorage_shopcontact
+
+SELECT shopid,shopname ,lent from (
+SELECT shopid,shopname ,json_array_length(shopbranches) as lent from skb_data.dwd_mg_et_shopbaseinfo )
+where lent is NOT null
+ORDER by lent desc
+LIMIT 10
+
+1021-07-05迭代
+
+SELECT * from skb_data.dws_trademark_address_alter where  pid = 'c80029f2efd6ab509a7ae3fe32276b6d'
+
+select * from skb_data.dws_third_party_trade_mark_sum where  pid = 'c80029f2efd6ab509a7ae3fe32276b6d'
+
+select A.geo_address,B.applyaddr,B.applyno from skb_data.dwd_mg_enterprise_enterprisebaseinfo as A  inner  join
+skb_data.dwd_mg_enterprise_thirdpartytrademark as B  on   A.pid = B.pid  where  A.pid =  '0a72154960bfa93ae3aa3c438b641de5' and
+B.applyno = '38946627' limit  100
+
+select * from skb_data.dwd_mg_enterprise_thirdpartytrademark as a where pid in (select pid from skb_data.dwd_mg_enterprise_enterprisebaseinfo  as  b where a.pid =  'c80029f2efd6ab509a7ae3fe32276b6d')
+
+select b.entname from skb_data.dwd_mg_enterprise_thirdpartytrademark as a inner join  skb_data.dwd_mg_enterprise_enterprisebaseinfo
+as b  on  a.pid = b.pid where  a.applyaddr is  NULL  and  b.geo_address is NULL  limit  10
+
+select b.entname from skb_data.dwd_mg_et_ShopBaseInfo as a inner join  skb_data.dwd_mg_enterprise_enterprisebaseinfo as
+ b on a.pid = b.pid where  a.pid  is not null  limit  10
+
+select * from skb_data.dwd_mg_enterprise_thirdpartytrademark where  applyaddr is NULL
+
+select * from skb_data.dwd_mg_enterprise_enterprisebaseinfo where  pid = 'e5e4c5b3a00bff1748138ce9bcb5653d'
+
+select * from skb_data.dwd_mg_et_ShopBaseInfo where pid is not null  limit  10
+
+select * from skb_data.dwd_mg_twinbeestorage_b2binfo limit 100
