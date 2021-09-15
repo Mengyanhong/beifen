@@ -3,13 +3,13 @@
 # @Author  : 孟艳红
 # @File    : config_org_sites.py
 from Tools.ExcelControl import Excel_Files
-from Configs.Upload_File import Upload
+from Visitors_identify.Configs.Upload_File import Upload
 host = 'staging' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 
 
 import requests,random,json
-from Configs.user_info import user
-from Configs.Pymysql import to_pymysql
+from Visitors_identify.Configs.user_info import user
+from Visitors_identify.Configs.Pymysql import to_pymysql
 
 
 from Tools.ExcelControl import Excel_Files

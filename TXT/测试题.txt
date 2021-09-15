@@ -1,0 +1,76 @@
+【2021-08-17】
+adb 常用命令
+查看当前连接的设备：adb devices
+安装软件：adb install 路径\xxx.apk
+卸载软件：adb uninstall <包名>
+从电脑上发送文件到设备：adb push <本地路径> <远程路径>
+adb push D:\test.txt /sdcard/
+从设备上下载文件到电脑：adb pull <远程路径> <本地路径>
+adb pull /sdcard/test.txt D:【上期面试题】
+adb 常用命令
+查看当前连接的设备：adb devices
+安装软件：adb install 路径\xxx.apk
+卸载软件：adb uninstall <包名>
+从电脑上发送文件到设备：adb push <本地路径> <远程路径>
+adb push D:\test.txt /sdcard/
+从设备上下载文件到电脑：adb pull <远程路径> <本地路径>
+adb pull /sdcard/test.txt D:
+实时获取日志：adb logcat -v time > D:\test.log
+登录终端设备 shell：adb shell
+查找包名/活动名：adb logcat | findstr START
+（脚本中，cmp= 后面的值就是包名/activity 名称）
+启动App
+adb shell am start -n packageName/activity
+关闭App
+adb shell am force-stop 包名
+监控App启动时间
+adb shell am start -W packageName/activity
+Monkey 命令
+adb shell monkey -v -p mypackage 50
+实时获取日志：adb logcat -v time > D:\test.log
+登录终端设备 shell：adb shell
+查找包名/活动名：adb logcat | findstr START
+（脚本中，cmp= 后面的值就是包名/activity 名称）
+启动App
+adb shell am start -n packageName/activity
+关闭App
+adb shell am force-stop 包名
+监控App启动时间
+adb shell am start -W packageName/activity
+Monkey 命令
+adb shell monkey -v -p mypackage 50
+
+【2021-08-19】
+Linux主机上面，如何查看tcp链路信息？
+参考答案：netstat-tan
+TCP中滑动窗口的作用？
+参考答案：
+滑动窗口本质上是描述接受方的TCP数据报缓冲区大小的数据，
+发送方根据这个数据来计算自己最多能发送多长的数据。
+如果发送方收到接受方的窗口大小为0的TCP数据报，
+那么发送方将停止发送数据，等到接受方发送窗口大小不为0的数据报的到来。
+
+什么是页面加载超时
+Selenium中有一个 Page Load wait的方法，有时候，我们执行脚本的速度太快，
+但是网页程序还有一部分页面没有完全加载出来，就会遇到元素不可见或者元素找不到的异常。
+为了解决问题，让脚本流畅的运行，我们可以通过设置页面加载超时时间。
+具体代码是这个：driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.SECONDS);
+这行作用就是，如果页面加载超过10秒还没有完成，就抛出页面加载超时的异常。
+
+
+你将如何处理Selenium WebDriver中的警报/弹出窗口？
+有两种类型的警报通常被引用。
+①基于Windows的警报弹出窗口
+②基于Web的警报弹出窗口
+基于Web的警报弹出窗口。
+WebDriver为用户提供了一种使用Alert界面处理这些弹出窗口的非常有效的方法。
+void dismiss() - 一旦出现弹出窗口，dismiss()方法就会点击“Cancel”按钮。
+void accept() - 只要弹出窗口出现，accept()方法就会点击“Ok”按钮。
+String getText() - getText()方法返回警告框中显示的文本。
+void sendKeys(String stringToSend) - sendKeys()方法将指定的字符串模式输入到警告框中。
+基于Windows的警报弹出窗口。
+处理基于windows的弹出窗口总是有点棘手，因为我们知道Selenium是一个自动化测试工具，
+它只支持Web应用程序测试，也就是说，它不支持基于Windows的应用程序，窗口警报就是其中之一。
+Robot class是基于Java的实用程序，它模拟键盘和鼠标操作，
+并可以有效地用于处理基于windows的弹出与键盘事件的帮助。
+KeyPress和KeyRelease方法可以分别模拟用户按下和释放键盘上某个键的操作
