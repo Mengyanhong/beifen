@@ -2,8 +2,8 @@
 # token: 9caa9113e321250d2ba6ea60e710c7ab
 # crm_platform_type: lixiaoyun
 import requests
-from tools.yamlControl import get_yaml_data
-from Configs.config import HOST
+from UC_wwj_skb_test.tools.yamlControl import get_yaml_data
+from UC_wwj_skb_test.Configs.config import HOST
 # from Configs.uiconfig import driver
 # from Libs.login import Login
 # DEV_HOST = HOST.search_fin_staging()

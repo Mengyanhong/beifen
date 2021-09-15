@@ -1,38 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="sync_robot配置1.8">
-      <change beforePath="$PROJECT_DIR$/.idea/home.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/home.iml" afterDir="false" />
+    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Python.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API_project/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/00a349cb-fc00-438e-b92e-53ed60e37d2f-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/016c384a-590c-43c1-81f8-09b37a57d6c7-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/051944f9-dfd9-4316-9dce-6b99a89d1781-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/074c568e-9f2f-4044-b2f3-cb01180b02b6-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/0a8c7728-2100-4278-8d7c-afdd707a7f42-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/0b12ad1f-8d8e-41d9-90d6-4d490a41aabc-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/0b8d1de7-7936-4114-be08-a172a99adabb-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/0d857eb1-1e63-402b-94b2-38140424a705-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/0da12068-e232-4f9f-a23a-b750870220b0-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/100d8446-f755-45d5-99f4-1d9f31ecb9e8-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/10f9d64f-c173-4dd6-96cc-5fd1319473c2-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/11a12a5c-93a7-43f4-8943-499d977e8a69-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/191055a1-31a4-4c27-8534-92415cd40ef9-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/1b51def9-6661-430b-8159-d71caf8876cf-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/1c077607-bc1a-46a2-8dcf-18e804207bb3-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/2075ab15-05e6-4cd8-a2b0-60bf56934d2e-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/22a024ea-86df-4dbb-9a81-7ca5dd8058f0-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/22f2eb04-a0d4-4636-be0a-d1ddd5b57898-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/259eba55-f975-4417-b6d5-8a98bfc4794d-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/262d77e9-1db7-4846-b399-6a93f49b0029-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/2630ec46-171a-405d-bf81-2584abc62ee0-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/2735e767-ba37-474c-acc6-f0a93ceb8369-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/27afdd85-7be1-4848-882a-17821fe3dcd7-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/28f56527-4a9f-4cc1-a267-159ee07da183-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/2b48cd4b-ef2b-4634-95c8-be267c90aa58-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/308cbe06-42ef-48a2-aa21-9e91f72faa72-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/33be0143-2185-40fe-90ad-3d7ea4e94d14-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/38ef4b16-c908-49fa-835f-c328bf325cc7-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/3b7b0376-ab51-475f-a932-e696b5a6d329-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/3d66ef3c-e00f-4518-8961-2b09f10710db-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/41835380-0138-4ee4-9ec5-8aef129a09ff-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/41e673b1-5e8b-407a-9025-893f78f707cc-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4342ab0e-9e90-4806-a24c-5155f4155dca-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/43cd5d7e-5b1d-4329-baf5-0aea0e69deca-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/48944636-243a-4b54-91ac-a398280d8a44-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4bbe10dd-3614-4190-8a1b-d96790429c9a-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4ca13bd7-2881-4a65-b607-45375e845b61-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4f2f70a1-4098-46f6-b76d-f6a89b1aae60-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/50bdf7ad-569f-4e19-85b9-148b10cf5d7e-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/515fe16b-dbc4-417f-bf88-5bb324d1bc54-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/53e76c60-0196-4bfb-873d-afa75025edc3-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/552446f9-75fd-4096-89b3-c0bd5d6c6d1c-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/562c261e-763b-4dfa-b1d0-db19844908b5-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/5a9aa2f4-0ba2-4c4e-8d05-57fb9a318b47-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/5f13f9cf-7236-46d3-8395-76ab7c3fd5e3-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/5f4beb7c-0e3a-45b2-93f3-947ed96aaf2a-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/61f57e84-0d62-45e6-831b-f8c0d1b16678-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/64a11c75-3cb9-40e9-a4e4-30b8c2e1b386-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/692673f4-006d-46a1-9a7c-36fc63e9c454-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/6a290405-93ea-4dce-b743-8d1a531256dc-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/6a63d80a-106c-4b56-822d-dcdc337b6208-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/6aa33839-4107-4b6b-9971-c195cd3423be-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/6ad678cf-54f4-43fc-b9ee-c95782d030f9-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/6fa59705-a731-4c75-93a6-2991de3a28a0-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/713156f4-ee12-4f03-aeac-a22eaafa3334-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/71926e4c-6280-4f48-b612-d73e567c22d5-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/72427546-2663-49b8-883a-fd34c13ffce5-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/728f9a7d-6f27-424f-a20c-38a397d204e0-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/736a1669-1437-4d60-8744-f149b1b54468-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/7840be8c-017c-4820-bc15-41d229af143a-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/79f9c54e-0765-454b-8071-5f17bcda43f6-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/80f8217e-e394-407d-baed-dfeb9d6caae6-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/82046cda-6ba7-478b-abed-eda95e7f378d-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/8424278a-551e-4a77-86be-8b95aedd4974-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/84f08bc3-a29c-487f-9653-e1849ffe4a87-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/88c108ec-b940-4c8c-8dda-13d0038bf337-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/89170c51-454e-4976-b3c6-444eb266da0f-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/8962617c-a905-42f2-b1f0-77c0b1463f42-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/8abbde94-785d-4ee8-a4b7-9950e65be31b-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/8d549d88-1c5b-4f9a-a570-9a7264e11f83-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/8f88ed8a-1880-4559-b3cb-9a9752eb5f65-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/8fd1c4e0-e026-4cb5-ad57-018f6aa5d1d1-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9097b2d5-bdb6-4d17-a8ea-3e03f911db23-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/91d92575-a053-4c7a-90cd-9df21574b81c-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/93d7f39e-b07a-45f3-b574-b0cd81a359b9-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/93ff5eb3-1708-498e-9e58-7c3ccae289e7-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/94bc7e25-69ed-4abb-a1a3-55c8939957d0-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/954e1bf3-0f9c-41a7-a377-b1b38d9ffa9e-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/958c1ecc-b085-46c3-80a5-98752cc6f1b0-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9748885d-05ed-41d0-916f-391a117845a4-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/980871ab-23fd-4846-8591-dff9ab4d1273-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/99156a61-5466-4598-81ef-32fbadd0a222-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9a52461a-3874-42eb-9350-a0fdc5d841f5-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9c342488-9f46-49ad-a506-1f8d365676ab-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9d559b7f-23ad-4d7f-995c-c56f7ad1f0fb-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9e1f3a4b-67fa-4932-bce3-0e1f7ad3d35e-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/a318117b-ae9f-4bdf-ae66-22e2ba297a92-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/a737d326-c460-4c69-a80b-51534a1e5b9b-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/ac255770-7af7-4dd2-9cfb-a64a6a734c82-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/ac2ac275-535e-4e59-961b-3fae5c61c515-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/aecae347-bc4d-45ee-baa4-fe99f21fc49f-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/af9b56fb-2e3b-4e7a-a625-68cad9613ebd-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/afdd8035-dde8-4369-9af4-75163ecfd898-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/b046d237-ea30-4239-8382-6e9373eda973-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/b1da740a-5ac9-48dd-91fe-01dc80d5b925-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/b2c2490b-3536-459f-9990-9b14032b1de6-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/b6124429-8b20-4003-a60f-7fe3ed5947a7-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/b86eea71-8ece-4cff-998b-aefaa5ffb35c-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/bb91b1d9-2124-4c55-ab0d-c079ba51a4d3-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/bd1b1d55-899d-4087-b82f-36d5424d93f7-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/bd252e6a-b49e-47ce-bba4-87fe5d242d76-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/c3596768-2310-4a9f-bbef-6db8e7cd308e-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/c3be973f-273e-4763-96e5-530c10930620-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/c3fbb9a2-aef4-4e5f-bb1f-f4380774a7b0-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/c49eca5d-bcdc-430f-b5c0-9966242a9097-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/c9f6b5b4-d53f-4d3a-a9c3-c0a20539c167-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/caee0bbe-0e91-402d-be41-f3f58d452d9f-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/d14c6e2d-b52b-41e9-a1a7-1c158b9ded98-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/d2f35fdd-6968-41ac-a500-fc4c5bf03f8b-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/d664353a-1ecd-448b-8c4b-112f66caace0-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/d89847ff-4afa-48cd-9018-83bdb3063993-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/e0a8fae5-6321-4151-b3ce-9c44c81f1122-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/e6c8c413-ae06-468f-ba1a-9b5b53bffa14-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/e864b0d2-25b7-4a3a-9d39-cf9c43a5e995-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/ecfbe16b-bed9-47eb-926f-5102af83b816-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/ed8de2e4-dfa7-40e7-b0c8-0a803920a017-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f0124119-db85-4511-9924-61814c8885dc-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f045dab0-2b9c-4aef-8290-ef8fe6abbcfb-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f2c5733d-ba21-42ce-8535-52d777ae388d-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f43431b5-d8d0-4719-9379-f9b69f543fec-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f5603be2-1356-4743-965a-b77982b1d50b-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f743131e-fee6-4e50-862f-d833047a7283-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f930b02f-9e92-4cbf-a666-bcaa9a3bc04c-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f9662514-5bdb-4ee0-a51f-d90b21e23a47-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/fae27837-862d-48d8-a06d-5f796caece1d-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/fb167397-657d-414a-926d-812d95a78241-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/fc4511ad-a733-478d-8c40-204bd4622b0f-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/fd084634-c550-4fc7-9d66-d54122dc31d4-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/ffb43035-80b3-4cd7-85bc-9ea2b05ea33e-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/behaviors.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/behaviors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/categories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/categories.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/packages.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/suites.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/suites.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/1752fbda6977704d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/29de97007e4c9606.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/29ed5a98c39c53b4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/341b979ece1cd7d2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/3e733aaff78c807d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/3f4d7c8763c2d0cc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/474edc3c1e517be0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/47de34a8c177996.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/4af3a320da6c9f94.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/4c53ab485d410be3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/4d99ff2ed31628b2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/51369e19f071705f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/55ab601c64bfff19.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/58ae12051e64a760.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/5dd7bccff6b6baac.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/666871844b72e146.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/6a9832b28ae836cf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/6c02c376c4129412.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/756a57fc978e4337.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/75a9273c5d22d2a7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/820196c84da093c9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/8a76f212b6b86009.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/8ee42592bed869aa.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/956f8643a59ba071.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/9c3095244823216a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/b58b3c99734cc4a5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/b59264542fbd3ef5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/b5ed5a3929e455cb.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/b7dd9e08f7fb2b5f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/bec0a47ddf7ec4b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/bf76a36e800d897d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/c1da80e6e5bde46c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/c76ede139d8f1c35.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/c8f30ed073090f17.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/d249f9cf5d1e583c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/db435e34f33557d2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/e2a226bed40b332a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/e499503cd879e7ab.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/e55e5e82f09fa8de.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/e59e0fe0bb14d6f5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/e9f28e6e4d14b9ac.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/f515d0dc90918d68.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/f58268b7ac547c10.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/timeline.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/export/influxDbData.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/export/mail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/export/prometheusData.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/categories-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/duration-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/history-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/history.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/retry-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/behaviors/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/packages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/screen-diff/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/screen-diff/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/behaviors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/categories-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/categories.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/duration-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/duration.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/environment.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/executors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/history-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/launch.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/retry-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/severity.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/status-chart.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/suites.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/home.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Default_Changelist.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Default_Changelist/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Test_files/robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test_files/Test_robot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/batch_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/batch_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/industry_label.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Libs/industry_label.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lixiaoyun/test_case/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/lixiaoyun/test_case/test_login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/测试文本.text" beforeDir="false" afterPath="$PROJECT_DIR$/测试文本.text" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,16 +241,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="hiddenUrls">
-      <set>
-        <option value="https://github.com/Mengyanhong/home" />
-      </set>
-    </option>
-  </component>
-  <component name="JupyterTrust" id="8ccef12b-0772-4682-bbb1-fbd3fa94d135" />
-  <component name="ProjectId" id="1xswLPXeW4nHAu0jfi9t92xDoxY" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1y9tikKz1BW2RCzLmOCjArtIUmR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -69,37 +252,55 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../python_test/UC_wwj_skb_test" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case\Test_c" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case" />
-      <recent name="D:\Program Files\python_test\UC-wwj-skb-test\Test_case\Test_c" />
-      <recent name="D:\Program Files\home\TXT" />
+      <recent name="D:\Program Files\Python\UC_wwj_skb_test" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Test_batch_search">
+    <configuration name="Test_batch_search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Python tests in Test_batch_search.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="UC_wwj_skb_test" />
+      <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case/Test_batch_search.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Test_batch_search" />
         <item itemvalue="Python tests.Python tests in Test_batch_search.py" />
       </list>
     </recent_temporary>
@@ -107,51 +308,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="96a0f052-be73-4f13-a0f1-182e9d1f2b40" name="Changes" comment="" />
-      <created>1631157179010</created>
+      <changelist id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="" />
+      <created>1631675760855</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1631157179010</updated>
-      <workItem from="1631157574628" duration="19678000" />
-      <workItem from="1631237144458" duration="286000" />
-      <workItem from="1631583036291" duration="10825000" />
+      <updated>1631675760855</updated>
+      <workItem from="1631675762316" duration="3140000" />
     </task>
-    <task id="LOCAL-00001" summary="sync_robot配置">
-      <created>1631179911466</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1631179911466</updated>
-    </task>
-    <task id="LOCAL-00002" summary="sync_robot配置1.1">
-      <created>1631186615281</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1631186615281</updated>
-    </task>
-    <task id="LOCAL-00003" summary="sync_robot配置1.2">
-      <created>1631444099198</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1631444099198</updated>
-    </task>
-    <task id="LOCAL-00004" summary="sync_robot配置1.7">
-      <created>1631527351609</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1631527351609</updated>
-    </task>
-    <task id="LOCAL-00005" summary="sync_robot配置1.8">
-      <created>1631593194468</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1631593194468</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,45 +327,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="sync_robot配置" />
-    <MESSAGE value="sync_robot配置1.1" />
-    <MESSAGE value="sync_robot配置1.2" />
-    <MESSAGE value="sync_robot配置1.7" />
-    <MESSAGE value="sync_robot配置1.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="sync_robot配置1.8" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/home$sync.coverage" NAME="sync Coverage Results" MODIFIED="1631263907640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_testcase01.coverage" NAME="pytest for robot_test.Test_Sync_robot.testcase01 Coverage Results" MODIFIED="1631451627430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case01.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631584866472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case04.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case04 Coverage Results" MODIFIED="1631522680193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_robot_test_py.coverage" NAME="pytest in Test_robot.py Coverage Results" MODIFIED="1631598424805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$config_API.coverage" NAME="config_API Coverage Results" MODIFIED="1631431890469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_robot_Test_Sync_robot_test_case01.coverage" NAME="pytest for test_robot.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631450021602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_Test_batch_search_py.coverage" NAME="pytest in Test_batch_search.py Coverage Results" MODIFIED="1631598603290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
-    <SUITE FILE_PATH="coverage/home$sync_robot_search_libs__1_.coverage" NAME="sync_robot_search_libs (1) Coverage Results" MODIFIED="1631456390129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_Test_batch_search_Test_search_files.coverage" NAME="pytest for Test_batch_search.Test_search_files Coverage Results" MODIFIED="1631598495103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_arer_search_Test_arer_test_p_c_d.coverage" NAME="pytest for test_arer_search.Test_arer.test_p_c_d Coverage Results" MODIFIED="1630762838839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_sync_advanced_libs_py.coverage" NAME="pytest in sync_advanced_libs.py Coverage Results" MODIFIED="1631259547560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$test_area__repetition.coverage" NAME="test_area_ repetition Coverage Results" MODIFIED="1630765564206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_arer_search_Test_arer_test_province.coverage" NAME="pytest for test_arer_search.Test_arer.test_province Coverage Results" MODIFIED="1630764222542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_sync_advanced_libs_Test_Sync_robot_test_case01.coverage" NAME="pytest for sync_advanced_libs.Test_Sync_robot.test_case01 Coverage Results" MODIFIED="1631259206652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1631264552067" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case03.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case03 Coverage Results" MODIFIED="1631515363738" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_area_repetition_test_shop_search.coverage" NAME="pytest for test_area_repetition.test_shop_search Coverage Results" MODIFIED="1630809714402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$sync_advanced_libs.coverage" NAME="sync_advanced_libs Coverage Results" MODIFIED="1631270046988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Libs" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_area__repetition_Test_repet_test_shop_search.coverage" NAME="pytest for test_area_ repetition.Test_repet.test_shop_search Coverage Results" MODIFIED="1630764693875" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_Test_batch_search_py__2_.coverage" NAME="pytest in Test_batch_search.py (2) Coverage Results" MODIFIED="1631612364043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
-    <SUITE FILE_PATH="coverage/home$.coverage" NAME=" Coverage Results" MODIFIED="1631615917320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../python_test/UC_wwj_skb_test/Test_case" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case02.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case02 Coverage Results" MODIFIED="1631511443287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot.coverage" NAME="pytest for robot_test.Test_Sync_robot Coverage Results" MODIFIED="1631452328222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_test_file_py.coverage" NAME="pytest in test_file.py Coverage Results" MODIFIED="1631264517220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_test_area__repetition_test_shop_search.coverage" NAME="pytest for test_area_ repetition.test_shop_search Coverage Results" MODIFIED="1630747611136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_area_repetition_test_Test_repet_test_repetition.coverage" NAME="pytest for area_repetition_test.Test_repet.test_repetition Coverage Results" MODIFIED="1630812763146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_in_test_area__repetition_py.coverage" NAME="pytest in test_area_ repetition.py Coverage Results" MODIFIED="1630764856123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/home$pytest_for_robot_test_Test_Sync_robot_test_case05.coverage" NAME="pytest for robot_test.Test_Sync_robot.test_case05 Coverage Results" MODIFIED="1631524963630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1631676713397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+    <SUITE FILE_PATH="coverage/Python$Test_batch_search.coverage" NAME="Test_batch_search Coverage Results" MODIFIED="1631677518253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
   </component>
 </project>
