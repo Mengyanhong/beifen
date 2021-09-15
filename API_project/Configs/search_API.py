@@ -10,40 +10,27 @@ class search:
     def __init__(self, test):
         self.user = user(test)
 
-    def skb_contacts_num(self,module='skb', headers=None, id=None):  # 查询联系方式
+    def skb_contacts_num(self,module = 'shop_search_list', headers = None, id = None):  # 查询联系方式
         """
         :param headers: 用户信息
         :param pid: 企业pid/店铺id
         :return:
         """
-        url = f'https://{self.user.skb_Host()}/api_skb/v1/clue/contacts_num'
-        if headers == None:
+        if headers is None:
             header = self.user.headers()
         else:
             header = headers
-        if module=='skb':
+        if module != 'shop_search_list':
             payload = {'pid': id}
-        elif module=='skb':
-            payload = {'shopId': id}
+            clue_path = 'clue'
         else:
-            payload = None
+            payload = {'shopId': id}
+            clue_path = 'shopClue'
+        url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts_num'
+
         response = requests.get(url, params=payload, headers=header)
         return response
 
-    def shop_contacts_num(self, headers=None, shopId=None):  # 查询联系方式
-        """
-        :param headers: 用户信息
-        :param shopId: 店铺id
-        :return:
-        """
-        url = f'https://{self.user.skb_Host()}/api_skb/v1/shopClue/contacts_num'
-        if headers == None:
-            header = self.user.headers()
-        else:
-            header = headers
-        payload = {'shopId': shopId}
-        response = requests.get(url, params=payload, headers=header)
-        return response
 
     def skb_search(self, keyword="北京", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """

@@ -1,7 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="配置恢复" />
+    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="测试">
+      <change afterPath="$PROJECT_DIR$/API_project/test_shop_project/Test_robot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/009d7d7c-cd67-412b-95ee-83274399b70d-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/0308325c-3954-4230-8654-419b5acc0de2-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/145925e8-532d-4fae-bb7a-7b29c2c13cfb-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/1f3b6e20-65da-45d1-a80b-b297048265d8-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/2cf0857b-7042-453c-894f-28e74796e4dd-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4b495fbc-78d1-4b4d-afa1-60ab5acd64a5-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4b807522-7edb-4c6e-a153-8a16ac73b389-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4c229d15-0ef8-41b9-bf9d-24503a406471-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/4cb8551a-4145-41b4-9bb0-069b6141a589-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/576f6ee3-458f-462b-9a07-1c2a655593d3-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/5c867e23-89db-41d8-8c81-1706df910115-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/7009110c-b6f2-4968-be8a-3faaf3475ba5-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/75b9ea27-0729-4fa2-9b33-ce512ebc06db-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/844d138b-85bf-4413-93cd-26450251f475-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/8b2fdd42-5dae-4fe6-9e3c-3cad979bfcde-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/905a53a9-c3cf-457b-98a0-ede46685da91-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/962dd33d-4069-486e-a804-abba94a490b9-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9648a356-58a3-4847-ba82-c31427ea6798-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/98b3bd6c-4b9d-47e1-ac6b-10a8fb65eb60-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9a2880df-a49b-4d62-9e01-79b0b1e53146-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9d0d705b-f455-46ab-8b24-13e44dc0967c-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/9fe73c68-c6b7-4f79-94a0-44bb622c61c6-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/a43af7f7-badf-4473-8b10-a28c408a8392-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/a52a6bb1-9df1-476e-bb64-548267568bff-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/a98814b2-c26b-47fc-be09-f05c63c346b7-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/b35a12dd-51b2-497e-b772-cc39b4a507c5-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/bae80d78-36f1-452e-9583-16c9951a68f5-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/bfa5e8e0-2b97-48a7-9934-41dc672d66bc-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/c972b457-a39b-4531-8358-5be954a1d451-container.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/def05a10-50f4-453c-8122-94957c7ea8f7-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/e5e8770d-d975-4b85-ac69-70b689f185e1-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/e940528d-400a-46d2-9411-21a36ade7a8e-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/tem/f856d66a-968b-41e3-9b00-d937c21961b1-result.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/behaviors.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/behaviors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/categories.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/categories.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/packages.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/suites.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/suites.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/1f52bed6eda0f4c2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/50e6f8f63a0399bc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/712f8c6a84396e7b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/7a6c876e54dd3d45.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/7b35371321cd72df.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/9ebc3106fec44e98.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/a481e0e8dd6a7671.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/c0fcb005872965f7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/d9b20d029761887d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/db0ad2d5aab56cf7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/test-cases/e44f9e969dc9085.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/data/timeline.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/export/influxDbData.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/export/mail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/export/prometheusData.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/categories-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/duration-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/history-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/history.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/history/retry-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/behaviors/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/packages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/screen-diff/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/plugins/screen-diff/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/behaviors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/categories-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/categories.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/duration-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/duration.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/environment.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/executors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/history-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/launch.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/retry-trend.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/severity.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/status-chart.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/suites.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UC_wwj_skb_test/report/temp/widgets/summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Python.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Configs/search_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/search_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Configs/shop_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/shop_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Libs/sync_robot_search_libs.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Libs/sync_robot_search_libs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Test_files/Test_robot.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test/Test_robot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Test_files/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Test_files/est_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test/est_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Test_files/sync.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test/sync.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/test_advanced_search/__init__.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +107,9 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -33,15 +130,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/API_project/test_shop_project" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Program Files\Python\API_project\test_shop_project" />
       <recent name="D:\Program Files\Python\UC_wwj_skb_test" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Test_batch_search">
+  <component name="RunManager" selected="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case02">
     <configuration name="Test_batch_search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -64,28 +162,102 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests in Test_batch_search.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Test_robot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/API_project/test_shop_project/Test_robot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test_robot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test_files" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/API_project/Test_files/Test_robot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test_robot.Test_Sync_robot.test_case01" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Test_robot.Test_Sync_robot.test_case01&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test_robot.Test_Sync_robot.test_case02" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test_robot.Test_Sync_robot.test_case02&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test_robot.Test_Sync_robot.test_case05" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test_robot.Test_Sync_robot.test_case05&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests in Test_batch_search.py" />
+        <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case02" />
+        <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case01" />
+        <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case05" />
+        <item itemvalue="Python.Test_robot (1)" />
         <item itemvalue="Python.Test_batch_search" />
-        <item itemvalue="Python tests.Python tests in Test_batch_search.py" />
-        <item itemvalue="Python.Test_batch_search" />
-        <item itemvalue="Python tests.Python tests in Test_batch_search.py" />
       </list>
     </recent_temporary>
   </component>
@@ -98,6 +270,7 @@
       <option name="presentableId" value="Default" />
       <updated>1631675760855</updated>
       <workItem from="1631675762316" duration="3452000" />
+      <workItem from="1631684998332" duration="16777000" />
     </task>
     <task id="LOCAL-00001" summary="配置恢复">
       <created>1631678985365</created>
@@ -119,13 +292,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="配置恢复" />
     <option name="LAST_COMMIT_MESSAGE" value="配置恢复" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1631676713397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
-    <SUITE FILE_PATH="coverage/Python$Test_batch_search.coverage" NAME="Test_batch_search Coverage Results" MODIFIED="1631677518253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+    <SUITE FILE_PATH="coverage/Python$Test_robot__1_.coverage" NAME="Test_robot (1) Coverage Results" MODIFIED="1631694892924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$test_robot.coverage" NAME="test_robot Coverage Results" MODIFIED="1631693205817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1631701677977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$Test_robot.coverage" NAME="Test_robot Coverage Results" MODIFIED="1631686816398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/Python$Test_batch_search.coverage" NAME="Test_batch_search Coverage Results" MODIFIED="1631693245165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
   </component>
 </project>

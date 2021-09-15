@@ -7,14 +7,13 @@
       <excludeFolder url="file://$MODULE_DIR$/UC-wwj-push" />
       <excludeFolder url="file://$MODULE_DIR$/adv_search" />
       <excludeFolder url="file://$MODULE_DIR$/api_practice" />
+      <excludeFolder url="file://$MODULE_DIR$/UC_wwj_skb_test/.pytest_cache/v" />
+      <excludeFolder url="file://$MODULE_DIR$/UC_wwj_skb_test/Test_case/.pytest_cache/v" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>
