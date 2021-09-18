@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="测试">
+    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="转机器人case1.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Configs/config_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/config_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Configs/search_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/search_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Configs/shop_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/shop_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_project/Libs/sync_robot_search_libs.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Libs/sync_robot_search_libs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/test_shop_project/Test_robot.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/test_shop_project/Test_robot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TXT/ES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TXT/ES.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,28 +55,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case02">
-    <configuration name="Test_batch_search" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UC_wwj_skb_test/Test_case/Test_batch_search.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Test_robot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,6 +75,21 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for Test_robot.Test_Sync_robot" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;Test_robot.Test_Sync_robot&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests for Test_robot.Test_Sync_robot.test_case01" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
@@ -140,11 +139,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case05" />
         <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case02" />
         <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case01" />
+        <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot" />
+        <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case05" />
         <item itemvalue="Python.Test_robot (1)" />
-        <item itemvalue="Python.Test_batch_search" />
       </list>
     </recent_temporary>
   </component>
@@ -158,6 +157,8 @@
       <updated>1631675760855</updated>
       <workItem from="1631675762316" duration="3452000" />
       <workItem from="1631684998332" duration="16777000" />
+      <workItem from="1631764963297" duration="5676000" />
+      <workItem from="1631958093838" duration="777000" />
     </task>
     <task id="LOCAL-00001" summary="配置恢复">
       <created>1631678985365</created>
@@ -166,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631678985365</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="转机器人case1.1">
+      <created>1631703748441</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631703748441</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,12 +192,13 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="配置恢复" />
     <MESSAGE value="转机器人case" />
-    <option name="LAST_COMMIT_MESSAGE" value="转机器人case" />
+    <MESSAGE value="转机器人case1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="转机器人case1.1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Python$Test_robot__1_.coverage" NAME="Test_robot (1) Coverage Results" MODIFIED="1631694892924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
     <SUITE FILE_PATH="coverage/Python$test_robot.coverage" NAME="test_robot Coverage Results" MODIFIED="1631693205817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1631701677977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1631774830486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
     <SUITE FILE_PATH="coverage/Python$Test_robot.coverage" NAME="Test_robot Coverage Results" MODIFIED="1631686816398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
     <SUITE FILE_PATH="coverage/Python$Test_batch_search.coverage" NAME="Test_batch_search Coverage Results" MODIFIED="1631693245165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
   </component>

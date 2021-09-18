@@ -84,3 +84,37 @@ https://docs.qq.com/sheet/DUHRsV2NvSEt4dWVF
 大家可以看一下9月月度目标，重要的目标事项已经用背景色标记出来。@所有人
 【腾讯文档】21年月度目标
 https://docs.qq.com/sheet/DUGN1T3V2cXBWQXpH
+
+经纬度坐标距离查询
+GET shop_info_test_20210823/_search
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "geo_distance": {
+          "distance": "500m",
+          "geoLatLon": {
+            "lat": 25.703293, #经度
+            "lon": 101.872493 #纬度
+          }
+        }
+      },
+      "boost": 1.2
+    }
+  },"sort": [
+    {
+  "_geo_distance" : {
+    "geoLatLon" : [
+      {
+        "lat": 25.703293,  #经度
+        "lon": 101.872493  #纬度
+      }
+    ],
+    "unit" : "km",
+    "distance_type" : "arc",
+    "order" : "asc", #排序
+    "validation_method" : "STRICT"
+  }
+}
+  ]
+}

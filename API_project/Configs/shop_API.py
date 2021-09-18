@@ -13,7 +13,7 @@ class shop:
     def __init__(self, test):
         self.user = user(test)
 
-    def search_shop(self,shopName="", hasUnfolded=2, hasSyncClue=1, hasSyncRobot=1, cv=None):
+    def search_shop(self,headers = None,shopName="", hasUnfolded=2, hasSyncClue=1, hasSyncRobot=1, cv=None):
         if cv == None:
             cv = [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"},
                   {"cn": "contactType", "cv": ["1", "2"], "cr": "IN"}]
@@ -30,7 +30,11 @@ class shop:
                            "hasSyncRobot": hasSyncRobot,
                            "syncRobotRangeDate": [], "page": 1, "pagesize": 10,
                            "condition": {"cn": "composite", "cr": "MUST", "cv": cv}}
-        response = requests.post(url, headers=self.user.headers(), json=Request_payload)
+        if headers == None:
+            header = self.user.shop_headers()
+        else:
+            header=headers
+        response = requests.post(url, headers=header, json=Request_payload)
         return response
 
     def categoryL1(self, categoryL1):

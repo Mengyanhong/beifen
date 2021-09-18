@@ -17,7 +17,7 @@ class search:
         :return:
         """
         if headers is None:
-            header = self.user.headers()
+            header = self.user.shop_headers()
         else:
             header = headers
         if module != 'shop_search_list':
@@ -32,7 +32,7 @@ class search:
         return response
 
 
-    def skb_search(self, keyword="北京", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
+    def skb_search(self, headers=None,keyword="北京", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """
         :param keyword: 搜索关键词
         :param filterUnfold:  是否查看，1：已查看，2：未查看，0：全部
@@ -53,11 +53,14 @@ class search:
                               "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
                               "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
                    "pagesize": 10, "page": 1}
-        header = self.user.shop_headers()
+        if headers == None:
+            header = self.user.shop_headers()
+        else:
+            header=headers
         response = requests.post(url, headers=header, json=payload, verify=False)  # 搜索未查看，未转机器人,未转crm，有手机，有固话的数据
         return response
 
-    def skb_address_search(self, filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=1):
+    def skb_address_search(self,headers = None, filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=1):
         """
         :param filterUnfold: 是否查看，1：已查看，2：未查看，0：全部
         :param filterSyncRobot: 是否转机器人，1：未转，2：已转，0：全部
@@ -70,11 +73,15 @@ class search:
                    "filter": {"location": ["110105"], "industryshort": [], "secindustryshort": [],
                               "establishment": ["0"], "contact": [contact], "entstatus": [1], "circle": None, "filterSync": filterSync,
                               "filterUnfold": filterUnfold, "filterSyncRobot": filterSyncRobot, "registercapital": ["0"], "enttype": ["0"]}}
-        header = self.user.shop_headers()
+
+        if headers == None:
+            header = self.user.shop_headers()
+        else:
+            header=headers
         response = requests.post(url, headers=header, json=payload, verify=False)  # 搜索未查看，未转机器人,未转crm，有手机，有固话的数据
         return response
 
-    def advanced_search(self, cv=None, hasSyncClue=1, hasSyncRobot=1, hasUnfolded=2):  # 高级搜索单个条件搜索
+    def advanced_search(self,headers = None, cv=None, hasSyncClue=1, hasSyncRobot=1, hasUnfolded=2):  # 高级搜索单个条件搜索
         """
         :param cv:  搜索条件
         :param hasSyncClue:  是否转crm，1：未转，2：已转，0：全部
@@ -101,7 +108,11 @@ class search:
                 "templateType": 0,
                 "templateName": "",
                 "userClick": 1}
-        r = requests.post(URL, headers=self.user.headers(), json=body, verify=False)
+        if headers == None:
+            header = self.user.shop_headers()
+        else:
+            header=headers
+        r = requests.post(URL, headers=header, json=body, verify=False)
         return (r)
 
     def search_API(self, cn, cv, cr):  # 高级搜索单个条件搜索
