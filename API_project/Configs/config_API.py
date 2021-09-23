@@ -59,7 +59,7 @@ class user:  # 用户信息
     def shop_headers(self):  # headers环境配置
         if self.test == 'test':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            Token = "Token token=fdc7cd52a1808e344b490b9457bb70e3"
+            Token = "Token token=da51350c47810a6ba7a49bc6ee88b424"
             platform = 'lixiaoyun'
         elif self.test == 'staging':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
@@ -85,10 +85,10 @@ class user:  # 用户信息
     def skb_userinfo(self,headers=None):  # 查询用户信息
         url = f'https://{user(self.test).skb_Host()}/api_skb/v1/user/userInfo'
         if headers == None:
-            header = user(self.test).headers()
+            header = user(self.test).shop_headers()
         else:
             header = headers
-        response = requests.get(url,headers=header)
+        response = requests.get(url,headers=header,verify=False)
         return response
 
     def visitor_HOST(self): #访客识别域名

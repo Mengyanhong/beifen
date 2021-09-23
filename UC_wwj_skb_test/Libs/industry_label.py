@@ -1,6 +1,6 @@
 import requests
-from tools.yamlControl import get_yaml_data
-from Configs.config import HOST
+from UC_wwj_skb_test.tools.yamlControl import get_yaml_data
+from UC_wwj_skb_test.Configs.config import HOST
 class industry_labels():
     def __init__(self,inData,HOST):
         self.HOST = HOST

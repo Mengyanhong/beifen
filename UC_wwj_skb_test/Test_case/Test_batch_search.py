@@ -1,6 +1,6 @@
 #执行用例
 import os
-from tools.yamlControl import get_yaml_data
+from UC_wwj_skb_test.tools.yamlControl import get_yaml_data
 from UC_wwj_skb_test.Configs.config import HOST
 from UC_wwj_skb_test.Libs.batch_search import upload_batch_search_file
 from UC_wwj_skb_test.Libs.industry_label import industry_labels
@@ -44,9 +44,9 @@ class Test_industry_tag:
         rers=industry_labels(filesBody,DEV_HOST,).industry_tags()
         assert rers["error_code"] == filesData["error_code"]
 if __name__ == '__main__':
-    pytest.main(["Test_batch_search.py","-sq","--alluredir","../report/temp"])# -s 打印输出,-sq简化打印
+    pytest.main(["Test_batch_search.py::Test_industry_tag::test_industry_tag","-sq","--alluredir","../report/tem"])# -s 打印输出,-sq简化打印
     # os.system("allure serve ../report/temp")
-    os.system("allure generate ../report/temp -o ../report/temp --clean")
+    os.system("allure generate ../report/tem -o ../report/temp --clean")
 """f   用例失败
    E   ERROR
    。  成功的

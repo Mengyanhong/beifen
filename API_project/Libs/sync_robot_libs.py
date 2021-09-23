@@ -10,7 +10,7 @@ class Sync_robot:
     def __init__(self, environment):
         self.User = user(environment)
 
-    def sync(self, pids=None, pages=None, seach_value=None, Quota=True, dataColumns=None, phoneStatus=None,
+    def sync(self,headers = None, pids=None, pages=None, seach_value=None, Quota=True, dataColumns=None, phoneStatus=None,
              numberCount=0, needCallPlan=False,canCover=False, way=None):
         true = True
         false = False
@@ -41,8 +41,11 @@ class Sync_robot:
             payload.update({"pids": pids, })
             payload.pop('page', 'pagesize')
 
-        heade = self.User.shop_headers()
-        response = requests.post(url=url, headers=heade, json=payload)
+        if headers == None:
+            header = self.User.shop_headers()
+        else:
+            header = headers
+        response = requests.post(url=url, headers=header, json=payload)
         return response
 
     def robot_uncalled(self, query_name=None,queryType=2):  # 查询号码管理内号码是否存在
