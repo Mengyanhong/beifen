@@ -127,12 +127,12 @@ class user:  # 用户信息
             'Content-Type': 'application/json',
             'crmplatformtype': platform
         }
-        test_Headers = {
-            'platform': 'IK',
-            'userToken': Token,
-            'Content-Type': 'application/json',
-            'CrmPlatformType': platform
-        }
+        # test_Headers = {
+        #     'platform': 'IK',
+        #     'userToken': Token,
+        #     'Content-Type': 'application/json',
+        #     'CrmPlatformType': platform
+        # }
         return lxcrm_Headers
         # if self.test == 'lxcrm':
         #     return lxcrm_Headers
