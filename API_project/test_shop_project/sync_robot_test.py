@@ -16,7 +16,7 @@ Sync_robot = Sync_robot(test_host)
 search = search(test_host)
 shop = shop(test_host)
 class Test_sync_robot:
-    # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', None,shop_search_list])
+    # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', None , 'shop_search_list'])
     # @pytest.mark.parametrize('page', [None, 500, 1000, 2000])
 
     @pytest.mark.parametrize('way', ['shop_search_list'])
@@ -301,7 +301,7 @@ class Test_sync_robot:
         assert user_Qu == user_Quota
         return '测试结束,仅转移已查看数据选择不扣除流量额度测试仅1条号码'
 
-    @pytest.mark.parametrize('way', ['search_list'])
+    @pytest.mark.parametrize('way', ['advanced_search_list','shop_search_list'])
     @pytest.mark.parametrize('page', [None])
     def test_case04(self,way,page):  # 扣除流量额度，转移手机和固话，全部号码,不创建外呼计划，
         """
