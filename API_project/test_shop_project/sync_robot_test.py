@@ -8,7 +8,7 @@ from API_project.Configs.config_API import user
 from API_project.Configs.search_API import search
 from API_project.Configs.shop_API import shop
 from API_project.Libs.sync_robot_libs import Sync_robot
-
+1
 test_host = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环
 
 user = user(test_host)
