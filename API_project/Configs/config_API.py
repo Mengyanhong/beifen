@@ -13,22 +13,26 @@ class user:  # 用户信息
     def headers(self):  # headers环境配置
         if self.test == 'test':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            token = "fdc7cd52a1808e344b490b9457bb70e3"
+            Token = "Token token=b792810fccc3ab092d476927049d4643"
+            platform = 'ikcrm'
         elif self.test == 'staging':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            token = 'b329f23fc5b2d0aaefb384cef8170c99'
+            Token = 'Token token=b329f23fc5b2d0aaefb384cef8170c99'
+            platform = 'lixiaoyun'
         elif self.test == 'lxcrm':
             app_token = 'a14cc8b00f84e64b438af540390531e4'
-            token = '18033bf7b969d9b12ef830c66c1f2464'
+            Token = 'Token token=18033bf7b969d9b12ef830c66c1f2464'
+            platform = 'lixiaoyun'
         else:
             print('传参错误')
             app_token = None
-            token = None
+            Token = None
+            platform = None
         Headers = {
             'app_token': app_token,
-            'Authorization': f'Token token={token}',
+            'Authorization': Token,
             'Content-Type': 'application/json',
-            'crm_platform_type': 'lixiaoyun'
+            'crm_platform_type': platform
         }
         return Headers
 
@@ -59,8 +63,8 @@ class user:  # 用户信息
     def shop_headers(self):  # headers环境配置
         if self.test == 'test':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            Token = "Token token=fdc7cd52a1808e344b490b9457bb70e3"
-            platform = 'lixiaoyun'
+            Token = "Token token=b792810fccc3ab092d476927049d4643"
+            platform = 'ikcrm'
         elif self.test == 'staging':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
             Token = 'Token token=b329f23fc5b2d0aaefb384cef8170c99'
@@ -85,10 +89,10 @@ class user:  # 用户信息
     def skb_userinfo(self,headers=None):  # 查询用户信息
         url = f'https://{user(self.test).skb_Host()}/api_skb/v1/user/userInfo'
         if headers == None:
-            header = user(self.test).headers()
+            header = user(self.test).shop_headers()
         else:
             header = headers
-        response = requests.get(url,headers=header)
+        response = requests.get(url,headers=header,verify=False)
         return response
 
     def visitor_HOST(self): #访客识别域名
@@ -105,8 +109,8 @@ class user:  # 用户信息
 
     def robot_headers(self):  # headers环境配置
         if self.test == 'test':
-            Token = "fdc7cd52a1808e344b490b9457bb70e3"
-            platform = 'lixiaoyun'
+            Token = "b792810fccc3ab092d476927049d4643"
+            platform = 'ikcrm'
         elif self.test == 'staging':
             Token = 'b329f23fc5b2d0aaefb384cef8170c99'
             platform = 'lixiaoyun'
@@ -117,13 +121,23 @@ class user:  # 用户信息
             print('传参错误')
             Token = None
             platform = None
-        Headers = {
+        lxcrm_Headers = {
             'platform': 'IK',
             'usertoken': Token,
             'Content-Type': 'application/json',
             'crmplatformtype': platform
         }
-        return Headers
+        # test_Headers = {
+        #     'platform': 'IK',
+        #     'userToken': Token,
+        #     'Content-Type': 'application/json',
+        #     'CrmPlatformType': platform
+        # }
+        return lxcrm_Headers
+        # if self.test == 'lxcrm':
+        #     return lxcrm_Headers
+        # else:
+        #     return test_Headers
 
     def robot_Host(self):
         if self.test == 'test':
