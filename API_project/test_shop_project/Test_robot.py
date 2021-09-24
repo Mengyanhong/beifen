@@ -15,7 +15,7 @@ search = search(test_host)
 Sync_robot_test = Sync_robot_test(test_host)
 
 class Test_Sync_robot:
-    # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', None])
+    # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', None,shop_search_list])
     # @pytest.mark.parametrize('page', [None, 500, 1000, 2000])
 
     @pytest.mark.parametrize('way',['shop_search_list'])
@@ -35,7 +35,7 @@ class Test_Sync_robot:
         Sync_robot_test.case03(way = way,page=page)
 
     @pytest.mark.parametrize('way', ['shop_search_list'])
-    @pytest.mark.parametrize('page', [None, 500])
+    @pytest.mark.parametrize('page', [None])
     def test_case04(self,way,page):  #，转移手机和固话，全部号码,扣除流量额度，不创建外呼计划，
         Sync_robot_test.case04(way = way,page=page)
 

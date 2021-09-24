@@ -32,19 +32,23 @@ class Sync_robot:
             "canCover": canCover,
             "needCallPlan": needCallPlan,  # 是否需要创建外呼计划 true / false
         }
-        if way is not None:
-            payload.update({"way": way})
+
         payload.update(seach_value)
         if pids is None:
             payload.update({"page": 1, "pagesize": pages})
         else:
             payload.update({"pids": pids, })
-            payload.pop('page', 'pagesize')
-
-        if headers == None:
+            payload.pop('page')
+            payload.pop('pagesize')
+        if way is not None:
+            payload.update({"way": way})
+        if way == 'shop_search_list':
+            payload.pop("from")
+            header = self.User.headers()
+        elif headers is None:
             header = self.User.shop_headers()
         else:
-            header = headers
+            header = self.User.headers()
         response = requests.post(url=url, headers=header, json=payload)
         return response
 

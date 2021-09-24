@@ -302,6 +302,7 @@ class Sync_robot_test:
         :param page: None：转移所选, 500：转前500, 1000：转前1000, 2000：转前2000
         :return:
         """
+        user_Quota = self.user.skb_userinfo().json()['data']['uRemainQuota']
         if way == 'search_list':
             response = self.search.skb_search()
             list_companyName_add = 'companyName'
@@ -309,9 +310,7 @@ class Sync_robot_test:
             response = self.search.advanced_search()
             list_companyName_add = 'companyName'
         elif way == 'shop_search_list':
-            response = self.shop.search_shop(cv=[
-                {"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"},
-                {"cn": "contactType", "cv": ["1", "2"], "cr": "IN"}])
+            response = self.shop.search_shop()
             list_companyName_add = 'name'
         else:
             response = self.search.skb_address_search(contact=2)
@@ -339,16 +338,20 @@ class Sync_robot_test:
         else:
             pid = None
             pages = page
-        user_Quota = self.user.skb_userinfo().json()['data']['uRemainQuota']
+
         resp_items = response_value['data']['items']
         if resp_items:
             for i in resp_items:
                 pid_list.append(i['id'])
                 company_name_list_pid.append(
                     {'pid': i['id'], 'company_name': i[list_companyName_add]})
-        resp_sync = self.Sync_robot.sync(pids=pid, pages=pages, canCover=True, dataColumns=[0, 1],
+        resp_syn = self.Sync_robot.sync(pids=pid, pages=pages, canCover=True, dataColumns=[0, 1],
                                          seach_value=request_payloa,
-                                         way=way).json()
+                                         way=way)
+        # pprint(resp_syn.request.body)
+        pprint(resp_syn.request.headers)
+        # pprint(resp_syn.request.url)
+        resp_sync=resp_syn.json()
         if resp_sync['error_code'] == 0:
             for i_value in range(200):
                 time.sleep(2.2)
@@ -363,34 +366,53 @@ class Sync_robot_test:
                 if response_list['data'] != {}:
                     break
             for i in company_name_list_pid:
-                contacts_num_list = self.search.skb_contacts_num(id=i['pid'], module=way).json()['data']['contacts']
+                contacts_num = self.search.skb_contacts_num(id=i['pid'], module=way)
+                print(contacts_num.json())
+                contacts_num_list = contacts_num.json()['data']['contacts']
                 content_list = []
                 for j in contacts_num_list:
                     if j['type'] == 2 or j['type'] == 1:
                         content_list.append(j['content'])
-                if content_list:
-                    sync_sum = 0
-                    for q in content_list:
-                        time.sleep(1.5)
-                        resp_robot = self.Sync_robot.robot_uncalled(query_name=q, queryType=3).json()['data']['list']
-                        if not resp_robot:
-                            resp_robot_com = \
-                            self.Sync_robot.robot_uncalled(query_name=i['company_name'], queryType=2).json()['data'][
+                resp_robot_com = self.Sync_robot.robot_uncalled(query_name=i['company_name'], queryType=2).json()['data'][
+                    'list']
+                if resp_robot_com:
+                    if len(content_list) == len(resp_robot_com):
+                        pass
+                    elif content_list:
+                        sync_robot_list = []
+                        for q in content_list:
+                            time.sleep(1)
+                            resp_robot = self.Sync_robot.robot_uncalled(query_name=q, queryType=3).json()['data'][
                                 'list']
-                            if not resp_robot_com:
-                                sync_sum += 1
-                                print(i, '，转移失败' + q)
+                            if not resp_robot:
+                                sync_robot_list.append(q)
+                        if len(sync_robot_list) == len(content_list):
+                            print(i,content_list,'号码转移错误')
+                        elif 0 < len(sync_robot_list) < len(content_list):
+                            print(i,'部分号码转移出错',sync_robot_list)
+                        elif 0 == len(sync_robot_list):
+                            pass
                         else:
-                            assert len(resp_robot) >= 1
-                    assert sync_sum < len(content_list)
+                            print('号码出错''\n',contacts_num.request.body)
+                    else:
+                        print(i,'联系方式为空',contacts_num_list,'\n',contacts_num.request.url)
                 else:
-                    print(i, '无联系方式')
+                    print(i, '企业转移失败',contacts_num_list,'\n',contacts_num.json())
         else:
-            print('转移失败')
+            print(json.loads(resp_syn.request.body.decode("unicode_escape")))
         user_Qu = self.user.skb_userinfo().json()['data']['uRemainQuota']
+
         if pages is not None:
+            print(user_Qu, user_Quota, pages)
+            if user_Quota<pages:
+                print(user_Qu, user_Quota, pages)
+                pprint(self.user.skb_userinfo().json())
             assert user_Qu == (user_Quota - pages) or user_Quota > user_Qu > (user_Quota - pages)
         else:
+            print(user_Qu, user_Quota, len(resp_items))
+            if user_Quota<len(resp_items):
+                print(user_Qu, user_Quota, len(resp_items))
+                pprint(self.user.skb_userinfo().json())
             assert user_Qu == (user_Quota - len(resp_items))
         return '测试结束，全部号码，手机加固话，扣除流量额度，测试全部号码/固话转移case'
 
