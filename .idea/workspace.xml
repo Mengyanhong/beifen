@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="转机器人2.0">
+    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="转机器人2.2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +179,7 @@
       <workItem from="1631958093838" duration="813000" />
       <workItem from="1632276106450" duration="19088000" />
       <workItem from="1632368131448" duration="15941000" />
-      <workItem from="1632448387653" duration="13384000" />
+      <workItem from="1632448387653" duration="14011000" />
     </task>
     <task id="LOCAL-00001" summary="配置恢复">
       <created>1631678985365</created>
@@ -217,7 +216,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632462087278</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="转机器人2.1">
+      <created>1632465343119</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1632465343119</updated>
+    </task>
+    <task id="LOCAL-00007" summary="转机器人2.2">
+      <created>1632465611527</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1632465611527</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,7 +252,9 @@
     <MESSAGE value="转机器人case1.2" />
     <MESSAGE value="转机器人case1.3" />
     <MESSAGE value="转机器人2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="转机器人2.0" />
+    <MESSAGE value="转机器人2.1" />
+    <MESSAGE value="转机器人2.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="转机器人2.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
