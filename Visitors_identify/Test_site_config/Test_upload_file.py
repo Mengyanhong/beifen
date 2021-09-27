@@ -3,8 +3,8 @@
 # @Author  : 孟艳红
 # @File    : Test_upload_file.py
 
-from Tools.ExcelControl import Excel_Files
-from Configs.Upload_File import Upload
+from Visitors_identify.Tools.ExcelControl import Excel_Files
+from Visitors_identify.Configs.Upload_File import Upload
 host = 'test' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 Upload = Upload(host)
 import pytest,os

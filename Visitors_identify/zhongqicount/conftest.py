@@ -20,9 +20,9 @@ def mongoDB():
     mongo_password = 'Ce782ef2'
     server = SSHTunnelForwarder(
 
-        ssh_address_or_host=("47.105.53.248", 40022),  # 指定ssh登录的跳转机的IP port
-        ssh_username='lihexiang',  # 跳板机用户名
-        ssh_pkey='C:/Users/admin/.ssh/id_rsa',  # 设置密钥
+        ssh_address_or_host=("47.104.226.30", 40022),  # 指定ssh登录的跳转机的IP port
+        ssh_username='jar',  # 跳板机用户名
+        ssh_pkey='D:/Users/admin/.ssh/id_rsa/id_rsa',  # 设置密钥
         remote_bind_address=(mongo_address, mongo_port)  # 设置数据库服务地址及端口
     )
     server.start()

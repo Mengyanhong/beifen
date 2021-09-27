@@ -301,8 +301,8 @@ class Test_sync_robot:
         assert user_Qu == user_Quota
         return '测试结束,仅转移已查看数据选择不扣除流量额度测试仅1条号码'
 
-    @pytest.mark.parametrize('way', ['advanced_search_list','shop_search_list'])
-    @pytest.mark.parametrize('page', [None])
+    @pytest.mark.parametrize('way', ['shop_search_list'])
+    @pytest.mark.parametrize('page', [500])
     def test_case04(self,way,page):  # 扣除流量额度，转移手机和固话，全部号码,不创建外呼计划，
         """
         :param way: 测试模块'search_list'：找企业, 'advanced_search_list'：高级搜索, None：地图获客
@@ -358,7 +358,7 @@ class Test_sync_robot:
                                          way=way)
         resp_sync=resp_syn.json()
         if resp_sync['error_code'] == 0:
-            print(time.time())
+            stattime = time.time()
             for i_value in range(200):
                 time.sleep(2.2)
                 if way == 'search_list':
@@ -370,7 +370,7 @@ class Test_sync_robot:
                 else:
                     response_list = search.skb_address_search(contact=2).json()
                 if response_list['data'] != {}:
-                    print(time.time())
+                    print('转移耗时',time.time()-stattime,'s')
                     break
             for i in company_name_list_pid:
                 contacts_num = search.skb_contacts_num(id=i['pid'], module=way)
