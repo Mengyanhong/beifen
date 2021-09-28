@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="zhongqi">
-      <change afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_count.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongq.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongqi.xlsx" afterDir="false" />
+    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="zhongqi1.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/Libs/config_org_sites.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/Libs/config_org_sites.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/Test_site_config/Test_Config_org_sites.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/Test_site_config/Test_Config_org_sites.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/Test_site_config/Test_upload_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/Test_site_config/Test_upload_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_count.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_count.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_tongji.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_tongji.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongq.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongq.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +21,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1yZnlNR3P66bdGmMmkexuorEKUJ" />
   <component name="ProjectViewState">
@@ -44,7 +47,7 @@
       <recent name="D:\Program Files\Python\Visitors_identify\zhongqicount" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_count.Test_count.testsum">
+  <component name="RunManager" selected="Python tests.Python tests for test_tongji.TestTongji.test_companyname">
     <configuration name="新日推数据分析" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -129,8 +132,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_count.Test_count.testsum" />
         <item itemvalue="Python tests.Python tests for test_tongji.TestTongji.test_companyname" />
+        <item itemvalue="Python tests.Python tests for test_count.Test_count.testsum" />
         <item itemvalue="Python.新日推数据分析" />
         <item itemvalue="Python tests.Python tests for test_tongji.TestTongji" />
         <item itemvalue="Python tests.Python tests for sync_robot_test.Test_sync_robot.test_case04" />
@@ -149,7 +152,9 @@
       <workItem from="1632468297060" duration="180000" />
       <workItem from="1632470510982" duration="4161000" />
       <workItem from="1632624160564" duration="384000" />
-      <workItem from="1632650259918" duration="20747000" />
+      <workItem from="1632650259918" duration="21074000" />
+      <workItem from="1632791971816" duration="16130000" />
+      <workItem from="1632813894431" duration="1938000" />
     </task>
     <task id="LOCAL-00001" summary="12">
       <created>1632468450563</created>
@@ -165,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632624526120</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="zhongqi1.1">
+      <created>1632741855447</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1632741855447</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,9 +195,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="12" />
     <MESSAGE value="zhongqi" />
-    <option name="LAST_COMMIT_MESSAGE" value="zhongqi" />
+    <MESSAGE value="zhongqi1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="zhongqi1.1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632740656651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632815726072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
   </component>
 </project>
