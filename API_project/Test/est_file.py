@@ -16,20 +16,22 @@ import json,requests
 # data_json = json.dumps(data)
 # data_jso = json.loads(data_json)
 # print(data_jso)
-true=True
-false=False
-url = 'https://skb-test.weiwenjia.com/api_skb/v1/shopClues/sync_robot'
-pla = {"shopName": "", "hasUnfolded": 2, "hasSyncClue": 1, "hasSyncRobot": 1, "syncRobotRangeDate": [],
-        "condition": {"cn": "composite", "cr": "MUST",
-                      "cv": [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"}]},
-        "pids": ["5422602", "77916263"], "way": "shop_search_list", "useQuota": true, "dataColumns": [0, 1],
-        "phoneStatus": [0, 1, 2, 3], "numberCount": 0, "canCover": false, "needCallPlan": false,
-        }
-ha={
-            'app_token': 'f6620ff6729345c8b6101174e695d0ab',
-            'Authorization': 'Token token=b792810fccc3ab092d476927049d4643',
-            'Content-Type': 'application/json',
-            'crm_platform_type': 'ikcrm'
-        }
-po = requests.post(url,headers=ha,json=pla)
-print(po.json())
+# true=True
+# false=False
+# url = 'https://skb-test.weiwenjia.com/api_skb/v1/shopClues/sync_robot'
+# pla = {"shopName": "", "hasUnfolded": 2, "hasSyncClue": 1, "hasSyncRobot": 1, "syncRobotRangeDate": [],
+#         "condition": {"cn": "composite", "cr": "MUST",
+#                       "cv": [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"}]},
+#         "pids": ["5422602", "77916263"], "way": "shop_search_list", "useQuota": true, "dataColumns": [0, 1],
+#         "phoneStatus": [0, 1, 2, 3], "numberCount": 0, "canCover": false, "needCallPlan": false,
+#         }
+# ha={
+#             'app_token': 'f6620ff6729345c8b6101174e695d0ab',
+#             'Authorization': 'Token token=b792810fccc3ab092d476927049d4643',
+#             'Content-Type': 'application/json',
+#             'crm_platform_type': 'ikcrm'
+#         }
+# po = requests.post(url,headers=ha,json=pla)
+# print(po.json())
+import time
+print (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
