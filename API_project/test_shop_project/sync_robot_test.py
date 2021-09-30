@@ -3,13 +3,13 @@
 # @File : sync_robot_test.py
 
 from pprint import pprint
-import requests, json, time,pytest,os
+import requests, json, time,pytest,os,random
 from API_project.Configs.config_API import user
 from API_project.Configs.search_API import search
 from API_project.Configs.shop_API import shop
 from API_project.Libs.sync_robot_libs import Sync_robot
 
-test_host = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环
+test_host = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环
 
 user = user(test_host)
 Sync_robot = Sync_robot(test_host)
@@ -605,16 +605,17 @@ class Test_sync_robot:
                 print(resp_items)
             assert user_Qu == (user_Quota - len(resp_items) + user_Qu_test)
 
-        return '测试结束，全部号码，手机，扣除流量额度，测试仅手机转移case'
+        return '测试结束，扣除流量额度，仅转移手机，全部号码,加入已有外呼计划'
 
     @pytest.mark.parametrize('way', ['shop_search_list'])
     @pytest.mark.parametrize('page', [None])
-    def testcase06(self, way, page):  # 扣除流量额度，转移手机和固话，全部号码,创建外呼计划，
+    def testcase06(self, way, page):  # 扣除流量额度，仅转移手机，全部号码,创建外呼计划，
         """
         :param way: 测试模块'search_list'：找企业, 'advanced_search_list'：高级搜索, None：地图获客
         :param page: None：转移所选, 500：转前500, 1000：转前1000, 2000：转前2000
         :return:
         """
+        user_Quota = user.skb_userinfo().json()['data']['uRemainQuota']
         if way == 'search_list':
             response = search.skb_search()
             list_companyName_add = 'companyName'
@@ -622,9 +623,7 @@ class Test_sync_robot:
             response = search.advanced_search()
             list_companyName_add = 'companyName'
         elif way == 'shop_search_list':
-            response = shop.search_shop(cv=[
-                {"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"},
-                {"cn": "contactType", "cv": ["1", "2"], "cr": "IN"}])
+            response = shop.search_shop()
             list_companyName_add = 'name'
         else:
             response = search.skb_address_search(contact=2)
@@ -637,7 +636,7 @@ class Test_sync_robot:
             print(response_value['data'])
             assert response_value['data'] != {}
         elif response_value['data']['total'] == 0:
-            print(response_value['data'])
+            print('搜索结果为空', response_value['data'])
             assert response_value['total'] != 0
         else:
             response_value = response_value
@@ -652,18 +651,32 @@ class Test_sync_robot:
         else:
             pid = None
             pages = page
-        user_Quota = user.skb_userinfo(headers=user.shop_headers()).json()['data']['uRemainQuota']
         resp_items = response_value['data']['items']
         if resp_items:
             for i in resp_items:
                 pid_list.append(i['id'])
                 company_name_list_pid.append(
                     {'pid': i['id'], 'company_name': i[list_companyName_add]})
-        resp_sync = Sync_robot.sync(pids=pid, pages=pages, canCover=True, dataColumns=[0, 1],
-                                         seach_value=request_payloa,needCallPlan=True,
-                                         way=way).json()
+
+        resp_out_sync = Sync_robot.robot_outcallplan(gateway_HOT=test_host).json()  # 获取外呼计划列表
+        if resp_out_sync["data"]["list"]:
+            resp_out_sync_value = resp_out_sync["data"]["list"][0]
+            print(resp_out_sync_value["id"], resp_out_sync_value["callCount"], resp_out_sync_value["jobGroupName"])
+        else:
+            resp_out_sync_value = None
+            print(resp_out_sync["data"])
+            assert resp_out_sync["data"]["list"] != []
+        gatewayname = f"自动化测试{str(random.randint(10,100))}"
+
+        resp_syn = Sync_robot.sync(pids=pid, pages=pages,
+                                   seach_value=request_payloa, canCover=True,
+                                   way=way,gatewayname=gatewayname, gatewayId=resp_out_sync_value["gatewayId"],surveyId=resp_out_sync_value["surveyId"], needCallPlan=True)
+        resp_sync = resp_syn.json()
+        resp_syn.close()
+        user_Qu_test = 0
         if resp_sync['error_code'] == 0:
-            for i_value in range(200):
+            for data_value in range(200):
+                stattime = time.time()
                 time.sleep(2.2)
                 if way == 'search_list':
                     response_list = search.skb_search().json()
@@ -672,40 +685,112 @@ class Test_sync_robot:
                 elif way == 'shop_search_list':
                     response_list = shop.search_shop().json()
                 else:
-                    response_list = search.skb_address_search(contact=2).json()
+                    response_list = search.skb_address_search().json()
                 if response_list['data'] != {}:
+                    print('转移耗时', int(time.time() - stattime), 's')
                     break
             for i in company_name_list_pid:
-                contacts_num_list = search.skb_contacts_num(id=i['pid'], module=way).json()['data']['contacts']
-                content_list = []
+                user_Qu_type2 = 0
+                user_Qu_type1 = 0
+                contacts_num = search.skb_contacts_num(id=i['pid'], module=way)
+                contacts_num_list = contacts_num.json()['data']['contacts']
+                content_list_type2 = []
+                content_list_type1 = []
                 for j in contacts_num_list:
-                    if j['type'] == 2 or j['type'] == 1:
-                        content_list.append(j['content'])
-                if content_list:
-                    sync_sum = 0
-                    for q in content_list:
-                        time.sleep(1.5)
-                        resp_robot = Sync_robot.robot_uncalled(query_name=q, queryType=3).json()['data']['list']
-                        if not resp_robot:
-                            resp_robot_com = \
-                            Sync_robot.robot_uncalled(query_name=i['company_name'], queryType=2).json()['data'][
-                                'list']
-                            if not resp_robot_com:
-                                sync_sum += 1
-                                print(i, '，转移失败' + q)
+                    if j['type'] == 2:
+                        content_list_type2.append(j['content'])
+                    elif j['type'] == 1:
+                        content_list_type1.append(j['content'])
+                resp_robot_com = Sync_robot.robot_uncalled(query_name=i['company_name'], queryType=2).json()['data'][
+                    'list']
+                if resp_robot_com:
+                    if len(content_list_type2) + len(content_list_type1) == len(resp_robot_com):
+                        pass
+                    else:
+                        if content_list_type1:
+                            sync_robot_list_type1 = []
+                            for q_type1 in content_list_type1:
+                                time.sleep(1)
+                                resp_robot_type1 = \
+                                Sync_robot.robot_uncalled(query_name=q_type1, queryType=3).json()['data'][
+                                    'list']
+                                if not resp_robot_type1:
+                                    sync_robot_list_type1.append(q_type1)
+                            if len(sync_robot_list_type1) == len(content_list_type1):
+                                print(i, content_list_type1, '手机转移失败')
+                            elif 0 < len(sync_robot_list_type1) < len(content_list_type1):
+                                print(i, '部分手机号码转移出错', sync_robot_list_type1)
+                            elif 0 == len(sync_robot_list_type1):
+                                pass
+                            else:
+                                print('手机获取错误\n', contacts_num.request.body)
                         else:
-                            assert len(resp_robot) >= 1
-                    assert sync_sum < len(content_list)
+                            user_Qu_type1 += 1
+                            print(i, '手机为空', contacts_num_list, '\n', contacts_num.request.url)
+
+                        if content_list_type2:
+                            sync_robot_list_type2 = []
+                            for q_type2 in content_list_type2:
+                                time.sleep(1)
+                                resp_robot_type2 = \
+                                Sync_robot.robot_uncalled(query_name=q_type2, queryType=3).json()['data'][
+                                    'list']
+                                if not resp_robot_type2:
+                                    sync_robot_list_type2.append(q_type2)
+                            if len(sync_robot_list_type2) == len(content_list_type2):
+                                print(i, content_list_type2, '固话转移失败')
+                            elif 0 < len(sync_robot_list_type2) < len(content_list_type2):
+                                print(i, '部分固话号码转移出错', sync_robot_list_type2)
+                            elif 0 == len(sync_robot_list_type2):
+                                pass
+                            else:
+                                print('固话获取错误\n', contacts_num.request.body)
+                        else:
+                            user_Qu_type2 += 1
+                            print(i, '固话为空', contacts_num_list, '\n', contacts_num.request.url)
                 else:
-                    print(i, '无联系方式')
+                    user_Qu_test += 1
+                    print(i, '企业转移失败', contacts_num_list, '\n', contacts_num.json())
+                if user_Qu_type2 != 0 and user_Qu_type1 != 0:
+                    user_Qu_test += 1
+                    print(i, '该企业无联系方式', contacts_num_list, '\n', contacts_num.json())
+                elif user_Qu_type1 != 0 and user_Qu_type2 == 0:
+                    print(i, '该企业无手机号码但是有固话', contacts_num_list, '\n', contacts_num.json())
+                elif user_Qu_type2 != 0:
+                    print(i, '该企业无固话号码', contacts_num_list, '\n', contacts_num.json())
+            resp_out_query = Sync_robot.robot_outcallplan(gatewayId=resp_out_sync_value["gatewayId"],gateway_HOT="lxcrm").json()["data"]["list"]  # 获取外呼计划列表
+            resp_out_query_value_sum = 0
+            resp_out_query_value_value = None
+            for resp_out_query_value in resp_out_query:
+                if resp_out_query_value["jobGroupName"] == gatewayname and \
+                        resp_out_query_value["gatewayId"] == resp_out_sync_value["gatewayId"] and \
+                        resp_out_query_value["surveyId"] == resp_out_sync_value["surveyId"]:
+                    resp_out_query_value_sum += 1
+                    resp_out_query_value_value = resp_out_query_value
+                    break
+            if resp_out_query_value_sum > 0:
+                print("创建外呼计划成功，外呼计划为", resp_out_query_value_value)
+            else:
+                print("创建外呼计划失败，计划名", gatewayname, "创建后列表", resp_out_query)
         else:
-            print('转移失败')
-        user_Qu = user.skb_userinfo(headers=user.shop_headers()).json()['data']['uRemainQuota']
+            pprint(resp_syn.request.body)
+            pprint(resp_syn.request.headers)
+            pprint(resp_syn.request.url)
+        user_Qu = user.skb_userinfo().json()['data']['uRemainQuota']
         if pages is not None:
-            assert user_Qu == (user_Quota - pages) or user_Quota > user_Qu > (user_Quota - pages)
+            print(user_Qu, user_Quota, pages)
+            if user_Quota < pages:
+                pprint(user.skb_userinfo().json())
+                print(resp_items)
+            assert user_Qu == (user_Quota - pages + user_Qu_test) or user_Quota > user_Qu > (user_Quota - pages)
         else:
-            assert user_Qu == (user_Quota - len(resp_items))
-        return '测试结束，全部号码，手机加固话，扣除流量额度，测试全部号码/固话转移case'
+            print(user_Qu, user_Quota, len(resp_items))
+            if user_Quota < len(resp_items):
+                pprint(user.skb_userinfo().json())
+                print(resp_items)
+            assert user_Qu == (user_Quota - len(resp_items) + user_Qu_test)
+
+        return '测试结束，全部号码，手机，扣除流量额度，测试仅手机转移case'
 
     def testbeifen(self, way, page):  # 扣除流量额度，仅转移手机，全部号码,加入已有外呼计划，
         """

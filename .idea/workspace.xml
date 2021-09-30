@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="访客识别数量查询1.1">
+    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="访客识别数量查询,更改报告目录">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/quanliang.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/data_report/quanliang.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_count_quanliang.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_count_quanliang.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_tongji_sum_zengliang.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_tongji_sum_zengliang.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_zhongqi_tongjiyuan.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_zhongqi_tongjiyuan.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zengliang.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/data_report/zengliang.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongqi.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/data_report/zhongqi.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Configs/user_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/user_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Test/est_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test/est_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +51,7 @@
       <recent name="D:\Program Files\Python\Visitors_identify\zhongqicount\data_report" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_tongji_sum_zengliang.TestTongji">
+  <component name="RunManager" selected="Python tests.Python tests for sync_robot_test.Test_sync_robot.testcase06">
     <configuration name="est_file" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,18 +74,18 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for Visitors_identify.zhongqicount.test_zhongqi_tongjiyuan.TestTongji.test_companyname" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for sync_robot_test.Test_sync_robot.testcase06" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Visitors_identify.zhongqicount.test_zhongqi_tongjiyuan.TestTongji.test_companyname&quot;" />
+      <option name="_new_target" value="&quot;sync_robot_test.Test_sync_robot.testcase06&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -138,11 +136,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for sync_robot_test.Test_sync_robot.testcase06" />
+        <item itemvalue="Python.est_file" />
         <item itemvalue="Python tests.Python tests for test_tongji_sum_zengliang.TestTongji" />
         <item itemvalue="Python tests.Python tests for test_count_quanliang.TestTongji" />
-        <item itemvalue="Python.est_file" />
         <item itemvalue="Python tests.Python tests for test_tongji_sum_zengliang.TestTongji.test_companyname" />
-        <item itemvalue="Python tests.Python tests for Visitors_identify.zhongqicount.test_zhongqi_tongjiyuan.TestTongji.test_companyname" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +161,7 @@
       <workItem from="1632813894431" duration="1985000" />
       <workItem from="1632822680515" duration="668000" />
       <workItem from="1632879081860" duration="22475000" />
-      <workItem from="1632964481462" duration="21107000" />
+      <workItem from="1632964481462" duration="26610000" />
     </task>
     <task id="LOCAL-00001" summary="12">
       <created>1632468450563</created>
@@ -221,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632991389800</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="访客识别数量查询,更改报告目录">
+      <created>1632991892831</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632991892831</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -244,23 +249,44 @@
     <MESSAGE value="加入外呼计划" />
     <MESSAGE value="访客识别数量查询" />
     <MESSAGE value="访客识别数量查询1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="访客识别数量查询1.1" />
+    <MESSAGE value="访客识别数量查询,更改报告目录" />
+    <option name="LAST_COMMIT_MESSAGE" value="访客识别数量查询,更改报告目录" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py</url>
-          <line>86</line>
+          <line>99</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py</url>
+          <line>660</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py</url>
+          <line>670</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py</url>
+          <line>703</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py</url>
+          <line>760</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Python$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1632989432573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test" />
+    <SUITE FILE_PATH="coverage/Python$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1632994433097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test" />
     <SUITE FILE_PATH="coverage/Python$user_config.coverage" NAME="user_config Coverage Results" MODIFIED="1632881743644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
     <SUITE FILE_PATH="coverage/Python$config_API.coverage" NAME="config_API Coverage Results" MODIFIED="1632882096380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
-    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632991605744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632997245151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
   </component>
 </project>

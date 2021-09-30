@@ -38,14 +38,16 @@ import json,requests
 
 import uuid
 
-data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 5, 6, 7, 8, 9, 6, 5, 4, 3, 8, 9]
-# batch_step = round(len(data) / 10)
-# print(batch_step)
-for index in range(0, len(data), 5):
-    item_list = data[index:index + 5]
-    print(item_list)
-    # print(2000000/2000)
+# data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 5, 6, 7, 8, 9, 6, 5, 4, 3, 8, 9]
+# # batch_step = round(len(data) / 10)
+# # print(batch_step)
+# for index in range(0, len(data), 5):
+#     item_list = data[index:index + 5]
+#     print(item_list)
+#     # print(2000000/2000)
+import random
 
+print(str(random.randint(10,100)))
 # example
 # from pymongo import MongoClient
 #
