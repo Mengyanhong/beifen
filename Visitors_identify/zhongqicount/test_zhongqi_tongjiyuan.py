@@ -1,6 +1,6 @@
 import pytest,openpyxl,datetime
 
-filename='zhongqi.xlsx'
+filename= 'data_report/zhongqi.xlsx'
 file=openpyxl.load_workbook(filename)
 sheet=file['统计']
 

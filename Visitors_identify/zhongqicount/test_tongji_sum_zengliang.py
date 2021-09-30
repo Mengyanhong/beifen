@@ -1,6 +1,6 @@
 import pytest,openpyxl,datetime
 
-filename='zengliang.xlsx'
+filename= 'data_report/zengliang.xlsx'
 file=openpyxl.load_workbook(filename)
 sheet=file['统计']
 
