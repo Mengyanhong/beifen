@@ -33,5 +33,36 @@ import json,requests
 #         }
 # po = requests.post(url,headers=ha,json=pla)
 # print(po.json())
-import time
-print (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
+# import time
+# print (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
+
+import uuid
+
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 5, 6, 7, 8, 9, 6, 5, 4, 3, 8, 9]
+# batch_step = round(len(data) / 10)
+# print(batch_step)
+for index in range(0, len(data), 5):
+    item_list = data[index:index + 5]
+    print(item_list)
+    # print(2000000/2000)
+
+# example
+# from pymongo import MongoClient
+#
+# mdb = MongoClient('120.133.26.xxx:20002', username='xt', password='xxxxxx')
+# image_ids = ["001", "002", "003", ...]
+#
+# image_dict = {}
+# batch_step = round(len(image_ids) / 10)
+# for idx in range(0, len(image_ids), batch_step):
+#     image_ids_part = image_ids[idx:idx + batch_step]
+#     image_infos = mdb['数据库名']['图片表名'].find({"image_id": {"$in": image_ids_part}})
+#
+#     image_one = {}
+#     for image_info in image_infos:
+#         if image_info.get("image_size"):
+#             image_one[image_info.get("image_id")] = image_info
+#             image_dict.update(image_one)
+
+
+

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="zhongqi1.2">
-      <change afterPath="$PROJECT_DIR$/API_project/Configs/user_config.py" afterDir="false" />
+    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="加入外呼计划">
+      <change afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/quanliang.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_tongji_sum_zengliang.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_zhongqi_tongjiyuan.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zengliang.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_project/Configs/config_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/config_API.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Configs/search_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/search_API.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_project/Configs/user_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/user_config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API_project/Test/est_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test/est_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/测试文本.text" beforeDir="false" afterPath="$PROJECT_DIR$/测试文本.text" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_count.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_count_quanliang.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/test_tongji.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongq.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongqi.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Visitors_identify/zhongqicount/zhongqi.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,29 +56,7 @@
       <recent name="D:\Program Files\Python\Visitors_identify\zhongqicount" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for sync_robot_test.Test_sync_robot.testcase05">
-    <configuration name="config_API" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Configs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/API_project/Configs/config_API.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Python tests for test_count_quanliang.TestTongji">
     <configuration name="est_file" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -96,65 +79,73 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="user_config" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Configs" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/API_project/Configs/user_config.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for sync_robot_test.Test_sync_robot.test_case04" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for Visitors_identify.zhongqicount.test_zhongqi_tongjiyuan.TestTongji.test_companyname" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sync_robot_test.Test_sync_robot.test_case04&quot;" />
+      <option name="_new_target" value="&quot;Visitors_identify.zhongqicount.test_zhongqi_tongjiyuan.TestTongji.test_companyname&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for sync_robot_test.Test_sync_robot.testcase05" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_count_quanliang.TestTongji" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sync_robot_test.Test_sync_robot.testcase05&quot;" />
+      <option name="_new_target" value="&quot;test_count_quanliang.TestTongji&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_tongji_sum_zengliang.TestTongji" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_tongji_sum_zengliang.TestTongji&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_tongji_sum_zengliang.TestTongji.test_companyname" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_tongji_sum_zengliang.TestTongji.test_companyname&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for sync_robot_test.Test_sync_robot.testcase05" />
+        <item itemvalue="Python tests.Python tests for test_count_quanliang.TestTongji" />
+        <item itemvalue="Python tests.Python tests for test_tongji_sum_zengliang.TestTongji" />
         <item itemvalue="Python.est_file" />
-        <item itemvalue="Python tests.Python tests for sync_robot_test.Test_sync_robot.test_case04" />
-        <item itemvalue="Python.config_API" />
-        <item itemvalue="Python.user_config" />
+        <item itemvalue="Python tests.Python tests for test_tongji_sum_zengliang.TestTongji.test_companyname" />
+        <item itemvalue="Python tests.Python tests for Visitors_identify.zhongqicount.test_zhongqi_tongjiyuan.TestTongji.test_companyname" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +165,8 @@
       <workItem from="1632791971816" duration="16130000" />
       <workItem from="1632813894431" duration="1985000" />
       <workItem from="1632822680515" duration="668000" />
-      <workItem from="1632879081860" duration="22430000" />
+      <workItem from="1632879081860" duration="22475000" />
+      <workItem from="1632964481462" duration="20104000" />
     </task>
     <task id="LOCAL-00001" summary="12">
       <created>1632468450563</created>
@@ -211,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632823329755</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="加入外呼计划">
+      <created>1632915675767</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1632915675767</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,23 +230,24 @@
     <MESSAGE value="zhongqi" />
     <MESSAGE value="zhongqi1.1" />
     <MESSAGE value="zhongqi1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="zhongqi1.2" />
+    <MESSAGE value="加入外呼计划" />
+    <option name="LAST_COMMIT_MESSAGE" value="加入外呼计划" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py</url>
-          <line>71</line>
+          <line>86</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Python$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1632894410261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test" />
+    <SUITE FILE_PATH="coverage/Python$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1632989432573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test" />
     <SUITE FILE_PATH="coverage/Python$user_config.coverage" NAME="user_config Coverage Results" MODIFIED="1632881743644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
     <SUITE FILE_PATH="coverage/Python$config_API.coverage" NAME="config_API Coverage Results" MODIFIED="1632882096380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
-    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632915491127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632990537823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
   </component>
 </project>

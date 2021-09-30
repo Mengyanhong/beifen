@@ -18,12 +18,13 @@ class User_Config:  # 用户信息
             app_token = 'a14cc8b00f84e64b438af540390531e4'
             Token_value = '18033bf7b969d9b12ef830c66c1f2464'
             platform = 'lixiaoyun'
+            gatewayId = "9203"
         else:
             print('传参错误')
             app_token = None
             Token_value = None
             platform = None
-        return {'app_token': app_token, 'Token': Token_value, 'platform': platform}
+        return {'app_token': app_token, 'Token': Token_value, 'platform': platform,'gatewayId':gatewayId}
 
 if __name__ == '__main__':
     print(User_Config('test').user_key()["Token"])

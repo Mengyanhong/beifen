@@ -12,7 +12,7 @@ class Sync_robot:
 
     def sync(self,out_id=None, headers=None, pids=None, pages=None, seach_value=None, Quota=True, dataColumns=None,
              phoneStatus=None,
-             numberCount=0, needCallPlan=False, canCover=False, way=None):
+             numberCount=0, needCallPlan=False, canCover=False, way=None,gatewayId = None):
         true = True
         false = False
         if phoneStatus is None:
@@ -45,6 +45,21 @@ class Sync_robot:
             "customers_ids": [],
             "platform": "IK"
         }
+        # if gatewayId == None:
+        #     gatewayId = self.User.user_key()["gatewayId"]
+        #     surveyId
+        # else:
+        #     gatewayId = gatewayId
+        #     surveyId = surveyId
+        # {
+        #     "plan_name": "测试",
+        #     "survey_id": surveyId,
+        #     "gatewayId": gatewayId,
+        #     "strategy": 1,
+        #     "need_push": 1,
+        #     "need_finish_message": true,
+        #     "need_hangup_message": false,
+        # }
         payload.update(seach_value)
         if pids is None:
             payload.update({"page": 1, "pagesize": pages})
@@ -90,12 +105,16 @@ class Sync_robot:
         response = requests.get(url, params=payload, headers=headers)
         return response
 
-    def robot_outcallplan(self, gatewayId="9203"):
+    def robot_outcallplan(self, gatewayId=None):
         """
          # 查询外呼计划
         :param gatewayId: 计划线路，str类型
         :return:
         """
+        if gatewayId == None:
+            gatewayId = self.User.user_key()["gatewayId"]
+        else:
+            gatewayId = gatewayId
         url = f'https://{self.User.robot_Host()}/api/v1/plan/list'
         headers = self.User.robot_headers()
         payload = {"page": 1, "per_page": 10,"gatewayId": gatewayId}

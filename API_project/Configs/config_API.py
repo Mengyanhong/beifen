@@ -8,6 +8,9 @@ class user:  # 用户信息
         self.test = environment
         self.user_key = User_Config(environment).user_key()
 
+    def user_key(self):
+        return self.user_key
+
     def headers(self):  # headers环境配置
         if self.test == 'test':
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
