@@ -28,6 +28,7 @@ def mongoDB():
     server.start()
     conn = pymongo.MongoClient(
         host='127.0.0.1',  # host、port 固定
+        # port=27017
         port=server.local_bind_port
     )
     db = conn["admin"]

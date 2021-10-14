@@ -2,6 +2,7 @@
 # @Time : 2021/9/9 11:31
 # @Author : 孟艳红
 # @File : est_file.py
+import datetime
 from pprint import pprint
 import json,requests
 
@@ -35,7 +36,7 @@ import json,requests
 # print(po.json())
 # import time
 # print (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
-
+print(datetime.datetime(2021, 9, 17, 00, 00, 00))
 import uuid
 
 # data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 5, 6, 7, 8, 9, 6, 5, 4, 3, 8, 9]
@@ -45,9 +46,9 @@ import uuid
 #     item_list = data[index:index + 5]
 #     print(item_list)
 #     # print(2000000/2000)
-import random
-
-print(str(random.randint(10,100)))
+# import random
+#
+# print(str(random.randint(10,100)))
 # example
 # from pymongo import MongoClient
 #

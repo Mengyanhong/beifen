@@ -11,9 +11,19 @@ class TestTongji:
     def test_companyname(self,sql,mongoDB):
         cursor=sql
         db = mongoDB
-        cursor.execute("""select customer_n1,company_n1,GROUP_CONCAT(set_id11 separator ","),sum(ip_user_sum),SUM(visitor_id_sum1),oidl21 from (select customer_n as customer_n1,company_n as company_n1,oidl2 as oidl21,set_id1 as set_id11,visitor_id_sum as visitor_id_sum1, COUNT(DISTINCT site_visitor_identify.ip_user) as ip_user_sum from  (select customer_na as customer_n,company_na as company_n,oidl1 as oidl2,set_id as set_id1 ,COUNT(DISTINCT site_visitors.visitor_id) as visitor_id_sum from (select oidlist.customer_nam as customer_na,oidlist.company_nam as company_na,oidlist.oidl as oidl1,org_sites.id as set_id from org_sites  right join  (select org_major_info.customer_name as customer_nam ,org_major_info.company_name as company_nam,org_major_info.oid as oidl from org_major_info right join visitor_identify_account on visitor_identify_account.oid = org_major_info.oid group by customer_nam,company_nam,oidl) as oidlist  on org_sites.oid = oidlist.oidl  group by customer_na,company_na,oidl1,set_id) as set_list 
-        left join site_visitors on set_list.set_id = site_visitors.site_id group by customer_n,company_n,oidl2,set_id1 ) as visitor_id_sum_list left join site_visitor_identify on visitor_id_sum_list.set_id1 = site_visitor_identify.site_id  group by customer_n1,company_n1,oidl21,set_id11,visitor_id_sum1) as list group by customer_n1,company_n1
-                """)
+        cursor.execute("""select customer_n1,company_n1,GROUP_CONCAT(set_id11 separator ","),sum(ip_user_sum),SUM(visitor_id_sum1),oidl21,list.visitor_id_sum_list_org_id from
+         (select customer_n as customer_n1,company_n as company_n1,oidl2 as oidl21,set_id1 as set_id11,visitor_id_sum as visitor_id_sum1, 
+         COUNT(DISTINCT site_visitor_identify.ip_user) as ip_user_sum,visitor_id_sum_list.set_org_id as visitor_id_sum_list_org_id from  
+         (select customer_na as customer_n,company_na as company_n,oidl1 as oidl2,set_id as set_id1 ,COUNT(DISTINCT site_visitors.visitor_id) as
+          visitor_id_sum,set_list.oid_org_id as set_org_id,site_visitors.create_time from (select oidlist.customer_nam as customer_na,oidlist.company_nam as
+           company_na,oidlist.oidl as oidl1,org_sites.id as set_id,oidlist.org_id as oid_org_id from org_sites  right join (select org_major_info.customer_name as
+            customer_nam ,org_major_info.company_name as company_nam,org_major_info.oid as oidl,org_major_info.id as org_id  from org_major_info right join
+             visitor_identify_account on visitor_identify_account.oid = org_major_info.oid  group by customer_nam,company_nam,oidl,org_id  order by org_id) as
+              oidlist  on org_sites.oid = oidlist.oidl  group by customer_na,company_na,oidl1,set_id,oid_org_id order by oid_org_id) as set_list left join
+               site_visitors on set_list.set_id = site_visitors.site_id group by customer_n,company_n,oidl2,set_id1,set_org_id order by set_org_id asc ) as
+                visitor_id_sum_list left join site_visitor_identify on visitor_id_sum_list.set_id1 = site_visitor_identify.site_id group by
+                 customer_n1,company_n1,oidl21,set_id11,visitor_id_sum1,visitor_id_sum_list_org_id order by visitor_id_sum_list_org_id asc) as list group by
+                  customer_n1,company_n1 order by list.visitor_id_sum_list_org_id asc""")
         # pymysql.commit()
         siteid = cursor.fetchall()
         # import  re
