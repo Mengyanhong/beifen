@@ -2,6 +2,7 @@
 # @Time : 2021/9/9 11:31
 # @Author : 孟艳红
 # @File : est_file.py
+import datetime
 from pprint import pprint
 import json,requests
 
@@ -16,20 +17,55 @@ import json,requests
 # data_json = json.dumps(data)
 # data_jso = json.loads(data_json)
 # print(data_jso)
-true=True
-false=False
-url = 'https://skb-test.weiwenjia.com/api_skb/v1/shopClues/sync_robot'
-pla = {"shopName": "", "hasUnfolded": 2, "hasSyncClue": 1, "hasSyncRobot": 1, "syncRobotRangeDate": [],
-        "condition": {"cn": "composite", "cr": "MUST",
-                      "cv": [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"}]},
-        "pids": ["5422602", "77916263"], "way": "shop_search_list", "useQuota": true, "dataColumns": [0, 1],
-        "phoneStatus": [0, 1, 2, 3], "numberCount": 0, "canCover": false, "needCallPlan": false,
-        }
-ha={
-            'app_token': 'f6620ff6729345c8b6101174e695d0ab',
-            'Authorization': 'Token token=b792810fccc3ab092d476927049d4643',
-            'Content-Type': 'application/json',
-            'crm_platform_type': 'ikcrm'
-        }
-po = requests.post(url,headers=ha,json=pla)
-print(po.json())
+# true=True
+# false=False
+# url = 'https://skb-test.weiwenjia.com/api_skb/v1/shopClues/sync_robot'
+# pla = {"shopName": "", "hasUnfolded": 2, "hasSyncClue": 1, "hasSyncRobot": 1, "syncRobotRangeDate": [],
+#         "condition": {"cn": "composite", "cr": "MUST",
+#                       "cv": [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"}]},
+#         "pids": ["5422602", "77916263"], "way": "shop_search_list", "useQuota": true, "dataColumns": [0, 1],
+#         "phoneStatus": [0, 1, 2, 3], "numberCount": 0, "canCover": false, "needCallPlan": false,
+#         }
+# ha={
+#             'app_token': 'f6620ff6729345c8b6101174e695d0ab',
+#             'Authorization': 'Token token=b792810fccc3ab092d476927049d4643',
+#             'Content-Type': 'application/json',
+#             'crm_platform_type': 'ikcrm'
+#         }
+# po = requests.post(url,headers=ha,json=pla)
+# print(po.json())
+# import time
+# print (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) )
+print(datetime.datetime(2021, 9, 17, 00, 00, 00))
+import uuid
+
+# data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 5, 6, 7, 8, 9, 6, 5, 4, 3, 8, 9]
+# # batch_step = round(len(data) / 10)
+# # print(batch_step)
+# for index in range(0, len(data), 5):
+#     item_list = data[index:index + 5]
+#     print(item_list)
+#     # print(2000000/2000)
+# import random
+#
+# print(str(random.randint(10,100)))
+# example
+# from pymongo import MongoClient
+#
+# mdb = MongoClient('120.133.26.xxx:20002', username='xt', password='xxxxxx')
+# image_ids = ["001", "002", "003", ...]
+#
+# image_dict = {}
+# batch_step = round(len(image_ids) / 10)
+# for idx in range(0, len(image_ids), batch_step):
+#     image_ids_part = image_ids[idx:idx + batch_step]
+#     image_infos = mdb['数据库名']['图片表名'].find({"image_id": {"$in": image_ids_part}})
+#
+#     image_one = {}
+#     for image_info in image_infos:
+#         if image_info.get("image_size"):
+#             image_one[image_info.get("image_id")] = image_info
+#             image_dict.update(image_one)
+
+
+

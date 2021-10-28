@@ -2,7 +2,7 @@
 # @Time    : 2021/8/5—14:52
 # @Author  : 孟艳红
 # @File    : config_org_sites.py
-from Tools.ExcelControl import Excel_Files
+from Visitors_identify.Tools.ExcelControl import Excel_Files
 from Visitors_identify.Configs.Upload_File import Upload
 host = 'staging' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 
@@ -12,7 +12,7 @@ from Visitors_identify.Configs.user_info import user
 from Visitors_identify.Configs.Pymysql import to_pymysql
 
 
-from Tools.ExcelControl import Excel_Files
+from Visitors_identify.Tools.ExcelControl import Excel_Files
 # host = 'test' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 class site_config:
     def __init__(self, host,token=None):

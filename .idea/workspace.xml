@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="转机器人case1.3">
+    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="备份">
+      <change afterPath="$PROJECT_DIR$/API_project/test_recommend/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API_project/test_recommend/recommend.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Configs/config_API.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Configs/config_API.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Libs/sync_robot_search_libs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Test/Test_robot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/Test/est_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/Test/est_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/test_shop_project/Test_robot.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_project/test_skb_recommend/__init__.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,18 +18,18 @@
       </list>
     </option>
   </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="test" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1y9tikKz1BW2RCzLmOCjArtIUmR" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1yZnlNR3P66bdGmMmkexuorEKUJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,21 +38,21 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/API_project/test_shop_project" />
-    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/API_project/test_recommend" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Program Files\Python\API_project\test_shop_project" />
-      <recent name="D:\Program Files\Python\UC_wwj_skb_test" />
+      <recent name="D:\Program Files\Python\API_project\test_recommend" />
+      <recent name="D:\Program Files\Python\Visitors_identify\zhongqicount" />
+      <recent name="D:\Program Files\Python\Visitors_identify\zhongqicount\data_report" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Program Files\Python\TXT" />
+      <recent name="D:\Program Files\Python\Visitors_identify\zhongqicount\data_report" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for sync_robot_test.Test_sync_robot.test_case04">
+  <component name="RunManager" selected="Python.周推比对">
     <configuration name="周推比对" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -82,7 +75,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="est_file" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="sql" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -90,12 +83,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/Test" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/Tools" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/API_project/Test/est_file.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Visitors_identify/Tools/sql.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -104,121 +97,179 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for Test_robot.Test_Sync_robot.test_case04" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_count_quanliang.TestTongji.test_companyname" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Test_robot.Test_Sync_robot.test_case04&quot;" />
+      <option name="_new_target" value="&quot;test_count_quanliang.TestTongji.test_companyname&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for sync_robot_test.Test_Sync_robot.test_case04" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_tongji_sum_zengliang.TestTongjil.test_companynamel" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sync_robot_test.Test_Sync_robot.test_case04&quot;" />
+      <option name="_new_target" value="&quot;test_tongji_sum_zengliang.TestTongjil.test_companynamel&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for sync_robot_test.Test_Sync_robot.testcase04" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_tongji_sum_zengliang_xiu.TestTongji.test_companyname" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Visitors_identify/zhongqicount" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sync_robot_test.Test_Sync_robot.testcase04&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Python tests for sync_robot_test.Test_sync_robot.test_case04" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API_project/test_shop_project" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;sync_robot_test.Test_sync_robot.test_case04&quot;" />
+      <option name="_new_target" value="&quot;test_tongji_sum_zengliang_xiu.TestTongji.test_companyname&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for sync_robot_test.Test_sync_robot.test_case04" />
-        <item itemvalue="Python tests.Python tests for Test_robot.Test_Sync_robot.test_case04" />
-        <item itemvalue="Python.est_file" />
-        <item itemvalue="Python tests.Python tests for sync_robot_test.Test_Sync_robot.test_case04" />
-        <item itemvalue="Python tests.Python tests for sync_robot_test.Test_Sync_robot.testcase04" />
+        <item itemvalue="Python.周推比对" />
+        <item itemvalue="Python.sql" />
+        <item itemvalue="Python tests.Python tests for test_tongji_sum_zengliang.TestTongjil.test_companynamel" />
+        <item itemvalue="Python tests.Python tests for test_count_quanliang.TestTongji.test_companyname" />
+        <item itemvalue="Python tests.Python tests for test_tongji_sum_zengliang_xiu.TestTongji.test_companyname" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1fa25e33-3f40-4abb-9bd1-fdf646ed8f42" name="Changes" comment="" />
-      <created>1631675760855</created>
+      <changelist id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="" />
+      <created>1632468128097</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1631675760855</updated>
-      <workItem from="1631675762316" duration="3452000" />
-      <workItem from="1631684998332" duration="16777000" />
-      <workItem from="1631764963297" duration="5676000" />
-      <workItem from="1631958093838" duration="813000" />
-      <workItem from="1632276106450" duration="19088000" />
-      <workItem from="1632368131448" duration="15941000" />
-      <workItem from="1632448387653" duration="10673000" />
+      <updated>1632468128097</updated>
+      <workItem from="1632468130011" duration="143000" />
+      <workItem from="1632468297060" duration="180000" />
+      <workItem from="1632470510982" duration="4161000" />
+      <workItem from="1632624160564" duration="384000" />
+      <workItem from="1632650259918" duration="21074000" />
+      <workItem from="1632791971816" duration="16130000" />
+      <workItem from="1632813894431" duration="1985000" />
+      <workItem from="1632822680515" duration="668000" />
+      <workItem from="1632879081860" duration="22475000" />
+      <workItem from="1632964481462" duration="26765000" />
+      <workItem from="1633936083088" duration="2025000" />
+      <workItem from="1634090006138" duration="4054000" />
+      <workItem from="1634110570960" duration="28000" />
+      <workItem from="1634176688937" duration="281000" />
+      <workItem from="1634178026543" duration="13503000" />
+      <workItem from="1634196575503" duration="1229000" />
+      <workItem from="1634270212479" duration="1442000" />
+      <workItem from="1634529114639" duration="8673000" />
+      <workItem from="1634609043089" duration="2869000" />
+      <workItem from="1634788102957" duration="3176000" />
+      <workItem from="1635213241594" duration="1771000" />
+      <workItem from="1635235797061" duration="1008000" />
+      <workItem from="1635303332567" duration="845000" />
+      <workItem from="1635330706101" duration="1456000" />
     </task>
-    <task id="LOCAL-00001" summary="配置恢复">
-      <created>1631678985365</created>
+    <task id="LOCAL-00001" summary="12">
+      <created>1632468450563</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1631678985365</updated>
+      <updated>1632468450563</updated>
     </task>
-    <task id="LOCAL-00002" summary="转机器人case1.1">
-      <created>1631703748441</created>
+    <task id="LOCAL-00002" summary="zhongqi">
+      <created>1632624526120</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1631703748441</updated>
+      <updated>1632624526120</updated>
     </task>
-    <task id="LOCAL-00003" summary="转机器人case1.2">
-      <created>1631962545835</created>
+    <task id="LOCAL-00003" summary="zhongqi1.1">
+      <created>1632741855447</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1631962545835</updated>
+      <updated>1632741855447</updated>
     </task>
-    <task id="LOCAL-00004" summary="转机器人case1.3">
-      <created>1632448518058</created>
+    <task id="LOCAL-00004" summary="zhongqi1.1">
+      <created>1632815856471</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1632448518058</updated>
+      <updated>1632815856471</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="zhongqi1.2">
+      <created>1632823329754</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1632823329755</updated>
+    </task>
+    <task id="LOCAL-00006" summary="加入外呼计划">
+      <created>1632915675767</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1632915675767</updated>
+    </task>
+    <task id="LOCAL-00007" summary="访客识别数量查询">
+      <created>1632990960553</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1632990960553</updated>
+    </task>
+    <task id="LOCAL-00008" summary="访客识别数量查询1.1">
+      <created>1632991389800</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1632991389800</updated>
+    </task>
+    <task id="LOCAL-00009" summary="访客识别数量查询,更改报告目录">
+      <created>1632991892831</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632991892831</updated>
+    </task>
+    <task id="LOCAL-00010" summary="创建外呼计划调试">
+      <created>1632997277550</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1632997277550</updated>
+    </task>
+    <task id="LOCAL-00011" summary="修复访客识别数量查询统计区间">
+      <created>1634195909571</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1634195909571</updated>
+    </task>
+    <task id="LOCAL-00012" summary="备份">
+      <created>1634811333718</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1634811333718</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,30 +285,50 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="配置恢复" />
-    <MESSAGE value="转机器人case" />
-    <MESSAGE value="转机器人case1.1" />
-    <MESSAGE value="转机器人case1.2" />
-    <MESSAGE value="转机器人case1.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="转机器人case1.3" />
+    <MESSAGE value="12" />
+    <MESSAGE value="zhongqi" />
+    <MESSAGE value="zhongqi1.1" />
+    <MESSAGE value="zhongqi1.2" />
+    <MESSAGE value="加入外呼计划" />
+    <MESSAGE value="访客识别数量查询" />
+    <MESSAGE value="访客识别数量查询1.1" />
+    <MESSAGE value="访客识别数量查询,更改报告目录" />
+    <MESSAGE value="创建外呼计划调试" />
+    <MESSAGE value="修复访客识别数量查询统计区间" />
+    <MESSAGE value="备份" />
+    <option name="LAST_COMMIT_MESSAGE" value="备份" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/API_project/Test/est_file.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/API_project/Libs/sync_robot_libs.py</url>
+          <line>99</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py</url>
+          <line>660</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py</url>
+          <line>670</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/API_project/test_shop_project/sync_robot_test.py</url>
+          <line>703</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Python$Test_robot__1_.coverage" NAME="Test_robot (1) Coverage Results" MODIFIED="1631694892924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/Python$test_robot.coverage" NAME="test_robot Coverage Results" MODIFIED="1631693205817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/Python$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1632457545143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test" />
-    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632461651993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
-    <SUITE FILE_PATH="coverage/Python$Test_robot.coverage" NAME="Test_robot Coverage Results" MODIFIED="1631686816398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
-    <SUITE FILE_PATH="coverage/Python$Test_batch_search.coverage" NAME="Test_batch_search Coverage Results" MODIFIED="1631693245165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
+    <SUITE FILE_PATH="coverage/Python$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1634191144846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test" />
+    <SUITE FILE_PATH="coverage/Python$user_config.coverage" NAME="user_config Coverage Results" MODIFIED="1632881743644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
+    <SUITE FILE_PATH="coverage/Python$config_API.coverage" NAME="config_API Coverage Results" MODIFIED="1632882096380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME="周推比对 Coverage Results" MODIFIED="1635213346808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/run_script" />
+    <SUITE FILE_PATH="coverage/Python$sql.coverage" NAME="sql Coverage Results" MODIFIED="1634610740983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visitors_identify/Tools" />
   </component>
 </project>

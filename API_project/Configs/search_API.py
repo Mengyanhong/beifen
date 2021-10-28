@@ -51,7 +51,7 @@ class search:
                               "filterSyncRobot": filterSyncRobot, "hasBuildingCert": "0",
                               "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
                               "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
-                   "pagesize": 10, "page": 1}
+                   "pagesize": 3, "page": 2}
         if headers == None:
             header = self.user.shop_headers()
         else:
