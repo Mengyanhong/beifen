@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="备份">
-      <change afterPath="$PROJECT_DIR$/API_project/test_recommend/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API_project/test_recommend/recommend.py" afterDir="false" />
+    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="备份111">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +38,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/API_project/test_recommend" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -183,7 +181,8 @@
       <workItem from="1635213241594" duration="1771000" />
       <workItem from="1635235797061" duration="1008000" />
       <workItem from="1635303332567" duration="845000" />
-      <workItem from="1635330706101" duration="1456000" />
+      <workItem from="1635330706101" duration="2726000" />
+      <workItem from="1635384612499" duration="658000" />
     </task>
     <task id="LOCAL-00001" summary="12">
       <created>1632468450563</created>
@@ -269,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634811333718</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="备份111">
+      <created>1635333385226</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1635333385226</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -296,7 +302,8 @@
     <MESSAGE value="创建外呼计划调试" />
     <MESSAGE value="修复访客识别数量查询统计区间" />
     <MESSAGE value="备份" />
-    <option name="LAST_COMMIT_MESSAGE" value="备份" />
+    <MESSAGE value="备份111" />
+    <option name="LAST_COMMIT_MESSAGE" value="备份111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
