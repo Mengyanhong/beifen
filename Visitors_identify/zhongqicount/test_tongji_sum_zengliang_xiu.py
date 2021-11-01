@@ -1,10 +1,11 @@
-import time
 
-import pytest, openpyxl, datetime
+import pytest, openpyxl, datetime,time
 
 filename = 'data_report/9月29号0点-10月14号12点.xlsx'
 file = openpyxl.load_workbook(filename)
 sheet = file['统计']
+
+
 # b=time.`
 # end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 # begin='2021-09-17 00:00:00'
@@ -63,8 +64,11 @@ class TestTongji:
                     for siteId_list_id in siteId_list:
                         siteId_list_find.append(int(siteId_list_id))
                     # allIP = db.visitor.SiteVisitorLogging.find({"siteId": {'$in': siteId_list_find}}, {"ip": 1})
-                    allIP=db.visitor.SiteVisitorLogging.find({'$and': [{'createDate': {'$gte': datetime.datetime(2021, 9, 29, 00, 00, 00),'$lte': datetime.datetime(2021, 10, 14, 12, 00, 00)}},
-                                                                       {"siteId": {'$in': siteId_list_find}}]}, {"ip": 1})
+                    allIP = db.visitor.SiteVisitorLogging.find({'$and': [{'createDate': {
+                        '$gte': datetime.datetime(2021, 9, 29, 00, 00, 00),
+                        '$lte': datetime.datetime(2021, 10, 14, 12, 00, 00)}},
+                                                                         {"siteId": {'$in': siteId_list_find}}]},
+                                                               {"ip": 1})
                     # allIP=db.visitor.SiteVisitorLogging.find({'$and': [{'visitDate': {'$gte': datetime.datetime(2021, 9, 17, 00, 00, 00)}},
                     #               {'visitDate': {'$lte': datetime.datetime(2021, 9, 17, 23, 59, 59)}},
                     #               {'siteId': company_list[i][2][j]}]})
