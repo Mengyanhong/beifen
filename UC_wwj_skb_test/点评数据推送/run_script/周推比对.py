@@ -7,7 +7,7 @@ print('请先把文件转化为Excel后缀为 .xlsx，不要改文件名')
 filename = input('请复制文件名称：')
 # 例：filename='YEXT123456_2020-06-29'
 
-filepath = r'D:/Users/zhou tui/' + filename + '.xlsx'
+filepath = f"{ssh_pkey_path}home/UC_wwj_skb_test/点评数据推送/Excel/{filename}.xlsx"
 file = openpyxl.load_workbook(filepath)
 
 print('检查detail sheet---')
@@ -63,7 +63,7 @@ mongo_password = 'CuOIdrN4j7S1OI6Ds8gT'
 server = SSHTunnelForwarder(
     ssh_address_or_host=("47.104.226.30", 40022),  # 指定ssh登录的跳转机的IP port
     ssh_username='jar',  # 跳板机用户名
-    ssh_pkey=f'{ssh_pkey_path}home/.ssh/id_rsa/id_rsa',  # 设置密钥
+    ssh_pkey=f'{ssh_pkey_path}home/.ssh/id_rsa',  # 设置密钥
     remote_bind_address=(mongo_address, mongo_port)  # 设置数据库服务地址及端口
 )
 server.start()
