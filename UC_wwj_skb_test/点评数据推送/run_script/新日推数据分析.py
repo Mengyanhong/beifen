@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-import pymongo
+import pymongo,sys
 from sshtunnel import SSHTunnelForwarder
 import openpyxl,datetime
-
+ssh_pkey_path = sys.argv[0].split("home")[0]
 print('请先把文件转化为Excel后缀为 .xlsx，不要改文件名')
 filename=input('请复制文件名称：')
 # # 例：filename='DIANPING_ANALYTICS_2021_05_31'
@@ -86,7 +86,7 @@ server = SSHTunnelForwarder(
 
     ssh_address_or_host=("47.104.226.30", 40022),  # 指定ssh登录的跳转机的IP port
     ssh_username='jar',  # 跳板机用户名
-    ssh_pkey='D:/Users/admin/.ssh/id_rsa/id_rsa',  # 设置密钥
+    ssh_pkey=f'{ssh_pkey_path}home/.ssh/id_rsa/id_rsa',  # 设置密钥
     remote_bind_address=(mongo_address, mongo_port)  # 设置数据库服务地址及端口
 )
 server.start()
