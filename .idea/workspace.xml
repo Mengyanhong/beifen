@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="备份">
-      <change afterPath="$PROJECT_DIR$/API_project/test_recommend/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/API_project/test_recommend/recommend.py" afterDir="false" />
+    <list default="true" id="c0a54176-8a01-4614-8607-b6b568296869" name="Changes" comment="备份111">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +38,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/API_project/test_recommend" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -53,6 +51,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.周推比对">
+  <component name="RunManager" selected="Python.est_file">
     <configuration name="周推比对" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -183,7 +182,18 @@
       <workItem from="1635213241594" duration="1771000" />
       <workItem from="1635235797061" duration="1008000" />
       <workItem from="1635303332567" duration="845000" />
+      <workItem from="1635330706101" duration="2726000" />
+      <workItem from="1635384612499" duration="658000" />
       <workItem from="1635330706101" duration="1456000" />
+      <updated>1631675760855</updated>
+      <workItem from="1631675762316" duration="3452000" />
+      <workItem from="1631684998332" duration="16777000" />
+      <workItem from="1631764963297" duration="5676000" />
+      <workItem from="1631958093838" duration="813000" />
+      <workItem from="1632276106450" duration="19088000" />
+      <workItem from="1632368131448" duration="15941000" />
+      <workItem from="1632448387653" duration="10673000" />
+      <workItem from="1635334632157" duration="108000" />
     </task>
     <task id="LOCAL-00001" summary="12">
       <created>1632468450563</created>
@@ -269,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634811333718</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="备份111">
+      <created>1635333385226</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1635333385226</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -296,7 +313,8 @@
     <MESSAGE value="创建外呼计划调试" />
     <MESSAGE value="修复访客识别数量查询统计区间" />
     <MESSAGE value="备份" />
-    <option name="LAST_COMMIT_MESSAGE" value="备份" />
+    <MESSAGE value="备份111" />
+    <option name="LAST_COMMIT_MESSAGE" value="备份111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -330,5 +348,11 @@
     <SUITE FILE_PATH="coverage/Python$config_API.coverage" NAME="config_API Coverage Results" MODIFIED="1632882096380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Configs" />
     <SUITE FILE_PATH="coverage/Python$.coverage" NAME="周推比对 Coverage Results" MODIFIED="1635213346808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/点评数据推送/run_script" />
     <SUITE FILE_PATH="coverage/Python$sql.coverage" NAME="sql Coverage Results" MODIFIED="1634610740983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Visitors_identify/Tools" />
+    <SUITE FILE_PATH="coverage/Python$.coverage" NAME=" Coverage Results" MODIFIED="1632461651993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$Test_robot__1_.coverage" NAME="Test_robot (1) Coverage Results" MODIFIED="1631694892924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$Test_robot.coverage" NAME="Test_robot Coverage Results" MODIFIED="1631686816398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test_files" />
+    <SUITE FILE_PATH="coverage/Python$test_robot.coverage" NAME="test_robot Coverage Results" MODIFIED="1631693205817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/test_shop_project" />
+    <SUITE FILE_PATH="coverage/Python$est_file.coverage" NAME="est_file Coverage Results" MODIFIED="1632457545143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/API_project/Test" />
+    <SUITE FILE_PATH="coverage/Python$Test_batch_search.coverage" NAME="Test_batch_search Coverage Results" MODIFIED="1631693245165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/UC_wwj_skb_test/Test_case" />
   </component>
 </project>
