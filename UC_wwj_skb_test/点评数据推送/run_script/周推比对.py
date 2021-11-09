@@ -3,11 +3,12 @@ import pymongo,sys
 from sshtunnel import SSHTunnelForwarder
 import openpyxl, datetime
 ssh_pkey_path = sys.argv[0].split("home")[0]
+print(f'{ssh_pkey_path}home/.ssh/id_rsa')
 print('请先把文件转化为Excel后缀为 .xlsx，不要改文件名')
 filename = input('请复制文件名称：')
 # 例：filename='YEXT123456_2020-06-29'
 
-filepath = f"{ssh_pkey_path}home/UC_wwj_skb_test/点评数据推送/Excel/{filename}.xlsx"
+filepath = f"D:/Excel/{filename}.xlsx"
 file = openpyxl.load_workbook(filepath)
 
 print('检查detail sheet---')
