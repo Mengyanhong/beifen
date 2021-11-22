@@ -2,8 +2,9 @@
 # @Time : 2021/10/21 14:28
 # @Author : 孟艳红
 # @File : Pymongo.py
-import pymongo,pymysql,pytest
+import pymongo,pymysql,pytest,sys
 from sshtunnel import SSHTunnelForwarder
+ssh_pkey_path = sys.argv[0].split("home")[0]
 def sql():
     conn = pymysql.connect(host="rm-m5e1zye921nmxejq1do.mysql.rds.aliyuncs.com", user="tmp_read",
                            password="pc4TJSALbECGk5yBCkTJ", database="yxy_skb", charset="utf8")
@@ -23,7 +24,7 @@ class to_pymongo:
         server = SSHTunnelForwarder(
             ssh_address_or_host=("47.104.226.30", 40022),  # 指定ssh登录的跳转机的IP port
             ssh_username='jar',  # 跳板机用户名
-            ssh_pkey='D:/Users/admin/.ssh/id_rsa',  # 设置密钥
+            ssh_pkey=f'{ssh_pkey_path}home/.ssh/id_rsa',  # 设置密钥
             remote_bind_address=(mongo_address, mongo_port)  # 设置数据库服务地址及端口
         )
         server.start()

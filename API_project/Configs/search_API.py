@@ -102,7 +102,7 @@ class search:
                 "condition": {"cn": "composite",
                               "cr": "MUST",
                               "cv": cv},
-                "page": 1,
+                "page": 2,
                 "pagesize": 10,
                 "templateType": 0,
                 "templateName": "",
@@ -198,4 +198,17 @@ class getCompanyBaseInfo:
 
         re_tag = requests.get(url, params=params,
                               headers=self.get_search.headers())
+        return (re_tag)
+
+    def getEntSectionInfo(self, pid,sourceName): #经营情况_招聘平台筛选
+        url = f'https://{self.get_search.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
+        params = {'id': f'{pid}',
+                  'page': 1,
+                  'section': 'ManageInfo',
+                  'label': 'RecruitmentDetail',
+                  'sourceName': sourceName,
+                  'version': 'v2',
+                  }
+        re_tag = requests.get(url, params=params,
+                              headers=self.get_search.shop_headers())
         return (re_tag)

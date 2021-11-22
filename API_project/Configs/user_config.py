@@ -6,9 +6,9 @@ class User_Config:  # 用户信息
         self.test = environment
 
     def user_key(self):  # headers环境配置
-        if self.test == 'test':
+        if self.test == 'test': #17311112255,Ik123456
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            Token_value = "fdc7cd52a1808e344b490b9457bb70e3"
+            Token_value = "268e61a4c41e4be9d7be7c7bf90bf116"
             platform = 'lixiaoyun'
             gatewayId = None
         elif self.test == 'staging':

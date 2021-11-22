@@ -156,16 +156,25 @@ class configuration_file:  #配置文件调用
         r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False)
         data = r.json()['data']
         return data
+    def staticConfig_recruitPlatformOption(self):  # 详情页筛选配置，recruitPlatformOption：招聘平台
+        path = 'companyDetail/staticConfig?namespace=semPlatformOption,recruitPlatformOption,tenderOption,semTypeOption'
+        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False)
+        data = r.json()['data']
+        return data
 
     def shopCategory(self):  # 店铺分类（shopCategory）配置
         path = 'companyDetail/staticConfig?namespace=shopCategory'
         r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers())
         data = r.json()['data']
         return data
+    def conditionConfig(self):  # 高级搜索搜索条件（conditionConfig）配置
+        path = 'companyDetail/conditionConfig?groupName=enterprise&category=advancedSearch'
+        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers() , verify=False).json()
+        return r['data']
 
     def shopDivision(self):  # 店铺地区（shopDivision）配置
         path = 'companyDetail/staticConfig?namespace=shopDivision'
-        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers()).json()
+        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(),verify=False).json()
         return r['data']['shopDivision']
         # a = r.text.encode(encoding="utf-8",errors="strict").decode(encoding="utf-8",errors="strict")#decode("unicode_escape")
         # a = json.dumps(r,ensure_ascii=False).encode("utf-8",errors="ignore").decode('utf-8',errors="ignore")
@@ -179,3 +188,5 @@ class configuration_file:  #配置文件调用
         # data=json.loads(re_file)['data']['shopDivision']
         # data = a
         # print(re_file.json)
+if __name__ == '__main__':
+    print(len(configuration_file('test').conditionConfig()['recruitPlatform']['cv']['options']))
