@@ -3,11 +3,11 @@ import requests, json, urllib3
 urllib3.disable_warnings()
 
 
-class user:  # 用户信息
+class user:
     def __init__(self, environment):
         self.test = environment
 
-    def user_key(self):  # 用户headers环境配置
+    def user_key(self):  # 用户headers环境配置,用户信息
         if self.test == 'test':  # 17311112255,Ik123456
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
             Token_value = "268e61a4c41e4be9d7be7c7bf90bf116"
@@ -145,7 +145,7 @@ class configuration_file:  # 配置文件调用
             url = None
         return url
 
-    def conditionGroups(self):
+    def conditionGroups(self): #高级搜索搜索条件
         path = 'companyDetail/conditionGroups?groupName=enterprise&category=advancedSearch'
         r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False)
         data = r.json()['data']
