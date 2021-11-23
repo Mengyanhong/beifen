@@ -3,17 +3,16 @@
 # @Author : 孟艳红
 # @File : shop_API.py,找店铺接口
 import requests, json, urllib3
+from API_project.Configs.config_API import user
 
 urllib3.disable_warnings()
-
-from API_project.Configs.config_API import user
 
 
 class shop:
     def __init__(self, test):
         self.user = user(test)
 
-    def search_shop(self,headers = None,shopName="", hasUnfolded=2, hasSyncClue=1, hasSyncRobot=1, cv=None):
+    def search_shop(self, headers=None, shopName="", hasUnfolded=2, hasSyncClue=1, hasSyncRobot=1, cv=None):
         if cv == None:
             cv = [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"},
                   {"cn": "contactType", "cv": ["1", "2"], "cr": "IN"}]
@@ -31,9 +30,9 @@ class shop:
                            "syncRobotRangeDate": [], "page": 1, "pagesize": 10,
                            "condition": {"cn": "composite", "cr": "MUST", "cv": cv}}
         if headers is None:
-            header = self.user.shop_headers()
+            header = self.user.headers()
         else:
-            header=headers
+            header = headers
         response = requests.post(url, headers=header, json=Request_payload)
         return response
 
