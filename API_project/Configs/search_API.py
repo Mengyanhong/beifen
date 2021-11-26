@@ -180,7 +180,7 @@ class search:
             print('搜索接口报错')
         else:
             data = json.loads(r.text)['data']
-            return (data)
+            return data
 
 
 class getCompanyBaseInfo:
@@ -199,9 +199,24 @@ class getCompanyBaseInfo:
 
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
-        return (re_tag)
+        return re_tag
+    def getEntSectionInfo(self, pid,section):  # 企业详情一级菜单
+        '''
 
-    def getEntSectionInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
+        :param pid:  #企业pid
+        :param section:  #菜单选择，Development：企业发展,RiskInfo:风险信息
+        :return:
+        '''
+        url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
+        params = {'id': f'{pid}',
+                  'section': section,
+                  'version': 'v2'
+                  }
+        response = requests.get(url, params=params,
+                                headers=self.user.headers())
+        return response
+
+    def getEntSectionInfo_ManageInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
         params = {'id': f'{pid}',
                   'page': 1,
@@ -212,7 +227,8 @@ class getCompanyBaseInfo:
                   }
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
-        return (re_tag)
+        return re_tag
+
     def getEntSectionInfo_IPR(self, pid, templateSuppiler):  # 知识产权_建站方筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
         params = {'id': f'{pid}',
@@ -224,11 +240,68 @@ class getCompanyBaseInfo:
                   }
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
-        return (re_tag)
-    def getWebsiteInfo(self, id):  # 知识产权_建站方_详情
+        return re_tag
+
+    def getWebsiteInfo(self, _id):  # 知识产权_建站方_详情
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getWebsiteInfo?'
-        params = {'id': f'{id}'}
+        params = {'id': f'{_id}'}
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
-        return (re_tag)
+        return re_tag
 
+    def getEntSectionInfo_RiskInfo_subset(self, pid, page=1, subset='EndBookInfo'):  # 风险信息子菜单_详情
+        '''
+
+        :param pid: #企业pid
+        :param page: #翻页页码
+        :param subset: #风险信息下的子菜单，EndBookInfo：终本案件，Executor：被执行人
+        :return:
+        '''
+        url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
+        params = {
+            'label': subset,
+            'id': f'{pid}',
+            'page': page,
+            'section': 'RiskInfo',
+            'version': 'v2'
+        }
+        response = requests.get(url, params=params,
+                                headers=self.user.headers())
+        return response
+
+    def getEntSectionInfo_InterpersonalRelations(self, pid):  # 员工人脉_详情
+        url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
+        params = {'id': f'{pid}',
+                  'section': 'InterpersonalRelations',
+                  'version': 'v2',
+                  'pageSize': 20
+                  }
+        response = requests.get(url, params=params,
+                                headers=self.user.headers())
+        return response
+
+    def getEntSectionInfo_InterpersonalRelations_subset(self, pid, page=1, subset='Maimai'):  # 员工人脉子菜单_详情
+        '''
+
+        :param pid: #企业pid
+        :param page: #翻页页码
+        :param subset: #员工人脉下的子菜单，Maimai：脉脉，LinkedinUserInfo：领英，PersonalMicroblog：微博
+        :return:
+        '''
+        url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
+        params = {
+            'label': subset,
+            'id': f'{pid}',
+            'page': page,
+            'pageSize': 20,
+            'section': 'InterpersonalRelations',
+            'version': 'v2'
+        }
+        response = requests.get(url, params=params,
+                                headers=self.user.headers())
+        return response
+
+
+if __name__ == '__main__':
+    print(getCompanyBaseInfo('test').getEntSectionInfo_RiskInfo_subset(
+        pid='90c2f9836fe55b385f877f629bc59aee', subset='Executor').json())

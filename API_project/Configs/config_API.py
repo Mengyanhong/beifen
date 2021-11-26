@@ -13,10 +13,10 @@ class user:
             Token_value = "268e61a4c41e4be9d7be7c7bf90bf116"
             platform = 'lixiaoyun'
             gatewayId = None
-        elif self.test == 'staging':
+        elif self.test == 'staging':  # 17388888888,Ik123456
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            Token_value = 'b329f23fc5b2d0aaefb384cef8170c99'
-            platform = 'lixiaoyun'
+            Token_value = 'b1a2727816c5a1bd7405a545e0927e81'
+            platform = 'ikcrm'
             gatewayId = None
         elif self.test == 'lxcrm':
             app_token = 'a14cc8b00f84e64b438af540390531e4'
@@ -198,4 +198,5 @@ class configuration_file:  # 配置文件调用
 
 
 if __name__ == '__main__':
-    print(configuration_file('test').staticConfig_IPR())
+    print(configuration_file('test').conditionConfig()['recruitPlatform']['cv']['options'])
+    print(configuration_file('test').staticConfig_recruitPlatformOption()['recruitPlatformOption'] )

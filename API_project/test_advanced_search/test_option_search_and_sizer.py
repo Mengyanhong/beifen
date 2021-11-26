@@ -6,7 +6,7 @@ import pytest,openpyxl,time
 from API_project.Configs.config_API import configuration_file
 from API_project.Configs.search_API import search, getCompanyBaseInfo
 
-HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 recruitPlatform_config = configuration_file(HOST).conditionConfig()  # 实例化高级搜索配置并返回配置信息
 recruitPlatformOption_config = configuration_file(HOST).staticConfig_recruitPlatformOption()  # 实例化经营情况详情页筛选项配置并返回配置信息
 staticConfig_IPR_config = configuration_file(HOST).staticConfig_IPR()  # 实例化知识产权详情页筛选项配置并返回配置信息
@@ -34,6 +34,8 @@ class Test_recruitPlatform_search: #招聘平台高级搜索+详情页筛选case
                     print('高级搜索配置和详情页配置不一致\n', recruitPlatformOption_config_list, '\n',
                           recruitPlatform_config_value['label'])
                     assert sourceName_sum != recruitPlatformOption_config_list_sum
+                else:
+                    continue
         cv = [{"cn": "recruitPlatform", "cr": cr, "cv": [recruitPlatform_config_value['value']]}]
         time.sleep(2.2)
         pid_list = []
@@ -45,7 +47,7 @@ class Test_recruitPlatform_search: #招聘平台高级搜索+详情页筛选case
             print('筛选结果：',pid_responst,'\n招聘平台:',recruitPlatform_config_value)
             assert pid_responst != []
         for i in pid_list:
-            sourceName_search = getEntSectionInfo_search.getEntSectionInfo(pid=i, sourceName=sourceName_value).json()
+            sourceName_search = getEntSectionInfo_search.getEntSectionInfo_ManageInfo(pid=i, sourceName=sourceName_value).json()
             print(sourceName_search, '\n', i, sourceName_value, '\n', recruitPlatform_config_value)
             if cr == "IN":
                 assert sourceName_search['data']['RecruitmentDetail']['total'] != 0
@@ -91,7 +93,7 @@ class Test_templateSuppiler_search: #建站方高级搜索+详情页筛选case
                 for item in template_search['data']['WebsiteInformation']['items']:
                     id_value_list.append(item['_id'])
                 for id_value in id_value_list:
-                    getWebsiteInfo_templateSuppiler=getEntSectionInfo_search.getWebsiteInfo(id=id_value).json()
+                    getWebsiteInfo_templateSuppiler=getEntSectionInfo_search.getWebsiteInfo(_id=id_value).json()
                     if getWebsiteInfo_templateSuppiler['data'] != {}:
                         assert getWebsiteInfo_templateSuppiler['data']['webModule']['templateSuppiler'] == templateSuppiler_value
                     else:
