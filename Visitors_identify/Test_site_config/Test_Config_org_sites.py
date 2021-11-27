@@ -3,10 +3,10 @@
 # @Author  : 孟艳红
 # @File    : Test_Config_org_sites.py
 
-from Tools.ExcelControl import Excel_Files
-from Configs.Upload_File import Upload
-from Configs.Pymysql import to_pymysql
-from Libs.config_org_sites import site_config
+from Visitors_identify.Tools.ExcelControl import Excel_Files
+from Visitors_identify.Configs.Upload_File import Upload
+from Visitors_identify.Configs.Pymysql import to_pymysql
+from Visitors_identify.Libs.config_org_sites import site_config
 import random
 host = 'staging' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 Upload = Upload(host)

@@ -30,7 +30,7 @@ class shop:
                            "hasSyncRobot": hasSyncRobot,
                            "syncRobotRangeDate": [], "page": 1, "pagesize": 10,
                            "condition": {"cn": "composite", "cr": "MUST", "cv": cv}}
-        if headers == None:
+        if headers is None:
             header = self.user.shop_headers()
         else:
             header=headers

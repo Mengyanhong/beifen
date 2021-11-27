@@ -16,16 +16,15 @@ class search:
         :param pid: 企业pid/店铺id
         :return:
         """
-        if headers is None:
-            header = self.user.shop_headers()
-        else:
-            header = headers
-        if module != 'shop_search_list':
-            payload = {'pid': id}
-            clue_path = 'clue'
-        else:
+        if module == 'shop_search_list':
             payload = {'shopId': id}
             clue_path = 'shopClue'
+            header = self.user.headers()
+        else:
+            payload = {'pid': id}
+            clue_path = 'clue'
+            header = self.user.shop_headers()
+
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts_num'
 
         response = requests.get(url, params=payload, headers=header)
@@ -52,7 +51,7 @@ class search:
                               "filterSyncRobot": filterSyncRobot, "hasBuildingCert": "0",
                               "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
                               "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
-                   "pagesize": 10, "page": 1}
+                   "pagesize": 3, "page": 2}
         if headers == None:
             header = self.user.shop_headers()
         else:
