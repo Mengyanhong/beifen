@@ -1,0 +1,34 @@
+#yaml基本语法
+#大小写敏感
+#使用缩进表示层级关系
+#缩进不允许使用tab，只允许使用空格
+#缩进空格数不重要，只要相同层级的元素左对齐就行
+##表示注释从他开头到行尾被忽略
+# -表示1个列表
+#  URL: TEST_HOST
+#  method: post
+#'''----------登录类测试数据----------'''
+#test_01用例数据类型{}-风险信息页面
+'RiskInfo': [
+  {
+    'conditions': 'hasEndBook',#终本案件
+    'detail_data': 'EndBookInfo'#终本案件详情字段
+  }, ]
+#test_02用例数据类型{}-员工人脉页面
+'InterpersonalRelations': [
+  {
+    'conditions': 'hasMaimai',#脉脉
+    'detail_data': 'Maimai'#脉脉详情字段
+  },{
+    'conditions': 'hasLinkedin',#领英
+    'detail_data': 'LinkedinUserInfo'#领英详情字段
+  },{
+    'conditions': 'hasPersonalBlog',#微博
+    'detail_data': 'PersonalMicroblog'#微博详情字段
+  }, ]
+#test_02用例数据类型{}-企业发展页面
+'Development': [
+  {
+    'conditions': 'hasAnnu',#年报
+    'detail_data': 'AnnualReport'#年报详情字段
+  }, ]
