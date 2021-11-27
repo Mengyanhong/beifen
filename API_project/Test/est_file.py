@@ -4,9 +4,20 @@
 # @File : est_file.py
 import datetime
 from pprint import pprint
-import json,requests
+import json, requests
 
+import random
 # a = 3931
+print(random.randint(0,9))
+a=[]
+a.append(111)
+print(a)
+import re
+load1='仰天大笑出门去,我辈岂是蓬蒿人'
+print(re.findall('门(.*?)岂',load1))
+
+
+
 # b = 3210
 # true = True
 # false = False
@@ -66,6 +77,3 @@ import uuid
 #         if image_info.get("image_size"):
 #             image_one[image_info.get("image_id")] = image_info
 #             image_dict.update(image_one)
-
-
-

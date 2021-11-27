@@ -66,10 +66,13 @@ class Recommend:
 
     #insert table recommendation_target_region
     def insert_recommendation_target_region(self, con, uid, oid,region_code):
-        cur = con.cursor()
-        sql_insert_recommendation_target_region = 'insert into `yxy_skb_test`.`recommendation_target_region`(`business_type`, `business_id`, `oid`, `region_code`) values(%s,%s,%s,%s)'
-        cur.execute(sql_insert_recommendation_target_region, ('2', uid,oid,region_code))
-        con.commit()
+        try:
+            cur = con.cursor()
+            sql_insert_recommendation_target_region = 'insert into `yxy_skb_test`.`recommendation_target_region`(`business_type`, `business_id`, `oid`, `region_code`) values(%s,%s,%s,%s)'
+            cur.execute(sql_insert_recommendation_target_region, ('2', uid,oid,region_code))
+            con.commit()
+        except:
+            pass
 
     def get_oid(self):
         oid_range_min = 9900000
@@ -101,7 +104,7 @@ class Recommend:
                     "船舶","型材","冲饮品","风机","低压电器","食品添加剂","塑料加工",
                     "配电输电设备","信息安全产品","染料","物流服务","室内照明灯具",
                     "工地施工材料","酒店设备","化学纤维","卫浴洁具","手套","方便食品"]
-        choice_count = random.choices(list(range(1,6)), weights=[50, 20, 10, 10, 5, 5],k=1)[0]
+        choice_count = random.choices(list(range(1,6)), weights=[50, 20, 15, 10, 5],k=1)[0]
         choice_tags = random.choices(tag_list, k=choice_count)
         choice_tags_str = ",".join(choice_tags)
         return (choice_count,choice_tags_str)
@@ -116,25 +119,29 @@ class Recommend:
         region_codes = [11, 12, 13, 14, 15, 21, 22, 23, 31, 32, 33, 34, 35, 36, 37, 41, 42, 43, 44, 1101, 3101, 3301,
                         3302, 3303, 3304, 3305, 3306, 3307, 3308, 3309, 3310, 3311, 4401, 4402, 4403, 4404, 4405, 4406,
                         4407, 4408, 4409, 4412, 4413, 4414, 4415, 4416, 4417, 4418, 4419, 4420, 4451, 4452, 4453]
-        choice_codes = random.choices(region_codes)
-        print(str(choice_codes[0]))
-        return str(choice_codes[0])
+        # choice_codes = random.choices(region_codes)
+        # print(str(choice_codes[0]))
+        choice_count = random.choices(list(range(1, 6)), weights=[50, 20, 15, 10, 5], k=1)[0]
+        choice_tags = random.choices(region_codes, k=choice_count)
+        return choice_tags
 
     def insert_user_tag_data(self,con):
         uid = self.get_uid()
         oid = self.get_oid()
         tag = self.get_tag()
-        print(tag[0])
-        # if(tag[0] != 0):
-        self.insert_recommender_user_tag_info(con,oid,uid,tag[1])
+        self.insert_recommender_user_tag_info(con, oid, uid, tag[1])
+        region_ids = self.get_region_code()
+        for region_id in region_ids:
+            print(region_id)
+            self.insert_recommendation_target_region(con, uid, oid, region_id)
         self.insert_recommendation_task(con, oid, uid)
 
-    def insert_recommendation_target_region_data(self,con):
-        uid = self.get_uid()
-        oid = self.get_oid()
-        region_id = self.get_region_code()
-        self.insert_recommendation_target_region(con,uid,oid,region_id)
-        self.insert_recommendation_task(con, oid, uid)
+    # def insert_recommendation_target_region_data(self,con):
+    #     uid = self.get_uid()
+    #     oid = self.get_oid()
+    #     region_id = self.get_region_code()
+    #     self.insert_recommendation_target_region(con,uid,oid,region_id)
+    #     self.insert_recommendation_task(con, oid, uid)
 
     def insert_recommendation_user_seed_data(self,con):
         filename = "C:/Users/Melody/Desktop/20000家工商企业-测试数据.json"
@@ -158,7 +165,7 @@ class Recommend:
         filename = "C:/Users/Melody/Desktop/20000家工商企业-测试数据.json"
         with open(filename, 'r', encoding='UTF-8') as f:
             jlist = json.load(f)
-        taskID=600
+        taskID=100000
         for dic in jlist[0:30000]:
             pid = dic['PID']
             print(pid)
@@ -173,8 +180,7 @@ if __name__ == '__main__':
     con = recomment.connect("test")
     for i in range(30000):
         recomment.insert_user_tag_data(con)  #1
-        recomment.insert_recommendation_target_region_data(con)  #2
-    recomment.insert_recommendation_user_seed_data(con) #3
+    # recomment.insert_recommendation_user_seed_data(con) #3
     recomment.insert_recommendation_task_seed_data(con)
 
 

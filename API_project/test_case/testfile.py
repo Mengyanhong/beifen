@@ -2,10 +2,10 @@
 # @Time    : 2021/9/8—18:09
 # @Author  : 孟艳红
 # @File    : te.py
-from Configs.search_API import getCompanyBaseInfo
+from ..Configs.search_API import getCompanyBaseInfo
 import requests
 
-from Configs.search_API import search
+from ..Configs.search_API import search
 host = 'lxcrm'
 data = search(host).search_API('techTypeCompany', [10], 'IN')
 # print(data)

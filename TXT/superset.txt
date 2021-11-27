@@ -108,3 +108,23 @@ select * from skb_data.dwd_mg_enterprise_enterprisebaseinfo where  pid = 'e5e4c5
 select * from skb_data.dwd_mg_et_ShopBaseInfo where pid is not null  limit  10
 
 select * from skb_data.dwd_mg_twinbeestorage_b2binfo limit 100
+
+1117迭代
+武汉楚天激光（集团）股份有限公司
+-- Note: Unless you save your query, these tabs will NOT persist if you clear your cookies or change browsers.
+
+select pid,companyenname,applyenaddr,iscommonmark,interregidate,registerno,registerdate,specifydate,prioritydate,exampubno,exampubdate,applyno,markname,dt from skb_data_prod.ads_third_party_trade_mark_mongo
+where  pid = '9f679c1fb5c2163cb46ebfd62c452289' and  applyno = 'G710926' order by  dt desc
+
+select a.pid,companyenname,applyenaddr,iscommonmark,interregidate,registerno,registerdate,specifydate,prioritydate,exampubno,exampubdate,applyno,markname from skb_data_prod.ads_third_party_trade_mark_mongo as a
+left join skb_data_prod.ads_enterprise_alter_info_mongo  as b on  a.pid = b.pid  where  a.interregidate is not null and  a.interregidate  <>'' order by  a.dt desc  limit  100
+
+select * from skb_data_prod.ads_third_party_trade_mark_mongo as a left join skb_data_prod.ads_enterprise_alter_info_mongo  as b on  a.pid = b.pid  where  a.interregidate is not null and  a.interregidate  <>'' order by  a.dt desc  limit  100
+
+select pid,companyenname,applyenaddr,iscommonmark,interregidate,registerno,registerdate,specifydate,prioritydate,exampubno,exampubdate,applyno,markname,dt from skb_data_prod.dwd_third_party_trade_mark
+where prioritydate is not null and  prioritydate != ''  limit  1000
+
+
+select * from skb_data_prod.dwd_patents
+
+
