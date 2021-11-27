@@ -1,0 +1,85 @@
+
+找店铺相关需求
+http://zentao.ikcrm.com/story-view-9489.html
+找店铺交互文档
+https://docs.qq.com/doc/DVGVoY1VtWGhta29v
+
+吴凯丽(kelly) 8-25 16:28:17
+【网站访客识别分公司测试账号】
+账号：CC_dongli
+密码：CE12345ce
+前台：www.dongli.cevke.cn
+
+吴凯丽(kelly) 8-25 16:28:29
+登录地址  https://www.300.cn/
+
+访客更新逻辑：（数据库原始逻辑）
+1.使用ip调用接口，获取pid,user
+2.根据ip查询site_visitor_session_records表，更新ip_user的字段，同时拿到该条记录的site_id和visitor_id
+3.根据第二步的site_id和visitor_id去site_visitors表查，更新pid和ip_user字段
+4.根据ip去site_visitor_identify表，更新ip_user和pid字段
+
+中企对接bms接口文档
+http://wiki.weiwenjia.com:53435/confluence/pages/viewpage.action?pageId=152502299
+
+中企对接接口链接
+http://wiki.weiwenjia.com:53435/confluence/pages/viewpage.action?pageId=142671895
+中的获取站点配置信息接口返回参数新增imgUrl字段
+http://wiki.weiwenjia.com:53435/confluence/pages/viewpage.action?pageId=126713858
+接口返回参数新增imgUrl和ossId字段
+http://wiki.weiwenjia.com:53435/confluence/pages/viewpage.action?pageId=142671889
+接口接受参数新增ossId字段
+http://wiki.weiwenjia.com:53435/confluence/pages/viewpage.action?pageId=142671901
+接口接受参数新增siteHome、siteName、ossId参数，新增若干错误码
+http://wiki.weiwenjia.com:53435/confluence/pages/viewpage.action?pageId=152502283
+新增上传站点图片接口
+
+常规迭代210827
+
+需求计划链接：
+http://zentao.ikcrm.com/productplan-view-685.html
+
+迭代链接：
+http://zentao.ikcrm.com/project-bug-857.html
+
+当前迭代
+【腾讯文档】【访客识别】常规迭代210827
+https://docs.qq.com/sheet/DUEFrRkZLU1loQ2NX
+
+迭代状态：开发中
+测试用例评审日期：8月13日
+提测日期：8月24日 18：00
+封板日期：8月27日 12：00
+发版日期：8月30日 21：00
+
+0818问题清单
+1.企业列表排序逻辑冲突
+需求：
+11297 【访客识别】-企业列表优化
+问题提出人：孟艳红
+问题处理人：吴凯丽
+解决，采用首访时间降序取值，取前50万
+
+===========================
+【腾讯文档】21年月度目标
+https://docs.qq.com/sheet/DUGN1T3V2cXBWQXpH
+
+===========================
+【腾讯文档】迭代各节点需要核实的事项规范
+https://docs.qq.com/sheet/DUHRsV2NvSEt4dWVF
+
+
+@李星亮(cyril) @李晓环(晓环) 我看了下访客的需求，提出如下改动。你们看看还有什么要改动的地方。
+http://zentao.ikcrm.com/story-view-11041.html
+
+二、2.2.1-2: 显示所有访客
+
+二、2.2.1-5-5: 新房客的定义？ 新标记什么时候去除？
+
+二、2.2.1-5-3: 别用建立连接这种技术词汇。就是最新的一条消息的内容喽？
+
+二、2.2.1-6: 列表排序: 按照收到消息时间，最近访问时间降序
+
+三、2.2.2-2-8: 去除，对话框用空白页替代
+
+三、2.2.2-2-9: 去除，没有记忆功能

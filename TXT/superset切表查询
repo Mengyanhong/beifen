@@ -1,0 +1,21 @@
+
+SELECT * from skb_data_prod.dws_app_product_sum where pid = '67aafeec647e14ba5680c80230349b8d'  #app sum表
+
+select * from skb_data_prod.dws_brand_common where pid = '3893a695e5cf5fbeed974041ebf30e40' and  dt = '2021-11-01'
+select count(distinct pid) from skb_data_prod.dws_cert_info_common where  category_l2 = '高新技术企业资质' and  dt = '2021-11-01'
+
+select count(status_desc) as sum,pid,company_name from skb_data_prod.ads_tax_abnormal_mongo  where "organ_name"  is not null and "release_date"  is not  null  group  by  pid,company_name   order  by   sum desc
+
+select count(status_desc) as sum,pid,company_name from skb_data_prod.ads_tax_abnormal_mongo   group  by  pid,company_name   order  by   sum desc
+
+SELECT * from skb_data_prod.dws_app_product_sum where app_oses is not []
+
+SELECT * from skb_data_prod.dwm_app_product  where company_name = '南京物联传感技术有限公司'
+
+
+SELECT * from skb_data_prod.dwm_app_product  where app_os is not null  and  app_os != 'android' pid = '017d420078273b3538268aecdbdd3478'
+
+
+select * from skb_data.dwd_mg_et_configinfo where categoryl1='siteSourceMap' and categoryl2='site'
+
+select pid,e_product_category from skb_data_prod.dws_e_shop_sum where pid = '9af9ef661a93ddc1b8ce99f55490b3f6'

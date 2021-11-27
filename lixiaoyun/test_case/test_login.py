@@ -60,8 +60,8 @@ class Testlogin:
 
 if __name__ == '__main__':
     pytest.main(["test_login.py","-sq","--alluredir","../report/tmp"])# -s 打印输出,-sq简化打印
-    # os.system("allure serve ../report/temp")
-    os.system("allure serve ../report/tmp")
+    os.system("allure serve ../report/temp")
+    os.system("allure generate ../report/tmp -o ../report/temp --clean")
 """f   用例失败
    E   ERROR
    。  成功的

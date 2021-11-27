@@ -1,38 +1,38 @@
-# -*- coding: utf-8 -*-
-
 import requests, json, urllib3
 
 urllib3.disable_warnings()
 
 
-class user:  # 用户信息
+class user:
     def __init__(self, environment):
         self.test = environment
-        # self.User = user(self.test)
 
-    def headers(self):  # headers环境配置
-        if self.test == 'test':
+    def user_key(self):  # 用户headers环境配置,用户信息
+        if self.test == 'test':  # 17311112255,Ik123456
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            token = "fdc7cd52a1808e344b490b9457bb70e3"
-        elif self.test == 'staging':
+            Token_value = "268e61a4c41e4be9d7be7c7bf90bf116"
+            platform = 'lixiaoyun'
+            gatewayId = None
+        elif self.test == 'staging':  # 17388888888,Ik123456
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            token = 'b329f23fc5b2d0aaefb384cef8170c99'
+            Token_value = 'b1a2727816c5a1bd7405a545e0927e81'
+            platform = 'ikcrm'
+            gatewayId = None
         elif self.test == 'lxcrm':
             app_token = 'a14cc8b00f84e64b438af540390531e4'
-            token = '18033bf7b969d9b12ef830c66c1f2464'
+            Token_value = '18033bf7b969d9b12ef830c66c1f2464'
+            platform = 'lixiaoyun'
+            gatewayId = "9203"
         else:
             print('传参错误')
             app_token = None
-            token = None
-        Headers = {
-            'app_token': app_token,
-            'Authorization': f'Token token={token}',
-            'Content-Type': 'application/json',
-            'crm_platform_type': 'lixiaoyun'
-        }
-        return Headers
+            Token_value = None
+            platform = None
+            gatewayId = None
+        return {'app_token': app_token, 'Token': f'Token token={Token_value}', 'platform': platform,
+                'gatewayId': gatewayId}
 
-    def skb_Host(self):
+    def skb_Host(self):  # 新搜客宝host
         if self.test == 'test':
             host = 'skb-test.weiwenjia.com'
         elif self.test == 'staging':
@@ -44,7 +44,7 @@ class user:  # 用户信息
             host = None
         return host
 
-    def biz_url(self):
+    def biz_url(self):  # 老搜客宝host
         if self.test == 'test':
             url = 'test.lixiaoskb.com'
         elif self.test == 'staging':
@@ -56,42 +56,31 @@ class user:  # 用户信息
             url = None
         return url
 
-    def shop_headers(self):  # headers环境配置
-        if self.test == 'test':
-            app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            Token = "Token token=fdc7cd52a1808e344b490b9457bb70e3"
-            platform = 'lixiaoyun'
-        elif self.test == 'staging':
-            app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            Token = 'Token token=b329f23fc5b2d0aaefb384cef8170c99'
-            platform = 'lixiaoyun'
-        elif self.test == 'lxcrm':
-            app_token = 'a14cc8b00f84e64b438af540390531e4'
-            Token = 'Token token=18033bf7b969d9b12ef830c66c1f2464'
-            platform = 'lixiaoyun'
-        else:
-            print('传参错误')
-            app_token = None
-            Token = None
-            platform = None
-        Headers = {
-            'app_token': app_token,
-            'authorization': Token,
-            'content-type': 'application/json',
-            'crm_platform_type': platform
-        }
-        return Headers
-
-    def skb_userinfo(self,headers=None):  # 查询用户信息
+    def skb_userinfo(self, headers=None):  # 查询新SKB用户信息
         url = f'https://{user(self.test).skb_Host()}/api_skb/v1/user/userInfo'
         if headers == None:
             header = user(self.test).headers()
         else:
             header = headers
-        response = requests.get(url,headers=header)
+        response = requests.get(url, headers=header, verify=False)
         return response
 
-    def visitor_HOST(self): #访客识别域名
+    def headers(self, headers=None):  # headers环境配置
+        if headers == None:
+            header = {
+                'app_token': user(self.test).user_key()["app_token"],
+                'authorization': user(self.test).user_key()["Token"],
+                'content-type': 'application/json',
+                'crm_platform_type': user(self.test).user_key()["platform"]
+            }
+        else:
+            header = headers
+        return header
+
+    # if __name__ == '__main__':
+    #     print(user('test').headers())
+
+    def visitor_HOST(self):  # 访客识别host
         if self.test == 'test':
             HOST = 'visitor-test.weiwenjia.com'
         elif self.test == 'staging':
@@ -101,31 +90,28 @@ class user:  # 用户信息
         else:
             print('传参错误')
             HOST = None
-        return  HOST
+        return HOST
 
-    def robot_headers(self):  # headers环境配置
-        if self.test == 'test':
-            Token = "fdc7cd52a1808e344b490b9457bb70e3"
-            platform = 'lixiaoyun'
-        elif self.test == 'staging':
-            Token = 'b329f23fc5b2d0aaefb384cef8170c99'
-            platform = 'lixiaoyun'
-        elif self.test == 'lxcrm':
-            Token = '18033bf7b969d9b12ef830c66c1f2464'
-            platform = 'lixiaoyun'
-        else:
-            print('传参错误')
-            Token = None
-            platform = None
-        Headers = {
+    def robot_headers(self):  # 机器人headers配置
+        lxcrm_Headers = {
             'platform': 'IK',
-            'usertoken': Token,
+            'usertoken': user(self.test).user_key()["Token"],
             'Content-Type': 'application/json',
-            'crmplatformtype': platform
+            'crmplatformtype': user(self.test).user_key()["platform"]
         }
-        return Headers
+        # test_Headers = {
+        #     'platform': 'IK',
+        #     'userToken': Token,
+        #     'Content-Type': 'application/json',
+        #     'CrmPlatformType': platform
+        # }
+        return lxcrm_Headers
+        # if self.test == 'lxcrm':
+        #     return lxcrm_Headers
+        # else:
+        #     return test_Headers
 
-    def robot_Host(self):
+    def robot_Host(self):  # 机器人host
         if self.test == 'test':
             host = 'jiqiren-test.weiwenjia.com'
         elif self.test == 'staging':
@@ -136,8 +122,6 @@ class user:  # 用户信息
             print('传参错误')
             host = None
         return host
-if __name__ == '__main__':
-    print(user('lxcrm').skb_userinfo().json())
 
 
 class configuration_file:  # 配置文件调用
@@ -149,7 +133,7 @@ class configuration_file:  # 配置文件调用
         self.test = environment
         self.user = user(environment)
 
-    def url(self):
+    def url(self):  # 配置文件host
         if self.test == 'test':
             url = 'https://test.lixiaoskb.com/api_skb/v1/'
         elif self.test == 'staging':
@@ -161,7 +145,7 @@ class configuration_file:  # 配置文件调用
             url = None
         return url
 
-    def conditionGroups(self):
+    def conditionGroups(self): #高级搜索搜索条件
         path = 'companyDetail/conditionGroups?groupName=enterprise&category=advancedSearch'
         r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False)
         data = r.json()['data']
@@ -173,15 +157,31 @@ class configuration_file:  # 配置文件调用
         data = r.json()['data']
         return data
 
+    def staticConfig_recruitPlatformOption(self):  # 经营情况详情页筛选配置，recruitPlatformOption：招聘平台
+        path = 'companyDetail/staticConfig?namespace=semPlatformOption,recruitPlatformOption,tenderOption,semTypeOption'
+        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False)
+        data = r.json()['data']
+        return data
+    def staticConfig_IPR(self):  # 知识产权详情页筛选配置，templateSuppilerOption：建站方，trademarkTypeOption：商标类别
+        path = 'companyDetail/staticConfig?namespace=trademarkTypeOption,templateSuppilerOption'
+        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False)
+        data = r.json()['data']
+        return data
+
     def shopCategory(self):  # 店铺分类（shopCategory）配置
         path = 'companyDetail/staticConfig?namespace=shopCategory'
         r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers())
         data = r.json()['data']
         return data
 
+    def conditionConfig(self):  # 高级搜索搜索条件（conditionConfig）配置
+        path = 'companyDetail/conditionConfig?groupName=enterprise&category=advancedSearch'
+        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False).json()
+        return r['data']
+
     def shopDivision(self):  # 店铺地区（shopDivision）配置
         path = 'companyDetail/staticConfig?namespace=shopDivision'
-        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers()).json()
+        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers(), verify=False).json()
         return r['data']['shopDivision']
         # a = r.text.encode(encoding="utf-8",errors="strict").decode(encoding="utf-8",errors="strict")#decode("unicode_escape")
         # a = json.dumps(r,ensure_ascii=False).encode("utf-8",errors="ignore").decode('utf-8',errors="ignore")
@@ -195,3 +195,8 @@ class configuration_file:  # 配置文件调用
         # data=json.loads(re_file)['data']['shopDivision']
         # data = a
         # print(re_file.json)
+
+
+if __name__ == '__main__':
+    print(configuration_file('test').conditionConfig()['recruitPlatform']['cv']['options'])
+    print(configuration_file('test').staticConfig_recruitPlatformOption()['recruitPlatformOption'] )
