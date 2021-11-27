@@ -1,0 +1,17 @@
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/encodings.xml	(date 1638000907099)
++++ .idea/encodings.xml	(date 1638000907099)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="PROJECT" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_2021_10_28_9_35__Changes_.xml .idea/shelf/Uncommitted_changes_before_Update_at_2021_10_28_9_35__Changes_.xml
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_2021_10_28_9_51__Changes_.xml .idea/shelf/Uncommitted_changes_before_Update_at_2021_10_28_9_51__Changes_.xml
