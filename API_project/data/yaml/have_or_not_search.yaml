@@ -8,6 +8,24 @@
 #  URL: TEST_HOST
 #  method: post
 #'''----------登录类测试数据----------'''
+#test_01用例数据类型{}-行业标签搜索
+'getCompanyBaseInfo': [
+  {
+    'conditions': 'isChineseTop500',#是否500强企业
+    'detail_data': 300 #order,500强
+  },{
+    'conditions': 'isUnicorn',#是否独角兽企业
+    'detail_data': 424 #order,独角兽企业
+  },{
+    'conditions': 'isGazelle',#是否瞪羚企业
+    'detail_data': 412 #order,瞪羚企业
+  },{
+    'conditions': 'isListed',#是否上市企业
+    'detail_data': 200 #order,上市
+  },{
+    'conditions': 'isTopTenIndustry',#是否行业内十强企业
+    'detail_data': 750 #order,行业十强
+  }, ]
 #test_01用例数据类型{}-基本信息页面
 'BaseInfo': [
   {
@@ -23,7 +41,7 @@
     'conditions': 'hasAnnu',#年报
     'detail_data': 'AnnualReport'#年报详情字段
   },{
-    'conditions': 'hasCap',#融资历史
+    'conditions': 'hasCap',#有无融资历史
     'detail_data': 'Financing'#融资历史详情字段
   }, ]
 #test_02用例数据类型{}-风险信息页面
