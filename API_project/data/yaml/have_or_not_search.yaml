@@ -12,7 +12,7 @@
 'BaseInfo': [
   {
     'conditions': 'hasRegCCap',#实缴资本
-    'detail_data': ['GSInfo','regccap']#实缴资本详情字段GSInfo内regccap字段
+    'detail_data': [ 'GSInfo','regccap' ]#实缴资本详情字段GSInfo内regccap字段
   },{
     'conditions': 'hasEntAlter',#工商变更
     'detail_data': 'AlterInfo'#工商变更详情字段
@@ -22,6 +22,9 @@
   {
     'conditions': 'hasAnnu',#年报
     'detail_data': 'AnnualReport'#年报详情字段
+  },{
+    'conditions': 'hasCap',#融资历史
+    'detail_data': 'Financing'#融资历史详情字段
   }, ]
 #test_02用例数据类型{}-风险信息页面
 'RiskInfo': [
@@ -42,19 +45,19 @@
     'detail_data': 'PersonalMicroblog'#微博详情字段
   }, ]
 'contacts_num': [
-    {
-        'conditions': 'hasMobile',#有无手机
-        'detail_data': 1 #脉脉详情字段
-    },{
-        'conditions': 'hasFixed',#有无固话
-        'detail_data': 2 #领英详情字段
-    },{
-        'conditions': 'hasEmail',#有无邮箱
-        'detail_data': 3 #微博详情字段
-    },{
-        'conditions': 'hasQq',#有无QQ
-        'detail_data': 4 #微博详情字段
-    },
+  {
+    'conditions': 'hasMobile',#有无手机
+    'detail_data': 1 #脉脉详情字段
+  },{
+    'conditions': 'hasFixed',#有无固话
+    'detail_data': 2 #领英详情字段
+  },{
+    'conditions': 'hasQq',#有无QQ
+    'detail_data': 3 #微博详情字段
+  },{
+    'conditions': 'hasEmail',#有无邮箱
+    'detail_data': 4 #微博详情字段
+  }, ]
 #    {
 #        'conditions': 'isAgency',#有无疑似代理记账号码
 #        'detail_data': 'PersonalMicroblog'#微博详情字段
@@ -62,4 +65,3 @@
 #        'conditions': 'hasNonAgency',#有无非疑似代理记账号码
 #        'detail_data': 'PersonalMicroblog'#微博详情字段
 #    },
-]

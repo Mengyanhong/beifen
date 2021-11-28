@@ -29,6 +29,29 @@ class search:
 
         response = requests.get(url, params=payload, headers=header)
         return response
+    def skb_contacts(self, entName, module='shop_search_list', headers=None, id=None):  # 查询联系方式
+        """
+        :param headers: 用户信息
+        :param pid: 企业pid/店铺id
+        :return:
+        """
+        if module == 'shop_search_list':
+            payload = {'shopId': id,
+                       'source':'shop_search_list',
+                       'shopName':entName}
+            clue_path = 'shopClue'
+            header = self.user.headers()
+        else:
+            payload = {'pid': id,
+                       'source':'advance_search_detail',
+                       'entName':entName}
+            clue_path = 'clue'
+            header = self.user.headers()
+
+        url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts'
+
+        response = requests.get(url, params=payload, headers=header)
+        return response
 
     def skb_search(self, headers=None, keyword="北京", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """
@@ -187,7 +210,7 @@ class getCompanyBaseInfo:
     def __init__(self, test):
         self.user = user(test)
 
-    def getCompanyBase(self, pid):
+    def getCompanyBase(self, pid): #请求详情页信息
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getCompanyBaseInfo?'
         params = {'id': f'{pid}',
                   'countSection': 1,
@@ -196,10 +219,10 @@ class getCompanyBaseInfo:
                   'search_result_size': 10,
                   'search_result_page': 1,
                   }
-
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
         return re_tag
+
     def getEntSectionInfo(self, pid,section):  # 企业详情一级菜单
         '''
 
