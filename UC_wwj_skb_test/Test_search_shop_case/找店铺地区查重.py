@@ -4,26 +4,26 @@ from collections import Counter
 # print([key for key,value in b.items() if value > 1])
 
 
-# import requests
-# from elasticsearch import Elasticsearch
-#
-# es_client = Elasticsearch('es-cn-nif1oiv5w0009di0f.public.elasticsearch.aliyuncs.com:9200',
-#                           http_auth=('lihexiang', 'Aa123456'))
-# result = es_client.get(index="shop_info_prod", id="126761135")['_source']
-# print(type(result))
-# print(result)
-# print(result["city"])
-# print(result["province"])
-# print(result["district"][0])
+import requests
+from elasticsearch import Elasticsearch
+
+es_client = Elasticsearch('es-cn-nif1oiv5w0009di0f.public.elasticsearch.aliyuncs.com:9200',
+                          http_auth=('lihexiang', 'Aa123456'))
+result = es_client.get(index="shop_info_prod", id="126761135")['_source']
+print(type(result))
+print(result)
+print(result["city"])
+print(result["province"])
+print(result["district"][0])
 import openpyxl
 import requests
 import numpy as np
 from elasticsearch import Elasticsearch
 
-# list_shenglen = len(shopDivision["normal"][0]["NUM"])
-# list_shilen = len(shopDivision["normal"][0]["children"][0]["NUM"])
-# list_qulen = len(shopDivision["normal"][0]["children"][0]["children"][0]["NUM"])
-# print(list_shenglen,list_shilen,list_qulen)
+list_shenglen = len(shopDivision["normal"][0]["NUM"])
+list_shilen = len(shopDivision["normal"][0]["children"][0]["NUM"])
+list_qulen = len(shopDivision["normal"][0]["children"][0]["children"][0]["NUM"])
+print(list_shenglen,list_shilen,list_qulen)
 
 def shop_file():
     wb = openpyxl.Workbook()

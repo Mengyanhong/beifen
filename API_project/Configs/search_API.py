@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import requests, json, urllib3
+import requests, json, urllib3,pprint
 from API_project.Configs.config_API import user
 
 urllib3.disable_warnings()
@@ -26,6 +26,29 @@ class search:
             header = self.user.headers()
 
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts_num'
+
+        response = requests.get(url, params=payload, headers=header)
+        return response
+    def skb_contacts(self, entName, module='shop_search_list', headers=None, id=None):  # 查询联系方式
+        """
+        :param headers: 用户信息
+        :param pid: 企业pid/店铺id
+        :return:
+        """
+        if module == 'shop_search_list':
+            payload = {'shopId': id,
+                       'source':'shop_search_list',
+                       'shopName':entName}
+            clue_path = 'shopClue'
+            header = self.user.headers()
+        else:
+            payload = {'pid': id,
+                       'source':'advance_search_detail',
+                       'entName':entName}
+            clue_path = 'clue'
+            header = self.user.headers()
+
+        url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts'
 
         response = requests.get(url, params=payload, headers=header)
         return response
@@ -187,7 +210,7 @@ class getCompanyBaseInfo:
     def __init__(self, test):
         self.user = user(test)
 
-    def getCompanyBase(self, pid):
+    def getCompanyBase(self, pid): #请求详情页信息
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getCompanyBaseInfo?'
         params = {'id': f'{pid}',
                   'countSection': 1,
@@ -196,10 +219,10 @@ class getCompanyBaseInfo:
                   'search_result_size': 10,
                   'search_result_page': 1,
                   }
-
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
         return re_tag
+
     def getEntSectionInfo(self, pid,section):  # 企业详情一级菜单
         '''
 
@@ -215,6 +238,23 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=self.user.headers())
         return response
+
+    # def getCompanyBaseInfo_Manage(self,id,market_company):
+    #     url = r'https://test.lixiaoskb.com/api_skb/v1/companyDetail/getCompanyBaseInfo?'
+    #     params = {'id':id,
+    #               'countSection':1,
+    #               'market_company':market_company,
+    #               'market_source':'advance_search_list',
+    #               'version':'v3',
+    #               'search_result_size':10,
+    #               'search_result_page':1,
+    #              }
+    #     headers = {'app_token':'f6620ff6729345c8b6101174e695d0ab',
+    #                'Authorization':'Token token=b3ef6ea79e97cf419b2a097d2e5b60f5',
+    #                'crm_platform_type':'lixiaoyun',}
+    #     re = requests.get(url=url,params=params,headers=headers)
+    #     return re.json()
+
 
     def getEntSectionInfo_ManageInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
@@ -301,7 +341,21 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
+    # def getEntSectionInfo_ipr(self,id):
+    #     url = r'https://test.lixiaoskb.com/api_skb/v1/companyDetail/getEntSectionInfo?'
+    #     params = {'id':id,
+    #               'version':'v2',
+    #               'section':'IPR',}
+    #     headers = {'app_token':'f6620ff6729345c8b6101174e695d0ab',
+    #                'Authorization':'Token token=b3ef6ea79e97cf419b2a097d2e5b60f5',
+    #                'crm_platform_type':'lixiaoyun',}
+    #     er = requests.get(url=url,params=params,headers=headers)
+    #     return er.json()
+
 
 if __name__ == '__main__':
-    print(getCompanyBaseInfo('test').getEntSectionInfo_RiskInfo_subset(
-        pid='90c2f9836fe55b385f877f629bc59aee', subset='Executor').json())
+   pprint.pprint(getCompanyBaseInfo('test').getCompanyBase(pid='c495bbe252bd24337b88ad8f355dedeb').json()['data']['tags'])
+
+# if __name__ == '__main__':
+#     print(getCompanyBaseInfo('test').getEntSectionInfo_RiskInfo_subset(
+#         pid='90c2f9836fe55b385f877f629bc59aee', subset='Executor').json())

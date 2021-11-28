@@ -21,7 +21,7 @@ def set_yaml_data(fileName,inData):
     yaml.dump(inData,fo)
     fo.close()
 if __name__ == '__main__':
-    res = get_yaml_data('../data/login_case.yaml')
+    res = get_yaml_data('../data/yaml/login_case.yaml')
     print(res[0][1])
     # print(a)
     # for one in res:

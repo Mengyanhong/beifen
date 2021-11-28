@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/API_project/data/yaml/multiSelect.yaml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/API_project/data/yaml/singleSelect.yaml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/api_practice/tools/ExcelControl.py" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
