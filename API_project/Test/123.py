@@ -1,14 +1,14 @@
-import datetime,time
+import datetime,time,random
 isotime="2021-09-05T16:00:00Z"
-isotime.getTime()
-
+# isotime.getTime()
+print(random.randint(100,999))
 # st = datetime.datetime.sprptime(isotime,'%Y-%m-%dT%H:%M:%S%z')
 # timestamp = int(time.mktime(st.timetuple()))
 # print(timestamp)
 
 now = time.time()  # 当前时间 float类型
 print(time.strftime("%Y-%m-%d %H:%M:%S")  )#当前时间 str
-
+time.sleep(3)
 
 time.ctime()   # 当前时间 english str
 

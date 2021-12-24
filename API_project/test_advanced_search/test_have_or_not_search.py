@@ -6,7 +6,7 @@ import pytest, openpyxl, time
 from API_project.Configs.search_API import search, getCompanyBaseInfo
 from API_project.tools.get_yaml_set import get_yaml_data
 
-HOST = "staging"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 RiskInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['RiskInfo']
 InterpersonalRelations_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')[
     'InterpersonalRelations']
@@ -175,7 +175,8 @@ class Test_have_or_not_search:
             hasEmail_sum = 0
             hasQq_sum = 0
             if details_response_contacts != []:
-                print('查询结果\n', details_response_contacts, 'pid:', i, '\n搜索条件', cv, '\n')
+                # '查询结果\n', details_response_contacts,
+                print( 'pid:', i, '\n搜索条件', cv, '\n')
                 for details_response_value in details_response_contacts:
                     if contacts_num_search_conditions_value['detail_data'] == 1:
                         if details_response_value['type'] == 1:
@@ -213,7 +214,8 @@ class Test_have_or_not_search:
                 detail_response_contacts = detail_response.json()['data']['contacts']
                 detail_response.close()
                 if detail_response_contacts != []:
-                    print('pid:', i, '查询结果\n', detail_response_contacts, '\n搜索条件', cv, '\n')
+                    # '查询结果\n', detail_response_contacts,
+                    print('pid:', i, '\n搜索条件', cv, '\n')
                     for contact_value in detail_response_contacts:
                         if contacts_num_search_conditions_value['detail_data'] == 1:
                             if contact_value['type'] == 1:

@@ -239,7 +239,7 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
-    def getAnnualReportDetail(self,annualReportId):
+    def getAnnualReportDetail(self,annualReportId): #年报详情获取
         '''
         :param annualReportId: #年报id
         :return:

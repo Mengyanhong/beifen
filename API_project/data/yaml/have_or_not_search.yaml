@@ -72,16 +72,16 @@
 'contacts_num': [
   {
     'conditions': 'hasMobile',#有无手机
-    'detail_data': 1 #脉脉详情字段
+    'detail_data': 1 #手机详情字段
   },{
     'conditions': 'hasFixed',#有无固话
-    'detail_data': 2 #领英详情字段
+    'detail_data': 2 #固话详情字段
   },{
     'conditions': 'hasQq',#有无QQ
-    'detail_data': 3 #微博详情字段
+    'detail_data': 3 #QQ详情字段
   },{
     'conditions': 'hasEmail',#有无邮箱
-    'detail_data': 4 #微博详情字段
+    'detail_data': 4 #邮箱详情字段
   }, ]
 #    {
 #        'conditions': 'isAgency',#有无疑似代理记账号码
