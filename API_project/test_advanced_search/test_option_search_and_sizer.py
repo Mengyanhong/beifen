@@ -125,7 +125,7 @@ class Test_techTypeCompany:  # 企业发展
             print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
             assert pid_responst != []
         for i in pid_list:
-            time.sleep(2.1)
+            time.sleep(2.2)
             details_response = getCompanyBaseInfo(HOST).getCompanyBase(pid=i).json()
             print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
             order_sum = 0
