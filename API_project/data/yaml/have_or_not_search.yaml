@@ -8,73 +8,80 @@
 #  URL: TEST_HOST
 #  method: post
 #'''----------登录类测试数据----------'''
-#test_01用例数据类型{}-行业标签搜索
+#test_01用例数据类型{}-企业发展-企业标签搜索
 'getCompanyBaseInfo': [
   {
     'conditions': 'isChineseTop500',#是否500强企业
     'detail_data': 300 #order,500强
   },{
-    'conditions': 'isUnicorn',#是否独角兽企业
+    'conditions': 'isUnicorn', #是否独角兽企业
     'detail_data': 424 #order,独角兽企业
   },{
-    'conditions': 'isGazelle',#是否瞪羚企业
+    'conditions': 'isGazelle', #是否瞪羚企业
     'detail_data': 412 #order,瞪羚企业
   },{
-    'conditions': 'isListed',#是否上市企业
+    'conditions': 'isListed', #是否上市企业
     'detail_data': 200 #order,上市
   },{
-    'conditions': 'isTopTenIndustry',#是否行业内十强企业
+    'conditions': 'isTopTenIndustry', #是否行业内十强企业
     'detail_data': 750 #order,行业十强
   }, ]
-#test_01用例数据类型{}-基本信息页面
+#test_02用例数据类型{}-基本信息页面
 'BaseInfo': [
   {
-    'conditions': 'hasRegCCap',#实缴资本
-    'detail_data': [ 'GSInfo','regccap' ]#实缴资本详情字段GSInfo内regccap字段
+    'conditions': 'hasRegCCap', #实缴资本
+    'detail_data': [ 'GSInfo','regccap' ] #实缴资本详情字段GSInfo内regccap字段
   },{
-    'conditions': 'hasEntAlter',#工商变更
-    'detail_data': 'AlterInfo'#工商变更详情字段
+    'conditions': 'hasEntAlter', #工商变更
+    'detail_data': 'AlterInfo' #工商变更详情字段
+  },{
+    'conditions': 'hasInvestment',#有无对外投资
+    'detail_data': 'Investment' #对外投资详情字段
   }, ]
-#test_02用例数据类型{}-企业发展页面
+#test_03用例数据类型{}-企业发展页面
 'Development': [
   {
-    'conditions': 'hasAnnu',#年报
-    'detail_data': 'AnnualReport'#年报详情字段
+    'conditions': 'hasAnnu', #有无企业年报
+    'detail_data': 'AnnualReport' #年报详情字段
   },{
-    'conditions': 'hasCap',#有无融资历史
-    'detail_data': 'Financing'#融资历史详情字段
+    'conditions': 'hasCap', #有无融资历史
+    'detail_data': 'Financing' #融资历史详情字段
+  },{
+    'conditions': 'hasAnnualInvestment', #有无年报对外投资
+    'detail_data': 'investment' #对外投资详情字段
   }, ]
-#test_02用例数据类型{}-风险信息页面
+#test_04用例数据类型{}-风险信息页面
 'RiskInfo': [
   {
-    'conditions': 'hasEndBook',#终本案件
-    'detail_data': 'EndBookInfo'#终本案件详情字段
+    'conditions': 'hasEndBook', #终本案件
+    'detail_data': 'EndBookInfo' #终本案件详情字段
   }, ]
-#test_02用例数据类型{}-员工人脉页面
+#test_05用例数据类型{}-员工人脉页面
 'InterpersonalRelations': [
   {
-    'conditions': 'hasMaimai',#脉脉
-    'detail_data': 'Maimai'#脉脉详情字段
+    'conditions': 'hasMaimai', #脉脉
+    'detail_data': 'Maimai' #脉脉详情字段
   },{
-    'conditions': 'hasLinkedin',#领英
-    'detail_data': 'LinkedinUserInfo'#领英详情字段
+    'conditions': 'hasLinkedin', #领英
+    'detail_data': 'LinkedinUserInfo' #领英详情字段
   },{
     'conditions': 'hasPersonalBlog',#微博
-    'detail_data': 'PersonalMicroblog'#微博详情字段
+    'detail_data': 'PersonalMicroblog' #微博详情字段
   }, ]
+#test_06用例数据类型{}-联系方式
 'contacts_num': [
   {
     'conditions': 'hasMobile',#有无手机
-    'detail_data': 1 #脉脉详情字段
+    'detail_data': 1 #手机详情字段
   },{
     'conditions': 'hasFixed',#有无固话
-    'detail_data': 2 #领英详情字段
+    'detail_data': 2 #固话详情字段
   },{
     'conditions': 'hasQq',#有无QQ
-    'detail_data': 3 #微博详情字段
+    'detail_data': 3 #QQ详情字段
   },{
     'conditions': 'hasEmail',#有无邮箱
-    'detail_data': 4 #微博详情字段
+    'detail_data': 4 #邮箱详情字段
   }, ]
 #    {
 #        'conditions': 'isAgency',#有无疑似代理记账号码
@@ -83,3 +90,15 @@
 #        'conditions': 'hasNonAgency',#有无非疑似代理记账号码
 #        'detail_data': 'PersonalMicroblog'#微博详情字段
 #    },
+#test_07用例数据类型{}-经营情况页面
+'ManageInfo': [
+  {
+    'conditions': 'hasAdminLicense',#有无行政许可
+    'detail_data': 'AdministrativeLicense' #行政许可详情字段
+  },{
+    'conditions': 'hasQq',#有无QQ
+    'detail_data': 3 #微博详情字段
+  },{
+    'conditions': 'hasEmail',#有无邮箱
+    'detail_data': 4 #微博详情字段
+  }, ]

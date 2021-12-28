@@ -239,21 +239,18 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
-    # def getCompanyBaseInfo_Manage(self,id,market_company):
-    #     url = r'https://test.lixiaoskb.com/api_skb/v1/companyDetail/getCompanyBaseInfo?'
-    #     params = {'id':id,
-    #               'countSection':1,
-    #               'market_company':market_company,
-    #               'market_source':'advance_search_list',
-    #               'version':'v3',
-    #               'search_result_size':10,
-    #               'search_result_page':1,
-    #              }
-    #     headers = {'app_token':'f6620ff6729345c8b6101174e695d0ab',
-    #                'Authorization':'Token token=b3ef6ea79e97cf419b2a097d2e5b60f5',
-    #                'crm_platform_type':'lixiaoyun',}
-    #     re = requests.get(url=url,params=params,headers=headers)
-    #     return re.json()
+    def getAnnualReportDetail(self,annualReportId): #年报详情获取
+        '''
+        :param annualReportId: #年报id
+        :return:
+        '''
+        url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getAnnualReportDetail?'
+        params = {'annualReportId': annualReportId,
+                  }
+        response = requests.get(url, params=params,
+                                headers=self.user.headers())
+        return response
+
 
 
     def getEntSectionInfo_ManageInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
@@ -341,16 +338,7 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
-    # def getEntSectionInfo_ipr(self,id):
-    #     url = r'https://test.lixiaoskb.com/api_skb/v1/companyDetail/getEntSectionInfo?'
-    #     params = {'id':id,
-    #               'version':'v2',
-    #               'section':'IPR',}
-    #     headers = {'app_token':'f6620ff6729345c8b6101174e695d0ab',
-    #                'Authorization':'Token token=b3ef6ea79e97cf419b2a097d2e5b60f5',
-    #                'crm_platform_type':'lixiaoyun',}
-    #     er = requests.get(url=url,params=params,headers=headers)
-    #     return er.json()
+
 
 
 if __name__ == '__main__':

@@ -11,8 +11,6 @@ def sql():
     cursor = conn.cursor()
     yield cursor
     # conn.close()
-
-
 #正式
 class to_pymongo:
     def mongoDB(self):

@@ -61,7 +61,6 @@ mongo_address = "dds-m5ed9ea9d9a653b41.mongodb.rds.aliyuncs.com"
 mongo_user = 'enterprise_read'
 mongo_password = 'CuOIdrN4j7S1OI6Ds8gT'
 server = SSHTunnelForwarder(
-
     ssh_address_or_host=("47.104.226.30", 40022),  # 指定ssh登录的跳转机的IP port
     ssh_username='jar',  # 跳板机用户名
     ssh_pkey='C:/Users/admin/.ssh/id_rsa/id_rsa',  # 设置密钥

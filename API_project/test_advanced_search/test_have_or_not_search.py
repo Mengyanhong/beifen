@@ -67,14 +67,32 @@ class Test_have_or_not_search:
             time.sleep(2.1)
             details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=i, section='Development').json()
             print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
-            if cv_key == True:
-                assert details_response['data'][Development_search_conditions_value['detail_data']]['total'] != 0
-                assert details_response['data'][Development_search_conditions_value['detail_data']]['items'] != []
-            elif cv_key == False:
-                assert details_response['data'][Development_search_conditions_value['detail_data']]['total'] == 0
-                assert details_response['data'][Development_search_conditions_value['detail_data']]['items'] == []
+            if Development_search_conditions_value['conditions'] == 'hasAnnualInvestment':
+                AnnualReport_investment_sum = 0
+                for AnnualReport_items_id in details_response['data']['AnnualReport']['items']:
+                    AnnualReport_data = getCompanyBaseInfo(HOST).getAnnualReportDetail(
+                        annualReportId=AnnualReport_items_id['annualReportId']).json()['data']
+                    print(AnnualReport_data)
+                    if AnnualReport_data['investment']['total'] != 0:
+                        AnnualReport_investment_sum += 1
+                        break
+                    else:
+                        continue
+                if cv_key == True:
+                    assert AnnualReport_investment_sum != 0
+                elif cv_key == False:
+                    assert AnnualReport_investment_sum == 0
+                else:
+                    print('判断条件错误', cv_key)
             else:
-                print('判断条件错误', cv_key)
+                if cv_key == True:
+                    assert details_response['data'][Development_search_conditions_value['detail_data']]['total'] != 0
+                    assert details_response['data'][Development_search_conditions_value['detail_data']]['items'] != []
+                elif cv_key == False:
+                    assert details_response['data'][Development_search_conditions_value['detail_data']]['total'] == 0
+                    assert details_response['data'][Development_search_conditions_value['detail_data']]['items'] == []
+                else:
+                    print('判断条件错误', cv_key)
 
     @pytest.mark.parametrize('cv_key', [False, True])  # 风险信息
     @pytest.mark.parametrize('RiskInfo_search_conditions_value', RiskInfo_search_conditions)
@@ -157,7 +175,8 @@ class Test_have_or_not_search:
             hasEmail_sum = 0
             hasQq_sum = 0
             if details_response_contacts != []:
-                print('查询结果\n', details_response_contacts, 'pid:', i, '\n搜索条件', cv, '\n')
+                # '查询结果\n', details_response_contacts,
+                print( 'pid:', i, '\n搜索条件', cv, '\n')
                 for details_response_value in details_response_contacts:
                     if contacts_num_search_conditions_value['detail_data'] == 1:
                         if details_response_value['type'] == 1:
@@ -195,7 +214,8 @@ class Test_have_or_not_search:
                 detail_response_contacts = detail_response.json()['data']['contacts']
                 detail_response.close()
                 if detail_response_contacts != []:
-                    print('pid:', i, '查询结果\n', detail_response_contacts, '\n搜索条件', cv, '\n')
+                    # '查询结果\n', detail_response_contacts,
+                    print('pid:', i, '\n搜索条件', cv, '\n')
                     for contact_value in detail_response_contacts:
                         if contacts_num_search_conditions_value['detail_data'] == 1:
                             if contact_value['type'] == 1:
@@ -270,7 +290,7 @@ class Test_have_or_not_search:
                 print('pid:', i, '判断条件错误', cv_key)
                 assert cv_key == False or cv_key == True
 
-    @pytest.mark.parametrize('cv_key', [False, True])  # 行业标签
+    @pytest.mark.parametrize('cv_key', [False, True])  # 企业发展-企业标签搜索
     @pytest.mark.parametrize('getCompanyBaseInfo_search_conditions_value',
                              get_yaml_data('../data/yaml/have_or_not_search.yaml')['getCompanyBaseInfo'])
     def test_getCompanyBaseInfo_search(self, cv_key,
@@ -308,9 +328,6 @@ class Test_have_or_not_search:
                 assert order_sum == 0
             else:
                 print('判断条件错误', cv_key)
-# if __name__ == '__main__':
-#     # print(Test_templateSuppiler_search().test_RiskInfo_search())
-#     print(Test_have_or_not_search().test_InterpersonalRelations_search())
 
 # if __name__ == '__main__':
 #     print(getCompanyBaseInfo(HOST).getEntSectionInfo_RiskInfo_subset(
