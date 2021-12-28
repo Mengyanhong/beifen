@@ -192,13 +192,13 @@ class Test_have_or_not_search:
                             continue
                     elif contacts_num_search_conditions_value['detail_data'] == 3:
                         if details_response_value['type'] == 3:
-                            hasEmail_sum += 1
+                            hasQq_sum += 1
                             break
                         else:
                             continue
                     elif contacts_num_search_conditions_value['detail_data'] == 4:
                         if details_response_value['type'] == 4:
-                            hasQq_sum += 1
+                            hasEmail_sum += 1
                             break
                         else:
                             continue
@@ -231,13 +231,13 @@ class Test_have_or_not_search:
                                 continue
                         elif contacts_num_search_conditions_value['detail_data'] == 3:
                             if contact_value['type'] == 3:
-                                hasEmail_sum += 1
+                                hasQq_sum += 1
                                 break
                             else:
                                 continue
                         elif contacts_num_search_conditions_value['detail_data'] == 4:
                             if contact_value['type'] == 4:
-                                hasQq_sum += 1
+                                hasEmail_sum += 1
                                 break
                             else:
                                 continue
@@ -262,9 +262,9 @@ class Test_have_or_not_search:
                 elif contacts_num_search_conditions_value['detail_data'] == 2:
                     assert hasFixed_sum != 0
                 elif contacts_num_search_conditions_value['detail_data'] == 3:
-                    assert hasEmail_sum != 0
-                elif contacts_num_search_conditions_value['detail_data'] == 4:
                     assert hasQq_sum != 0
+                elif contacts_num_search_conditions_value['detail_data'] == 4:
+                    assert hasEmail_sum != 0
                 else:
                     print('pid:', i, '搜索条件有误', contacts_num_search_conditions_value)
                     assert contacts_num_search_conditions_value['detail_data'] == 1 or \
@@ -277,9 +277,9 @@ class Test_have_or_not_search:
                 elif contacts_num_search_conditions_value['detail_data'] == 2:
                     assert hasFixed_sum == 0
                 elif contacts_num_search_conditions_value['detail_data'] == 3:
-                    assert hasEmail_sum == 0
-                elif contacts_num_search_conditions_value['detail_data'] == 4:
                     assert hasQq_sum == 0
+                elif contacts_num_search_conditions_value['detail_data'] == 4:
+                    assert hasEmail_sum == 0
                 else:
                     print('pid:', i, '搜索条件有误', contacts_num_search_conditions_value)
                     assert contacts_num_search_conditions_value['detail_data'] == 1 or \
