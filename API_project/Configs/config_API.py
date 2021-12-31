@@ -198,5 +198,16 @@ class configuration_file:  # 配置文件调用
 
 
 if __name__ == '__main__':
-    print(configuration_file('test').conditionConfig()['recruitPlatform']['cv']['options'])
-    print(configuration_file('test').staticConfig_recruitPlatformOption()['recruitPlatformOption'] )
+    import pprint
+    staticConfig = configuration_file('test').staticConfig()['contactSiteSourceMap']
+    staticConfig_list = []
+    for staticConfig_value in staticConfig:
+        staticConfig_list = staticConfig_list+staticConfig_value['sub']
+        # for sub in staticConfig_value['sub']:
+        #     staticConfig_list.append(sub)
+    # for v in staticConfig_list:
+    #     for key, value in v.items():
+    #         print(key, value)
+    #     break
+    print(staticConfig_list)
+    # print(configuration_file('test').staticConfig_recruitPlatformOption()['recruitPlatformOption'] )

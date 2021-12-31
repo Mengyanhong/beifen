@@ -10,16 +10,19 @@ HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，l
 recruitPlatform_config = configuration_file(HOST).conditionConfig()  # 实例化高级搜索配置并返回配置信息
 recruitPlatformOption_config = configuration_file(HOST).staticConfig_recruitPlatformOption()  # 实例化经营情况详情页筛选项配置并返回配置信息
 staticConfig_IPR_config = configuration_file(HOST).staticConfig_IPR()  # 实例化知识产权详情页筛选项配置并返回配置信息
-recruitPlatform_config_list = recruitPlatform_config['recruitPlatform']['cv']['options']  # 返回高级搜索招聘平台配置列表
-templateSuppiler_config_list = recruitPlatform_config['templateSuppiler']['cv']['options']  # 返回高级搜索建站方搜索配置列表
 recruitPlatformOption_config_list = recruitPlatformOption_config['recruitPlatformOption']  # 返回企业详情-经营情况-招聘平台筛选配置信息
 templateSuppilerOption_config_list = staticConfig_IPR_config['templateSuppilerOption']  # 返回企业详情-知识产权-建站方筛选配置信息
 getEntSectionInfo_search = getCompanyBaseInfo(HOST)  # 实例化高级搜索搜索接口
+staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
+staticConfig_list = []
+for staticConfig_value in staticConfig:
+    staticConfig_list = staticConfig_list + staticConfig_value['sub']
 
 
 class Test_recruitPlatform_search:  # 招聘平台高级搜索+详情页筛选case
     @pytest.mark.parametrize('cr', ['IN', 'NOT_IN'])
-    @pytest.mark.parametrize('recruitPlatform_config_value', recruitPlatform_config_list)
+    @pytest.mark.parametrize('recruitPlatform_config_value',
+                             recruitPlatform_config['recruitPlatform']['cv']['options'])  # 返回高级搜索招聘平台配置列表
     def test_recruitPlatform_search(self, recruitPlatform_config_value, cr):
         recruitPlatformOption_config_list_sum = len(recruitPlatformOption_config_list)
         sourceName_sum = 0
@@ -59,7 +62,8 @@ class Test_recruitPlatform_search:  # 招聘平台高级搜索+详情页筛选ca
 
 class Test_templateSuppiler_search:  # 建站方高级搜索+详情页筛选case
     @pytest.mark.parametrize('cr', ['IN', 'NOT_IN'])
-    @pytest.mark.parametrize('templateSuppiler_config_value', templateSuppiler_config_list)
+    @pytest.mark.parametrize('templateSuppiler_config_value',
+                             recruitPlatform_config['templateSuppiler']['cv']['options'])  # 返回高级搜索建站方搜索配置列表
     def test_recruitPlatform_search(self, templateSuppiler_config_value, cr):
         templateSuppilerOption_config_list_sum = len(templateSuppilerOption_config_list)
         template_sum = 0
@@ -156,5 +160,58 @@ class Test_techTypeCompany:  # 企业发展
                 print('判断条件错误', cv_key)
 
 
-if __name__ == '__main__':
-    Test_recruitPlatform_search().test_recruitPlatform_search()
+class Test_contact_way:  # 联系方式
+    @pytest.mark.parametrize('cv_key', recruitPlatform_config['contactSource']['cr']['options'])  # 企业发展-企业标签搜索
+    @pytest.mark.parametrize('contactSiteSourceMap_search_value', staticConfig_list)
+    def test_contacts_channel(self, cv_key,
+                              contactSiteSourceMap_search_value):  # 联系方式渠道+详情页数据对比case
+        cv = [{"cn": "contactSource", "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
+        pid_list = []
+        time.sleep(2.2)
+        pid_responst = search(HOST).advanced_search(cv=cv).json()['data']['items']
+        if pid_responst:
+            for pid in pid_responst:
+                pid_list.append({'pid': pid['id'], 'entName': pid['name']})
+        else:
+            print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
+            assert pid_responst != []
+        for i in pid_list:
+            details_response = search(HOST).skb_contacts_num(id=i['pid'], module='advance_search_detail')
+            details_response_contacts_num = details_response.json()['data']['contacts']
+            details_response_contactNum = details_response.json()['data']['contactNum']
+            details_response.close()
+            contact_way_response = None
+            if details_response_contacts_num:
+                contact_way_response = details_response_contacts_num
+            elif details_response_contacts_num == [] and details_response_contactNum != 0:
+                detail_response = search(HOST).skb_contacts(id=i['pid'], entName=i['entName'],
+                                                            module='advance_search_detail')
+                details_response_contacts = detail_response.json()['data']['contacts']
+                detail_response.close()
+                contact_way_response = details_response_contacts
+            else:
+                print('pid:', i, '搜索条件', cv, '\n该企业联系方式有误查询结果为', details_response)
+                assert details_response_contacts_num != [] and details_response_contactNum["sources"] != 0
+            assert contact_way_response is not None and contact_way_response != []
+            sources_sum = 0
+            for contact_response_value in contact_way_response:
+                for sources in contact_response_value["sources"]:
+                    if contactSiteSourceMap_search_value["value"] == sources["sourceName"]:
+                        sources_sum += 1
+                        break
+                    else:
+                        continue
+            if cv_key["value"] == "IN":
+                if sources_sum == 0:
+                    print('pid:', i, '搜索条件', cv, '\n')
+                assert sources_sum != 0
+            elif cv_key["value"] == "NOT_IN":
+                if sources_sum != 0:
+                    print('pid:', i, '搜索条件', cv, '\n')
+                assert sources_sum == 0
+            else:
+                print('判断条件出错', cv_key)
+
+
+# if __name__ == '__main__':
+#     Test_recruitPlatform_search().test_recruitPlatform_search()
