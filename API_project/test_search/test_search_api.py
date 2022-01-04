@@ -50,7 +50,7 @@ class Test_search:
             "scope": "",
             "matchType": "most_fields",
             "pagesize": 50,
-            "page": 3
+            "page": 6
         }
         time.sleep(3)
         response = requests.post(url, headers=user_configs.headers(), json=payload,

@@ -112,7 +112,6 @@ class Test_templateSuppiler_search:  # 建站方高级搜索+详情页筛选case
             elif cr == "NOT_IN":
                 assert template_search['data']['WebsiteInformation']['total'] == 0
 
-
 class Test_techTypeCompany:  # 企业发展
     @pytest.mark.parametrize('cv_key', recruitPlatform_config['techTypeCompany']['cr']['options'])  # 企业发展-企业标签搜索
     @pytest.mark.parametrize('techTypeCompany_search_value', recruitPlatform_config['techTypeCompany']['cv']['options'])
