@@ -2,7 +2,6 @@
 
 import requests, json, urllib3,pprint
 from API_project.Configs.config_API import user
-
 urllib3.disable_warnings()
 
 

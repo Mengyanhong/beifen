@@ -161,11 +161,12 @@ class Test_techTypeCompany:  # 企业发展
 
 
 class Test_contact_way:  # 联系方式
-    @pytest.mark.parametrize('cv_key', recruitPlatform_config['contactSource']['cr']['options'])  # 企业发展-企业标签搜索
+    @pytest.mark.parametrize('cn_key', ["contactSource", "mobileSource", "fixedSource"])  # 联系方式渠道
+    @pytest.mark.parametrize('cv_key', recruitPlatform_config['contactSource']['cr']['options'])  # 联系方式渠道
     @pytest.mark.parametrize('contactSiteSourceMap_search_value', staticConfig_list)
-    def test_contacts_channel(self, cv_key,
+    def test_contacts_channel(self, cn_key, cv_key,
                               contactSiteSourceMap_search_value):  # 联系方式渠道+详情页数据对比case
-        cv = [{"cn": "contactSource", "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
+        cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
         pid_list = []
         time.sleep(2.2)
         pid_responst = search(HOST).advanced_search(cv=cv).json()['data']['items']
@@ -191,14 +192,35 @@ class Test_contact_way:  # 联系方式
                 contact_way_response = details_response_contacts
             else:
                 print('pid:', i, '搜索条件', cv, '\n该企业联系方式有误查询结果为', details_response)
-                assert details_response_contacts_num != [] and details_response_contactNum["sources"] != 0
+                assert details_response_contacts_num != [] and details_response_contactNum != 0
             assert contact_way_response is not None and contact_way_response != []
             sources_sum = 0
             for contact_response_value in contact_way_response:
-                for sources in contact_response_value["sources"]:
-                    if contactSiteSourceMap_search_value["value"] == sources["sourceName"]:
-                        sources_sum += 1
-                        break
+                if cn_key == "contactSource":
+                    for sources in contact_response_value["sources"]:
+                        if contactSiteSourceMap_search_value["value"] == sources["sourceName"]:
+                            sources_sum += 1
+                            break
+                        else:
+                            continue
+                elif cn_key == "mobileSource":
+                    if contact_response_value["type"] == 1:
+                        for sources in contact_response_value["sources"]:
+                            if contactSiteSourceMap_search_value["value"] == sources["sourceName"]:
+                                sources_sum += 1
+                                break
+                            else:
+                                continue
+                    else:
+                        continue
+                else:
+                    if contact_response_value["type"] == 2:
+                        for sources in contact_response_value["sources"]:
+                            if contactSiteSourceMap_search_value["value"] == sources["sourceName"]:
+                                sources_sum += 1
+                                break
+                            else:
+                                continue
                     else:
                         continue
             if cv_key["value"] == "IN":
