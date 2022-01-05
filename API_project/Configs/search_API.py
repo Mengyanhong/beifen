@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import requests, json, urllib3,pprint
+import requests, json, urllib3, pprint
 from API_project.Configs.config_API import user
+
 urllib3.disable_warnings()
 
 
@@ -28,6 +29,7 @@ class search:
 
         response = requests.get(url, params=payload, headers=header)
         return response
+
     def skb_contacts(self, entName, module='shop_search_list', headers=None, id=None):  # 查询联系方式
         """
         :param headers: 用户信息
@@ -36,14 +38,14 @@ class search:
         """
         if module == 'shop_search_list':
             payload = {'shopId': id,
-                       'source':'shop_search_list',
-                       'shopName':entName}
+                       'source': 'shop_search_list',
+                       'shopName': entName}
             clue_path = 'shopClue'
             header = self.user.headers()
         else:
             payload = {'pid': id,
-                       'source':'advance_search_detail',
-                       'entName':entName}
+                       'source': 'advance_search_detail',
+                       'entName': entName}
             clue_path = 'clue'
             header = self.user.headers()
 
@@ -103,7 +105,8 @@ class search:
         response = requests.post(url, headers=header, json=payload, verify=False)  # 搜索未查看，未转机器人,未转crm，有手机，有固话的数据
         return response
 
-    def advanced_search(self, headers=None, cv=None, hasSyncClue=1, hasSyncRobot=1, hasUnfolded=2):  # 高级搜索单个条件搜索
+    def advanced_search(self, headers=None, cv=None, hasSyncClue=1, hasSyncRobot=1, hasUnfolded=2, page=1,
+                        pagesize=10):  # 高级搜索单个条件搜索
         """
         :param cv:  搜索条件
         :param hasSyncClue:  是否转crm，1：未转，2：已转，0：全部
@@ -125,8 +128,8 @@ class search:
                 "condition": {"cn": "composite",
                               "cr": "MUST",
                               "cv": cv},
-                "page": 1,
-                "pagesize": 10,
+                "page": page,
+                "pagesize": pagesize,
                 "templateType": 0,
                 "templateName": "",
                 "userClick": 1}
@@ -209,7 +212,7 @@ class getCompanyBaseInfo:
     def __init__(self, test):
         self.user = user(test)
 
-    def getCompanyBase(self, pid): #请求详情页信息
+    def getCompanyBase(self, pid):  # 请求详情页信息
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getCompanyBaseInfo?'
         params = {'id': f'{pid}',
                   'countSection': 1,
@@ -222,7 +225,7 @@ class getCompanyBaseInfo:
                               headers=self.user.headers())
         return re_tag
 
-    def getEntSectionInfo(self, pid,section):  # 企业详情一级菜单
+    def getEntSectionInfo(self, pid, section):  # 企业详情一级菜单
         '''
 
         :param pid:  #企业pid
@@ -238,7 +241,7 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
-    def getAnnualReportDetail(self,annualReportId): #年报详情获取
+    def getAnnualReportDetail(self, annualReportId):  # 年报详情获取
         '''
         :param annualReportId: #年报id
         :return:
@@ -249,8 +252,6 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=self.user.headers())
         return response
-
-
 
     def getEntSectionInfo_ManageInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
@@ -338,10 +339,9 @@ class getCompanyBaseInfo:
         return response
 
 
-
-
 if __name__ == '__main__':
-   pprint.pprint(getCompanyBaseInfo('test').getCompanyBase(pid='c495bbe252bd24337b88ad8f355dedeb').json()['data']['tags'])
+    pprint.pprint(
+        getCompanyBaseInfo('test').getCompanyBase(pid='c495bbe252bd24337b88ad8f355dedeb').json()['data']['tags'])
 
 # if __name__ == '__main__':
 #     print(getCompanyBaseInfo('test').getEntSectionInfo_RiskInfo_subset(
