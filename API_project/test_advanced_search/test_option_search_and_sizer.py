@@ -161,15 +161,16 @@ class Test_techTypeCompany:  # 企业发展
 
 
 class Test_contact_way:  # 联系方式
-    @pytest.mark.parametrize('cn_key', ["fixedSource"])  # 联系方式渠道"contactSource", "mobileSource", "fixedSource"
+    @pytest.mark.parametrize('host', [HOST])
+    @pytest.mark.parametrize('cn_key', ["contactSource", "mobileSource", "fixedSource"])  # 联系方式渠道"contactSource", "mobileSource", "fixedSource"
     @pytest.mark.parametrize('cv_key', recruitPlatform_config['contactSource']['cr']['options'])  # 联系方式渠道
     @pytest.mark.parametrize('contactSiteSourceMap_search_value', staticConfig_list)
-    def test_contacts_channel(self, cn_key, cv_key,
+    def test_contacts_channel(self, host, cn_key, cv_key,
                               contactSiteSourceMap_search_value):  # 联系方式渠道+详情页数据对比case
         cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
         pid_list = []
         time.sleep(2.2)
-        pid_responst = search(HOST).advanced_search(cv=cv, page=3, pagesize=1).json()['data']['items']
+        pid_responst = search(host).advanced_search(cv=cv, page=2, pagesize=1).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append({'pid': pid['id'], 'entName': pid['name']})
@@ -177,7 +178,7 @@ class Test_contact_way:  # 联系方式
             print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
             assert pid_responst != []
         for i in pid_list:
-            details_response = search(HOST).skb_contacts_num(id=i['pid'], module='advance_search_detail')
+            details_response = search(host).skb_contacts_num(id=i['pid'], module='advance_search_detail')
             details_response_contacts_num = details_response.json()['data']['contacts']
             details_response_contactNum = details_response.json()['data']['contactNum']
             details_response.close()
@@ -185,7 +186,7 @@ class Test_contact_way:  # 联系方式
             if details_response_contacts_num:
                 contact_way_response = details_response_contacts_num
             elif details_response_contacts_num == [] and details_response_contactNum != 0:
-                detail_response = search(HOST).skb_contacts(id=i['pid'], entName=i['entName'],
+                detail_response = search(host).skb_contacts(id=i['pid'], entName=i['entName'],
                                                             module='advance_search_detail')
                 details_response_contacts = detail_response.json()['data']['contacts']
                 detail_response.close()

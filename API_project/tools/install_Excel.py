@@ -1,7 +1,9 @@
-import json, sys, openpyxl
+import json, sys, openpyxl, time
 
 # print(sys.argv[0])
 projectname = 'API_project'
+
+
 # print(f"{sys.argv[0].split(projectname)[0]}{projectname}/report/Excel/涵盖证书类型.xlsx")
 
 
@@ -95,6 +97,7 @@ class install_Excel:
             # file.active.title = '涵盖证书类型'  # 更改默认表名
             # ws = wb.get_sheet_by_name('涵盖证书类型') #打开更改后的表格
         return file
+
     def file(self, file, save=False):
         try:
             ws = file[self.file_title_name]  # 打开文件
@@ -103,35 +106,48 @@ class install_Excel:
         except:
             ws = file.create_sheet(title=self.file_title_name)  # 创建新文件
             # ws = file.create_sheet(title = 'biaoge3',index= 1 ) #创建新表
-        # ws.cell(row=row, column=column).value = value
-        # ws.cell(row=1, column=2).value = "certL1Type_value"
-        # ws.cell(row=1, column=3).value = "certL1Type_order"
-        # ws.cell(row=1, column=4).value = "certL2Type_name"
-        # ws.cell(row=1, column=5).value = "certL2Type_value"
-        # ws.cell(row=1, column=6).value = "certL2Type_order"
-        # sum = 0
-        # for vlue in range(sum_text):
-        #     exe_text_sub_sum = exe_text[vlue]['sub']
-        #     exe_text_sub_sum_list = len(exe_text[vlue]['sub'])
-        #     for i in range(exe_text_sub_sum_list):
-        #         ws.cell(row=(sum + 2), column=1).value = exe_text[vlue]['value']
-        #         ws.cell(row=(sum + 2), column=2).value = exe_text[vlue]['name']
-        #         ws.cell(row=(sum + 2), column=3).value = exe_text[vlue]['order']
-        #         ws.cell(row=(sum + 2), column=4).value = exe_text_sub_sum[i]['value']
-        #         ws.cell(row=(sum + 2), column=5).value = exe_text_sub_sum[i]['name']
-        #         ws.cell(row=(sum + 2), column=6).value = exe_text[vlue]['order']
-        #         sum += 1
-        # if save == True:
-        #     file.save(f"{sys.argv[0].split(projectname)[0]}{projectname}/report/Excel/{self.file_name}.xlsx")
-        #     print("保存成功")
         return ws
+
+    def install(self, row=1, column=1, value="条件"):
+        try:
+            file = openpyxl.load_workbook(
+                f"{sys.argv[0].split(projectname)[0]}{projectname}/report/Excel/{self.file_name}.xlsx")  # 打开表格文件
+        except:
+            file = openpyxl.Workbook()  # 创建新表
+            file.active.title = self.file_title_name  # 更改默认表名
+            # file.active.title = '涵盖证书类型'  # 更改默认表名
+            # ws = wb.get_sheet_by_name('涵盖证书类型') #打开更改后的表格
+        try:
+            ws = file[self.file_title_name]  # 打开文件
+            # wl = wb.create_sheet("1") #打开表格索引为1的表格
+            # ws = file.active #打开默认表格
+        except:
+            ws = file.create_sheet(title=self.file_title_name)  # 创建新文件
+            # ws = file.create_sheet(title = 'biaoge3',index= 1 ) #创建新表
+
+        ws.cell(row=row, column=column).value = value
+        file.save(f"{sys.argv[0].split(projectname)[0]}{projectname}/report/Excel/{self.file_name}.xlsx")
+
+
+
 if __name__ == '__main__':
-    install = install_Excel(file_name="测试", file_title_name="测试")
-    files = install.files()
-    file = install.file(file=files)
-    file.cell(row=1, column=1).value = "value11"
-    file.cell(row=2, column=1).value = "value21"
-    file.cell(row=3, column=1).value = "value31"
-    file.cell(row=4, column=1).value = "value41"
-    file.cell(row=5, column=1).value = "value51"
-    files.save(install.files_path())
+    # install = install_Excel(file_name="测试", file_title_name="测试1")
+    # install.install(row=1, column=1, value="1")
+    # install.install(row=2, column=1, value="2")
+    # install.install(row=3, column=1, value="3")
+    file_name = time.strftime("%Y-%m-%d %H:%M:%S").split(":")[0].replace("-", "_").replace(" ", "_")
+    install_files = install_Excel(file_name="找企业联系方式", file_title_name=file_name)
+    row_sum = 1
+    install_files.install(row=1, column=1, value='pid')
+    install_files.install(row=1, column=2, value='entName')
+    install_files.install(row=1, column=3, value='搜索条件')
+    install_files.install(row=1, column=4, value='断言')
+    # install = install_Excel(file_name="测试", file_title_name="测试1")
+    # files = install.files()
+    # file = install.file(file=files)
+    # file.cell(row=1, column=1).value = "value111"
+    # file.cell(row=2, column=1).value = "value211"
+    # file.cell(row=3, column=1).value = "value311"
+    # file.cell(row=4, column=1).value = "value411"
+    # file.cell(row=5, column=1).value = "value511"
+    # files.save(install.files_path())

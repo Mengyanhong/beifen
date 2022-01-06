@@ -10,14 +10,14 @@ urllib3.disable_warnings()
 
 ES = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200',  # 最新地址，prod
                    http_auth=('mengyanhong', 'Aa123456'))
-HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+HOST = "staging"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 user_configs = user(HOST)
 skb_search_configs = search(HOST)
 
 
 class Test_search:
 
-    def contacts_num_search(self, pid):  # 联系方式搜索条件+详情页数据对比case
+    def contacts_num_search(self, pid, entName):  # 联系方式搜索条件+详情页数据对比case
         es_result = ES.get(index="company_info_prod", id=pid)['_source']
         # # 返回es中所有的键，去除 无该字段时的报错
         # es_key_list_list = []
@@ -31,8 +31,9 @@ class Test_search:
         if details_response_contacts:
             details_response_contacts_value = details_response_contacts
         elif details_response_contacts == [] and details_response_contactNum != 0:
-            detail_response = skb_search_configs.skb_contacts(id=pid, module='advance_search_detail')
+            detail_response = skb_search_configs.skb_contacts(id=pid, entName=entName, module='advance_search_detail')
             detail_response_contacts = detail_response.json()['data']['contacts']
+            print(detail_response_contacts)
             detail_response.close()
             details_response_contacts_value = detail_response_contacts
         mobilePhone_list = []
@@ -70,4 +71,4 @@ class Test_search:
 
 
 if __name__ == '__main__':
-    print(Test_search().contacts_num_search(pid="3893a695e5cf5fbeed974041ebf30e40"))
+    print(Test_search().contacts_num_search(pid="4649f4d167af1df348e94568c8ddbc25", entName="湖北新中绿专用汽车有限公司"))

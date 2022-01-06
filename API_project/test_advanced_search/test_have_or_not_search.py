@@ -6,7 +6,7 @@ import pytest, openpyxl, time
 from API_project.Configs.search_API import search, getCompanyBaseInfo
 from API_project.tools.get_yaml_set import get_yaml_data
 
-HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+HOST = "staging"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 RiskInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['RiskInfo']
 InterpersonalRelations_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')[
     'InterpersonalRelations']
@@ -304,13 +304,13 @@ class Test_have_or_not_search:
             assert details_response_contacts_value is not None and details_response_contacts_value != []
             for details_response_value in details_response_contacts_value:
                 if cn_key == "isAgency":
-                    if details_response_value['isRecentlyIncluded'] == True:
+                    if 'suspectedAgent' in details_response_value.keys() and details_response_value['suspectedAgent'] == True and details_response_value['type'] not in [3, 4]:
                         isAgency_sum += 1
                         break
                     else:
                         continue
                 else:
-                    if details_response_value['isRecentlyIncluded'] == False:
+                    if 'suspectedAgent' not in details_response_value.keys() and details_response_value['type'] not in [3, 4]:
                         isAgency_sum += 1
                         break
                     else:
@@ -362,15 +362,15 @@ class Test_have_or_not_search:
             assert details_response_contacts_value is not None and details_response_contacts_value != []
             for details_response_value in details_response_contacts_value:
                 if cn_key == "1":
-                    if details_response_value['type'] == "1":
-                        if details_response_value['isRecentlyIncluded'] == False:
+                    if details_response_value['type'] == 1:
+                        if 'suspectedAgent' not in details_response_value.keys():
                             isAgency_sum += 1
                             break
                         else:
                             continue
                 else:
-                    if details_response_value['type'] == "2":
-                        if details_response_value['isRecentlyIncluded'] == False:
+                    if details_response_value['type'] == 2:
+                        if 'suspectedAgent' not in details_response_value.keys():
                             isAgency_sum += 1
                             break
                         else:

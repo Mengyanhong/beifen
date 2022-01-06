@@ -2,6 +2,7 @@ import time
 
 from API_project.Configs.config_API import user
 from API_project.Configs.search_API import search
+from API_project.tools.install_Excel import install_Excel
 import requests, pytest, os
 
 HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
@@ -50,7 +51,7 @@ class Test_search:
             "scope": "",
             "matchType": "most_fields",
             "pagesize": 50,
-            "page": 6
+            "page": 8
         }
         time.sleep(3)
         response = requests.post(url, headers=user_configs.headers(), json=payload,
