@@ -58,3 +58,15 @@ print(time.strftime("%Y_%m_%d_%H_%M_%S")  )#当前时间 str
 # print ('%s strip=%s' % (str,str.strip('d')))
 
 # 按指定字符分割字符串为数组：str.split(' ')
+from API_project.Configs.config_API import configuration_file
+HOST = "test"
+staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
+staticConfig_list = []
+for staticConfig_value in staticConfig:
+    staticConfig_list = staticConfig_list + staticConfig_value['sub']
+sum = 0
+for i in staticConfig_list:
+    sum+=1
+    # if i["value"] == "康强":
+    #     break
+print(sum)
