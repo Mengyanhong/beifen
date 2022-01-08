@@ -6,7 +6,7 @@ import pytest, openpyxl, time
 from API_project.Configs.search_API import search, getCompanyBaseInfo
 from API_project.tools.get_yaml_set import get_yaml_data
 
-HOST = "staging"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 RiskInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['RiskInfo']
 InterpersonalRelations_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')[
     'InterpersonalRelations']

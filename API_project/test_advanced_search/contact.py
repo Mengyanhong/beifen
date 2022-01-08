@@ -2,7 +2,7 @@ import time
 from API_project.Configs.config_API import configuration_file
 from API_project.Configs.search_API import search
 from API_project.tools.install_Excel import install_Excel
-HOST = "staging"
+HOST = "lxcrm"
 recruitPlatform_config = configuration_file(HOST).conditionConfig()['contactSource']['cr']['options']
 staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
 staticConfig_list = []
@@ -28,7 +28,7 @@ def contacts_channel(host, cn_search, cv_search,
                 cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
                 pid_list = []
                 time.sleep(2.2)
-                pid_responst = search(host).advanced_search(cv=cv, page=11, pagesize=1).json()['data']['items']
+                pid_responst = search(host).advanced_search(cv=cv, page=2, pagesize=10).json()['data']['items']
                 # print(pid_responst)
                 if pid_responst:
                     for pid in pid_responst:
@@ -45,7 +45,6 @@ def contacts_channel(host, cn_search, cv_search,
                     details_response_contacts_num = details_response.json()['data']['contacts']
                     details_response_contactNum = details_response.json()['data']['contactNum']
                     details_response.close()
-                    contact_way_response = None
                     if details_response_contacts_num:
                         contact_way_response = details_response_contacts_num
                     elif details_response_contacts_num == [] and details_response_contactNum != 0:
@@ -54,6 +53,7 @@ def contacts_channel(host, cn_search, cv_search,
                         contact_way_response = detail_response.json()['data']['contacts']
                         detail_response.close()
                     else:
+                        contact_way_response = []
                         row_sum = row_sum + 1
                         install_files.install(row=row_sum, column=3, value=cn_key)
                         install_files.install(row=row_sum, column=4, value=contactSiteSourceMap_search_value["value"])
