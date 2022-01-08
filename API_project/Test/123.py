@@ -58,15 +58,27 @@ print(time.strftime("%Y_%m_%d_%H_%M_%S")  )#当前时间 str
 # print ('%s strip=%s' % (str,str.strip('d')))
 
 # 按指定字符分割字符串为数组：str.split(' ')
-from API_project.Configs.config_API import configuration_file
-HOST = "test"
-staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
-staticConfig_list = []
-for staticConfig_value in staticConfig:
-    staticConfig_list = staticConfig_list + staticConfig_value['sub']
-sum = 0
-for i in staticConfig_list:
-    sum+=1
-    if i["value"] == "中国建材采购网":
-        break
-print(sum)
+# from API_project.Configs.config_API import configuration_file
+# HOST = "test"
+# staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
+# staticConfig_list = []
+# for staticConfig_value in staticConfig:
+#     staticConfig_list = staticConfig_list + staticConfig_value['sub']
+# sum = 0
+# for i in staticConfig_list:
+#     sum+=1
+#     if i["value"] == "企一网":
+#         break
+# print(sum)
+# businessscope="<em>机电</em>设备<em>工程</em>，制冷<em>空调</em>设备<em>工程</em>，水电安装，中央<em>空调</em>维修服务，<em>机电</em>设备，制冷<em>空调</em>设备，计算机、软件及辅助设备销售，建设<em>工程</em>项目管理咨询。"
+# a = "中医 诊所"
+# b = "深圳弘坤堂中医（综合）诊所"
+# c = businessscope.replace('，','').replace('/','').replace('、','').replace('。','').strip("<em>").split("<em>")
+# print(list(set(c)))
+# d = list(set(c))
+# aa = ('制冷', '工程', '机电', '水电安装中央', '空调', '维修服务', '设备', '设备制冷', '设备计算机软件及辅助设备销售建设', '项目管理咨询')
+# cc = ('制冷', '机电', '工程', '水电安装中央', '空调', '维修服务', '设备', '设备制冷', '设备计算机软件及辅助设备销售建设', '项目管理咨询')
+# d.sort()
+#
+# print(aa == cc)
+# print(','.join(d))
