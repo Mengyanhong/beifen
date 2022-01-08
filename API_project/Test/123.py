@@ -67,6 +67,6 @@ for staticConfig_value in staticConfig:
 sum = 0
 for i in staticConfig_list:
     sum+=1
-    # if i["value"] == "康强":
-    #     break
+    if i["value"] == "中国建材采购网":
+        break
 print(sum)
