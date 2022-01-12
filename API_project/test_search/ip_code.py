@@ -1,5 +1,6 @@
 from API_project.Configs.config_API import user
 import requests
+from pprint import pprint
 
 host = "test"
 user_config = user(host)
@@ -16,4 +17,4 @@ def ip():
 
 
 if __name__ == '__main__':
-    print(ip())
+    pprint(ip())

@@ -30,7 +30,7 @@ def contacts_channel(host, cn_search, cv_search,
                 cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
                 pid_list = []
                 time.sleep(2.2)
-                pid_responst = search(host).advanced_search(cv=cv, page=2, pagesize=10).json()['data']['items']
+                pid_responst = search(host).advanced_search(cv=cv, page=4, pagesize=10).json()['data']['items']
                 # print(pid_responst)
                 if pid_responst:
                     for pid in pid_responst:
