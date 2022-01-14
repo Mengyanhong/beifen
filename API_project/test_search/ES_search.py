@@ -62,13 +62,13 @@ class Test_search:
             #         if details_response_value['content'] not in es_result["email"]:
             #             print('邮箱,详情页有ES没有', details_response_value['contact'],details_response_value['content'])
         print('ES没有详情页有，手机', set(mobilePhone_list).difference(set(es_result["mobilePhone"])))
-        print('ES没有详情页有，固话', set(fixedPhone_list).difference(set(es_result["fixedPhone"])))
+        print('ES没有详情页有，固话', list(set(fixedPhone_list).difference(set(es_result["fixedPhone"]))))
         print('ES没有详情页有，邮箱', set(email_list).difference(set(es_result["email"])))
         print('ES有详情页没有，手机', set(es_result["mobilePhone"]).difference(set(mobilePhone_list)))
-        print('ES有详情页没有，固话', set(es_result["fixedPhone"]).difference(set(fixedPhone_list)))
-        print('ES有详情页没有，邮箱', set(es_result["email"]).difference(set(email_list)))
+        print('ES有详情页没有，固话', list(set(es_result["fixedPhone"]).difference(set(fixedPhone_list))))
+        print('ES有详情页没有，邮箱', len(list(set(es_result["email"]).difference(set(email_list)))))
         return f"测试结束pid为：{pid}"
 
 
 if __name__ == '__main__':
-    print(Test_search().contacts_num_search(pid="4649f4d167af1df348e94568c8ddbc25", entName="湖北新中绿专用汽车有限公司"))
+    print(Test_search().contacts_num_search(pid="155fd7e2bdd22eb8fbbc4dd2090258ed", entName="三一重工股份有限公司"))

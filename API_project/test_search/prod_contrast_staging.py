@@ -139,28 +139,6 @@ class case:
                                 install_files.install(row=row_sum, column=4, value='False')
                             else:
                                 install_files.install(row=row_sum, column=4, value='测试结束')
-                        # if test_items:
-                        #     test_value["data"].pop("items")
-                        #     staging_value["data"].pop("items")
-                        #     if test_value != staging_value:
-                        #         install_files.install(row=row_sum, column=4, value='False')
-                        #     else:
-                        #         items_sum = 0
-                        #         for value in range(len(test_items)):
-                        #             test_items[value].pop("contact")
-                        #             test_items[value].pop("hasUnfold")
-                        #             staging_items[value].pop("contact")
-                        #             staging_items[value].pop("hasUnfold")
-                        #             test_items[value].pop("hasSyncedRobot")
-                        #             staging_items[value].pop("hasSyncedRobot")
-                        #             test_items[value].pop("hasSynced")
-                        #             staging_items[value].pop("hasSynced")
-                        #             if staging_items[value] != test_items[value]:
-                        #                 items_sum += 1
-                        #         if items_sum == 0:
-                        #             install_files.install(row=row_sum, column=4, value='测试结束')
-                        #         else:
-                        #             install_files.install(row=row_sum, column=4, value='False')
                         else:
                             if test_value != staging_value:
                                 install_files.install(row=row_sum, column=4, value='False')

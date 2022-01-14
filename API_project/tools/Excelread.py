@@ -1,7 +1,8 @@
 import openpyxl, sys, json
-
+projectname='API_project'
+print(f"{sys.argv[0].split(projectname)[0]}{projectname}/data/Excel/search_keyword.xlsx")
 class Excel_Files:
-    def __init__(self, file_name='访客识别-用例.xlsx', sheel='中企接口', projectname='API_project'):
+    def __init__(self, file_name='访客识别-用例.xlsx', sheel='中企接口', projectname='home'):
         '''
         :param file_name: 用例文件
         :param sheel: 工作表
@@ -9,7 +10,7 @@ class Excel_Files:
         self.file_name = file_name
         self.sheel = sheel
         self.file = openpyxl.load_workbook(
-            f"{sys.argv[0].split(projectname)[0]}{projectname}/data/Excel/{self.file_name}")  # 打开用例文件
+            f"{sys.path[0].split(projectname)[0]}{projectname}/API_project/data/Excel/{self.file_name}")  # 打开用例文件
         self.sheet_header = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']  # 创建文件表头列表
         self.sheel_file = self.file[self.sheel]  # 打开用例文件内容
 
@@ -92,7 +93,8 @@ class Excel_Files:
 
 
 if __name__ == '__main__':
+    print(sys.path[0])
     EXcel_file = Excel_Files(file_name="search_keyword.xlsx", sheel="search_keyword")
     print(EXcel_file.excel_index(index="keyword"))
-    print(EXcel_file.open_file_rows("name"))
+    # print(EXcel_file.open_file_rows("name"))
     print(EXcel_file.open_file_rows("keyword"))

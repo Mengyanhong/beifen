@@ -4,199 +4,26 @@ import pytest, openpyxl, time
 # from collections import Counter  # 导入表格统计模块
 # from API_project.Configs.config_API import configuration_file
 from API_project.Configs.search_API import search, getCompanyBaseInfo
+from API_project.Configs.config_API import configuration_file
 from API_project.tools.get_yaml_set import get_yaml_data
+from API_project.tools.install_Excel import install_Excel
+
+file_name = time.strftime("%Y年%m月%d日%H时%M分")
 
 HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
-RiskInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['RiskInfo']
-InterpersonalRelations_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')[
-    'InterpersonalRelations']
-Development_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['Development']
-BaseInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['BaseInfo']
+recruitPlatform_config = configuration_file(HOST).conditionConfig()  # 实例化高级搜索配置并返回配置信息
 contacts_num_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['contacts_num']
-
-
-class Test_have_or_not_search:
-    @pytest.mark.parametrize('cv_key', [False, True])  # 基本信息
-    @pytest.mark.parametrize('BaseInfo_search_conditions_value', BaseInfo_search_conditions)
-    def test_BaseInfo_search(self, cv_key, BaseInfo_search_conditions_value):  # 基本信息页面有无搜索+详情页数据对比case
-        cv = [{"cn": BaseInfo_search_conditions_value['conditions'], "cr": 'IS', "cv": cv_key}]
-        time.sleep(2.2)
-        pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv).json()['data']['items']
-        if pid_responst:
-            for pid in pid_responst:
-                pid_list.append(pid['id'])
-        else:
-            print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
-            assert pid_responst != []
-        for i in pid_list:
-            time.sleep(2.1)
-            details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=i, section='BaseInfo').json()
-            print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
-            if cv_key == True:
-                if BaseInfo_search_conditions_value['conditions'] == 'hasRegCCap':
-                    print(BaseInfo_search_conditions_value)
-                    assert details_response['data']['GSInfo']['regccap'] != '-'
-                else:
-                    assert details_response['data'][BaseInfo_search_conditions_value['detail_data']]['total'] != 0
-                    assert details_response['data'][BaseInfo_search_conditions_value['detail_data']]['items'] != []
-            elif cv_key == False:
-                if BaseInfo_search_conditions_value['conditions'] == 'hasRegCCap':
-                    print(BaseInfo_search_conditions_value)
-                    assert details_response['data']['GSInfo']['regccap'] == '-'
-                else:
-                    assert details_response['data'][BaseInfo_search_conditions_value['detail_data']]['total'] == 0
-                    assert details_response['data'][BaseInfo_search_conditions_value['detail_data']]['items'] == []
-            else:
-                print('判断条件错误', cv_key)
-
-    @pytest.mark.parametrize('cv_key', [False, True])  # 企业发展
-    @pytest.mark.parametrize('Development_search_conditions_value', Development_search_conditions)
-    def test_Development_search(self, cv_key, Development_search_conditions_value):  # 企业发展页面有无搜索+详情页数据对比case
-        cv = [{"cn": Development_search_conditions_value['conditions'], "cr": 'IS', "cv": cv_key}]
-        time.sleep(2.2)
-        pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv).json()['data']['items']
-        if pid_responst:
-            for pid in pid_responst:
-                pid_list.append(pid['id'])
-        else:
-            print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
-            assert pid_responst != []
-        for i in pid_list:
-            time.sleep(2.1)
-            details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=i, section='Development').json()
-            print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
-            if Development_search_conditions_value['conditions'] == 'hasAnnualInvestment':
-                AnnualReport_investment_sum = 0
-                for AnnualReport_items_id in details_response['data']['AnnualReport']['items']:
-                    AnnualReport_data = getCompanyBaseInfo(HOST).getAnnualReportDetail(
-                        annualReportId=AnnualReport_items_id['annualReportId']).json()['data']
-                    print(AnnualReport_data)
-                    if AnnualReport_data['investment']['total'] != 0:
-                        AnnualReport_investment_sum += 1
-                        break
-                    else:
-                        continue
-                if cv_key == True:
-                    assert AnnualReport_investment_sum != 0
-                elif cv_key == False:
-                    assert AnnualReport_investment_sum == 0
-                else:
-                    print('判断条件错误', cv_key)
-            else:
-                if cv_key == True:
-                    assert details_response['data'][Development_search_conditions_value['detail_data']]['total'] != 0
-                    assert details_response['data'][Development_search_conditions_value['detail_data']]['items'] != []
-                elif cv_key == False:
-                    assert details_response['data'][Development_search_conditions_value['detail_data']]['total'] == 0
-                    assert details_response['data'][Development_search_conditions_value['detail_data']]['items'] == []
-                else:
-                    print('判断条件错误', cv_key)
-
-    @pytest.mark.parametrize('cv_key', [False, True])  # 风险信息
-    @pytest.mark.parametrize('RiskInfo_search_conditions_value', RiskInfo_search_conditions)
-    def test_RiskInfo_search(self, cv_key, RiskInfo_search_conditions_value):  # 风险信息页面相关有无搜索条件+详情页数据对比case
-        cv = [{"cn": RiskInfo_search_conditions_value['conditions'], "cr": 'IS', "cv": cv_key}]
-        time.sleep(2.2)
-        pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv).json()['data']['items']
-        if pid_responst:
-            for pid in pid_responst:
-                pid_list.append(pid['id'])
-        else:
-            print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
-            assert pid_responst != []
-        for i in pid_list:
-            time.sleep(2.1)
-            details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=i, section='RiskInfo').json()
-            print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
-            if cv_key == True:
-                assert details_response['data'][RiskInfo_search_conditions_value['detail_data']]['total'] != 0
-                assert details_response['data'][RiskInfo_search_conditions_value['detail_data']]['items'] != []
-            elif cv_key == False:
-                assert details_response['data'][RiskInfo_search_conditions_value['detail_data']]['total'] == 0
-                assert details_response['data'][RiskInfo_search_conditions_value['detail_data']]['items'] == []
-            else:
-                print('判断条件错误', cv_key)
-
-    @pytest.mark.parametrize('cv_key', [False, True])  # 员工人脉
-    @pytest.mark.parametrize('InterpersonalRelations_search_conditions_value', InterpersonalRelations_search_conditions)
-    def test_InterpersonalRelations_search(self, cv_key,
-                                           InterpersonalRelations_search_conditions_value):  # 员工人脉页面相关有无搜索条件+详情页数据对比case
-        cv = [{"cn": InterpersonalRelations_search_conditions_value['conditions'], "cr": 'IS', "cv": cv_key}]
-        time.sleep(2.2)
-        pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv).json()['data']['items']
-        if pid_responst:
-            for pid in pid_responst:
-                pid_list.append(pid['id'])
-        else:
-            print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
-            assert pid_responst != []
-        for i in pid_list:
-            time.sleep(2.1)
-            details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=i,
-                                                                          section='InterpersonalRelations').json()
-            print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
-            if cv_key == True:
-                assert details_response['data'][InterpersonalRelations_search_conditions_value['detail_data']][
-                           'total'] != 0
-                assert details_response['data'][InterpersonalRelations_search_conditions_value['detail_data']][
-                           'items'] != []
-            elif cv_key == False:
-                assert details_response['data'][InterpersonalRelations_search_conditions_value['detail_data']][
-                           'total'] == 0
-                assert details_response['data'][InterpersonalRelations_search_conditions_value['detail_data']][
-                           'items'] == []
-            else:
-                print('判断条件错误', cv_key)
-
-    @pytest.mark.parametrize('cv_key', [False, True])  # 企业发展-企业标签搜索
-    @pytest.mark.parametrize('getCompanyBaseInfo_search_conditions_value',
-                             get_yaml_data('../data/yaml/have_or_not_search.yaml')['getCompanyBaseInfo'])
-    def test_getCompanyBaseInfo_search(self, cv_key,
-                                       getCompanyBaseInfo_search_conditions_value):  # 基本信息页面有无搜索+详情页数据对比case
-        cv = [{"cn": getCompanyBaseInfo_search_conditions_value['conditions'], "cr": 'IS', "cv": cv_key}]
-        time.sleep(2.2)
-        pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv).json()['data']['items']
-        if pid_responst:
-            for pid in pid_responst:
-                pid_list.append(pid['id'])
-        else:
-            print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
-            assert pid_responst != []
-        for i in pid_list:
-            time.sleep(2.1)
-            details_response = getCompanyBaseInfo(HOST).getCompanyBase(pid=i).json()
-            print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
-            order_sum = 0
-            if details_response['data']['tags'] != []:
-                for order in details_response['data']['tags']:
-                    if 'order' in order.keys():
-                        if order['order'] == getCompanyBaseInfo_search_conditions_value['detail_data']:
-                            order_sum += 1
-                        else:
-                            continue
-                    else:
-                        continue
-            else:
-                print('pid:', i, '搜索结果错误\n搜索条件', cv, '\n')
-                continue
-            if cv_key == True:
-                assert order_sum != 0
-            elif cv_key == False:
-                assert order_sum == 0
-            else:
-                print('判断条件错误', cv_key)
+staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
+staticConfig_list = []
+for staticConfig_value in staticConfig:
+    staticConfig_list = staticConfig_list + staticConfig_value['sub']
 
 
 class Test_contact:
     @pytest.mark.parametrize('cv_key', [True, False])  # 联系方式
     @pytest.mark.parametrize('contacts_num_search_conditions_value', contacts_num_search_conditions)
     def test_contacts_num_search(self, cv_key,
-                                 contacts_num_search_conditions_value):  # 联系方式有无搜索条件+详情页数据对比case
+                                 contacts_num_search_conditions_value, ES):  # 联系方式有无搜索条件+详情页数据对比case
         cv = [{"cn": contacts_num_search_conditions_value['conditions'], "cr": 'IS', "cv": cv_key}]
         pid_list = []
         time.sleep(2.2)
@@ -430,6 +257,116 @@ class Test_contact:
                 print('pid:', i, '判断条件错误', cr_key)
                 assert cr_key == "IN" or cr_key == "NOT_IN"
 
-# if __name__ == '__main__':
-#     print(getCompanyBaseInfo(HOST).getEntSectionInfo_RiskInfo_subset(
-#         pid='90c2f9836fe55b385f877f629bc59aee', subset='Executor').json())
+    @pytest.mark.parametrize('host', [HOST])
+    @pytest.mark.parametrize('cn_key', ["contactSource", "mobileSource",
+                                        "fixedSource"])  # 联系方式渠道"contactSource", "mobileSource", "fixedSource"
+    @pytest.mark.parametrize('cv_key', recruitPlatform_config['contactSource']['cr']['options'])  # 联系方式渠道
+    @pytest.mark.parametrize('contactSiteSourceMap_search_value', staticConfig_list)
+    def test_contacts_channel(self, host, cn_key, cv_key,
+                              contactSiteSourceMap_search_value):  # 联系方式渠道+详情页数据对比case
+        install_files = install_Excel(file_name="0102迭代联系方式渠道", file_title_name=file_name)  # 实例化测试报告文件
+        if install_files.read_sum() == 1 and install_files.read_one_value() is None:
+            install_files.install(row=1, column=1, value='pid')
+            install_files.install(row=1, column=2, value='entName')
+            install_files.install(row=1, column=3, value='搜索条件')
+            install_files.install(row=1, column=4, value='搜索渠道')
+            install_files.install(row=1, column=5, value='过滤条件')
+            install_files.install(row=1, column=6, value='测试结果')
+        cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
+        pid_list = []
+        time.sleep(2.2)
+        pid_responst = search(host).advanced_search(cv=cv, page=2, pagesize=1).json()['data']['items']
+        if pid_responst:
+            for pid in pid_responst:
+                pid_list.append({'pid': pid['id'], 'entName': pid['name']})
+        else:
+            row_sum = install_files.read_sum() + 1
+            install_files.install(row=row_sum, column=3, value=cn_key)
+            install_files.install(row=row_sum, column=4, value=contactSiteSourceMap_search_value["value"])
+            install_files.install(row=row_sum, column=5, value=cv_key["value"])
+            install_files.install(row=row_sum, column=6, value='搜索结果为空')
+            print('搜索结果：', pid_responst, '\n搜索条件:', cv, '\n')
+            assert pid_responst != []
+        for i in pid_list:
+            details_response = search(host).skb_contacts_num(id=i['pid'], module='advance_search_detail')
+            details_response_contacts_num = details_response.json()['data']['contacts']
+            details_response_contactNum = details_response.json()['data']['contactNum']
+            details_response.close()
+            if details_response_contacts_num:
+                contact_way_response = details_response_contacts_num
+            elif details_response_contacts_num == [] and details_response_contactNum != 0:
+                detail_response = search(host).skb_contacts(id=i['pid'], entName=i['entName'],
+                                                            module='advance_search_detail')
+                details_response_contacts = detail_response.json()['data']['contacts']
+                detail_response.close()
+                contact_way_response = details_response_contacts
+            else:
+                contact_way_response = []
+                row_sum = install_files.read_sum() + 1
+                install_files.install(row=row_sum, column=3, value=cn_key)
+                install_files.install(row=row_sum, column=4, value=contactSiteSourceMap_search_value["value"])
+                install_files.install(row=row_sum, column=5, value=cv_key["value"])
+                install_files.install(row=row_sum, column=6, value='联系方式为空')
+                print('pid:', i, '搜索条件', cv, '\n该企业联系方式有误查询结果为', details_response)
+                assert details_response_contacts_num != [] and details_response_contactNum != 0
+            assert contact_way_response is not None and contact_way_response != []
+            sources_sum = 0
+            for contact_response_value in contact_way_response:
+                if cn_key == "contactSource":
+                    for sources in contact_response_value["sources"]:
+                        if contactSiteSourceMap_search_value["value"] == sources["sourceName"] or \
+                                contactSiteSourceMap_search_value["value"] in sources["sourceName"]:
+                            sources_sum += 1
+                            break
+                        else:
+                            continue
+                elif cn_key == "mobileSource":
+                    if contact_response_value["type"] == 1:
+                        for sources in contact_response_value["sources"]:
+                            if contactSiteSourceMap_search_value["value"] == sources["sourceName"] or \
+                                    contactSiteSourceMap_search_value["value"] in sources["sourceName"]:
+                                sources_sum += 1
+                                break
+                            else:
+                                continue
+                    else:
+                        continue
+                else:
+                    if contact_response_value["type"] == 2:
+                        for sources in contact_response_value["sources"]:
+                            if contactSiteSourceMap_search_value["value"] == sources["sourceName"] or \
+                                    contactSiteSourceMap_search_value["value"] in sources["sourceName"]:
+                                sources_sum += 1
+                                break
+                            else:
+                                continue
+                    else:
+                        continue
+            if cv_key["value"] == "IN":
+                if sources_sum == 0:
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=i['pid'])
+                    install_files.install(row=row_sum, column=2, value=i['entName'])
+                    install_files.install(row=row_sum, column=3, value=cn_key)
+                    install_files.install(row=row_sum, column=4,
+                                          value=contactSiteSourceMap_search_value["value"])
+                    install_files.install(row=row_sum, column=5, value=cv_key["value"])
+                    install_files.install(row=row_sum, column=6, value='详情页没有该渠道但是ES有该渠道')
+                    print('pid:', i, '搜索条件', cv, '\n')
+                assert sources_sum != 0
+            elif cv_key["value"] == "NOT_IN":
+                if sources_sum != 0:
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=i['pid'])
+                    install_files.install(row=row_sum, column=2, value=i['entName'])
+                    install_files.install(row=row_sum, column=3, value=cn_key)
+                    install_files.install(row=row_sum, column=4,
+                                          value=contactSiteSourceMap_search_value["value"])
+                    install_files.install(row=row_sum, column=5, value=cv_key["value"])
+                    install_files.install(row=row_sum, column=6, value='详情页有该渠道但是ES没有该渠道')
+                    print('pid:', i, '搜索条件', cv, '\n')
+                assert sources_sum == 0
+            else:
+                print('判断条件出错', cv_key)
+
+
