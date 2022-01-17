@@ -18,8 +18,13 @@ templateSuppilerOption_config_list = staticConfig_IPR_config['templateSuppilerOp
 getEntSectionInfo_search = getCompanyBaseInfo(HOST)  # 实例化高级搜索搜索接口
 staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
 staticConfig_list = []
+staticConfig_sum = 0
 for staticConfig_value in staticConfig:
-    staticConfig_list = staticConfig_list + staticConfig_value['sub']
+    if staticConfig_sum <= "":
+        continue
+    else:
+        staticConfig_list = staticConfig_list + staticConfig_value['sub']
+    staticConfig_sum += 1
 
 
 class Test_recruitPlatform_search:  # 招聘平台高级搜索+详情页筛选case
@@ -182,7 +187,7 @@ class Test_contact_way:  # 联系方式
         cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
         pid_list = []
         time.sleep(2.2)
-        pid_responst = search(host).advanced_search(cv=cv, page=2, pagesize=1).json()['data']['items']
+        pid_responst = search(host).advanced_search(cv=cv, page=1, pagesize=5).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append({'pid': pid['id'], 'entName': pid['name']})
@@ -210,6 +215,8 @@ class Test_contact_way:  # 联系方式
             else:
                 contact_way_response = []
                 row_sum = install_files.read_sum() + 1
+                install_files.install(row=row_sum, column=1, value=i['pid'])
+                install_files.install(row=row_sum, column=2, value=i['entName'])
                 install_files.install(row=row_sum, column=3, value=cn_key)
                 install_files.install(row=row_sum, column=4, value=contactSiteSourceMap_search_value["value"])
                 install_files.install(row=row_sum, column=5, value=cv_key["value"])

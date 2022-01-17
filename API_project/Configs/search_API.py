@@ -225,11 +225,11 @@ class getCompanyBaseInfo:
                               headers=self.user.headers())
         return re_tag
 
-    def getEntSectionInfo(self, pid, section):  # 企业详情一级菜单
+    def getEntSectionInfo(self, pid, section, headers = None):  # 企业详情一级菜单
         '''
 
         :param pid:  #企业pid
-        :param section:  #菜单选择，Development：企业发展,RiskInfo:风险信息
+        :param section:  #菜单选择，Development：企业发展,RiskInfo:风险信息, ManageInfo:经营情况
         :return:
         '''
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
@@ -237,8 +237,12 @@ class getCompanyBaseInfo:
                   'section': section,
                   'version': 'v2'
                   }
+        if headers == None:
+            header = self.user.headers()
+        else:
+            header = headers
         response = requests.get(url, params=params,
-                                headers=self.user.headers())
+                                headers=header)
         return response
 
     def getAnnualReportDetail(self, annualReportId):  # 年报详情获取

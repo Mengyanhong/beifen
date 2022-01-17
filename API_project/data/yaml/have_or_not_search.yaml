@@ -95,10 +95,4 @@
   {
     'conditions': 'hasAdminLicense',#有无行政许可
     'detail_data': 'AdministrativeLicense' #行政许可详情字段
-  },{
-    'conditions': 'hasQq',#有无QQ
-    'detail_data': 3 #微博详情字段
-  },{
-    'conditions': 'hasEmail',#有无邮箱
-    'detail_data': 4 #微博详情字段
   }, ]

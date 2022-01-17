@@ -59,7 +59,7 @@ class Test_case:
             },
             "scope": scope,
             "matchType": matchType,
-            "pagesize": 10,
+            "pagesize": 5,
             "page": 1
         }
         time.sleep(3)
@@ -77,7 +77,7 @@ class Test_case:
             install_files.install(row=1, column=3, value='entname')  # 写入表头
             install_files.install(row=1, column=4, value='测试结果')  # 写入表头
         time.sleep(2.2)
-        pid_resp_value = Test_case().search_api(HOST_eve=HOST, keyword=keyword_value, scope="semkeyword").json()['data']['items']
+        pid_resp_value = Test_case().search_api(HOST_eve=HOST, keyword=keyword_value).json()['data']['items']
         pid_list = []
         if pid_resp_value:
             for pid in pid_resp_value:
