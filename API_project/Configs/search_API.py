@@ -244,6 +244,10 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=header)
         return response
+if __name__ == '__main__':
+    re = getCompanyBaseInfo("test").getEntSectionInfo(pid="47df1dc4ade329964b2ea0f69ee7b8da",
+                      section='ManageInfo').json()
+    print(re)
 
     def getAnnualReportDetail(self, annualReportId):  # 年报详情获取
         '''

@@ -82,3 +82,5 @@ print(time.strftime("%Y_%m_%d_%H_%M_%S")  )#当前时间 str
 #
 # print(aa == cc)
 # print(','.join(d))
+socialSecNum= "27418人"
+print(socialSecNum.strip("人"))
