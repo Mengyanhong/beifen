@@ -128,3 +128,111 @@ where prioritydate is not null and  prioritydate != ''  limit  1000
 select * from skb_data_prod.dwd_patents
 
 
+-- Note: Unless you save your query, these tabs will NOT persist if you clear your cookies or change browsers.
+
+select pid,companyenname,applyenaddr,iscommonmark,interregidate,registerno,registerdate,specifydate,prioritydate,exampubno,exampubdate,applyno,markname,dt from skb_data_prod.ads_third_party_trade_mark_mongo
+where  pid = '9f679c1fb5c2163cb46ebfd62c452289' and  applyno = 'G710926' order by  dt desc
+
+
+select * from skb_data_prod.dwd_homeland_normal_makeup_record
+select * from skb_data_prod.dwd_homeland_normal_makeup_record where  real_ent_addr  is null  and  real_ent_addr <>''
+
+select * from skb_data_prod.dwd_homeland_normal_makeup_record where
+
+
+
+select * from skb_data_prod.dwd_import_normal_makeup_record where product_name is not null and  product_name  <> ''
+
+select * from skb_data_prod.dwd_recruit_info where source_name = '英才网'
+
+select count(1) from (select company_name,pid,source_name  from skb_data_prod.dwd_recruit_info where source_name = '英才网' ) group  by  company_name
+
+
+select * from skb_data_prod.dwd_cccertificate_info where factory is null
+
+select * from skb_data_prod.dwd_medicine_manage_cert_info
+
+select * from skb_data_prod.dwd_certificate_info
+
+select * from skb_data_prod.dwd_import_special_makeup_record where  produce_ent_name_eng is null
+
+select * from skb_data_prod.dwd_medical_apparatus_manage_info  where address = ''
+
+select * from skb_data_prod.dwd_import_normal_makeup_record
+
+select * from skb_data_prod.dwd_ims_cert_info where web_incharge  =  '' or   website  ='' or web_incharge is  null
+
+
+select * from skb_data_prod.dwd_homeland_special_makeup_record where product_name  =  '' or   category  =''
+
+
+select * from skb_data_prod.dwd_web_security_record_info where domain is null  or domain = '' or domain='null'
+
+
+
+select * from skb_data_prod.dwd_medicine_ad_check_info where apply_addr  ='' or apply_addr  is null
+
+
+select * from skb_data_prod.dwd_compulsory_product_certificate where  certificate_start_date != ''
+
+
+
+select * from skb_data_prod.dwd_medical_apparatus_produce_info where scope ='' or scope is null
+
+select * from skb_data_prod.dwd_dangerous_chemicals_business_license where op_scope  = '' or op_scope is null
+
+select * from skb_data_prod.dwd_dangerous_chemicals_business_license where facilities   != '' or facilities  is not null
+
+select * from skb_data_prod.dwd_national_certified_comprehensiveentrance where place_name_add  !='' or place_name_add  is not null
+
+select * from skb_data_prod.dwd_national_certified_comprehensiveentrance where  again_auth_num   is not null
+
+select * from skb_data_prod.dwd_medicine_produce_cert_info where regorg    = '' or regorg   is null
+
+select * from skb_data_prod.dwd_compulsory_product_certificate_statement where product_name        = '' or product_name    is null
+
+select * from skb_data_prod.dwd_dangerous_chemicals_production_license
+
+select * from skb_data_prod.dwd_food_agricultural_certification where auth_type   !='' or auth_type  is not null
+
+select * from skb_data_prod.dwd_food_agricultural_certification where auth_level    !='' or auth_level  is not null
+
+select * from skb_data_prod.dwd_food_agricultural_certification where auth_mode     !='' or auth_mode  is not null
+
+select * from skb_data_prod.dwd_food_agricultural_certification where start_date      !='' or start_date  is not null
+
+select * from skb_data_prod.dwd_food_agricultural_certification where place_name_add      !='' or place_name_add  is not null
+
+select * from skb_data_prod.dwd_voluntary_product_certification where certificate_symbol_name  !='' or certificate_symbol_name is not null
+
+select * from skb_data_prod.dwd_architecture_info
+
+select * from skb_data_prod.dwd_security_pro_info
+
+select * from skb_data_prod.dwd_tsm_record_info
+
+select * from skb_data_prod.dwd_maimai_user_info_new where user_id = '469867'
+
+select * from skb_data_prod.ods_administrative_license_info where  validate !=  true and pid is not null
+
+select * from skb_data_prod.dwd_patents
+
+
+select * from skb_data_prod.dwd_third_party_trade_mark
+
+select * from skb_data_prod.dwd_wechat_account_info
+
+select * from skb_data_prod.dwd_import_and_export_credit
+
+
+select * from skb_data_prod.dwd_maimai_user_info_new
+
+select * from skb_data_prod.dws_wx_wechat_info_sum
+
+select * from  skb_data_prod.dwd_medical_apparatus_manage_info
+
+select * from  skb_data_prod.dws_company_contact  where  create_date !=''  order create_date  desc
+
+
+select * from  skb_data_prod.dwd_recruit_info where pid = 'ff927e7fefb47c3ec0e5eb015ec962ed'
+

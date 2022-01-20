@@ -15,21 +15,21 @@ from API_project.tools.install_Excel import install_Excel
 excel_file = Excel_Files(file_name="search_keyword.xlsx", sheel="search_keyword")  # 实例化Excel用例文件
 file_name = time.strftime("%Y年%m月%d日%H时%M分")  # 实例化测试报告工作表名称
 
-HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 recruitPlatform_config = configuration_file(HOST).conditionConfig()  # 实例化高级搜索配置并返回配置信息
 staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
 staticConfig_list = []
 for staticConfig_value in staticConfig:
     staticConfig_list = staticConfig_list + staticConfig_value['sub']
 
-#
+
 # staticConfig_sum = 0
 # for staticConfig_value in staticConfig:
-#     if staticConfig_sum <= "":
+#     staticConfig_sum += 1
+#     if staticConfig_sum <= 60:
 #         continue
 #     else:
 #         staticConfig_list = staticConfig_list + staticConfig_value['sub']
-#     staticConfig_sum += 1
 
 class Test_contact:  # 联系方式
     @pytest.mark.parametrize('cv_key', [True, False])  # 联系方式有无
@@ -391,6 +391,16 @@ class Test_case:
             contact = []
         else:
             contact = [contact]
+        header = {
+            'app_token': "a14cc8b00f84e64b438af540390531e4",
+            'authorization': "Token token=4e15695de0bfe2273795e707fd602d46",
+            'content-type': 'application/json',
+            'crm_platform_type': "lixiaoyun"
+        }
+        if HOST_eve == "lxcrm":
+            headers = user_configs.headers()
+        else:
+            headers = header
 
         if scope is None or scope == "None":
             scope = ''
@@ -435,7 +445,7 @@ class Test_case:
             "page": 1
         }
         time.sleep(3)
-        response = requests.post(url, headers=user_configs.headers(), json=payload,
+        response = requests.post(url, headers=headers, json=payload,
                                  verify=False)
         return response
 
