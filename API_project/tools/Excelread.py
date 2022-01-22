@@ -94,7 +94,8 @@ class Excel_Files:
 
 if __name__ == '__main__':
     print(sys.path[0])
-    EXcel_file = Excel_Files(file_name="search_keyword.xlsx", sheel="search_keyword")
-    print(EXcel_file.excel_index(index="keyword"))
+    EXcel_file = Excel_Files(file_name="联系方式渠道配置.xlsx", sheel="联系方式渠道配置")
+    # EXcel_file = Excel_Files(file_name="search_keyword.xlsx", sheel="search_keyword")
+    print(EXcel_file.excel_index(index="pid"))
     # print(EXcel_file.open_file_rows("name"))
-    print(EXcel_file.open_file_rows("keyword"))
+    print(EXcel_file.open_file_rows("entName"))

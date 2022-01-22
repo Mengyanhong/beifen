@@ -43,9 +43,9 @@
   {
     'conditions': 'hasAnnu', #有无企业年报
     'detail_data': 'AnnualReport' #年报详情字段
-  },{
-    'conditions': 'hasCap', #有无融资历史
-    'detail_data': 'Financing' #融资历史详情字段
+#  },{
+#    'conditions': 'hasCap', #有无融资历史
+#    'detail_data': 'Financing' #融资历史详情字段
   },{
     'conditions': 'hasAnnualInvestment', #有无年报对外投资
     'detail_data': 'investment' #对外投资详情字段

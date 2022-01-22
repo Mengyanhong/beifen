@@ -10,7 +10,7 @@ urllib3.disable_warnings()
 
 ES = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200',  # 最新地址，prod
                    http_auth=('mengyanhong', 'Aa123456'))
-HOST = "staging"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 user_configs = user(HOST)
 skb_search_configs = search(HOST)
 
@@ -71,4 +71,4 @@ class Test_search:
 
 
 if __name__ == '__main__':
-    print(Test_search().contacts_num_search(pid="bd9ca5cb96ad748c70bed33d0c24858f", entName="郑州福禄寿网络科技有限公司"))
+    print(Test_search().contacts_num_search(pid="fa26dcd7ccf5837e9c517f3a216cf937", entName="沧州卓亿塑业有限公司"))

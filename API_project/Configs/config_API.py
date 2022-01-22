@@ -199,9 +199,22 @@ class configuration_file:  # 配置文件调用
 
 if __name__ == '__main__':
     import pprint
+    from API_project.tools.install_Excel import install_Excel
+    install_files = install_Excel(file_name="联系方式渠道配置", file_title_name="联系方式渠道配置")  # 实例化测试报告文件
+    if install_files.read_sum() == 1 and install_files.read_one_value() is None:
+        install_files.install(row=1, column=1, value='name')
+        install_files.install(row=1, column=2, value='value')
+        install_files.install(row=1, column=3, value='dbName')
     staticConfig = configuration_file('test').staticConfig()['contactSiteSourceMap']
     staticConfig_list = []
     for staticConfig_value in staticConfig:
+        for i in staticConfig_value['sub']:
+            # print(i)
+            # break
+            row_sum = install_files.read_sum() + 1
+            install_files.install(row=row_sum, column=1, value=i['name'])
+            install_files.install(row=row_sum, column=2, value=i['value'])
+            install_files.install(row=row_sum, column=3, value=i['dbName'])
         staticConfig_list = staticConfig_list+staticConfig_value['sub']
         # for sub in staticConfig_value['sub']:
         #     staticConfig_list.append(sub)

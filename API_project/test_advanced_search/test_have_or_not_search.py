@@ -62,7 +62,7 @@ class Test_have_or_not_search:
         cv = [{"cn": Development_search_conditions_value['conditions'], "cr": 'IS', "cv": cv_key}]
         time.sleep(2.2)
         pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv, page=3, pagesize=100).json()['data']['items']
+        pid_responst = search(HOST).advanced_search(cv=cv, page=3, pagesize=10).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append(pid['id'])
@@ -251,15 +251,15 @@ class Test_ManageInfo:
     @pytest.mark.parametrize('ManageInfo_value', get_yaml_data('../data/yaml/have_or_not_search.yaml')['ManageInfo'])
     def test_hasAdminLicense(self, cv_key, ManageInfo_value, ES):  # 企业发展页面有无搜索+详情页数据对比case
         cv = [{"cn": ManageInfo_value['conditions'], "cr": 'IS', "cv": cv_key}]
-        header = {
-            'app_token': "a14cc8b00f84e64b438af540390531e4",
-            'authorization': "Token token=4e15695de0bfe2273795e707fd602d46",
-            'content-type': 'application/json',
-            'crm_platform_type': "lixiaoyun"
-        }
+        # header = {
+        #     'app_token': "a14cc8b00f84e64b438af540390531e4",
+        #     'authorization': "Token token=4e15695de0bfe2273795e707fd602d46",
+        #     'content-type': 'application/json',
+        #     'crm_platform_type': "lixiaoyun"
+        # }
         time.sleep(2.2)
         pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv, headers=header, page=10, pagesize=50).json()['data']['items']
+        pid_responst = search(HOST).advanced_search(cv=cv,  page=10, pagesize=10).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append(pid['id'])
@@ -269,7 +269,7 @@ class Test_ManageInfo:
         for i in pid_list:
             time.sleep(2.1)
             es_result = ES.get(index="company_info_prod", id=i)['_source']
-            details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=i, headers=header,
+            details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=i,
                                                                           section='ManageInfo').json()
             print('pid:', i, '查询结果\n', details_response, '\n搜索条件', cv, '\n')
             if ManageInfo_value['conditions'] == 'hasAdminLicense':

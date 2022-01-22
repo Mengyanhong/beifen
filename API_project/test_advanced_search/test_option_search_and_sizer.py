@@ -189,7 +189,7 @@ class Test_contact_way:  # 联系方式
         cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
         pid_list = []
         time.sleep(2.2)
-        pid_responst = search(HOST).advanced_search(cv=cv, page=1, pagesize=1, ).json()['data']['items']
+        pid_responst = search(HOST).advanced_search(cv=cv, page=1, pagesize=1).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append({'pid': pid['id'], 'entName': pid['name']})
