@@ -8,9 +8,9 @@ class user:
         self.test = environment
 
     def user_key(self):  # 用户headers环境配置,用户信息
-        if self.test == 'test':  # 17311112255,Ik123456
+        if self.test == 'test':  # 13162863099,Ik123456,python专用
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            Token_value = "268e61a4c41e4be9d7be7c7bf90bf116"
+            Token_value = "ad99f29c019e31af42ae5aa5b3db90ec"
             platform = 'lixiaoyun'
             gatewayId = None
         elif self.test == 'staging':  # 17388888888,Ik123456
@@ -30,7 +30,7 @@ class user:
             platform = None
             gatewayId = None
         return {'app_token': app_token, 'Token': f'Token token={Token_value}', 'platform': platform,
-                'gatewayId': gatewayId}
+                'gatewayId': gatewayId, 'token': f'{Token_value}'}
 
     def skb_Host(self):  # 新搜客宝host
         if self.test == 'test':
@@ -95,7 +95,7 @@ class user:
     def robot_headers(self):  # 机器人headers配置
         lxcrm_Headers = {
             'platform': 'IK',
-            'usertoken': user(self.test).user_key()["Token"],
+            'usertoken': user(self.test).user_key()["token"],
             'Content-Type': 'application/json',
             'crmplatformtype': user(self.test).user_key()["platform"]
         }

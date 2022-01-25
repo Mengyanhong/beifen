@@ -16,17 +16,17 @@ class search:
         :param pid: 企业pid/店铺id
         :return:
         """
+        if headers is not None:
+            header = self.user.headers()
+        else:
+            header = headers
         if module == 'shop_search_list':
             payload = {'shopId': id}
             clue_path = 'shopClue'
-            header = self.user.headers()
         else:
             payload = {'pid': id}
             clue_path = 'clue'
-            header = self.user.headers()
-
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts_num'
-
         response = requests.get(url, params=payload, headers=header)
         return response
 
@@ -54,7 +54,7 @@ class search:
         response = requests.get(url, params=payload, headers=header)
         return response
 
-    def skb_search(self, headers=None, keyword="北京", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
+    def skb_search(self, headers=None, keyword="天津", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """
         :param keyword: 搜索关键词
         :param filterUnfold:  是否查看，1：已查看，2：未查看，0：全部
@@ -74,7 +74,7 @@ class search:
                               "filterSyncRobot": filterSyncRobot, "hasBuildingCert": "0",
                               "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
                               "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
-                   "pagesize": 3, "page": 2}
+                   "pagesize": 10, "page": 3}
         if headers == None:
             header = self.user.headers()
         else:
@@ -85,14 +85,14 @@ class search:
     def skb_address_search(self, headers=None, filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=1):
         """
         :param filterUnfold: 是否查看，1：已查看，2：未查看，0：全部
-        :param filterSyncRobot: 是否转机器人，1：未转，2：已转，0：全部
+        :param filterSyncRobot: 是否转机器人，1：未转，2：已转，0：全部f
         :param filterSync:  是否转crm，1：未转，2：已转，"0"：全部
         :param contact: 联系方式搜索字段，1：手机，2：固话，
         :return:
         """
         url = f'https://{self.user.skb_Host()}/api_skb/v1/search'
-        payload = {"scope": "address", "keyword": "", "page": 1, "pagesize": 20,
-                   "filter": {"location": ["110105"], "industryshort": [], "secindustryshort": [],
+        payload = {"scope": "address", "keyword": "", "page": 3, "pagesize": 10,
+                   "filter": {"location": ["120111"], "industryshort": [], "secindustryshort": [],
                               "establishment": ["0"], "contact": [contact], "entstatus": [1], "circle": None,
                               "filterSync": filterSync,
                               "filterUnfold": filterUnfold, "filterSyncRobot": filterSyncRobot,
@@ -116,7 +116,9 @@ class search:
         """
         if cv is None:
             cv = [{"cn": "hasMobile", "cr": "IS", "cv": True},
-                  {"cn": "hasFixed", "cr": "IS", "cv": True}]
+                  {"cn": "hasFixed", "cr": "IS", "cv": True},
+                  {"cn": "hasQq", "cr": "IS", "cv": True, },
+                  {"cn": "hasAbnormal", "cr": "IS", "cv": True}]
         else:
             cv = cv
         URL = f'https://{self.user.skb_Host()}/api_skb/v1/advanced_search'

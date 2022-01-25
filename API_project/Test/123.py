@@ -1,5 +1,6 @@
-import datetime,time,random
-isotime="2021-09-05T16:00:00Z"
+import datetime, time, random
+
+isotime = "2021-09-05T16:00:00Z"
 # isotime.getTime()
 # print(random.randint(100,999))
 # st = datetime.datetime.sprptime(isotime,'%Y-%m-%dT%H:%M:%S%z')
@@ -7,10 +8,10 @@ isotime="2021-09-05T16:00:00Z"
 # print(timestamp)
 
 now = time.time()  # 当前时间 float类型
-print(time.strftime("%Y-%m-%d %H:%M:%S")  )#当前时间 str
-print(time.strftime("%Y年%m月%d日%H时%M分")  )#当前时间 str
-print(time.strftime("%Y_%m_%d_%H_%M_%S")  )#当前时间 str
-
+print(time.strftime("%Y-%m-%d %H:%M:%S"))  # 当前时间 str
+print(time.strftime("%Y年%m月%d日%H时%M分"))  # 当前时间 str
+print(time.strftime("%Y_%m_%d_%H_%M_%S"))  # 当前时间 str
+a = [{"shanghai": "keji1"}]
 # time.sleep(3)
 #
 # time.ctime()   # 当前时间 english str
@@ -82,5 +83,9 @@ print(time.strftime("%Y_%m_%d_%H_%M_%S")  )#当前时间 str
 #
 # print(aa == cc)
 # print(','.join(d))
-socialSecNum= "27418人"
+socialSecNum = "27418人"
 print(socialSecNum.strip("人"))
+
+a = {'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*',
+     'Connection': 'keep-alive', 'platform': 'IK', 'usertoken': 'Token token=268e61a4c41e4be9d7be7c7bf90bf116',
+     'Content-Type': 'application/json', 'crmplatformtype': 'lixiaoyun'}

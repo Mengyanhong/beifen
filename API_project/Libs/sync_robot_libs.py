@@ -27,6 +27,7 @@ class Sync_robot:
             dataColumn = dataColumns
 
         payload = {
+            "way": way,
             "from": "syncRobot",
             "useQuota": Quota,  # 是否使用额度
             "dataColumns": dataColumn,  # 数据字段[0, 1] // 0: 手机，1：固话
@@ -72,30 +73,22 @@ class Sync_robot:
         if pids is None:
             payload.update({"page": 1, "pagesize": pages})
         else:
-            payload.update({"pids": pids, })
+            payload.update({"pids": pids})
             payload.pop('page')
             payload.pop('pagesize')
-        if way is not None:
-            payload.update({"way": way})
         if way == 'shop_search_list':
             payload.pop("from")
             clues = 'shopClues'
-            header = self.User.headers()
-        elif headers is None:
-            clues = 'clues'
-            header = self.User.shop_headers()
         else:
             clues = 'clues'
+        if headers is None:
             header = self.User.headers()
-        if out_id == None:
-            pass
         else:
+            header = headers
+        if out_id is not None:
             payload.update({"payload": out_payload})
-        if gatewayname == None:
-            pass
-        else:
+        if gatewayname is not None:
             payload.update({"payload": gatewayId_value})
-
         url = f'https://{self.User.skb_Host()}/api_skb/v1/{clues}/sync_robot'
         response = requests.post(url=url, headers=header, json=payload)
         return response
@@ -112,6 +105,7 @@ class Sync_robot:
         payload = {
             'page': 1,
             'per_page': 10,
+            'created_at': 'today'
         }
         if query_name is not None:
             payload.update({'query': query_name, 'queryType': queryType})

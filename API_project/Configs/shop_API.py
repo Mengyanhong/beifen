@@ -14,7 +14,7 @@ class shop:
 
     def search_shop(self, headers=None, shopName="", hasUnfolded=2, hasSyncClue=1, hasSyncRobot=1, cv=None):
         if cv == None:
-            cv = [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": []}, "cr": "IN"},
+            cv = [{"cn": "category", "cv": {"categoryL1": ["10"], "categoryL2": ["1030"]}, "cr": "IN"},
                   {"cn": "contactType", "cv": ["1", "2"], "cr": "IN"}]
         else:
             cv = cv
