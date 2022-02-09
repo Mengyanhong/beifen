@@ -58,32 +58,32 @@ class Recommend:
         con.commit()
 
     #insert table recommendation_target_region
-    def insert_recommendation_target_region(self, con, uid, oid,region_code):
-        cur = con.cursor()
-        sql_insert_recommendation_target_region = 'insert into `yxy_skb_test`.`recommendation_target_region`(`business_type`, `business_id`, `oid`, `region_code`) values(%s,%s,%s,%s)'
-        cur.execute(sql_insert_recommendation_target_region, ('2', uid,oid,region_code))
-        con.commit()
+    # def insert_recommendation_target_region(self, con, uid, oid,region_code):
+    #     cur = con.cursor()
+    #     sql_insert_recommendation_target_region = 'insert into `yxy_skb_test`.`recommendation_target_region`(`business_type`, `business_id`, `oid`, `region_code`) values(%s,%s,%s,%s)'
+    #     cur.execute(sql_insert_recommendation_target_region, ('1', uid,oid,region_code))
+    #     con.commit()
 
     #insert table recommendation_target_region
     def insert_recommendation_target_region(self, con, uid, oid,region_code):
         try:
             cur = con.cursor()
             sql_insert_recommendation_target_region = 'insert into `yxy_skb_test`.`recommendation_target_region`(`business_type`, `business_id`, `oid`, `region_code`) values(%s,%s,%s,%s)'
-            cur.execute(sql_insert_recommendation_target_region, ('2', uid,oid,region_code))
+            cur.execute(sql_insert_recommendation_target_region, ('1', uid,oid,region_code))
             con.commit()
         except:
             pass
 
     def get_oid(self):
-        oid_range_min = 9900000
-        oid_range_max = 9909000
+        oid_range_min = 11110000
+        oid_range_max = 11210000
         randam_oid = random.randint(oid_range_min,oid_range_max)
         print("oid: "+str(randam_oid))
         return(str(randam_oid))
 
     def get_uid(self):
-        uid_range_min = 9800000
-        uid_range_max = 9809000
+        uid_range_min = 111100000
+        uid_range_max = 112100000
         random_uid = random.randint(uid_range_min,uid_range_max)
         print("uid: " + str(random_uid))
         return(str(random_uid))
@@ -181,6 +181,5 @@ if __name__ == '__main__':
     for i in range(30000):
         recomment.insert_user_tag_data(con)  #1
     # recomment.insert_recommendation_user_seed_data(con) #3
-    recomment.insert_recommendation_task_seed_data(con)
 
 

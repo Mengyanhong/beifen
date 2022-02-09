@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import requests, json, urllib3,pprint
+import requests, json, urllib3, pprint
 from API_project.Configs.config_API import user
 
 urllib3.disable_warnings()
@@ -16,19 +16,20 @@ class search:
         :param pid: 企业pid/店铺id
         :return:
         """
+        if headers is not None:
+            header = self.user.headers()
+        else:
+            header = headers
         if module == 'shop_search_list':
             payload = {'shopId': id}
             clue_path = 'shopClue'
-            header = self.user.headers()
         else:
             payload = {'pid': id}
             clue_path = 'clue'
-            header = self.user.headers()
-
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts_num'
-
         response = requests.get(url, params=payload, headers=header)
         return response
+
     def skb_contacts(self, entName, module='shop_search_list', headers=None, id=None):  # 查询联系方式
         """
         :param headers: 用户信息
@@ -37,14 +38,14 @@ class search:
         """
         if module == 'shop_search_list':
             payload = {'shopId': id,
-                       'source':'shop_search_list',
-                       'shopName':entName}
+                       'source': 'shop_search_list',
+                       'shopName': entName}
             clue_path = 'shopClue'
             header = self.user.headers()
         else:
             payload = {'pid': id,
-                       'source':'advance_search_detail',
-                       'entName':entName}
+                       'source': 'advance_search_detail',
+                       'entName': entName}
             clue_path = 'clue'
             header = self.user.headers()
 
@@ -53,7 +54,7 @@ class search:
         response = requests.get(url, params=payload, headers=header)
         return response
 
-    def skb_search(self, headers=None, keyword="北京", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
+    def skb_search(self, headers=None, keyword="天津", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """
         :param keyword: 搜索关键词
         :param filterUnfold:  是否查看，1：已查看，2：未查看，0：全部
@@ -73,7 +74,7 @@ class search:
                               "filterSyncRobot": filterSyncRobot, "hasBuildingCert": "0",
                               "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
                               "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
-                   "pagesize": 3, "page": 2}
+                   "pagesize": 10, "page": 3}
         if headers == None:
             header = self.user.headers()
         else:
@@ -84,14 +85,14 @@ class search:
     def skb_address_search(self, headers=None, filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=1):
         """
         :param filterUnfold: 是否查看，1：已查看，2：未查看，0：全部
-        :param filterSyncRobot: 是否转机器人，1：未转，2：已转，0：全部
+        :param filterSyncRobot: 是否转机器人，1：未转，2：已转，0：全部f
         :param filterSync:  是否转crm，1：未转，2：已转，"0"：全部
         :param contact: 联系方式搜索字段，1：手机，2：固话，
         :return:
         """
         url = f'https://{self.user.skb_Host()}/api_skb/v1/search'
-        payload = {"scope": "address", "keyword": "", "page": 1, "pagesize": 20,
-                   "filter": {"location": ["110105"], "industryshort": [], "secindustryshort": [],
+        payload = {"scope": "address", "keyword": "", "page": 3, "pagesize": 10,
+                   "filter": {"location": ["120111"], "industryshort": [], "secindustryshort": [],
                               "establishment": ["0"], "contact": [contact], "entstatus": [1], "circle": None,
                               "filterSync": filterSync,
                               "filterUnfold": filterUnfold, "filterSyncRobot": filterSyncRobot,
@@ -104,7 +105,8 @@ class search:
         response = requests.post(url, headers=header, json=payload, verify=False)  # 搜索未查看，未转机器人,未转crm，有手机，有固话的数据
         return response
 
-    def advanced_search(self, headers=None, cv=None, hasSyncClue=1, hasSyncRobot=1, hasUnfolded=2):  # 高级搜索单个条件搜索
+    def advanced_search(self, headers=None, cv=None, hasSyncClue=1, hasSyncRobot=1, hasUnfolded=2, page=1,
+                        pagesize=10):  # 高级搜索单个条件搜索
         """
         :param cv:  搜索条件
         :param hasSyncClue:  是否转crm，1：未转，2：已转，0：全部
@@ -114,7 +116,9 @@ class search:
         """
         if cv is None:
             cv = [{"cn": "hasMobile", "cr": "IS", "cv": True},
-                  {"cn": "hasFixed", "cr": "IS", "cv": True}]
+                  {"cn": "hasFixed", "cr": "IS", "cv": True},
+                  {"cn": "hasQq", "cr": "IS", "cv": True, },
+                  {"cn": "hasAbnormal", "cr": "IS", "cv": True}]
         else:
             cv = cv
         URL = f'https://{self.user.skb_Host()}/api_skb/v1/advanced_search'
@@ -126,8 +130,8 @@ class search:
                 "condition": {"cn": "composite",
                               "cr": "MUST",
                               "cv": cv},
-                "page": 1,
-                "pagesize": 10,
+                "page": page,
+                "pagesize": pagesize,
                 "templateType": 0,
                 "templateName": "",
                 "userClick": 1}
@@ -210,7 +214,7 @@ class getCompanyBaseInfo:
     def __init__(self, test):
         self.user = user(test)
 
-    def getCompanyBase(self, pid): #请求详情页信息
+    def getCompanyBase(self, pid):  # 请求详情页信息
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getCompanyBaseInfo?'
         params = {'id': f'{pid}',
                   'countSection': 1,
@@ -223,11 +227,11 @@ class getCompanyBaseInfo:
                               headers=self.user.headers())
         return re_tag
 
-    def getEntSectionInfo(self, pid,section):  # 企业详情一级菜单
+    def getEntSectionInfo(self, pid, section, headers = None):  # 企业详情一级菜单
         '''
 
         :param pid:  #企业pid
-        :param section:  #菜单选择，Development：企业发展,RiskInfo:风险信息
+        :param section:  #菜单选择，Development：企业发展,RiskInfo:风险信息, ManageInfo:经营情况
         :return:
         '''
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
@@ -235,11 +239,19 @@ class getCompanyBaseInfo:
                   'section': section,
                   'version': 'v2'
                   }
+        if headers == None:
+            header = self.user.headers()
+        else:
+            header = headers
         response = requests.get(url, params=params,
-                                headers=self.user.headers())
+                                headers=header, verify=False)
         return response
+# if __name__ == '__main__':
+#     re = getCompanyBaseInfo("test").getEntSectionInfo(pid="47df1dc4ade329964b2ea0f69ee7b8da",
+#                       section='ManageInfo').json()
+#     print(re)
 
-    def getAnnualReportDetail(self,annualReportId): #年报详情获取
+    def getAnnualReportDetail(self, annualReportId):  # 年报详情获取
         '''
         :param annualReportId: #年报id
         :return:
@@ -250,8 +262,6 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=self.user.headers())
         return response
-
-
 
     def getEntSectionInfo_ManageInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
@@ -339,10 +349,9 @@ class getCompanyBaseInfo:
         return response
 
 
-
-
 if __name__ == '__main__':
-   pprint.pprint(getCompanyBaseInfo('test').getCompanyBase(pid='c495bbe252bd24337b88ad8f355dedeb').json()['data']['tags'])
+    pprint.pprint(
+        getCompanyBaseInfo('test').getCompanyBase(pid='c495bbe252bd24337b88ad8f355dedeb').json()['data']['tags'])
 
 # if __name__ == '__main__':
 #     print(getCompanyBaseInfo('test').getEntSectionInfo_RiskInfo_subset(
