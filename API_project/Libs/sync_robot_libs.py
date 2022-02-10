@@ -15,6 +15,25 @@ class Sync_robot:
              dataColumns=None,
              phoneStatus=None,
              numberCount=0, needCallPlan=False, canCover=False, way=None, gatewayId=None, surveyId=None):
+        """
+
+        :param gatewayname: 计划名称
+        :param out_id: 计划ID
+        :param headers: 用户信息
+        :param pids: pid数量
+        :param pages: 页码
+        :param seach_value: 搜索传参
+        :param Quota: 扣点方式
+        :param dataColumns: 号码类型
+        :param phoneStatus: 过滤方式
+        :param numberCount: 转移号码方式
+        :param needCallPlan: 是否需要创建外呼计划
+        :param canCover: 重复号码是否导入
+        :param way: 模块
+        :param gatewayId: 外呼线路
+        :param surveyId: 话术id
+        :return:
+        """
         true = True
         false = False
         if phoneStatus is None:

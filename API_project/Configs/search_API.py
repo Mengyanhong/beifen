@@ -17,9 +17,9 @@ class search:
         :return:
         """
         if headers is not None:
-            header = self.user.headers()
-        else:
             header = headers
+        else:
+            header = self.user.headers()
         if module == 'shop_search_list':
             payload = {'shopId': id}
             clue_path = 'shopClue'
@@ -74,7 +74,7 @@ class search:
                               "filterSyncRobot": filterSyncRobot, "hasBuildingCert": "0",
                               "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
                               "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
-                   "pagesize": 10, "page": 3}
+                   "pagesize": 10, "page": 4}
         if headers == None:
             header = self.user.headers()
         else:

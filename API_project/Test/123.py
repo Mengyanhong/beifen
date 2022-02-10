@@ -89,3 +89,5 @@ print(socialSecNum.strip("人"))
 a = {'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*',
      'Connection': 'keep-alive', 'platform': 'IK', 'usertoken': 'Token token=268e61a4c41e4be9d7be7c7bf90bf116',
      'Content-Type': 'application/json', 'crmplatformtype': 'lixiaoyun'}
+content_list_type1 = []
+print(len(content_list_type1))

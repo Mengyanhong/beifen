@@ -22,7 +22,7 @@ class user:
             app_token = 'a14cc8b00f84e64b438af540390531e4'
             Token_value = '18033bf7b969d9b12ef830c66c1f2464'
             platform = 'lixiaoyun'
-            gatewayId = "9203"
+            gatewayId = 9683
         else:
             print('传参错误')
             app_token = None
