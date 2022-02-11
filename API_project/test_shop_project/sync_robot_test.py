@@ -509,7 +509,7 @@ class Test_sync_robot:
         user_Qu_test = 0
         if resp_sync['error_code'] == 0:
             for data_value in range(200):
-                stattime = time.time()
+                # stattime = time.time()
                 time.sleep(2.2)
                 if way == 'search_list':
                     response_list = search.skb_search().json()

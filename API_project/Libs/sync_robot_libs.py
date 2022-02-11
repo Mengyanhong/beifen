@@ -44,7 +44,7 @@ class Sync_robot:
             dataColumn = [0]
         else:
             dataColumn = dataColumns
-
+        gatewayId = self.User.user_key()["gatewayId"]
         payload = {
             "way": way,
             "from": "syncRobot",
@@ -67,10 +67,7 @@ class Sync_robot:
             "customers_ids": [],
             "platform": "IK"
         }
-        if self.host_test == 'lxcrm':
-            gatewayId = self.User.user_key()["gatewayId"]
-        else:
-            gatewayId = gatewayId
+
         gatewayId_value = {
             "plan_name": gatewayname,
             "survey_id": surveyId,

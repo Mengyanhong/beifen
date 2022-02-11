@@ -12,7 +12,7 @@ class user:
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
             Token_value = "ad99f29c019e31af42ae5aa5b3db90ec"
             platform = 'lixiaoyun'
-            gatewayId = None
+            gatewayId = 1181
         elif self.test == 'staging':  # 17388888888,Ik123456
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
             Token_value = 'b1a2727816c5a1bd7405a545e0927e81'
