@@ -91,11 +91,64 @@ class Excel_Files:
                     case_list.append((request_value, response_value, Sizer_name_valu))  # 若不进行筛选 直接将用例入参和出餐写入用例表格
         return case_list
 
+    def open_case2(self, request_name='入参', response_name='出餐', Sizer_name='用例标题', Sizer_name_v='前置条件', Sizer_value=[]):
+        '''
+        :param request_name: 入参表头
+        :param response_name: 出参表头
+        :param Sizer_name: 用例标题表头
+        :param Sizer_value: 用例标题
+        :return: 用例
+        '''
+        case_list = []
+        Sizer_name_len = len(
+            self.sheel_file[self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(request_name)]])
+        # print(
+        #     len(self.sheel_file[self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(request_name)]])) #打印用例数量含空用例
+        for i in range(Sizer_name_len):  # 通过用例索引循环全部用例
+            Sizer_name_value = (self.sheel_file[
+                str(self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(request_name)]) + str(
+                    i + 1)]).value  # 获取用例标题
+            Sizer_name_valu = (self.sheel_file[
+                str(self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(response_name)]) + str(
+                    i + 1)]).value  # 获取用例标题
+
+            if Sizer_name_value is not None and Sizer_name_value != Sizer_name:  # 判断用例标题不为空 跳过第一行标题
+                response_value = (self.sheel_file[
+                    self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(response_name)] + str(
+                        i + 1)]).value  # 通过响应索获取响应内容
+                request_value = (self.sheel_file[
+                    self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(request_name)] + str(
+                        i + 1)]).value  # 通过请求索获取请求内容
+                #     continue
+                if isinstance(request_value, str):  # 首先判断变量是否为字符串
+                    try:
+                        congig_text = json.loads(request_value)  #
+                    except ValueError:
+                        request_value = request_value
+                    else:
+                        request_value = congig_text
+                if isinstance(response_value, str):  # 首先判断变量是否为字符串
+                    try:
+                        congig_text = json.loads(response_value)  #
+                    except ValueError:
+                        response_value = response_value
+                    else:
+                        response_value = congig_text
+                if Sizer_value != []:  # 判断用例筛选不为空
+                    if Sizer_name_value in Sizer_value:  # 判断用例符合筛选内容
+                        case_list.append((request_value, response_value))  # 将用例入参和出餐写入用例表格
+                else:
+                    case_list.append((request_value, response_value))  # 若不进行筛选 直接将用例入参和出餐写入用例表格
+        return case_list
 
 if __name__ == '__main__':
     print(sys.path[0])
     EXcel_file = Excel_Files(file_name="联系方式渠道配置.xlsx", sheel="联系方式渠道配置")
     # EXcel_file = Excel_Files(file_name="search_keyword.xlsx", sheel="search_keyword")
-    print(EXcel_file.excel_index(index="pid"))
-    # print(EXcel_file.open_file_rows("name"))
-    print(EXcel_file.open_file_rows("entName"))
+
+    EXcel_file = Excel_Files(file_name="联系方式渠道配置test.xlsx", sheel="联系方式渠道配置").open_case2(request_name="name", response_name="value",
+                                                                           Sizer_name="name")[90:100]
+    print(EXcel_file)
+    # print(EXcel_file.excel_index(index="pid"))
+    # # print(EXcel_file.open_file_rows("name"))
+    # print(EXcel_file.open_file_rows("entName"))

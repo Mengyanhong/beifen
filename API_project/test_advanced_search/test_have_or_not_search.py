@@ -5,8 +5,10 @@ import pytest, openpyxl, time
 # from API_project.Configs.config_API import configuration_file
 from API_project.Configs.search_API import search, getCompanyBaseInfo
 from API_project.tools.get_yaml_set import get_yaml_data
+from API_project.tools.install_Excel import install_Excel
 
-HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+file_name = time.strftime("%Y年%m月%d日%H时%M分")
+HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 RiskInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['RiskInfo']
 InterpersonalRelations_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')[
     'InterpersonalRelations']
@@ -14,7 +16,12 @@ Development_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.y
 BaseInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['BaseInfo']
 contacts_num_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['contacts_num']
 from API_project.tools.Excelread import Excel_Files
-
+headersss = {
+                'app_token': 'f6620ff6729345c8b6101174e695d0ab',
+                'authorization': 'Token token=503ecbad1cfb9ac85d2da95c63ea9a47',
+                'content-type': 'application/json',
+                'crm_platform_type': 'ikcrm'
+            }
 
 # excel_file = Excel_Files(file_name="nianbao.xlsx", sheel="pid")  # 实例化Excel用例文件
 
@@ -144,6 +151,192 @@ class Test_have_or_not_search:
             assert "hasAnnu" not in es_result.keys() or es_result["hasAnnu"] is False
             assert "hasAnnualInvestment" not in es_result.keys() or es_result["hasAnnualInvestment"] is False
 
+    # 参展信息抽查
+    # @pytest.mark.parametrize('pid',
+    #                          Excel_Files(file_name="聚合查询.xlsx", sheel="聚合查询").open_file_rows("_id.PID")[5500:6000:3])
+    @pytest.mark.parametrize('pid',
+                             Excel_Files(file_name="参展信息聚合查询大于10条.xlsx", sheel="聚合查询").open_file_rows("_id.PID")[1:20])
+    # @pytest.mark.parametrize('pid',
+    #                          Excel_Files(file_name="TradeShowEnts.xlsx", sheel="TradeShowEnts").open_file_rows("PID")[5500:6000:3])
+    def test_TradeShow(self, pid, ES):  # 企业发展页面+详情页/ES数据对比
+        install_files = install_Excel(file_name="参展信息3", file_title_name=file_name)  # 实例化测试报告文件
+        if install_files.read_sum() == 1 and install_files.read_one_value() is None:
+            install_files.install(row=1, column=1, value='pid')
+            install_files.install(row=1, column=2, value='断言字段')
+            install_files.install(row=1, column=3, value='测试结果')
+            install_files.install(row=1, column=4, value='测试数据')
+        time.sleep(2.1)
+        details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=pid, section='ManageInfo', headers=headersss).json()
+        totals = details_response['data']["TradeShow"]['total']
+        TradeShow_startDatess = None
+        TradeShow_endDatess = None
+        TradeShow_namess = None
+        try:
+            es_result = ES.get(index="company_info_prod", id=pid)['_source']
+        except:
+            es_result = None
+        if es_result is not None and "entName" in es_result.keys():
+            startDate_list = []
+            if totals != 0:
+                totalsvaluesum = 0
+                for AnnualReport_items_id in details_response['data']['TradeShow']['items']:
+                    TradeShow_startDates = AnnualReport_items_id["startDate"]
+                    TradeShow_endDates = AnnualReport_items_id["endDate"]
+                    TradeShow_names = AnnualReport_items_id["name"]
+                    if totalsvaluesum == 0:
+                        TradeShow_startDatess = TradeShow_startDates
+                        TradeShow_endDatess = TradeShow_endDates
+                        TradeShow_namess = TradeShow_names
+
+                    if TradeShow_startDates != "":
+                        startDate_list.append(
+                            time.strftime("%Y-%m-%d", time.localtime(int(AnnualReport_items_id["startDate"]) / 1000)))
+                    else:
+                        row_sum = install_files.read_sum() + 1
+                        install_files.install(row=row_sum, column=1, value=pid)
+                        install_files.install(row=row_sum, column=2, value='startDate')
+                        install_files.install(row=row_sum, column=3, value='startDate为空')
+                    totalsvaluesum += 1
+
+                if 10 < totals:
+                    totals_num = round(totals // 10)
+                    totals_nums = round(totals / 10, 2)
+                    if totals_nums > totals_num:
+                        totals_num = totals_num + 2
+                    else:
+                        totals_num = totals_num + 1
+                    for totalss in range(2, totals_num):
+                        time.sleep(3)
+                        details_responses = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=pid,
+                                                                                       section='ManageInfo',
+                                                                                       label='TradeShow',
+                                                                                       page=totalss, headers=headersss).json()
+                        for AnnualReport_items_ids in details_responses['data']['TradeShow']['items']:
+                            if AnnualReport_items_ids["startDate"] != "":
+                                startDate_list.append(time.strftime("%Y-%m-%d", time.localtime(
+                                    int(AnnualReport_items_ids["startDate"]) / 1000)))
+                            else:
+                                row_sum = install_files.read_sum() + 1
+                                install_files.install(row=row_sum, column=1, value=pid)
+                                install_files.install(row=row_sum, column=2, value='startDate')
+                                install_files.install(row=row_sum, column=3, value='startDate为空')
+
+                if not details_response['data']["TradeShow"]['items']:
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='total')
+                    install_files.install(row=row_sum, column=3, value='total不为空但是没有相应的展会数据')
+                assert details_response['data']["TradeShow"]['items'] != []
+                if "hasTradeShow" not in es_result.keys() or es_result["hasTradeShow"] is False:
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='hasTradeShow')
+                    install_files.install(row=row_sum, column=3, value='有展会数据但是搜索不到')
+                    install_files.install(row=row_sum, column=4, value=str(es_result["hasTradeShow"]))
+                assert "hasTradeShow" in es_result.keys() and es_result["hasTradeShow"] is True
+                tradeShowStartDate_list = []
+                if es_result["tradeShowStartDate"] is not None and "tradeShowStartDate" in es_result.keys():
+                    for es_ti in es_result["tradeShowStartDate"]:
+                        # print(type(es_ti))
+                        # print(time.strftime("%Y-%m-%d", time.localtime(es_ti)))
+                        if es_ti is not None:
+                            tradeShowStartDate_list.append(time.strftime("%Y-%m-%d", time.localtime(int(es_ti) / 1000)))
+                baseinfo_ES = set(startDate_list).difference(set(tradeShowStartDate_list))
+                ES_baseinfo = set(tradeShowStartDate_list).difference(set(startDate_list))
+                # print(startDate_list)
+                # print(tradeShowStartDate_list)
+                if len(baseinfo_ES) != 0:
+                    print('详情页有ES没有', baseinfo_ES)
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='tradeShowStartDate')
+                    install_files.install(row=row_sum, column=3, value='ES没有详情页有')
+                    install_files.install(row=row_sum, column=4, value=str(baseinfo_ES))
+                # assert len(baseinfo_ES) == 0
+                if len(ES_baseinfo) != 0:
+                    print('ES有详情页没有', ES_baseinfo)
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='tradeShowStartDate')
+                    install_files.install(row=row_sum, column=3, value='ES有详情页没有')
+                    install_files.install(row=row_sum, column=4, value=str(ES_baseinfo))
+                # assert len(ES_baseinfo) == 0
+            else:
+                if "hasTradeShow" in es_result.keys() and es_result["hasTradeShow"] is not False:
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='hasTradeShow')
+                    install_files.install(row=row_sum, column=3, value='hasTradeShow搜索错误')
+                    install_files.install(row=row_sum, column=4, value=es_result["hasTradeShow"])
+                if details_response['data']["TradeShow"]['total'] != 0 or details_response['data']["TradeShow"][
+                    'items'] != []:
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='total')
+                    install_files.install(row=row_sum, column=3, value='搜索结果不为空')
+                # assert es_result["hasTradeShow"] is False or "hasTradeShow" not in es_result.keys()
+                # assert es_result["tradeShowStartDate"] == [] or es_result["tradeShowStartDate"] is None or "tradeShowStartDate" not in es_result.keys()
+                assert details_response['data']["TradeShow"]['total'] == 0
+                assert details_response['data']["TradeShow"]['items'] == []
+
+            if TradeShow_startDatess != '' and TradeShow_startDatess is not None:
+                TradeShow_startDatesss = time.strftime("%Y-%m-%d", time.localtime(int(TradeShow_startDatess) / 1000))
+            else:
+                TradeShow_startDatesss = None
+            if TradeShow_endDatess != '' and TradeShow_endDatess is not None:
+                TradeShow_endDatesss = time.strftime("%Y-%m-%d", time.localtime(int(TradeShow_endDatess) / 1000))
+            else:
+                TradeShow_endDatesss = None
+            if TradeShow_namess != '' and TradeShow_namess is not None:
+                TradeShow_namesss = TradeShow_namess
+            else:
+                TradeShow_namesss = None
+            if "latestTradeShowStartTime" in es_result.keys() and es_result["latestTradeShowStartTime"] is not None:
+                latestTradeShowStartTime = es_result["latestTradeShowStartTime"]
+            else:
+                latestTradeShowStartTime = None
+            if "latestTradeShowEndTime" in es_result.keys() and es_result["latestTradeShowEndTime"] is not None:
+                latestTradeShowEndTime = es_result["latestTradeShowEndTime"]
+            else:
+                latestTradeShowEndTime = None
+            if "latestTradeShowNameRaw" in es_result.keys() and es_result["latestTradeShowNameRaw"] is not None:
+                latestTradeShowNameRaw = es_result["latestTradeShowNameRaw"]
+            else:
+                latestTradeShowNameRaw = None
+            if "tradeShowCount" in es_result.keys() and es_result["tradeShowCount"] is not None:
+                tradeShowCount = es_result["tradeShowCount"]
+            else:
+                tradeShowCount = 0
+            if TradeShow_startDatesss != latestTradeShowStartTime:
+                row_sum = install_files.read_sum() + 1
+                install_files.install(row=row_sum, column=1, value=pid)
+                install_files.install(row=row_sum, column=2, value='latestTradeShowStartTime')
+                install_files.install(row=row_sum, column=3, value='开始时间不相等')
+                install_files.install(row=row_sum, column=4, value=latestTradeShowStartTime)
+            if TradeShow_endDatesss != latestTradeShowEndTime:
+                row_sum = install_files.read_sum() + 1
+                install_files.install(row=row_sum, column=1, value=pid)
+                install_files.install(row=row_sum, column=2, value='latestTradeShowEndTime')
+                install_files.install(row=row_sum, column=3, value='结束时间不相等')
+                install_files.install(row=row_sum, column=4, value=latestTradeShowEndTime)
+            if latestTradeShowNameRaw != TradeShow_namesss:
+                row_sum = install_files.read_sum() + 1
+                install_files.install(row=row_sum, column=1, value=pid)
+                install_files.install(row=row_sum, column=2, value='latestTradeShowNameRaw')
+                install_files.install(row=row_sum, column=3, value='展会名称不相等')
+                install_files.install(row=row_sum, column=4, value=latestTradeShowNameRaw)
+            if int(tradeShowCount) != int(totals):
+                print()
+                row_sum = install_files.read_sum() + 1
+                install_files.install(row=row_sum, column=1, value=pid)
+                install_files.install(row=row_sum, column=2, value='tradeShowCount')
+                install_files.install(row=row_sum, column=3, value='展会数量不相等')
+                install_files.install(row=row_sum, column=4, value=tradeShowCount)
+            assert int(tradeShowCount) == int(totals)
+            assert latestTradeShowNameRaw == TradeShow_namesss
+            assert TradeShow_endDatesss == latestTradeShowEndTime
+            assert TradeShow_startDatesss == latestTradeShowStartTime
+
     # 风险信息
     @pytest.mark.parametrize('cv_key', [False, True])
     @pytest.mark.parametrize('RiskInfo_search_conditions_value', RiskInfo_search_conditions)
@@ -259,7 +452,7 @@ class Test_ManageInfo:
         # }
         time.sleep(2.2)
         pid_list = []
-        pid_responst = search(HOST).advanced_search(cv=cv,  page=10, pagesize=10).json()['data']['items']
+        pid_responst = search(HOST).advanced_search(cv=cv, page=10, pagesize=10).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append(pid['id'])
@@ -310,7 +503,8 @@ class Test_ManageInfo:
                     assert "licenseCount" not in es_result.keys() or es_result["licenseCount"] == 0
                     assert "licenseOffice" not in es_result.keys() or es_result["licenseOffice"] == []
                     assert "licenseContent" not in es_result.keys() or es_result["licenseContent"] == []
-                    assert "adminLicense" not in es_result.keys() or es_result["adminLicense"] == [] or es_result["adminLicense"] is None
+                    assert "adminLicense" not in es_result.keys() or es_result["adminLicense"] == [] or es_result[
+                        "adminLicense"] is None
             if cv_key == True:
                 assert details_response['data'][ManageInfo_value['detail_data']]['total'] != 0
                 assert details_response['data'][ManageInfo_value['detail_data']]['items'] != []
@@ -347,7 +541,7 @@ class Test_ManageInfo:
             ES_licenseCount = es_result["licenseCount"]  # 许可数量
             ES_licAnth_list = es_result["licenseOffice"]  # 许可机关
             ES_licItem_list = es_result["licenseContent"]  # 许可内容
-            if es_result["adminLicense"] !=[] and es_result["adminLicense"] is not None:
+            if es_result["adminLicense"] != [] and es_result["adminLicense"] is not None:
                 for ES_value in es_result["adminLicense"]:
                     ES_valFrom_list.append(ES_value["createDate"])
                     ES_valTo_list.append(ES_value["expireDate"])
@@ -374,10 +568,10 @@ class Test_ManageInfo:
             assert "licenseCount" not in es_result.keys() or es_result["licenseCount"] == 0
             assert "licenseOffice" not in es_result.keys() or es_result["licenseOffice"] == []
             assert "licenseContent" not in es_result.keys() or es_result["licenseContent"] == []
-            assert "adminLicense" not in es_result.keys() or es_result["adminLicense"] == [] or es_result["adminLicense"] is  None
+            assert "adminLicense" not in es_result.keys() or es_result["adminLicense"] == [] or es_result[
+                "adminLicense"] is None
             assert details_response['data']['AdministrativeLicense']['total'] == 0
             assert details_response['data']['AdministrativeLicense']['items'] == []
-
 
 # if __name__ == '__main__':
 #     print(getCompanyBaseInfo(HOST).getEntSectionInfo_RiskInfo_subset(

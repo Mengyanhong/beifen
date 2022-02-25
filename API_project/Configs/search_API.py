@@ -27,32 +27,33 @@ class search:
             payload = {'pid': id}
             clue_path = 'clue'
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts_num'
-        response = requests.get(url, params=payload, headers=header)
+        response = requests.get(url=url, params=payload, headers=header)
         return response
 
-    def skb_contacts(self, entName, module='shop_search_list', headers=None, id=None):  # 查询联系方式
+    def skb_contacts(self, entName, module=None, headers=None, id=None):  # 查询联系方式
         """
         :param headers: 用户信息
         :param pid: 企业pid/店铺id
         :return:
         """
-        if module == 'shop_search_list':
-            payload = {'shopId': id,
-                       'source': 'shop_search_list',
-                       'shopName': entName}
-            clue_path = 'shopClue'
-            header = self.user.headers()
+        if headers is not None:
+            header = headers
         else:
-            payload = {'pid': id,
-                       'source': 'advance_search_detail',
-                       'entName': entName}
-            clue_path = 'clue'
             header = self.user.headers()
+        if module == 'shop_search_list':
+            clue_path = 'shopClue'
+            sources = 'shop_search_list'
+        else:
+            clue_path = 'clue'
+            sources = 'search_detail'
+        payload = {'pid': id,
+                   'source': sources,
+                   'entName': entName}
 
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts'
-
-        response = requests.get(url, params=payload, headers=header)
+        response = requests.get(url=url, params=payload, headers=header)
         return response
+
 
     def skb_search(self, headers=None, keyword="天津", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """
@@ -208,7 +209,10 @@ class search:
         else:
             data = json.loads(r.text)['data']
             return data
-
+# if __name__ == '__main__':
+#     a = search('test').skb_contacts(id='b5762ab2d44d7bd35fb6a7ea12fd3d4a', entName='北京恒发嘉业展览展示有限公司',
+#                                                             module='search_detail')
+#     print(a.json())
 
 class getCompanyBaseInfo:
     def __init__(self, test):
@@ -227,29 +231,37 @@ class getCompanyBaseInfo:
                               headers=self.user.headers())
         return re_tag
 
-    def getEntSectionInfo(self, pid, section, headers = None):  # 企业详情一级菜单
+    def getEntSectionInfo(self, pid, section, label=None, page=None, headers=None):  # 企业详情一级菜单
         '''
 
-        :param pid:  #企业pid
-        :param section:  #菜单选择，Development：企业发展,RiskInfo:风险信息, ManageInfo:经营情况
+        :param pid: #企业pid
+        :param section: #菜单选择，Development：企业发展,RiskInfo:风险信息, ManageInfo:经营情况
+        :param label: #数据维度，TradeShow：参展
+        :param page: #翻页页码
+        :param headers:
         :return:
         '''
+
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
-        params = {'id': f'{pid}',
-                  'section': section,
-                  'version': 'v2'
-                  }
-        if headers == None:
+        if page is not None:
+            params = {'id': f'{pid}',
+                      'label': label,
+                      'page': page,
+                      'section': section,
+                      'version': 'v2'
+                      }
+        else:
+            params = {'id': f'{pid}',
+                      'section': section,
+                      'version': 'v2'
+                      }
+        if headers is None:
             header = self.user.headers()
         else:
             header = headers
         response = requests.get(url, params=params,
                                 headers=header, verify=False)
         return response
-# if __name__ == '__main__':
-#     re = getCompanyBaseInfo("test").getEntSectionInfo(pid="47df1dc4ade329964b2ea0f69ee7b8da",
-#                       section='ManageInfo').json()
-#     print(re)
 
     def getAnnualReportDetail(self, annualReportId):  # 年报详情获取
         '''
@@ -262,6 +274,7 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=self.user.headers())
         return response
+
 
     def getEntSectionInfo_ManageInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
@@ -276,6 +289,7 @@ class getCompanyBaseInfo:
                               headers=self.user.headers())
         return re_tag
 
+
     def getEntSectionInfo_IPR(self, pid, templateSuppiler):  # 知识产权_建站方筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
         params = {'id': f'{pid}',
@@ -289,12 +303,14 @@ class getCompanyBaseInfo:
                               headers=self.user.headers())
         return re_tag
 
+
     def getWebsiteInfo(self, _id):  # 知识产权_建站方_详情
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getWebsiteInfo?'
         params = {'id': f'{_id}'}
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
         return re_tag
+
 
     def getEntSectionInfo_RiskInfo_subset(self, pid, page=1, subset='EndBookInfo'):  # 风险信息子菜单_详情
         '''
@@ -316,6 +332,7 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
+
     def getEntSectionInfo_InterpersonalRelations(self, pid):  # 员工人脉_详情
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
         params = {'id': f'{pid}',
@@ -326,6 +343,7 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=self.user.headers())
         return response
+
 
     def getEntSectionInfo_InterpersonalRelations_subset(self, pid, page=1, subset='Maimai'):  # 员工人脉子菜单_详情
         '''
@@ -347,12 +365,37 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=self.user.headers())
         return response
-
-
-if __name__ == '__main__':
-    pprint.pprint(
-        getCompanyBaseInfo('test').getCompanyBase(pid='c495bbe252bd24337b88ad8f355dedeb').json()['data']['tags'])
+#
+# if __name__ == '__main__':
+#     pprint.pprint(
+#         getCompanyBaseInfo('test').getCompanyBase(pid='c495bbe252bd24337b88ad8f355dedeb').json()['data']['tags'])
 
 # if __name__ == '__main__':
 #     print(getCompanyBaseInfo('test').getEntSectionInfo_RiskInfo_subset(
 #         pid='90c2f9836fe55b385f877f629bc59aee', subset='Executor').json())
+# import time
+# if __name__ == '__main__':
+#     re = getCompanyBaseInfo("test").getEntSectionInfo(pid="958c3be9812d5c13cb4d15eeacc6c793",
+#                                                       section='ManageInfo',label='TradeShow',page=2).json()
+#     print(re)
+#     totals = re['data']["TradeShow"]['total']
+#     startDate_list = []
+#     if 10 < totals:
+#         totals_num = round(totals // 10)
+#         totals_nums = round(totals / 10, 2)
+#         if totals_nums > totals_num:
+#             totals_num+=2
+#         print(totals_num)
+#         print(totals_nums)
+#         for totalss in range(2, totals_num):
+#             print(totalss)
+#             details_responses = getCompanyBaseInfo("test").getEntSectionInfo(pid="958c3be9812d5c13cb4d15eeacc6c793",
+#                                                                            section='ManageInfo',
+#                                                                            label='TradeShow',
+#                                                                            page=totalss).json()
+#             print(details_responses)
+#             for AnnualReport_items_ids in details_responses['data']['TradeShow']['items']:
+#                 if AnnualReport_items_ids["startDate"] != "":
+#                     startDate_list.append(time.strftime("%Y-%m-%d", time.localtime(
+#                         int(AnnualReport_items_ids["startDate"]) / 1000)))
+#     print(startDate_list)

@@ -173,7 +173,7 @@ class Test_techTypeCompany:  # 企业发展
 
 
 class Test_contact_way:  # 联系方式
-    @pytest.mark.parametrize('cn_key', ["fixedSource"])  # 联系方式渠道"contactSource", "mobileSource", "fixedSource"
+    @pytest.mark.parametrize('cn_key', ["contactSource", "mobileSource", "fixedSource"])  # 联系方式渠道"contactSource", "mobileSource", "fixedSource"
     @pytest.mark.parametrize('cv_key', recruitPlatform_config['contactSource']['cr']['options'])  # 联系方式渠道
     @pytest.mark.parametrize('contactSiteSourceMap_search_value', staticConfig_list)
     def test_contacts_channel(self, cn_key, cv_key,
@@ -189,7 +189,7 @@ class Test_contact_way:  # 联系方式
         cv = [{"cn": cn_key, "cr": cv_key["value"], "cv": [contactSiteSourceMap_search_value["name"]]}]
         pid_list = []
         time.sleep(2.2)
-        pid_responst = search(HOST).advanced_search(cv=cv, page=1, pagesize=1).json()['data']['items']
+        pid_responst = search(HOST).advanced_search(cv=cv, page=1, pagesize=2).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append({'pid': pid['id'], 'entName': pid['name']})
