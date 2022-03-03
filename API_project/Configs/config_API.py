@@ -171,9 +171,13 @@ class configuration_file:  # 配置文件调用
         data = r.json()['data']
         return data
 
-    def shopCategory(self):  # 店铺分类（shopCategory）配置
+    def shopCategory(self, headers = None):  # 店铺分类（shopCategory）配置
+        if headers is None:
+            headers = self.user.headers()
+        else:
+            headers = headers
         path = 'companyDetail/staticConfig?namespace=shopCategory'
-        r = requests.get(configuration_file(self.test).url() + path, headers=self.user.headers())
+        r = requests.get(configuration_file(self.test).url() + path, headers=headers)
         data = r.json()['data']
         return data
 

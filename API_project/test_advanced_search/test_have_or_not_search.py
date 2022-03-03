@@ -171,31 +171,38 @@ class Test_have_or_not_search:
         TradeShow_startDatess = None
         TradeShow_endDatess = None
         TradeShow_namess = None
+        TradeShow_names_list = []
+        startDate_list = []
         try:
             es_result = ES.get(index="company_info_prod", id=pid)['_source']
         except:
             es_result = None
         if es_result is not None and "entName" in es_result.keys():
-            startDate_list = []
             if totals != 0:
                 totalsvaluesum = 0
                 for AnnualReport_items_id in details_response['data']['TradeShow']['items']:
                     TradeShow_startDates = AnnualReport_items_id["startDate"]
                     TradeShow_endDates = AnnualReport_items_id["endDate"]
                     TradeShow_names = AnnualReport_items_id["name"]
-                    if totalsvaluesum == 0:
+                    if totalsvaluesum == 0:  # 获取最近的一条展会信息
                         TradeShow_startDatess = TradeShow_startDates
                         TradeShow_endDatess = TradeShow_endDates
                         TradeShow_namess = TradeShow_names
-
                     if TradeShow_startDates != "":
                         startDate_list.append(
-                            time.strftime("%Y-%m-%d", time.localtime(int(AnnualReport_items_id["startDate"]) / 1000)))
+                            time.strftime("%Y-%m-%d", time.localtime(int(TradeShow_startDates) / 1000)))
                     else:
                         row_sum = install_files.read_sum() + 1
                         install_files.install(row=row_sum, column=1, value=pid)
                         install_files.install(row=row_sum, column=2, value='startDate')
                         install_files.install(row=row_sum, column=3, value='startDate为空')
+                    if TradeShow_names != "":
+                        TradeShow_names_list.append(TradeShow_names)
+                    else:
+                        row_sum = install_files.read_sum() + 1
+                        install_files.install(row=row_sum, column=1, value=pid)
+                        install_files.install(row=row_sum, column=2, value='name')
+                        install_files.install(row=row_sum, column=3, value='name为空')
                     totalsvaluesum += 1
 
                 if 10 < totals:
@@ -220,6 +227,13 @@ class Test_have_or_not_search:
                                 install_files.install(row=row_sum, column=1, value=pid)
                                 install_files.install(row=row_sum, column=2, value='startDate')
                                 install_files.install(row=row_sum, column=3, value='startDate为空')
+                            if AnnualReport_items_ids["name"] != "":
+                                TradeShow_names_list.append(AnnualReport_items_ids["name"])
+                            else:
+                                row_sum = install_files.read_sum() + 1
+                                install_files.install(row=row_sum, column=1, value=pid)
+                                install_files.install(row=row_sum, column=2, value='name')
+                                install_files.install(row=row_sum, column=3, value='name为空')
 
                 if not details_response['data']["TradeShow"]['items']:
                     row_sum = install_files.read_sum() + 1

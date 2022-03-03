@@ -141,14 +141,68 @@ class Excel_Files:
                     case_list.append((request_value, response_value))  # 若不进行筛选 直接将用例入参和出餐写入用例表格
         return case_list
 
+    def open_case3(self, *Sizer_row_value, request_name='入参', response_name='出餐', Sizer_column_value=[]):
+        '''
+        :param request_name: 入参表头
+        :param response_name: 出参表头
+        :param Sizer_name: 用例标题表头
+        :param Sizer_value: 用例标题
+        :return: 用例
+        '''
+        # print(Sizer_row_value)
+        case_list = []
+        max_rows = self.sheel_file.max_row + 1
+        # print(max_rows)
+        request_value_test = None
+        # print(
+        #     len(self.sheel_file[self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(request_name)]])) #打印用例数量含空用例
+        for i in range(2,max_rows):  # 通过用例索引循环全部用例
+            request_value = (self.sheel_file[
+                self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(request_name)] + str(
+                    i)]).value  # 通过请求索获取请求内容
+            if request_value is not None:
+                request_value_test = request_value
+            # if isinstance(request_value_test, str):  # 首先判断变量是否为字符串
+            #     try:
+            #         request_value_test = json.loads(request_value_test)  #
+            #     except ValueError:
+            #         request_value_test = request_value_test
+            # if isinstance(response_value, str):  # 首先判断变量是否为字符串
+            #     try:
+            #         response_value = json.loads(response_value)  #
+            #     except ValueError:
+            #         response_value = response_value
+
+            if Sizer_row_value:  # 判断用例筛选不为空
+                if request_value_test in Sizer_row_value:  # 判断用例符合筛选内容
+                    response_value = (self.sheel_file[
+                        self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(response_name)] + str(
+                            i)]).value  # 通过响应索获取响应内容
+                    if response_value is not None:
+                        case_list.append({"categoryL1_value": request_value_test, "categoryL2_value": response_value})
+                        # case_list.append((request_value_test, response_value))  # 将用例入参和出餐写入用例表格
+                else:
+                    break
+            else:
+                response_value = (self.sheel_file[
+                    self.sheet_header[Excel_Files(self.file_name, self.sheel).excel_index(response_name)] + str(
+                        i)]).value  # 通过响应索获取响应内容
+                if response_value is not None:
+                    case_list.append({"categoryL1_value": request_value_test, "categoryL2_value": response_value})
+                # case_list.append((request_value, response_value))  # 若不进行筛选 直接将用例入参和出餐写入用例表格
+            # print(case_list)
+        return case_list
+
 if __name__ == '__main__':
     print(sys.path[0])
-    EXcel_file = Excel_Files(file_name="联系方式渠道配置.xlsx", sheel="联系方式渠道配置")
+    # EXcel_file = Excel_Files(file_name="联系方式渠道配置.xlsx", sheel="联系方式渠道配置")
     # EXcel_file = Excel_Files(file_name="search_keyword.xlsx", sheel="search_keyword")
+    excel_file = Excel_Files(file_name="店铺数据准备.xlsx", sheel="店铺分类")
+    file = excel_file.open_case3("美食", request_name="一级分类", response_name="二级分类")
 
-    EXcel_file = Excel_Files(file_name="联系方式渠道配置test.xlsx", sheel="联系方式渠道配置").open_case2(request_name="name", response_name="value",
-                                                                           Sizer_name="name")[90:100]
-    print(EXcel_file)
+    # EXcel_file = Excel_Files(file_name="联系方式渠道配置test.xlsx", sheel="联系方式渠道配置").open_case2(request_name="name", response_name="value",
+    #                                                                        Sizer_name="name")[90:100]
+    print(file)
     # print(EXcel_file.excel_index(index="pid"))
     # # print(EXcel_file.open_file_rows("name"))
     # print(EXcel_file.open_file_rows("entName"))

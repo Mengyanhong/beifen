@@ -53,6 +53,16 @@ def ES():
     yield es_client
 
 @pytest.fixture()
+def ES_test():
+    # es_client = Elasticsearch('es-cn-nif1oiv5w0009di0f.public.elasticsearch.aliyuncs.com:9200',
+    #                           http_auth=('lihexiang', 'Aa123456'))
+    # es_client = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200', #最新地址，prod
+    #                           http_auth=('mengyanhong', 'Aa123456'))
+    es_client = Elasticsearch('es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com:9200', #最新地址，test
+                              http_auth=('tester', 'tester_Aa123456'))
+    yield es_client
+
+@pytest.fixture()
 def date():
     def _date(bef_af,n):
         currentDate = datetime.date.today() #当前日期

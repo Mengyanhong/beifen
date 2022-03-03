@@ -35,7 +35,8 @@ for staticConfig_value in staticConfig_lists:
 
 
 class Test_contact:  # 联系方式
-    @pytest.mark.parametrize('cv_key', [True, False])  # 联系方式有无
+    # 联系方式有无
+    @pytest.mark.parametrize('cv_key', [True, False])
     @pytest.mark.parametrize('contacts_num_search_conditions_value',
                              get_yaml_data('../data/yaml/have_or_not_search.yaml')['contacts_num'])
     def test_contacts_num_search(self, cv_key,
@@ -153,14 +154,15 @@ class Test_contact:  # 联系方式
                 print('pid:', i, '判断条件错误', cv_key)
                 assert cv_key == False or cv_key == True
 
-    @pytest.mark.parametrize('cv_key', [True, False])  # 代理记账
-    @pytest.mark.parametrize('cn_key', ["isAgency", "hasNonAgency"])  # 代理记账
+    # 有无疑似代理记账，有无非疑似代理记账
+    @pytest.mark.parametrize('cv_key', [True, False])
+    @pytest.mark.parametrize('cn_key', ["isAgency", "hasNonAgency"])
     def test_contacts_Agency_search(self, cv_key, cn_key):  # 联系方式有无疑似代理记账+详情页数据对比case
         cv = [{"cn": cn_key, "cr": 'IS', "cv": cv_key}]
         print(cv)
         pid_list = []
         time.sleep(2.2)
-        pid_responst = search(HOST).advanced_search(cv=cv, page=3, pagesize=20).json()['data']['items']
+        pid_responst = search(HOST).advanced_search(cv=cv, page=5, pagesize=20).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append({'pid': pid['id'], 'entName': pid['name']})
@@ -214,13 +216,14 @@ class Test_contact:  # 联系方式
                 print('pid:', i, '判断条件错误', cv_key)
                 assert cv_key == False or cv_key == True
 
+    # 非代理记账号码类型
     @pytest.mark.parametrize('cr_key', ["IN", "NOT_IN"])
-    @pytest.mark.parametrize('cn_key', ["1", "2"])  # 非代理记账类型
+    @pytest.mark.parametrize('cn_key', ["1", "2"])
     def test_contacts_notAgency_search(self, cr_key, cn_key):  # 联系方式非代理记账类型+详情页数据对比case
         cv = [{"cn": "nonAgencyType", "cr": cr_key, "cv": [cn_key]}]
         pid_list = []
         time.sleep(2.2)
-        pid_responst = search(HOST).advanced_search(cv=cv, page=1, pagesize=20).json()['data']['items']
+        pid_responst = search(HOST).advanced_search(cv=cv, page=3, pagesize=20).json()['data']['items']
         if pid_responst:
             for pid in pid_responst:
                 pid_list.append({'pid': pid['id'], 'entName': pid['name']})

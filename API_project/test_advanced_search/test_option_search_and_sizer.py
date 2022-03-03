@@ -8,7 +8,6 @@ from API_project.Configs.search_API import search, getCompanyBaseInfo
 from API_project.tools.install_Excel import install_Excel
 
 file_name = time.strftime("%Y年%m月%d日%H时%M分")
-
 HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 recruitPlatform_config = configuration_file(HOST).conditionConfig()  # 实例化高级搜索配置并返回配置信息
 recruitPlatformOption_config = configuration_file(HOST).staticConfig_recruitPlatformOption()  # 实例化经营情况详情页筛选项配置并返回配置信息
