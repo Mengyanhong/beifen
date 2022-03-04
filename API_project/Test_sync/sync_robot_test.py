@@ -6,15 +6,16 @@ from pprint import pprint
 import requests, json, time, pytest, os, random
 from API_project.Configs.config_API import user
 from API_project.Configs.search_API import search
-from API_project.Configs.shop_API import shop
+from API_project.Configs.shop_API import shop_api
 from API_project.Libs.sync_robot_libs import Sync_robot
+from API_project.Libs.sync_config_libs import sync_config
 
 test_host = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 
 user = user(test_host)
 Sync_robot = Sync_robot(test_host)
 search = search(test_host)
-shop = shop(test_host)
+shop = shop_api(test_host)
 
 
 class Test_sync_robot:
@@ -443,53 +444,24 @@ class Test_sync_robot:
         :param page: None：转移所选, 500：转前500, 1000：转前1000, 2000：转前2000
         :return:
         """
+
         userinfo = user.skb_userinfo().json()
         user_Quota = userinfo['data']['uRemainQuota']  # 获取初始额度
         hasSmartSyncRoobot = userinfo['data']['hasSmartSyncRoobot']  # 获取账户类型是否灰测
 
         # 搜索未查看，未转机器人的数据，有固话
-        if way == 'search_list':
-            response = search.skb_search()
-            list_companyName_add = 'companyName'
-        elif way == 'advanced_search_list':
-            response = search.advanced_search()
-            list_companyName_add = 'companyName'
-        elif way == 'shop_search_list':
-            response = shop.search_shop()
-            list_companyName_add = 'name'
-        else:
-            response = search.skb_address_search(contact=2)
-            list_companyName_add = 'companyName'
+        sync_config_Api = sync_config(host=test_host, way=way)
+        search_values = sync_config_Api.search_value_list()
 
-        request_payloa = json.loads(response.request.body.decode("unicode_escape"))
-        response_value = response.json()
-        response.close()
-        if response_value['data'] == {}:
-            print(response_value['data'])
-            assert response_value['data'] != {}
-        elif response_value['data']['total'] == 0:
-            print(response_value['data'])
-            assert response_value['total'] != 0
-        else:
-            response_value = response_value
-        pid_list = []
-        company_name_list_pid = []
         if way is None:
             pid = None
             pages = 500
         elif page is None:
-            pid = pid_list
+            pid = search_values["pid_list"]
             pages = None
         else:
             pid = None
             pages = page
-
-        resp_items = response_value['data']['items']
-        if resp_items:
-            for i in resp_items:
-                pid_list.append(i['id'])
-                company_name_list_pid.append(
-                    {'pid': i['id'], 'company_name': i[list_companyName_add]})
 
         resp_out_sync = Sync_robot.robot_outcallplan().json()  # 获取外呼计划列表
         resp_out_sync_value = None
@@ -506,37 +478,24 @@ class Test_sync_robot:
         out_id = resp_out_sync_value["id"]
 
         resp_syn = Sync_robot.sync(pids=pid, pages=pages,
-                                   seach_value=request_payloa, canCover=canCover,
+                                   seach_value=search_values["payloads_request"], canCover=canCover,
                                    way=way, out_id=out_id, needCallPlan=True, dataColumns=dataColumns,
                                    numberCount=numberCounts)
         resp_sync = resp_syn.json()
         # resp_syn.close()
         user_Qus = 0
         if resp_sync['error_code'] == 0:
-            for data_value in range(200):
-                # stattime = time.time()
-                time.sleep(2.2)
-                if way == 'search_list':
-                    response_list = search.skb_search().json()
-                elif way == 'advanced_search_list':
-                    response_list = search.advanced_search().json()
-                elif way == 'shop_search_list':
-                    response_list = shop.search_shop().json()
-                else:
-                    response_list = search.skb_address_search().json()
-                if response_list['data'] != {}:
-                    # print('转移耗时', int(time.time() - stattime), 's')
-                    break
+            sync_config_Api.search_elapsed_time()
             user_Qu = user.skb_userinfo().json()['data']['uRemainQuota']
-            for i in company_name_list_pid:
+            for i in search_values["pid_companyName_list"]:
                 contacts_num = search.skb_contacts_num(id=i['pid'], module=way)
                 # print(contacts_num.request.headers)
                 contacts_num_list = contacts_num.json()['data']['contacts']  # 获取号码
                 if not contacts_num_list:
                     print('未获取联系方式,进行扣点获取', i)
                     contacts_num_list = \
-                    search.skb_contacts(id=i['pid'], module=way, entName=i['company_name']).json()['data'][
-                        'contacts']  # 获取号码
+                        search.skb_contacts(id=i['pid'], module=way, entName=i['company_name']).json()['data'][
+                            'contacts']  # 获取号码
                 content_list_type2 = []
                 content_list_type1 = []
                 for j in contacts_num_list:
@@ -613,7 +572,7 @@ class Test_sync_robot:
                                         print(i, '转移出错手机号全部被过滤\n过滤的手机', sync_robot_filter_list_type1, '\n条件',
                                               canCover, way, page, dataColumns, numberCounts)
                                     else:
-                                        print(i, '该企业无联系方式','\n条件',
+                                        print(i, '该企业无联系方式', '\n条件',
                                               canCover, way, page, dataColumns, numberCounts)
 
 

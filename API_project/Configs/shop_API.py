@@ -8,7 +8,7 @@ from API_project.Configs.config_API import user
 urllib3.disable_warnings()
 
 
-class shop:
+class shop_api:
     def __init__(self, test):
         self.user = user(test)
 

@@ -12,48 +12,62 @@ class search:
 
     def skb_contacts_num(self, module='shop_search_list', headers=None, id=None):  # 查询联系方式
         """
-        :param headers: 用户信息
-        :param pid: 企业pid/店铺id
+
+        :param module:
+        :param headers:
+        :param id:
         :return:
         """
-        if headers is not None:
-            header = headers
-        else:
-            header = self.user.headers()
+
+        payload = {'pid': id}
+        clue_path = 'clue'
+        if headers is None:
+            headers = self.user.headers()
         if module == 'shop_search_list':
             payload = {'shopId': id}
             clue_path = 'shopClue'
-        else:
-            payload = {'pid': id}
-            clue_path = 'clue'
+
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts_num'
-        response = requests.get(url=url, params=payload, headers=header)
+        response = requests.get(url=url, params=payload, headers=headers)
         return response
 
     def skb_contacts(self, entName, module=None, headers=None, id=None):  # 查询联系方式
         """
-        :param headers: 用户信息
-        :param pid: 企业pid/店铺id
+
+        :param entName:
+        :param module:
+        :param headers:
+        :param id:
         :return:
         """
-        if headers is not None:
-            header = headers
-        else:
-            header = self.user.headers()
-        if module == 'shop_search_list':
-            clue_path = 'shopClue'
-            sources = 'shop_search_list'
-        else:
-            clue_path = 'clue'
+
+        clue_path = 'clue'
+        if module == "search_list":
             sources = 'search_detail'
+        elif module == "advanced_search_list":
+            sources = 'advance_search_detail'
+        elif module == "map_search_list":
+            sources = 'map_search_detail'
+        elif module == "shop_search_list":
+            sources = 'shop_search_list'
+            clue_path = 'shopClue'
+        elif module == "industry_tags_search_list":
+            sources = 'industry_tags_search_detail'
+        elif module == "batch_search_list":
+            sources = 'batch_search_detail'
+        else:
+            sources = 'search_detail'
+
+        if headers is None:
+            headers = self.user.headers()
+
         payload = {'pid': id,
                    'source': sources,
                    'entName': entName}
 
         url = f'https://{self.user.skb_Host()}/api_skb/v1/{clue_path}/contacts'
-        response = requests.get(url=url, params=payload, headers=header)
+        response = requests.get(url=url, params=payload, headers=headers)
         return response
-
 
     def skb_search(self, headers=None, keyword="天津", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """
@@ -209,6 +223,8 @@ class search:
         else:
             data = json.loads(r.text)['data']
             return data
+
+
 # if __name__ == '__main__':
 #     a = search('test').skb_contacts(id='b5762ab2d44d7bd35fb6a7ea12fd3d4a', entName='北京恒发嘉业展览展示有限公司',
 #                                                             module='search_detail')
@@ -275,7 +291,6 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
-
     def getEntSectionInfo_ManageInfo(self, pid, sourceName):  # 经营情况_招聘平台筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
         params = {'id': f'{pid}',
@@ -288,7 +303,6 @@ class getCompanyBaseInfo:
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
         return re_tag
-
 
     def getEntSectionInfo_IPR(self, pid, templateSuppiler):  # 知识产权_建站方筛选
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
@@ -303,14 +317,12 @@ class getCompanyBaseInfo:
                               headers=self.user.headers())
         return re_tag
 
-
     def getWebsiteInfo(self, _id):  # 知识产权_建站方_详情
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getWebsiteInfo?'
         params = {'id': f'{_id}'}
         re_tag = requests.get(url, params=params,
                               headers=self.user.headers())
         return re_tag
-
 
     def getEntSectionInfo_RiskInfo_subset(self, pid, page=1, subset='EndBookInfo'):  # 风险信息子菜单_详情
         '''
@@ -332,7 +344,6 @@ class getCompanyBaseInfo:
                                 headers=self.user.headers())
         return response
 
-
     def getEntSectionInfo_InterpersonalRelations(self, pid):  # 员工人脉_详情
         url = f'https://{self.user.biz_url()}/api_skb/v1/companyDetail/getEntSectionInfo?'
         params = {'id': f'{pid}',
@@ -343,7 +354,6 @@ class getCompanyBaseInfo:
         response = requests.get(url, params=params,
                                 headers=self.user.headers())
         return response
-
 
     def getEntSectionInfo_InterpersonalRelations_subset(self, pid, page=1, subset='Maimai'):  # 员工人脉子菜单_详情
         '''
