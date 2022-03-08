@@ -1,4 +1,4 @@
-from API_project.Configs.config_API import user
+from API_project.Configs.Configuration import user
 import requests
 from pprint import pprint
 

@@ -1,6 +1,6 @@
 import pytest, time
 from API_project.Configs.shop_API import shop
-from API_project.Configs.config_API import configuration_file
+from API_project.Configs.Configuration import configuration_file
 from API_project.tools.Excelread import Excel_Files
 from pprint import pprint
 

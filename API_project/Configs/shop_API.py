@@ -3,14 +3,14 @@
 # @Author : 孟艳红
 # @File : shop_API.py,找店铺接口
 import requests, json, urllib3
-from API_project.Configs.config_API import user
+from API_project.Configs.Configuration import User_Config
 
 urllib3.disable_warnings()
 
 
 class shop_api:
     def __init__(self, test):
-        self.user = user(test)
+        self.user = User_Config(test)
 
     def search_shop(self, headers=None, shopName="", hasUnfolded=2, hasSyncClue=1, hasSyncRobot=1, cv=None):
         if cv is None:
@@ -24,13 +24,13 @@ class shop_api:
             hasSyncClue = hasSyncClue
         if hasSyncRobot != 1:
             hasSyncRobot = hasSyncRobot
-        url = f'https://{self.user.skb_Host()}/api_skb/v1/shop_search'
+        url = f'https://{self.user.skb_url_Host()}/api_skb/v1/shop_search'
         Request_payload = {"shopName": shopName, "hasUnfolded": hasUnfolded, "hasSyncClue": hasSyncClue,
                            "hasSyncRobot": hasSyncRobot,
                            "syncRobotRangeDate": [], "page": 1, "pagesize": 10,
                            "condition": {"cn": "composite", "cr": "MUST", "cv": cv}}
         if headers is None:
-            header = self.user.headers()
+            header = self.user.headers_skb()
         else:
             header = headers
         response = requests.post(url, headers=header, json=Request_payload)
@@ -71,13 +71,13 @@ class shop_api:
         if shopName != "":
             shopName = shopName
         if headers is None:
-            headers = self.user.headers()
+            headers = self.user.headers_skb()
         if page != 1:
             page = page
         if pagesize != 10:
             pagesize = pagesize
 
-        url = f'https://{self.user.skb_Host()}/api_skb/v1/shop_search'
+        url = f'https://{self.user.skb_url_Host()}/api_skb/v1/shop_search'
         Request_payload = {'shopName': shopName, 'hasUnfolded': hasUnfolded, 'hasSyncClue': hasSyncClue,
                            'hasSyncRobot': hasSyncRobot, 'syncRobotRangeDate': [], 'page': page, 'pagesize': pagesize,
                            'condition': {'cn': 'composite', 'cr': 'MUST', 'cv': cv}}
@@ -85,33 +85,33 @@ class shop_api:
         return response
 
     def area_province(self, province):
-        url = f'https://{self.user.skb_Host()}/api_skb/v1/shop_search'
+        url = f'https://{self.user.skb_url_Host()}/api_skb/v1/shop_search'
         Request_payload = {"shopName": "", "hasUnfolded": 0, "hasSyncClue": 0, "page": 1, "pagesize": 10,
                            "condition": {"cn": "composite", "cr": "MUST", "cv": [
                                {"cn": "area", "cv": {"province": [province], "city": [], "district": []}, "cr": "IN"}]}}
-        response = requests.post(url, headers=self.user.headers(), json=Request_payload)
+        response = requests.post(url, headers=self.user.headers_skb(), json=Request_payload)
         if response.json()['error_code'] != 0:
             print('搜索接口报错', '\n', response.json()['error_code'], response.json()['message'])
         else:
             return response.json()
 
     def area_city(self, city):
-        url = f'https://{self.user.skb_Host()}/api_skb/v1/shop_search'
+        url = f'https://{self.user.skb_url_Host()}/api_skb/v1/shop_search'
         Request_payload = {"shopName": "", "hasUnfolded": 0, "hasSyncClue": 0, "page": 1, "pagesize": 10,
                            "condition": {"cn": "composite", "cr": "MUST", "cv": [
                                {"cn": "area", "cv": {"province": [], "city": [city], "district": []}, "cr": "IN"}]}}
-        response = requests.post(url, headers=self.user.headers(), json=Request_payload)
+        response = requests.post(url, headers=self.user.headers_skb(), json=Request_payload)
         if response.json()['error_code'] != 0:
             print('搜索接口报错', '\n', response.json()['error_code'], response.json()['message'])
         else:
             return response.json()
 
     def area_district(self, district):
-        url = f'https://{self.user.skb_Host()}/api_skb/v1/shop_search'
+        url = f'https://{self.user.skb_url_Host()}/api_skb/v1/shop_search'
         Request_payload = {"shopName": "", "hasUnfolded": 0, "hasSyncClue": 0, "page": 1, "pagesize": 10,
                            "condition": {"cn": "composite", "cr": "MUST", "cv": [
                                {"cn": "area", "cv": {"province": [], "city": [], "district": [district]}, "cr": "IN"}]}}
-        response = requests.post(url, headers=self.user.headers(), json=Request_payload)
+        response = requests.post(url, headers=self.user.headers_skb(), json=Request_payload)
         if response.json()['error_code'] != 0:
             print('搜索接口报错', '\n', response.json()['error_code'], response.json()['message'])
         else:

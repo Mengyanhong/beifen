@@ -1,7 +1,7 @@
 
 import time
 import urllib3
-from API_project.Configs.config_API import user
+from API_project.Configs.Configuration import user
 from API_project.Configs.search_API import search
 # from API_project.conftest import ES
 import requests, pytest, os

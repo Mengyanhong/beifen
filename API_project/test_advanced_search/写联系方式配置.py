@@ -1,6 +1,6 @@
 # 联系方式相关case
 # from collections import Counter  # 导入表格统计模块
-from API_project.Configs.config_API import configuration_file
+from API_project.Configs.Configuration import configuration_file
 from API_project.tools.install_Excel import install_Excel
 HOST = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 staticConfig = configuration_file(HOST).staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息

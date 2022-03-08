@@ -1,6 +1,6 @@
 from pprint import pprint
 import requests, json, time, pytest, os, random
-from API_project.Configs.config_API import user
+from API_project.Configs.Configuration import User_Config
 from API_project.Configs.search_API import search
 from API_project.Configs.shop_API import shop_api
 
@@ -22,7 +22,7 @@ class sync_config:
         self.host = host
         self.search = search(host)
         self.shop_search = shop_api(host)
-        self.user_api = user(host)
+        self.user_api = User_Config(host)
         self.way = way
         self.header = headers
         self.useQuota = useQuota
@@ -102,7 +102,7 @@ class sync_config:
 
     # 转移前获取查看状况
     def unfoldStatistics_Api(self, search_payload, pid_list, sync_from="syncRobot", page=None, headers=None):
-        url = f'https://{self.user_api.skb_Host()}/api_skb/v1/unfoldStatistics'
+        url = f'https://{self.user_api.skb_url_Host()}/api_skb/v1/unfoldStatistics'
         payload = {
             "pids": pid_list,
             "way": self.way,
@@ -113,14 +113,14 @@ class sync_config:
             payload.pop("pids")
         if self.way == "shop_search_list":
             payload.pop("from")
-            url = f'https://{self.user_api.skb_Host()}/api_skb/v1/shop/unfoldStatistics'
+            url = f'https://{self.user_api.skb_url_Host()}/api_skb/v1/shop/unfoldStatistics'
         payload.update(search_payload)
         if self.header is not None:
             headers = self.header
         elif headers is not None:
             headers = headers
         else:
-            headers = self.user_api.headers()
+            headers = self.user_api.headers_skb()
         response = requests.post(url=url, headers=headers, json=payload)
         return response
 
@@ -281,7 +281,7 @@ class Sync_robot(sync_config):
             useQuota = useQuota
         else:
             useQuota = True
-        gatewayId = self.user_api.user_key()["gatewayId"]
+        gatewayId = self.user_api.robot_gateway()["gatewayId"]
         payload = {
             "way": way,
             "from": "syncRobot",
@@ -335,14 +335,14 @@ class Sync_robot(sync_config):
         else:
             clues = 'clues'
         if headers is None:
-            header = self.user_api.headers()
+            header = self.user_api.headers_skb()
         else:
             header = headers
         if out_id is not None:
             payload.update({"payload": out_payload})
         if gatewayname is not None:
             payload.update({"payload": gatewayId_value})
-        url = f'https://{self.user_api.skb_Host()}/api_skb/v1/{clues}/sync_robot'
+        url = f'https://{self.user_api.skb_url_Host()}/api_skb/v1/{clues}/sync_robot'
         response = requests.post(url=url, headers=header, json=payload)
         return response
 
@@ -357,8 +357,8 @@ class Sync_robot(sync_config):
         :param queryType:  查询字段，int型，1：姓名，2：公司名，3：号码,4:外呼计划编号
         :return:
         """
-        url = f'https://{self.user_api.robot_Host()}/api/v1/customers/uncalled'
-        headers = self.user_api.robot_headers()
+        url = f'https://{self.user_api.robot_url_Host()}/api/v1/customers/uncalled'
+        headers = self.user_api.headers_robot()
         payload = {
             'page': 1,
             'per_page': per_page,
@@ -461,15 +461,15 @@ class Sync_robot(sync_config):
         :return:
         """
         if self.host == 'lxcrm':
-            gatewayId = self.user_api.user_key()["gatewayId"]
+            gatewayId = self.user_api.robot_gateway()["gatewayId"]
         else:
             gatewayId = gatewayId
         if gateway_HOT == 'lxcrm':
             payload = {"page": 1, "per_page": 10, "gatewayId": gatewayId}
         else:
             payload = {"page": 1, "per_page": 10}
-        url = f'https://{self.user_api.robot_Host()}/api/v1/plan/list'
-        headers = self.user_api.robot_headers()
+        url = f'https://{self.user_api.robot_url_Host()}/api/v1/plan/list'
+        headers = self.user_api.headers_robot()
         response = requests.post(url, json=payload, headers=headers)
         return response
 

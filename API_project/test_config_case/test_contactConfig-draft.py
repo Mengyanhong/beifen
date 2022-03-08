@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # 来源配置测试
 import openpyxl
-from ..Configs.config_API import configuration_file
+from ..Configs.Configuration import configuration_file
 import urllib3
 urllib3.disable_warnings()
 

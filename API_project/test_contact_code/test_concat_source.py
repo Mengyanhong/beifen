@@ -1,12 +1,12 @@
 # @pytest.mark.parametrize('entName', excel_file.open_file_rows("entName"))  # 号码
-from API_project.Configs.config_API import configuration_file
+from API_project.Configs.Configuration import configuration_file
 from API_project.tools.get_yaml_set import get_yaml_data
 import json, sys
 import pytest
 import requests
 import time, sys, json, openpyxl
 from pprint import pprint
-from API_project.Configs.config_API import user
+from API_project.Configs.Configuration import user
 from API_project.tools.Excelread import Excel_Files
 from API_project.Configs.search_API import search
 from API_project.tools.install_Excel import install_Excel

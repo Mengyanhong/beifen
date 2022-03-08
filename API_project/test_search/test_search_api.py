@@ -1,6 +1,6 @@
 import time
 
-from API_project.Configs.config_API import user
+from API_project.Configs.Configuration import user
 from API_project.Configs.search_API import search
 from API_project.tools.install_Excel import install_Excel
 import requests, pytest, os

@@ -2,11 +2,11 @@
 # 条件测试
 
 import openpyxl
-from ..Configs.config_API import configuration_file
+from ..Configs.Configuration import configuration_file
 
 host = 'test' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 
-conditionGroups = configuration_file(host).conditionGroups()
+conditionGroups = configuration_file(host).conditionGroups_Api()
 level1_num_api=len(conditionGroups)
 
 
