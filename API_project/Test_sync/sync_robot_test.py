@@ -7,13 +7,13 @@ import requests, json, time, pytest, os, random
 from API_project.Configs.config_API import user
 from API_project.Configs.search_API import search
 from API_project.Configs.shop_API import shop_api
-from API_project.Libs.sync_robot_libs import Sync_robot
-from API_project.Libs.sync_config_libs import sync_config
+# from API_project.Libs.sync_robot_libs import Sync_robot
+from API_project.Libs.sync_config_libs import sync_config, Sync_robot
 
 test_host = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 
 user = user(test_host)
-Sync_robot = Sync_robot(test_host)
+# Sync_robot = Sync_robot(test_host)
 search = search(test_host)
 shop = shop_api(test_host)
 
@@ -435,25 +435,31 @@ class Test_sync_robot:
     # 扣除流量额度，仅转移手机or手机+固话，全部号码or仅一条号码, 加入已有外呼计划
     @pytest.mark.parametrize('way', ['search_list'])  # 转移号码模块
     @pytest.mark.parametrize('page', [None])  # 转移号码数量
-    @pytest.mark.parametrize('dataColumns', [None, [0, 1]])  # 转移号码类型
+    @pytest.mark.parametrize('dataColumns', [[0], [0, 1]])  # 转移号码类型
     @pytest.mark.parametrize('numberCounts', [0, 1])  # 转移号码方式
     @pytest.mark.parametrize('canCover', [False, True])  # 转移号码方式
-    def testcase05(self, way, page, dataColumns, numberCounts, canCover):
+    @pytest.mark.parametrize('useQuota', [False, True])  # 是否扣点
+    def testcase05(self, way, page, dataColumns, numberCounts, canCover, useQuota):
         """
         :param way: 测试模块'search_list'：找企业, 'advanced_search_list'：高级搜索, None：地图获客
         :param page: None：转移所选, 500：转前500, 1000：转前1000, 2000：转前2000
         :return:
         """
+        sync_config_Api = Sync_robot(host=test_host, way=way, useQuota=useQuota, pages=page, canCover=canCover,
+                                     dataColumns=dataColumns,
+                                     numberCounts=numberCounts)
 
-        userinfo = user.skb_userinfo().json()
-        user_Quota = userinfo['data']['uRemainQuota']  # 获取初始额度
-        hasSmartSyncRoobot = userinfo['data']['hasSmartSyncRoobot']  # 获取账户类型是否灰测
+        userinfo = sync_config_Api.user_api.skb_userinfo().json()
+        quantity_start = userinfo['data']['uRemainQuota']  # 获取初始额度
+        hasSmartSyncRobot = userinfo['data']['hasSmartSyncRoobot']  # 获取账户类型是否灰测
 
         # 搜索未查看，未转机器人的数据，有固话
-        sync_config_Api = sync_config(host=test_host, way=way)
+        # sync_config_Api = sync_config(host=test_host, way=way)
+        # search_values = sync_config_Api.search_value_list()
+
         search_values = sync_config_Api.search_value_list()
 
-        if way is None:
+        if page is None and way == "map_search_list" or page == 500 and way == "map_search_list":
             pid = None
             pages = 500
         elif page is None:
@@ -463,7 +469,7 @@ class Test_sync_robot:
             pid = None
             pages = page
 
-        resp_out_sync = Sync_robot.robot_outcallplan().json()  # 获取外呼计划列表
+        resp_out_sync = sync_config_Api.robot_outcallplan().json()  # 获取外呼计划列表
         resp_out_sync_value = None
         if resp_out_sync["data"]["list"]:
             for gatewayId_re in resp_out_sync["data"]["list"]:
@@ -477,197 +483,201 @@ class Test_sync_robot:
             assert resp_out_sync["data"]["list"] != []
         out_id = resp_out_sync_value["id"]
 
-        resp_syn = Sync_robot.sync(pids=pid, pages=pages,
-                                   seach_value=search_values["payloads_request"], canCover=canCover,
-                                   way=way, out_id=out_id, needCallPlan=True, dataColumns=dataColumns,
-                                   numberCount=numberCounts)
-        resp_sync = resp_syn.json()
-        # resp_syn.close()
-        user_Qus = 0
+        sync_robot_start_verdicts_dicde = {}
+
+        for pid_companyName_start in search_values["pid_companyName_list"]:
+            sync_robot_start_verdicts_value = sync_config_Api.sync_robot_start_verdicts(
+                company_name=pid_companyName_start, search_payloads_values=search_values["payloads_request"])
+            sync_robot_start_verdicts_dicde.update({pid_companyName_start["pid"]: sync_robot_start_verdicts_value})
+
+        unfoldStatistics_Api_value = sync_config_Api.unfoldStatistics_Api(
+            search_payload=search_values["payloads_request"], pid_list=pid, page=pages).json()
+        if unfoldStatistics_Api_value["error_code"] == 0:
+            unfoldNum = unfoldStatistics_Api_value["data"]["unfoldNum"]
+        else:
+            unfoldNum = 0
+            print("查看状态查询失败", unfoldStatistics_Api_value)
+
+        resp_sync = sync_config_Api.sync(pids=pid, pages=pages,
+                                         seach_value=search_values["payloads_request"], canCover=canCover,
+                                         way=way, out_id=out_id, needCallPlan=True, dataColumns=dataColumns,
+                                         numberCount=numberCounts).json()
+        quantity_rebate = 0
         if resp_sync['error_code'] == 0:
             sync_config_Api.search_elapsed_time()
-            user_Qu = user.skb_userinfo().json()['data']['uRemainQuota']
+            quantity_stop = sync_config_Api.user_api.skb_userinfo().json()['data']['uRemainQuota']
             for i in search_values["pid_companyName_list"]:
-                contacts_num = search.skb_contacts_num(id=i['pid'], module=way)
-                # print(contacts_num.request.headers)
-                contacts_num_list = contacts_num.json()['data']['contacts']  # 获取号码
-                if not contacts_num_list:
-                    print('未获取联系方式,进行扣点获取', i)
-                    contacts_num_list = \
-                        search.skb_contacts(id=i['pid'], module=way, entName=i['company_name']).json()['data'][
-                            'contacts']  # 获取号码
-                content_list_type2 = []
-                content_list_type1 = []
-                for j in contacts_num_list:
-                    if j['type'] == 2:  # 获取固话
-                        content_list_type2.append(j['content'])
-                    elif j['type'] == 1:  # 获取手机
-                        content_list_type1.append(j['content'])
-                resp_robot_com = Sync_robot.robot_uncalled(query_name=i['company_name'], queryType=2).json()['data'][
-                    'list']  # 查询企业是否转移到机器人
-                if resp_robot_com:  # 判断转移的企业在机器人内存在
-                    numberCounts_value = 0
-                    sync_robot_list_type1 = []  # 创建手机转移结果集合
-                    sync_robot_repetition_list_type1 = []  # 创建手机重复转移结果集合
-                    sync_robot_filter_list_type1 = []  # 创建手机过滤转移结果集合
-                    if content_list_type1:  # 循环手机号
-                        for q_type1 in content_list_type1:
-                            resp_robot_type1 = \
-                                Sync_robot.robot_uncalled(query_name=q_type1, queryType=3).json()['data'][
-                                    'list']
-                            if resp_robot_type1:
-                                repetition_value = True
-                                for company_name_phone1 in resp_robot_type1:
-                                    if company_name_phone1["company_name"] == i['company_name']:  # 判断查询的企业是所转移的企业
-                                        sync_robot_list_type1.append(q_type1)
-                                        repetition_value = False
-                                        break
-                                if repetition_value is True:
-                                    sync_robot_repetition_list_type1.append(q_type1)
-                            else:
-                                sync_robot_filter_list_type1.append(q_type1)
+                # 获取联系方式
+                list_contact_Api = sync_config_Api.list_contact(pid=i['pid'], entName=i['company_name'])
+                # 获取转机器人结果
+                sync_robot_value = sync_config_Api.sync_robot_verdicts(Mobile=list_contact_Api["Mobile"],
+                                                                       Fixed=list_contact_Api["Fixed"],
+                                                                       company_name=i['company_name'])
+                # 执行转移判断
+                quantity_rebate += sync_config_Api.sync_robot_value_verdicts_assert(
+                    sync_robot_start_value=sync_robot_start_verdicts_dicde,
+                    sync_robot_value=sync_robot_value,
+                    company_name_pid_list=i,
+                    list_contact_Api=list_contact_Api,
+                    hasSmartSyncRobot=hasSmartSyncRobot)
+                # if sync_robot_value["resp_robot_verdicts"]:  # 判断转移结果不为空
+                #     if numberCounts == 1:
+                #         if dataColumns is None:
+                #             if sync_robot_value["list_sync_robot_verdicts_type2"]:
+                #                 print(i, '转移出错固话进行了转移\n转移的固话为', sync_robot_value["list_sync_robot_verdicts_type2"],
+                #                       '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                       'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #             if sync_robot_value["list_sync_robot_verdicts_type1"]:
+                #                 if len(sync_robot_value["list_sync_robot_verdicts_type1"]) != 1:
+                #                     print(i, '转移出错转移的手机号码数量不等于1\n转移的手机为',
+                #                           sync_robot_value["list_sync_robot_verdicts_type1"],
+                #                           '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                           'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #             else:
+                #                 if sync_robot_value["list_sync_robot_repetition_type1"]:
+                #                     if canCover is True:
+                #                         print(i, '转移出错重复的号码没有进行转移\n重复的手机',
+                #                               sync_robot_value["list_sync_robot_repetition_type1"],
+                #                               '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                               'dataColumns', dataColumns, 'numberCounts', numberCounts
+                #                               )
+                #                     else:
+                #                         print(i, '转移出错，号码重复没有进行转移\n重复的手机',
+                #                               sync_robot_value["list_sync_robot_repetition_type1"],
+                #                               '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                               'dataColumns', dataColumns, 'numberCounts', numberCounts
+                #                               )
+                #                 else:
+                #                     if sync_robot_value["list_sync_robot_filter_type1"]:
+                #                         if len(sync_robot_value["list_sync_robot_filter_type1"]) == len(
+                #                                 list_contact_Api["Mobile"]):
+                #                             print(i, '转移出错手机号全部被过滤\n过滤的手机',
+                #                                   sync_robot_value["list_sync_robot_filter_type1"],
+                #                                   '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                                   'dataColumns', dataColumns, 'numberCounts', numberCounts
+                #                                   )
+                #                         else:
+                #                             print(i, '手机号数量出错\n过滤的手机',
+                #                                   len(sync_robot_value["list_sync_robot_filter_type1"]), '个，企业手机',
+                #                                   len(list_contact_Api["Mobile"]), '个，\n条件，canCover', canCover, 'way',
+                #                                   way, 'page', page, 'dataColumns', dataColumns, 'numberCounts',
+                #                                   numberCounts
+                #                                   )
+                #                     else:
+                #                         print(i, '该企业手机号为空', '\n条件，canCover', canCover, 'way',
+                #                               way, 'page', page, 'dataColumns', dataColumns, 'numberCounts',
+                #                               numberCounts)
+                #
+                #         else:
+                #             if len(sync_robot_value["list_sync_robot_verdicts_type2"]) + len(
+                #                     sync_robot_value["list_sync_robot_verdicts_type1"]) != 1:
+                #                 print(i, '转移全部号码出错转移号码数量不等于1\n手机', sync_robot_value["list_sync_robot_verdicts_type1"],
+                #                       '\n固话', sync_robot_value["list_sync_robot_verdicts_type2"],
+                #                       '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                       'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #                 if sync_robot_value["list_sync_robot_repetition_type1"]:
+                #                     print('\n重复的的手机为', sync_robot_value["list_sync_robot_repetition_type1"])
+                #                 if sync_robot_value["list_sync_robot_repetition_type2"]:
+                #                     print('\n重复的的固话为', sync_robot_value["list_sync_robot_repetition_type2"])
+                #     else:
+                #         if dataColumns is None:
+                #             if sync_robot_value["list_sync_robot_verdicts_type2"]:
+                #                 print(i, '转移出错固话进行了转移\n转移的固话为', sync_robot_value["list_sync_robot_verdicts_type2"],
+                #                       '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                       'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #             if len(sync_robot_value["list_sync_robot_verdicts_type1"]) != len(
+                #                     list_contact_Api["Mobile"]):
+                #                 if canCover is False:
+                #                     if len(sync_robot_value[
+                #                                "list_sync_robot_verdicts_type1"]) + len(
+                #                         sync_robot_value["list_sync_robot_repetition_type1"]) != len(
+                #                         list_contact_Api["Mobile"]):
+                #                         print(i, '转移出错转移号码数量错误\n转移的手机',
+                #                               sync_robot_value["list_sync_robot_verdicts_type1"], '\n重复的手机',
+                #                               sync_robot_value["list_sync_robot_repetition_type1"],
+                #                               '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                               'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #                 else:
+                #                     if sync_robot_value["list_sync_robot_repetition_type1"]:
+                #                         print(i, '转移出错,重复的号码没有被转移\n转移的手机',
+                #                               sync_robot_value["list_sync_robot_verdicts_type1"], '\n重复的手机',
+                #                               sync_robot_value["list_sync_robot_repetition_type1"],
+                #                               '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                               'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #
+                #         else:
+                #             if canCover is False:
+                #                 if len(sync_robot_value["list_sync_robot_verdicts_type1"]) + len(
+                #                         sync_robot_value["list_sync_robot_repetition_type1"]) != len(
+                #                     list_contact_Api["Mobile"]):
+                #                     print(i, '转移出错，转移全部手机号码时手机号数量错误\n转移的手机',
+                #                           sync_robot_value["list_sync_robot_verdicts_type1"], '\n重复的手机',
+                #                           sync_robot_value["list_sync_robot_repetition_type1"],
+                #                           '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                           'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #                 if len(sync_robot_value["list_sync_robot_verdicts_type2"]) + len(
+                #                         sync_robot_value["list_sync_robot_repetition_type2"]) != len(
+                #                     list_contact_Api["Fixed"]):
+                #                     print(i, '转移出错，转移全部固话号码时固话数量错误\n转移的固话',
+                #                           sync_robot_value["list_sync_robot_verdicts_type2"], '\n重复的固话',
+                #                           sync_robot_value["list_sync_robot_repetition_type2"],
+                #                           '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                           'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #             else:
+                #                 if len(sync_robot_value["list_sync_robot_verdicts_type1"]) != len(
+                #                         list_contact_Api["Mobile"]):
+                #                     print(i, '转移出错,转移的手机不等于企业的手机数\n转移的手机',
+                #                           sync_robot_value["list_sync_robot_verdicts_type1"], '\n企业的手机',
+                #                           list_contact_Api["Mobile"],
+                #                           '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                           'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #                     if sync_robot_value["list_sync_robot_repetition_type1"]:
+                #                         print('\n重复的手机号没有进行转移，重复的手机为',
+                #                               sync_robot_value["list_sync_robot_repetition_type1"])
+                #                 if len(sync_robot_value["list_sync_robot_verdicts_type2"]) != len(
+                #                         list_contact_Api["Fixed"]):
+                #                     print(i, '转移出错,转移的固话不等于企业的固话数\n转移的固话',
+                #                           sync_robot_value["list_sync_robot_verdicts_type2"], '\n企业的固话',
+                #                           list_contact_Api["Mobile"],
+                #                           '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                           'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #                     if sync_robot_value["list_sync_robot_repetition_type2"]:
+                #                         print('\n重复的固话没有进行转移，重复的固话为',
+                #                               sync_robot_value["list_sync_robot_repetition_type2"])
+                #
+                # else:
+                #     quantity_rebate += 1
+                #     if dataColumns is None:
+                #         if list_contact_Api["Mobile"]:
+                #             print(i, '转移出错手机号码不为空但是未转移成功\n手机', list_contact_Api["Mobile"], '\n条件，canCover', canCover,
+                #                   'way', way, 'page', page,
+                #                   'dataColumns', dataColumns, 'numberCounts', numberCounts)
+                #
+                #     else:
+                #         if list_contact_Api["Mobile"] != [] or list_contact_Api["Fixed"] != []:
+                #             print(i, '转移出错手机号码or固话不为空但是未转移成功\n手机', list_contact_Api["Mobile"], '\n固话',
+                #                   list_contact_Api["Fixed"],
+                #                   '\n条件，canCover', canCover, 'way', way, 'page', page,
+                #                   'dataColumns', dataColumns, 'numberCounts', numberCounts)
 
-                    sync_robot_list_type2 = []  # 创建固话转移结果集合
-                    sync_robot_repetition_list_type2 = []  # 创建手机重复转移结果集合
-                    sync_robot_filter_list_type2 = []  # 创建手机过滤转移结果集合
-                    if content_list_type2:  # 循环固话
-                        for q_type2 in content_list_type2:
-                            resp_robot_type2 = \
-                                Sync_robot.robot_uncalled(query_name=q_type2, queryType=3).json()['data'][
-                                    'list']
-                            if resp_robot_type2:
-                                repetition_value2 = True
-                                for company_name_phone2 in resp_robot_type2:
-                                    if company_name_phone2["company_name"] == i['company_name']:  # 判断查询的企业是所转移的企业
-                                        sync_robot_list_type2.append(q_type2)
-                                        repetition_value2 = False
-                                        break
-                                if repetition_value2 is True:
-                                    sync_robot_repetition_list_type2.append(q_type2)
-                            else:
-                                sync_robot_filter_list_type2.append(q_type2)
-
-                    if numberCounts == 1:
-                        if dataColumns is None:
-                            if sync_robot_list_type2:
-                                print(i, '转移出错固话进行了转移\n', sync_robot_list_type2, '\n条件', canCover, way, page,
-                                      dataColumns, numberCounts)
-                            elif sync_robot_list_type1:
-                                if len(sync_robot_list_type1) != 1:
-                                    print(i, '转移出错转移号码数量不等于1\n手机', sync_robot_list_type1, '\n条件',
-                                          canCover, way, page, dataColumns, numberCounts)
-                            else:
-                                if sync_robot_repetition_list_type1:
-                                    if canCover is True:
-                                        print(i, '转移出错重复的号码没有进行转移\n重复的手机', sync_robot_repetition_list_type1, '\n条件',
-                                              canCover, way, page, dataColumns, numberCounts)
-                                    else:
-                                        if len(sync_robot_repetition_list_type1) + len(
-                                                sync_robot_filter_list_type1) != len(content_list_type1):
-                                            print(i, '转移出错,手机号数量错误\n重复的手机', sync_robot_repetition_list_type1, '\n过滤的手机',
-                                                  sync_robot_filter_list_type1, '\n企业内的手机', content_list_type1, '\n条件',
-                                                  canCover, way, page, dataColumns, numberCounts)
-                                else:
-                                    if sync_robot_filter_list_type1:
-                                        print(i, '转移出错手机号全部被过滤\n过滤的手机', sync_robot_filter_list_type1, '\n条件',
-                                              canCover, way, page, dataColumns, numberCounts)
-                                    else:
-                                        print(i, '该企业无联系方式', '\n条件',
-                                              canCover, way, page, dataColumns, numberCounts)
-
-
-                        else:
-                            if len(sync_robot_list_type1) + len(sync_robot_list_type2) != 1:
-                                print(i, '转移出错转移号码数量不等于1\n手机', sync_robot_list_type1, '\n固话', sync_robot_list_type2,
-                                      '\n条件', canCover, way, page, dataColumns, numberCounts)
-                    else:
-                        if dataColumns is None:
-                            if sync_robot_list_type2:
-                                print(i, '转移出错固话进行了转移\n', sync_robot_list_type2, '\n条件', canCover, way, page,
-                                      dataColumns, numberCounts)
-                            if len(sync_robot_list_type1) != len(content_list_type1):
-                                print(i, '转移出错转移号码数量错误\n手机', sync_robot_list_type1, '\n条件',
-                                      canCover, way, page, dataColumns, numberCounts)
-                        else:
-                            if len(sync_robot_list_type1) != len(content_list_type1):
-                                print(i, '转移出错转移号码数量错误\n手机', sync_robot_list_type1, '\n条件',
-                                      canCover, way, page, dataColumns, numberCounts)
-                            if len(sync_robot_list_type2) != len(content_list_type2):
-                                print(i, '转移出错转移号码数量错误\n手机', sync_robot_list_type2, '\n条件',
-                                      canCover, way, page, dataColumns, numberCounts)
-
-                else:
-                    if hasSmartSyncRoobot is False:
-                        if dataColumns is None:
-                            if content_list_type1:
-                                print(i, '转移出错手机号码不为空但是未转移成功\n手机', content_list_type1, '\n条件',
-                                      canCover, way, page, dataColumns, numberCounts)
-                                user_Qus += 1
-                            else:
-                                print("ccc")
-                                user_Qus += 1
-
-                        else:
-                            if content_list_type1 != [] or content_list_type2 != []:
-                                print(i, '转移出错手机号码or固话不为空但是未转移成功\n手机', content_list_type1, '\n固话', content_list_type2,
-                                      '\n条件', canCover, way, page, dataColumns, numberCounts)
-                                user_Qus += 1
-                            else:
-                                print("aaa")
-                                user_Qus += 1
-                    else:
-                        print("111")
-                        if dataColumns is None:
-                            if content_list_type1:
-                                print(i, '转移出错手机号码不为空但是未转移成功\n手机', content_list_type1, '\n条件',
-                                      canCover, way, page, dataColumns, numberCounts)
-                        else:
-                            if content_list_type1 or content_list_type2:
-                                print(i, '转移出错手机号码or固话不为空但是未转移成功\n手机', content_list_type1, '\n固话', content_list_type2,
-                                      '\n条件', canCover, way, page, dataColumns, numberCounts)
-
-            resp_out_query = Sync_robot.robot_outcallplan().json()["data"]["list"]  # 获取外呼计划列表
+            resp_out_query = sync_config_Api.robot_outcallplan().json()["data"]["list"]  # 获取外呼计划列表
             resp_out_query_value_sum = 0
             resp_out_query_value_value = None
             for resp_out_query_value in resp_out_query:
                 if resp_out_query_value["id"] == resp_out_sync_value["id"]:
                     resp_out_query_value_sum += 1
                     resp_out_query_value_value = resp_out_query_value
-                    assert resp_out_query_value["callCount"] > resp_out_sync_value["callCount"]
+                    # assert resp_out_query_value["callCount"] > resp_out_sync_value["callCount"]
                     assert resp_out_query_value["jobGroupName"] == resp_out_sync_value["jobGroupName"]
                     break
             assert resp_out_query_value_sum > 0
-            # if resp_out_query_value_sum > 0:
-            #     print("加入外呼计划成功，加入前", resp_out_sync_value["callCount"], "\n加入后",
-            #           resp_out_query_value_value["callCount"])
-            # else:
-            #     print("加入计划失败，加入前", resp_out_sync_value["callCount"], "\n加入后", resp_out_query_value_value["callCount"])
         else:
-            user_Qu = 0
-
-        if pages is not None:
-            print(user_Qu, user_Quota, pages, user_Qus)
-            if user_Quota < pages:
-                pprint(user.skb_userinfo().json())
-                assert user_Qu == 0
-            if hasSmartSyncRoobot is True:
-                assert user_Qu == (user_Quota - pages)
-            else:
-                assert user_Qu == (user_Quota - pages + user_Qus) or user_Quota > user_Qu > (user_Quota - pages)
-        else:
-            print(user_Qu, user_Quota, len(resp_items), user_Qus)
-            if user_Quota < len(resp_items):
-                pprint(user.skb_userinfo().json())
-                assert user_Qu == 0
-            if hasSmartSyncRoobot is True:
-                assert user_Qu == (user_Quota - len(resp_items))
-            else:
-                if user_Qu != (user_Quota - len(resp_items) + user_Qus):
-                    print(resp_syn.request.body.decode("unicode_escape"))
-                    print(company_name_list_pid)
-                    print('way', way, 'page', page, 'dataColumns', dataColumns, 'numberCounts', numberCounts,
-                          'canCover', canCover)
-                assert user_Qu == (user_Quota - len(resp_items) + user_Qus)
+            quantity_stop = sync_config_Api.user_api.skb_userinfo().json()['data']['uRemainQuota']
+            quantity_rebate = 0
+        sync_config_Api.sync_robot_quantity_verdicts(quantity_start=quantity_start,
+                                                     quantity_stop=quantity_stop, quantity_rebate=quantity_rebate,
+                                                     hasSmartSyncRobot=hasSmartSyncRobot, unfoldNum=unfoldNum,
+                                                     pid_companyName_list_sum=search_values["pid_companyName_list"])
 
         return '测试结束，扣除流量额度，仅转移手机，全部号码,加入已有外呼计划'
     #

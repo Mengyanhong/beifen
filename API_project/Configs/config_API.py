@@ -57,24 +57,21 @@ class user:
         return url
 
     def skb_userinfo(self, headers=None):  # 查询新SKB用户信息
-        url = f'https://{user(self.test).skb_Host()}/api_skb/v1/user/userInfo'
-        if headers == None:
-            header = user(self.test).headers()
+        url = f'https://{self.skb_Host()}/api_skb/v1/user/userInfo'
+        if headers is None:
+            header = self.headers()
         else:
             header = headers
-        response = requests.get(url, headers=header, verify=False)
+        response = requests.get(url=url, headers=header, verify=False)
         return response
 
-    def headers(self, headers=None):  # headers环境配置
-        if headers == None:
-            header = {
-                'app_token': user(self.test).user_key()["app_token"],
-                'authorization': user(self.test).user_key()["Token"],
-                'content-type': 'application/json',
-                'crm_platform_type': user(self.test).user_key()["platform"]
-            }
-        else:
-            header = headers
+    def headers(self):  # headers环境配置
+        header = {
+            'app_token': self.user_key()["app_token"],
+            'authorization': self.user_key()["Token"],
+            'content-type': 'application/json',
+            'crm_platform_type': self.user_key()["platform"]
+        }
         return header
 
     def visitor_HOST(self):  # 访客识别host
@@ -92,9 +89,9 @@ class user:
     def robot_headers(self):  # 机器人headers配置
         lxcrm_Headers = {
             'platform': 'IK',
-            'usertoken': user(self.test).user_key()["token"],
+            'usertoken': self.user_key()["token"],
             'Content-Type': 'application/json',
-            'crmplatformtype': user(self.test).user_key()["platform"]
+            'crmplatformtype': self.user_key()["platform"]
         }
         # test_Headers = {
         #     'platform': 'IK',
