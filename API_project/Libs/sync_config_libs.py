@@ -31,7 +31,6 @@ class sync_config:
         print('sync_config初始化参数,host,{}, way,{}, pages,{}, headers,{}, useQuota,{}'.
               format(host, way, pages, headers, useQuota))
 
-
     # 转移前各维度搜索结果处理
 
     def search_value_list(self):
@@ -125,14 +124,15 @@ class sync_config:
         return response
 
     # 联系方式获取
-    def list_contact(self, pid, entName, useQuota=True):
-        if self.useQuota is not True:
-            useQuota = self.useQuota
-        elif useQuota is not True:
-            useQuota = useQuota
-        else:
-            useQuota = True
-        list_contacts_value = self.search.skb_list_contact(pid=pid, entName=entName, module=self.way, useQuota=useQuota)
+    def list_contact(self, pid, entName):
+        # if self.useQuota is not True:
+        #     useQuota = self.useQuota
+        # elif useQuota is not True:
+        #     useQuota = useQuota
+        # else:
+        #     useQuota = True
+        list_contacts_value = self.search.skb_list_contact(pid=pid, entName=entName, module=self.way,
+                                                           useQuota=self.useQuota)
         return list_contacts_value
         # lists_Mobile = []
         # lists_Fixed = []
@@ -184,47 +184,57 @@ class sync_config:
                                      hasSmartSyncRobot=True, hasUnfolded=None, useQuota=True, unfoldNum=0,
                                      pid_companyName_list_sum=None):
         pid_companyName_sum = len(pid_companyName_list_sum)
-        if self.pages is None:
+        if self.pages is None and self.way == "map_search_list":
+            Unfolded_sum = 500
+        elif self.pages is None:
             Unfolded_sum = pid_companyName_sum
         else:
             Unfolded_sum = self.pages
-        if self.useQuota is not True:
-            useQuota = self.useQuota
-        elif useQuota is not True:
-            useQuota = useQuota
-        else:
-            useQuota = True
-        if useQuota is True:
+        # if self.useQuota is not True:
+        #     useQuota = self.useQuota
+        # elif useQuota is not True:
+        #     useQuota = useQuota
+        # else:
+        #     useQuota = True
+        if self.useQuota is True:
             if hasSmartSyncRobot is True:
                 if quantity_start <= (Unfolded_sum - unfoldNum):
                     if quantity_stop != 0:
                         print(pid_companyName_list_sum)
-                        print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码', self.pages,
-                              '是否灰测', hasSmartSyncRobot, '扣点方式', useQuota, '已查看数量', unfoldNum, '页码', self.pages, '企业数量',
-                              pid_companyName_sum)
+                        print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码',
+                              self.pages, '是否灰测', hasSmartSyncRobot, '扣点方式', self.useQuota, '已查看数量', unfoldNum, '转移数量',
+                              Unfolded_sum, '企业数量', pid_companyName_sum)
                     assert quantity_stop == 0
                 else:
                     if quantity_stop != (quantity_start - (Unfolded_sum - unfoldNum)):
                         print(pid_companyName_list_sum)
-                        print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码', self.pages,
-                              '是否灰测', hasSmartSyncRobot, '扣点方式', useQuota, '已查看数量', unfoldNum, '页码', self.pages, '企业数量',
-                              pid_companyName_sum)
+                        print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码',
+                              self.pages, '是否灰测', hasSmartSyncRobot, '扣点方式', self.useQuota, '已查看数量', unfoldNum, '转移数量',
+                              Unfolded_sum, '企业数量', pid_companyName_sum)
                     assert quantity_stop == (quantity_start - (Unfolded_sum - unfoldNum))
 
             else:
-                if quantity_stop != (quantity_start - (Unfolded_sum - unfoldNum) + quantity_rebate):
-                    print(pid_companyName_list_sum)
-                    print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码', self.pages,
-                          '是否灰测', hasSmartSyncRobot, '扣点方式', useQuota, '已查看数量', unfoldNum, '页码', self.pages, '企业数量',
-                          pid_companyName_sum)
-                assert quantity_stop == (quantity_start - (Unfolded_sum - unfoldNum) + quantity_rebate)
+                if self.pages is None and self.way == "map_search_list" or self.pages is not None:
+                    if quantity_stop < (quantity_start - (Unfolded_sum - unfoldNum) + quantity_rebate):
+                        print(pid_companyName_list_sum)
+                        print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码',
+                              self.pages, '是否灰测', hasSmartSyncRobot, '扣点方式', self.useQuota, '已查看数量', unfoldNum, '转移数量',
+                              Unfolded_sum, '企业数量', pid_companyName_sum)
+                    assert quantity_stop >= (quantity_start - (Unfolded_sum - unfoldNum) + quantity_rebate)
 
+                else:
+                    if quantity_stop != (quantity_start - (Unfolded_sum - unfoldNum) + quantity_rebate):
+                        print(pid_companyName_list_sum)
+                        print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码',
+                              self.pages, '是否灰测', hasSmartSyncRobot, '扣点方式', self.useQuota, '已查看数量', unfoldNum, '转移数量',
+                              Unfolded_sum, '企业数量', pid_companyName_sum)
+                    assert quantity_stop == (quantity_start - (Unfolded_sum - unfoldNum) + quantity_rebate)
         else:
             if quantity_start != quantity_stop:
                 print(pid_companyName_list_sum)
-                print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码', self.pages,
-                      '是否灰测', hasSmartSyncRobot, '扣点方式', useQuota, '已查看数量', unfoldNum, '页码', self.pages, '企业数量',
-                      pid_companyName_sum)
+                print('初始额度', quantity_start, '结束时额度', quantity_stop, '未扣除的额度', quantity_rebate, '页码',
+                      self.pages, '是否灰测', hasSmartSyncRobot, '扣点方式', self.useQuota, '已查看数量', unfoldNum, '转移数量',
+                      Unfolded_sum, '企业数量', pid_companyName_sum)
             assert quantity_start == quantity_stop
 
 
@@ -237,6 +247,7 @@ class Sync_robot(sync_config):
         self.numberCounts = numberCounts
         print('Sync_robot初始化参数,canCover,{}, dataColumns,{}, numberCounts,{}'.
               format(canCover, dataColumns, numberCounts))
+
     # def __del__(self):
     #     class_name = self.__class__.__name__
     #     print(class_name)
@@ -372,8 +383,11 @@ class Sync_robot(sync_config):
         response = requests.get(url, params=payload, headers=headers)
         return response
 
+    # if __name__ == '__main__':
+    #
+
     # 查询转机器人前机器人内是否有该企业
-    def sync_robot_start_verdicts(self, company_name, search_payloads_values, Mobile=None, Fixed=None):
+    def sync_robot_start_verdicts(self, list_pid_company_name, search_payloads_values):
         # if Mobile is None:
         #     Mobile = []
         # if Fixed is None:
@@ -408,19 +422,12 @@ class Sync_robot(sync_config):
         #                 list_sync_robot_verdicts_type1.append(Mobile_type1["phone"])
         #             if resp_robot_com['data']['per_page'] == 1000:
         #                 select_resp_robot_com(company_name, phone)
-        unfoldStatistics_Api_value = self.unfoldStatistics_Api(
-            search_payload=search_payloads_values, pid_list=[company_name["pid"]]).json()
-        if unfoldStatistics_Api_value["error_code"] == 0:
-            unfoldNum = unfoldStatistics_Api_value["data"]["unfoldNum"]
-        else:
-            unfoldNum = 0
-            print("查看状态查询失败", unfoldStatistics_Api_value)
-
         for phone in [0, 1]:
-            resp_robot_com = self.robot_uncalled(query_name=company_name, queryType=2, phoneType=phone).json()
+            resp_robot_com = self.robot_uncalled(query_name=list_pid_company_name["company_name"], queryType=2,
+                                                 phoneType=phone).json()
             # 查询企业是否转移到机器人
-            if resp_robot_com["code"] != 0 and resp_robot_com["message"] != "操作成功":  # 判断查询接口是否成功
-                print("机器人号码管理接口调用失败,企业为", company_name)
+            if resp_robot_com["code"] != 0:  # 判断查询接口是否成功
+                print("机器人号码管理接口调用失败,企业为", list_pid_company_name)
             elif not resp_robot_com['data']['list']:  # 判断转移的企业在机器人内是否存在
                 if phone == 0:
                     resp_robot_verdicts_mobile = False
@@ -442,8 +449,14 @@ class Sync_robot(sync_config):
         else:
             resp_robot_verdicts = True
 
+        unfoldStatistics_Api_value = self.unfoldStatistics_Api(
+            search_payload=search_payloads_values, pid_list=[list_pid_company_name["pid"]]).json()
+        if unfoldStatistics_Api_value["error_code"] != 0:
+            print("查看状态查询失败", unfoldStatistics_Api_value)
+            assert unfoldStatistics_Api_value["error_code"] == 0
+
         return {
-            "unfoldNum": unfoldNum,
+            "unfoldNum": unfoldStatistics_Api_value["data"]["unfoldNum"],
             "resp_robot_verdicts": resp_robot_verdicts,
             "list_sync_robot_filter_type1": list_sync_robot_filter_type1,
             "list_sync_robot_verdicts_type1": list_sync_robot_verdicts_type1,
@@ -480,7 +493,8 @@ class Sync_robot(sync_config):
             Mobile = []
         if Fixed is None:
             Fixed = []
-        resp_robot_verdicts = True
+        resp_robot_verdicts = True  # 收集是否转移成功信息
+
         list_sync_robot_filter_type1 = []  # 创建未转移的手机集合
         list_sync_robot_verdicts_type1 = []  # 创建手机转移结果集合
         list_sync_robot_repetition_type1 = []  # 创建手机重复转移结果集合
@@ -499,7 +513,7 @@ class Sync_robot(sync_config):
         if Mobile:
             for Mobile_type1 in Mobile:
                 resp_robot_type1 = self.robot_uncalled(query_name=Mobile_type1, queryType=3).json()
-                if resp_robot_type1["code"] != 0 and resp_robot_type1["message"] != "操作成功":  # 判断查询接口是否成功
+                if resp_robot_type1["code"] != 0:  # 判断查询接口是否成功
                     print("机器人号码管理接口调用失败,号码为", Mobile_type1)
                 elif not resp_robot_type1['data']['list']:  # 判断转移的号码在机器人内是否存在
                     list_sync_robot_filter_type1.append(Mobile_type1)
@@ -516,8 +530,8 @@ class Sync_robot(sync_config):
         if Fixed:
             for Fixed_type2 in Fixed:
                 resp_robot_type2 = self.robot_uncalled(query_name=Fixed_type2, queryType=3).json()
-                if resp_robot_type2["code"] != 0 and resp_robot_type2["message"] != "操作成功":  # 判断查询接口是否成功
-                    print("机器人号码管理接口调用失败,号码为", Fixed_type2)
+                if resp_robot_type2["code"] != 0:  # 判断查询接口是否成功
+                    print("机器人号码管理接口调用失败,号码为", Fixed_type2, "结果为", resp_robot_type2)
                 elif not resp_robot_type2['data']['list']:  # 判断转移的号码在机器人内是否存在
                     list_sync_robot_filter_type2.append(Fixed_type2)
                 else:
@@ -602,7 +616,16 @@ class Sync_robot(sync_config):
 
     #  转移结果判断
     def sync_robot_value_verdicts_assert(self, sync_robot_start_value, sync_robot_value,
-                                         company_name_pid_list, list_contact_Api, hasSmartSyncRobot):
+                                         company_name_pid_list, list_contact, hasSmartSyncRobot):
+        '''
+        :param sync_robot_start_value: 转机器人前查询企业是否在机器人内的结果{}
+        :param sync_robot_value:  转机器人后的转移结果{}
+        :param company_name_pid_list:  操作的企业pid和企业名，{}
+        :param list_contact:  操作的企业的联系方式，{}
+        :param hasSmartSyncRobot: 账户是否灰测
+        :return:
+        '''
+
         sync_robot_value_sum = 0
         if sync_robot_value["resp_robot_verdicts"] is True:  # 判断转移结果不为空
             if self.dataColumns == [0]:
@@ -632,7 +655,7 @@ class Sync_robot(sync_config):
                     else:
                         robot_Mobile_value = []
 
-                    self.numberCount_verdicts(robot_all_value=list_contact_Api["Mobile"],
+                    self.numberCount_verdicts(robot_all_value=list_contact["Mobile"],
                                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
                                               robot_start_value=robot_Mobile_value,
                                               robot_stop_canCover_value_list=sync_robot_value[
@@ -641,7 +664,7 @@ class Sync_robot(sync_config):
                 else:
                     sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
                         sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_Api,
+                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact,
                         hasSmartSyncRobot=hasSmartSyncRobot)
             else:
                 if sync_robot_value["list_sync_robot_verdicts_type1"] != [] and sync_robot_value[
@@ -657,7 +680,7 @@ class Sync_robot(sync_config):
                     else:
                         robot_start_all_value = []
 
-                    list_contact_Api_all = list_contact_Api["Mobile"] + list_contact_Api["Fixed"]
+                    list_contact_Api_all = list_contact["Mobile"] + list_contact["Fixed"]
                     sync_robot_value_all = sync_robot_value["list_sync_robot_verdicts_type1"] + sync_robot_value[
                         "list_sync_robot_verdicts_type2"]
                     sync_robot_value_can_all = sync_robot_value["list_sync_robot_repetition_type1"] + sync_robot_value[
@@ -678,7 +701,7 @@ class Sync_robot(sync_config):
                                         "list_sync_robot_verdicts_type1"])))
                     else:
                         robot_start_Mobile_value = []
-                    self.numberCount_verdicts(robot_all_value=list_contact_Api["Mobile"],
+                    self.numberCount_verdicts(robot_all_value=list_contact["Mobile"],
                                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
                                               robot_start_value=robot_start_Mobile_value,
                                               robot_stop_canCover_value_list=sync_robot_value[
@@ -692,7 +715,7 @@ class Sync_robot(sync_config):
                                     "list_sync_robot_verdicts_type2"])))
                     else:
                         robot_fixed_value = []
-                    self.numberCount_verdicts(robot_all_value=list_contact_Api["Fixed"],
+                    self.numberCount_verdicts(robot_all_value=list_contact["Fixed"],
                                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type2"],
                                               robot_start_value=robot_fixed_value,
                                               robot_stop_canCover_value_list=sync_robot_value[
@@ -701,12 +724,12 @@ class Sync_robot(sync_config):
                 else:
                     sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
                         sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_Api,
+                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact,
                         hasSmartSyncRobot=hasSmartSyncRobot)
         else:
             sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
                 sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_Api,
+                company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact,
                 hasSmartSyncRobot=hasSmartSyncRobot)
         return sync_robot_value_sum
 

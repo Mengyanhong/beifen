@@ -16,12 +16,14 @@ Development_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.y
 BaseInfo_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['BaseInfo']
 contacts_num_search_conditions = get_yaml_data('../data/yaml/have_or_not_search.yaml')['contacts_num']
 from API_project.tools.Excelread import Excel_Files
+
 headersss = {
-                'app_token': 'f6620ff6729345c8b6101174e695d0ab',
-                'authorization': 'Token token=503ecbad1cfb9ac85d2da95c63ea9a47',
-                'content-type': 'application/json',
-                'crm_platform_type': 'ikcrm'
-            }
+    'app_token': 'f6620ff6729345c8b6101174e695d0ab',
+    'authorization': 'Token token=503ecbad1cfb9ac85d2da95c63ea9a47',
+    'content-type': 'application/json',
+    'crm_platform_type': 'ikcrm'
+}
+
 
 # excel_file = Excel_Files(file_name="nianbao.xlsx", sheel="pid")  # 实例化Excel用例文件
 
@@ -155,7 +157,7 @@ class Test_have_or_not_search:
     # @pytest.mark.parametrize('pid',
     #                          Excel_Files(file_name="聚合查询.xlsx", sheel="聚合查询").open_file_rows("_id.PID")[5500:6000:3])
     @pytest.mark.parametrize('pid',
-                             Excel_Files(file_name="参展信息聚合查询大于10条.xlsx", sheel="聚合查询").open_file_rows("_id.PID")[1:20])
+                             Excel_Files(file_name="参展信息聚合查询大于10条.xlsx", sheel="聚合查询").open_file_rows("_id.PID")[30:60])
     # @pytest.mark.parametrize('pid',
     #                          Excel_Files(file_name="TradeShowEnts.xlsx", sheel="TradeShowEnts").open_file_rows("PID")[5500:6000:3])
     def test_TradeShow(self, pid, ES):  # 企业发展页面+详情页/ES数据对比
@@ -166,7 +168,8 @@ class Test_have_or_not_search:
             install_files.install(row=1, column=3, value='测试结果')
             install_files.install(row=1, column=4, value='测试数据')
         time.sleep(2.1)
-        details_response = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=pid, section='ManageInfo', headers=headersss).json()
+        details_response = getCompanyBaseInfo(HOST, headers_parameters=headersss).getEntSectionInfo(pid=pid,
+                                                                                                    section='ManageInfo').json()
         totals = details_response['data']["TradeShow"]['total']
         TradeShow_startDatess = None
         TradeShow_endDatess = None
@@ -188,6 +191,7 @@ class Test_have_or_not_search:
                         TradeShow_startDatess = TradeShow_startDates
                         TradeShow_endDatess = TradeShow_endDates
                         TradeShow_namess = TradeShow_names
+                    totalsvaluesum += 1
                     if TradeShow_startDates != "":
                         startDate_list.append(
                             time.strftime("%Y-%m-%d", time.localtime(int(TradeShow_startDates) / 1000)))
@@ -203,7 +207,6 @@ class Test_have_or_not_search:
                         install_files.install(row=row_sum, column=1, value=pid)
                         install_files.install(row=row_sum, column=2, value='name')
                         install_files.install(row=row_sum, column=3, value='name为空')
-                    totalsvaluesum += 1
 
                 if 10 < totals:
                     totals_num = round(totals // 10)
@@ -214,10 +217,11 @@ class Test_have_or_not_search:
                         totals_num = totals_num + 1
                     for totalss in range(2, totals_num):
                         time.sleep(3)
-                        details_responses = getCompanyBaseInfo(HOST).getEntSectionInfo(pid=pid,
-                                                                                       section='ManageInfo',
-                                                                                       label='TradeShow',
-                                                                                       page=totalss, headers=headersss).json()
+                        details_responses = getCompanyBaseInfo(HOST, headers_parameters=headersss).getEntSectionInfo(
+                            pid=pid,
+                            section='ManageInfo',
+                            label='TradeShow',
+                            page=totalss).json()
                         for AnnualReport_items_ids in details_responses['data']['TradeShow']['items']:
                             if AnnualReport_items_ids["startDate"] != "":
                                 startDate_list.append(time.strftime("%Y-%m-%d", time.localtime(
@@ -255,6 +259,10 @@ class Test_have_or_not_search:
                         # print(time.strftime("%Y-%m-%d", time.localtime(es_ti)))
                         if es_ti is not None:
                             tradeShowStartDate_list.append(time.strftime("%Y-%m-%d", time.localtime(int(es_ti) / 1000)))
+                if es_result["tradeShowName"] is not None and "tradeShowName" in es_result.keys():
+                    TradeShow_names_ESlist = es_result["tradeShowName"]
+                else:
+                    TradeShow_names_ESlist = []
                 baseinfo_ES = set(startDate_list).difference(set(tradeShowStartDate_list))
                 ES_baseinfo = set(tradeShowStartDate_list).difference(set(startDate_list))
                 # print(startDate_list)
@@ -275,6 +283,23 @@ class Test_have_or_not_search:
                     install_files.install(row=row_sum, column=3, value='ES有详情页没有')
                     install_files.install(row=row_sum, column=4, value=str(ES_baseinfo))
                 # assert len(ES_baseinfo) == 0
+                TradeShow_names_ES = set(TradeShow_names_list).difference(set(TradeShow_names_ESlist))
+                if len(TradeShow_names_ES) != 0:
+                    print('详情页有ES没有', TradeShow_names_ES)
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='tradeShowName')
+                    install_files.install(row=row_sum, column=3, value='详情页有ES没有')
+                    install_files.install(row=row_sum, column=4, value=str(TradeShow_names_ES))
+                ES_TradeShow_names = set(TradeShow_names_ESlist).difference(set(TradeShow_names_list))
+                if len(ES_TradeShow_names) != 0:
+                    print('ES有详情页没有', ES_TradeShow_names)
+                    row_sum = install_files.read_sum() + 1
+                    install_files.install(row=row_sum, column=1, value=pid)
+                    install_files.install(row=row_sum, column=2, value='tradeShowName')
+                    install_files.install(row=row_sum, column=3, value='ES有详情页没有')
+                    install_files.install(row=row_sum, column=4, value=str(ES_TradeShow_names))
+
             else:
                 if "hasTradeShow" in es_result.keys() and es_result["hasTradeShow"] is not False:
                     row_sum = install_files.read_sum() + 1

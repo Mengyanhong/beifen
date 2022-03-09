@@ -436,7 +436,7 @@ class Test_sync_robot:
     # 扣除流量额度，仅转移手机or手机+固话，全部号码or仅一条号码, 加入已有外呼计划
     # 转移号码模块'search_list', 'advanced_search_list', 'map_search_list', 'shop_search_list'
     @pytest.mark.parametrize('way',
-                             ['search_list', 'advanced_search_list', 'shop_search_list'])
+                             ['search_list', 'map_search_list', 'advanced_search_list', 'shop_search_list'])
     # 转移号码数量
     @pytest.mark.parametrize('page', [None])
     # 转移号码类型
@@ -446,15 +446,15 @@ class Test_sync_robot:
     # 重复是否转移
     @pytest.mark.parametrize('canCover', [False, True])
     # 是否扣点
-    # @pytest.mark.parametrize('useQuota', [False, True])
-    def testcase05(self, way, page, dataColumns, numberCounts, canCover):
+    @pytest.mark.parametrize('useQuota', [False, True])
+    def testcase05(self, way, page, dataColumns, numberCounts, canCover,useQuota):
         """
         :param way: 测试模块'search_list'：找企业, 'advanced_search_list'：高级搜索, None：地图获客
         :param page: None：转移所选, 500：转前500, 1000：转前1000, 2000：转前2000
         :return:
         """
         print(dataColumns)
-        sync_config_Api = Sync_robot(host=test_host, way=way, useQuota=True, pages=page, canCover=canCover,
+        sync_config_Api = Sync_robot(host=test_host, way=way, useQuota=useQuota, pages=page, canCover=canCover,
                                      dataColumns=dataColumns,
                                      numberCounts=numberCounts)
 
@@ -468,7 +468,7 @@ class Test_sync_robot:
 
         search_values = sync_config_Api.search_value_list()
         assert search_values["pid_list"] != []
-        if page is None and way == "map_search_list" or page == 500 and way == "map_search_list":
+        if page is None and way == "map_search_list":
             pid = None
             pages = 500
         elif page is None:
@@ -494,7 +494,7 @@ class Test_sync_robot:
         sync_robot_start_verdicts_dicde = {}
         for pid_companyName_start in search_values["pid_companyName_list"]:
             sync_robot_start_verdicts_value = sync_config_Api.sync_robot_start_verdicts(
-                company_name=pid_companyName_start, search_payloads_values=search_values["payloads_request"])
+                list_pid_company_name=pid_companyName_start, search_payloads_values=search_values["payloads_request"])
             sync_robot_start_verdicts_dicde.update({pid_companyName_start["pid"]: sync_robot_start_verdicts_value})
 
         unfoldStatistics_Api_value = sync_config_Api.unfoldStatistics_Api(
@@ -529,7 +529,7 @@ class Test_sync_robot:
                     sync_robot_start_value=sync_robot_start_verdicts_dicde,
                     sync_robot_value=sync_robot_value,
                     company_name_pid_list=i,
-                    list_contact_Api=list_contact_Api,
+                    list_contact=list_contact_Api,
                     hasSmartSyncRobot=hasSmartSyncRobot)
 
             resp_out_query = sync_config_Api.robot_outcallplan().json()["data"]["list"]  # 获取外呼计划列表
