@@ -554,45 +554,69 @@ class Sync_robot(sync_config):
         }
 
     # 转移方式，仅1条or全部
-    def numberCount_verdicts(self, robot_all_value, robot_stop_value, robot_start_value,
-                             robot_stop_canCover_value_list, company_name_pid_list):
+    def numberCount_verdicts(self, list_contact_all, list_contact_one, robot_stop_value,
+                             list_robot_stop_canCover, list_sync_robot_filter, company_name_pid_list):
         '''
-
-        :param robot_stop_canCover_value_list: 转移时的重复号码
+        :param company_name_pid_list:  企业信息
+        :param list_sync_robot_filter:  转移时被过滤的号码
+        :param list_robot_stop_canCover:  转移时的重复号码
         :param numberCount: 转移方式，仅1条or全部
-        :param robot_all_value: 企业全部手机号码
+        :param list_contact_all: 企业全部手机号码
         :param robot_stop_value: 转移结束后，转移成功的号码
-        :param robot_start_value: 转移前查询到的企业
+        :param list_contact_one: 企业的第一条号码
         :return:
         '''
         if self.numberCounts == 1:
-            if robot_start_value:
-                if len(robot_start_value) == 1:
-                    pass
-                elif len(robot_start_value) == 0:
-                    print(company_name_pid_list, '\n转移出错,成功转移的号码数量为0\n转移的号码为',
-                          robot_stop_value, '\n条件，canCover', self.canCover, 'way', self.way, 'page',
-                          self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
-                else:
-                    print(company_name_pid_list, '\n转移出错,转移的号码数量不等于1\n转移的号码为',
-                          robot_stop_value, '\n条件，canCover', self.canCover, 'way', self.way, 'page',
-                          self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
+            if list_contact_one is not None:
+                if len(robot_stop_value) == 0:
+                    if list_contact_one in list_robot_stop_canCover:
+                        print(company_name_pid_list, '\n转移仅一条出错,联系方式不为空但是转移失败,联系方式重复\n转移的号码为',
+                              robot_stop_value, "重复的号码为", list_robot_stop_canCover)
+                    elif list_contact_one in list_sync_robot_filter:
+                        print(company_name_pid_list, '\n转移仅一条出错,联系方式不为空但是转移失败，联系方式被过滤\n转移的号码为',
+                              robot_stop_value, "过滤的号码为", list_sync_robot_filter)
+                    else:
+                        print(company_name_pid_list, '\n转移仅一条出错,联系方式不为空但是转移失败\n转移的号码为',
+                              robot_stop_value, "联系方式为", list_contact_one)
+                elif len(robot_stop_value) != 1:
+                    print(company_name_pid_list, '\n转移仅一条出错,转移的联系方式超出1条联\n转移的号码为',
+                          robot_stop_value)
             else:
-                if len(robot_stop_value) != 1:
-                    print(company_name_pid_list, '\n转移出错,转移的号码数量不等于1\n转移的号码为',
-                          robot_stop_value, '\n条件，canCover', self.canCover, 'way', self.way, 'page',
-                          self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
+                print(company_name_pid_list, '\n转移仅一条，联系方式为空')
         else:
-            robot_stop_canCover_value_list_sum = self.canCover_verdicts(
-                robot_stop_canCover_value_list=robot_stop_canCover_value_list,
-                robot_stop_value=robot_stop_value,
-                robot_all_value=robot_all_value,
-                company_name_pid_list=company_name_pid_list)
-            if (len(robot_stop_value) + robot_stop_canCover_value_list_sum) != len(robot_all_value):
-                print(company_name_pid_list, '\n转移出错,转移的号码数量不等于全部\n转移的手机为',
-                      robot_stop_value, '\n条件，canCover',
-                      self.canCover, 'way', self.way, 'page',
-                      self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
+            # robot_stop_canCover_value_list_sum = self.canCover_verdicts(
+            #     robot_stop_canCover_value_list=robot_stop_canCover_value_list,
+            #     robot_stop_value=robot_stop_value,
+            #     list_contact_all=list_contact_all,
+            #     company_name_pid_list=company_name_pid_list)
+            if list_contact_one is not None:
+                if len(robot_stop_value) == 0:
+                    if set(list_contact_all).issubset(set(list_robot_stop_canCover)) is True:
+                        print(company_name_pid_list, '\n转移全部出错成功转移为0,联系方式不为空但是转移失败,联系方式重复\n全部的号码为',
+                              list_contact_all, "重复的号码为", list_robot_stop_canCover)
+                    elif set(list_contact_all).issubset(set(list_sync_robot_filter)) is True:
+                        print(company_name_pid_list, '\n转移全部出错成功转移为0,联系方式不为空但是转移失败，联系方式被过滤\n全部号码为',
+                              list_contact_all, "过滤的号码为", list_sync_robot_filter)
+                    else:
+                        if len(list(set(list_contact_all).difference(set(list_robot_stop_canCover)))) != 0:
+                            print(company_name_pid_list, '\n转移全部出错成功转移为0,部分联系方式重复，部分联系方式被过滤\n被过滤的号码为',
+                                  list(set(list_contact_all).difference(set(list_robot_stop_canCover))), "全部联系方式为",
+                                  list_contact_all)
+                elif len(robot_stop_value) != len(list_contact_all):
+                    errro_value = list(set(list_contact_all).difference(set(robot_stop_value)))
+                    if set(errro_value).issubset(set(list_robot_stop_canCover)) is True:
+                        print(company_name_pid_list, '\n转移全部出错,联系方式不为空但是转移失败,联系方式重复\n全部的号码为',
+                              errro_value, "重复的号码为", list_robot_stop_canCover)
+                    elif set(errro_value).issubset(set(list_sync_robot_filter)) is True:
+                        print(company_name_pid_list, '\n转移全部出错,联系方式不为空但是转移失败，联系方式被过滤\n全部号码为',
+                              errro_value, "过滤的号码为", list_sync_robot_filter)
+                    else:
+                        if len(list(set(errro_value).difference(set(list_robot_stop_canCover)))) != 0:
+                            print(company_name_pid_list, '\n转移全部出错,部分联系方式重复，部分联系方式被过滤\n被过滤的号码为',
+                                  list(set(errro_value).difference(set(list_robot_stop_canCover))), "全部联系方式为",
+                                  list_contact_all)
+            else:
+                print(company_name_pid_list, '\n转移全部，联系方式为空')
 
     # 重复判断
     def canCover_verdicts(self, robot_stop_canCover_value_list, robot_stop_value, robot_all_value,
@@ -616,8 +640,9 @@ class Sync_robot(sync_config):
 
     #  转移结果判断
     def sync_robot_value_verdicts_assert(self, sync_robot_start_value, sync_robot_value,
-                                         company_name_pid_list, list_contact, hasSmartSyncRobot):
+                                         company_name_pid_list, list_contact_all, hasSmartSyncRobot):
         '''
+        :param list_contact_all:
         :param sync_robot_start_value: 转机器人前查询企业是否在机器人内的结果{}
         :param sync_robot_value:  转机器人后的转移结果{}
         :param company_name_pid_list:  操作的企业pid和企业名，{}
@@ -646,7 +671,8 @@ class Sync_robot(sync_config):
                               self.numberCounts)
 
                 elif sync_robot_value["list_sync_robot_verdicts_type1"]:
-                    if sync_robot_start_value[company_name_pid_list["pid"]]["resp_robot_verdicts"] is True:
+                    if sync_robot_start_value[company_name_pid_list["pid"]][
+                        "resp_robot_verdicts"] is True:  # 判断企业是否已被转移
                         sync_robot_value_sum += 1
                     if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type1"]:
                         robot_Mobile_value = list(set(sync_robot_value["list_sync_robot_verdicts_type1"]).difference(
@@ -655,16 +681,18 @@ class Sync_robot(sync_config):
                     else:
                         robot_Mobile_value = []
 
-                    self.numberCount_verdicts(robot_all_value=list_contact["Mobile"],
+                    self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
+                                              list_contact_one=list_contact_all["contacts_one"],
                                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
-                                              robot_start_value=robot_Mobile_value,
-                                              robot_stop_canCover_value_list=sync_robot_value[
+                                              list_robot_stop_canCover=sync_robot_value[
                                                   "list_sync_robot_repetition_type1"],
+                                              list_sync_robot_filter=sync_robot_value[
+                                                  "list_sync_robot_filter_type1"],
                                               company_name_pid_list=company_name_pid_list)
                 else:
                     sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
                         sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact,
+                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
                         hasSmartSyncRobot=hasSmartSyncRobot)
             else:
                 if sync_robot_value["list_sync_robot_verdicts_type1"] != [] and sync_robot_value[
@@ -680,16 +708,21 @@ class Sync_robot(sync_config):
                     else:
                         robot_start_all_value = []
 
-                    list_contact_Api_all = list_contact["Mobile"] + list_contact["Fixed"]
+                    list_contact_Api_all = list_contact_all["Mobile"] + list_contact_all["Fixed"]
                     sync_robot_value_all = sync_robot_value["list_sync_robot_verdicts_type1"] + sync_robot_value[
                         "list_sync_robot_verdicts_type2"]
                     sync_robot_value_can_all = sync_robot_value["list_sync_robot_repetition_type1"] + sync_robot_value[
                         "list_sync_robot_repetition_type2"]
+                    sync_robot_value_filter_all = sync_robot_value["list_sync_robot_filter_type1"] + sync_robot_value[
+                        "list_sync_robot_filter_type2"]
 
-                    self.numberCount_verdicts(robot_all_value=list_contact_Api_all,
+
+
+                    self.numberCount_verdicts(list_contact_all=list_contact_Api_all,
+                                              list_contact_one=list_contact_all["contacts_one"],
                                               robot_stop_value=sync_robot_value_all,
-                                              robot_start_value=robot_start_all_value,
-                                              robot_stop_canCover_value_list=sync_robot_value_can_all,
+                                              list_robot_stop_canCover=sync_robot_value_can_all,
+                                              list_sync_robot_filter=sync_robot_value_filter_all,
                                               company_name_pid_list=company_name_pid_list)
 
                 elif sync_robot_value["list_sync_robot_verdicts_type1"]:
@@ -701,11 +734,13 @@ class Sync_robot(sync_config):
                                         "list_sync_robot_verdicts_type1"])))
                     else:
                         robot_start_Mobile_value = []
-                    self.numberCount_verdicts(robot_all_value=list_contact["Mobile"],
+                    self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
+                                              list_contact_one=list_contact_all["contacts_one"],
                                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
-                                              robot_start_value=robot_start_Mobile_value,
-                                              robot_stop_canCover_value_list=sync_robot_value[
+                                              list_robot_stop_canCover=sync_robot_value[
                                                   "list_sync_robot_repetition_type1"],
+                                              list_sync_robot_filter=sync_robot_value[
+                                                  "list_sync_robot_filter_type1"],
                                               company_name_pid_list=company_name_pid_list)
                 elif sync_robot_value["list_sync_robot_verdicts_type2"]:
                     if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type2"]:
@@ -715,21 +750,23 @@ class Sync_robot(sync_config):
                                     "list_sync_robot_verdicts_type2"])))
                     else:
                         robot_fixed_value = []
-                    self.numberCount_verdicts(robot_all_value=list_contact["Fixed"],
+                    self.numberCount_verdicts(list_contact_all=list_contact_all["Fixed"],
+                                              list_contact_one=list_contact_all["contacts_one"],
                                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type2"],
-                                              robot_start_value=robot_fixed_value,
-                                              robot_stop_canCover_value_list=sync_robot_value[
+                                              list_robot_stop_canCover=sync_robot_value[
                                                   "list_sync_robot_repetition_type2"],
+                                              list_sync_robot_filter=sync_robot_value[
+                                                  "list_sync_robot_filter_type2"],
                                               company_name_pid_list=company_name_pid_list)
                 else:
                     sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
                         sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact,
+                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
                         hasSmartSyncRobot=hasSmartSyncRobot)
         else:
             sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
                 sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact,
+                company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
                 hasSmartSyncRobot=hasSmartSyncRobot)
         return sync_robot_value_sum
 
