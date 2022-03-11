@@ -578,6 +578,7 @@ class Sync_robot(sync_config):
                     else:
                         print(company_name_pid_list, '\n转移仅一条出错,联系方式不为空但是转移失败\n转移的号码为',
                               robot_stop_value, "联系方式为", list_contact_one)
+
                 elif len(robot_stop_value) != 1:
                     print(company_name_pid_list, '\n转移仅一条出错,转移的联系方式超出1条联\n转移的号码为',
                           robot_stop_value)
