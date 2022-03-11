@@ -70,13 +70,14 @@ class search(User_Config):
         if contact_response["error_code"] != 0:
             print(pid, entName, "联系方式接口调用失败", contact_response)
             assert contact_response["error_code"] == 0
+            unfoldNum = False
         else:
             if contact_response['data']['contacts']:
+                unfoldNum = True
                 details_response_contacts_value = contact_response['data']['contacts']
             elif contact_response['data']['contactNum'] != 0:
-
+                unfoldNum = False
                 if useQuota is True:
-
                     contact_response_tow = self.skb_contacts(id=pid, entName=entName, module=module).json()
                     if contact_response_tow["error_code"] != 0:
                         print(pid, entName, "联系方式接口调用失败tow", contact_response_tow)
@@ -91,6 +92,7 @@ class search(User_Config):
                 else:
                     details_response_contacts_value = []
             else:
+                unfoldNum = False
                 # print('pid:', pid, '企业名称', entName, '\n该企业联系方式为空', contact_response)
                 details_response_contacts_value = []
 
@@ -127,7 +129,7 @@ class search(User_Config):
         return {"Mobile": lists_Mobile, "Fixed": lists_Fixed, "Qq": lists_Qq, "Email": lists_Email,
                 "Mobile_sources": list(lists_Mobile_sources), "Fixed_sources": list(lists_Fixed_sources),
                 "contacts_sources": list(lists_contacts_sources), "contacts_one_mobile": contacts_one_mobile,
-                "contacts_one": contacts_one}
+                "contacts_one": contacts_one, "unfoldNum": unfoldNum}
 
     def skb_search(self, keyword="天津", filterUnfold=2, filterSyncRobot=1, filterSync=1, contact=[1, 2]):
         """

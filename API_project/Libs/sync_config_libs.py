@@ -555,8 +555,10 @@ class Sync_robot(sync_config):
 
     # 转移方式，仅1条or全部
     def numberCount_verdicts(self, list_contact_all, list_contact_one, robot_stop_value,
-                             list_robot_stop_canCover, list_sync_robot_filter, company_name_pid_list):
+                             list_robot_stop_canCover, list_sync_robot_filter, company_name_pid_list,
+                             hasSmartSyncRobot):
         '''
+        :param hasSmartSyncRobot: 企业状态是否灰测
         :param company_name_pid_list:  企业信息
         :param list_sync_robot_filter:  转移时被过滤的号码
         :param list_robot_stop_canCover:  转移时的重复号码
@@ -566,6 +568,7 @@ class Sync_robot(sync_config):
         :param list_contact_one: 企业的第一条号码
         :return:
         '''
+        sync_robot_value_sum = 0
         if self.numberCounts == 1:
             if list_contact_one is not None:
                 if len(robot_stop_value) == 0:
@@ -578,6 +581,8 @@ class Sync_robot(sync_config):
                     else:
                         print(company_name_pid_list, '\n转移仅一条出错,联系方式不为空但是转移失败\n转移的号码为',
                               robot_stop_value, "联系方式为", list_contact_one)
+                    sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(list_contact_Api=list_contact_all,
+                                                                                   hasSmartSyncRobot=hasSmartSyncRobot)
 
                 elif len(robot_stop_value) != 1:
                     print(company_name_pid_list, '\n转移仅一条出错,转移的联系方式超出1条联\n转移的号码为',
@@ -603,6 +608,8 @@ class Sync_robot(sync_config):
                             print(company_name_pid_list, '\n转移全部出错成功转移为0,部分联系方式重复，部分联系方式被过滤\n被过滤的号码为',
                                   list(set(list_contact_all).difference(set(list_robot_stop_canCover))), "全部联系方式为",
                                   list_contact_all)
+                    sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(list_contact_Api=list_contact_all,
+                                                                                   hasSmartSyncRobot=hasSmartSyncRobot)
                 elif len(robot_stop_value) != len(list_contact_all):
                     errro_value = list(set(list_contact_all).difference(set(robot_stop_value)))
                     if set(errro_value).issubset(set(list_robot_stop_canCover)) is True:
@@ -618,6 +625,7 @@ class Sync_robot(sync_config):
                                   list_contact_all)
             else:
                 print(company_name_pid_list, '\n转移全部，联系方式为空')
+        return sync_robot_value_sum
 
     # 重复判断
     def canCover_verdicts(self, robot_stop_canCover_value_list, robot_stop_value, robot_all_value,
@@ -670,139 +678,129 @@ class Sync_robot(sync_config):
                               sync_robot_value["list_sync_robot_verdicts_type2"], '\n条件，canCover', self.canCover, 'way',
                               self.way, 'page', self.pages, 'dataColumns', self.dataColumns, 'numberCounts',
                               self.numberCounts)
+                sync_robot_value_sum += self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
+                                                                  list_contact_one=list_contact_all["contacts_one"],
+                                                                  robot_stop_value=sync_robot_value[
+                                                                      "list_sync_robot_verdicts_type1"],
+                                                                  list_robot_stop_canCover=sync_robot_value[
+                                                                      "list_sync_robot_repetition_type1"],
+                                                                  list_sync_robot_filter=sync_robot_value[
+                                                                      "list_sync_robot_filter_type1"],
+                                                                  company_name_pid_list=company_name_pid_list,
+                                                                  hasSmartSyncRobot=hasSmartSyncRobot)
 
-                elif sync_robot_value["list_sync_robot_verdicts_type1"]:
-                    if sync_robot_start_value[company_name_pid_list["pid"]][
-                        "resp_robot_verdicts"] is True:  # 判断企业是否已被转移
-                        sync_robot_value_sum += 1
-                    if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type1"]:
-                        robot_Mobile_value = list(set(sync_robot_value["list_sync_robot_verdicts_type1"]).difference(
-                            set(sync_robot_start_value[company_name_pid_list["pid"]][
-                                    "list_sync_robot_verdicts_type1"])))
-                    else:
-                        robot_Mobile_value = []
-
-                    self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
-                                              list_contact_one=list_contact_all["contacts_one"],
-                                              robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
-                                              list_robot_stop_canCover=sync_robot_value[
-                                                  "list_sync_robot_repetition_type1"],
-                                              list_sync_robot_filter=sync_robot_value[
-                                                  "list_sync_robot_filter_type1"],
-                                              company_name_pid_list=company_name_pid_list)
-                else:
-                    sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
-                        sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
-                        hasSmartSyncRobot=hasSmartSyncRobot)
+                # elif sync_robot_value["list_sync_robot_verdicts_type1"]:
+                #     if sync_robot_start_value[company_name_pid_list["pid"]][
+                #         "resp_robot_verdicts"] is True:  # 判断企业是否已被转移
+                #         sync_robot_value_sum += 1
+                #     if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type1"]:
+                #         robot_Mobile_value = list(set(sync_robot_value["list_sync_robot_verdicts_type1"]).difference(
+                #             set(sync_robot_start_value[company_name_pid_list["pid"]][
+                #                     "list_sync_robot_verdicts_type1"])))
+                #     else:
+                #         robot_Mobile_value = []
+                # else:
+                #     sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
+                #         sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
+                #         company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
+                #         hasSmartSyncRobot=hasSmartSyncRobot)
             else:
-                if sync_robot_value["list_sync_robot_verdicts_type1"] != [] and sync_robot_value[
-                    "list_sync_robot_verdicts_type2"] != []:
-                    if sync_robot_start_value[company_name_pid_list["pid"]]["resp_robot_verdicts"] is True:
-                        sync_robot_value_sum += 1
-                        robot_start_all_value = list(set(sync_robot_value["list_sync_robot_verdicts_type1"]).difference(
-                            set(sync_robot_start_value[company_name_pid_list["pid"]][
-                                    "list_sync_robot_verdicts_type1"]))) + list(
-                            set(sync_robot_value["list_sync_robot_verdicts_type2"]).difference(
-                                set(sync_robot_start_value[company_name_pid_list["pid"]][
-                                        "list_sync_robot_verdicts_type2"])))
-                    else:
-                        robot_start_all_value = []
-
-                    list_contact_Api_all = list_contact_all["Mobile"] + list_contact_all["Fixed"]
-                    sync_robot_value_all = sync_robot_value["list_sync_robot_verdicts_type1"] + sync_robot_value[
-                        "list_sync_robot_verdicts_type2"]
-                    sync_robot_value_can_all = sync_robot_value["list_sync_robot_repetition_type1"] + sync_robot_value[
-                        "list_sync_robot_repetition_type2"]
-                    sync_robot_value_filter_all = sync_robot_value["list_sync_robot_filter_type1"] + sync_robot_value[
-                        "list_sync_robot_filter_type2"]
-
-
-
-                    self.numberCount_verdicts(list_contact_all=list_contact_Api_all,
-                                              list_contact_one=list_contact_all["contacts_one"],
-                                              robot_stop_value=sync_robot_value_all,
-                                              list_robot_stop_canCover=sync_robot_value_can_all,
-                                              list_sync_robot_filter=sync_robot_value_filter_all,
-                                              company_name_pid_list=company_name_pid_list)
-
-                elif sync_robot_value["list_sync_robot_verdicts_type1"]:
-                    if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type1"]:
-                        sync_robot_value_sum += 1
-                        robot_start_Mobile_value = list(
-                            set(sync_robot_value["list_sync_robot_verdicts_type1"]).difference(
-                                set(sync_robot_start_value[company_name_pid_list["pid"]][
-                                        "list_sync_robot_verdicts_type1"])))
-                    else:
-                        robot_start_Mobile_value = []
-                    self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
-                                              list_contact_one=list_contact_all["contacts_one"],
-                                              robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
-                                              list_robot_stop_canCover=sync_robot_value[
-                                                  "list_sync_robot_repetition_type1"],
-                                              list_sync_robot_filter=sync_robot_value[
-                                                  "list_sync_robot_filter_type1"],
-                                              company_name_pid_list=company_name_pid_list)
-                elif sync_robot_value["list_sync_robot_verdicts_type2"]:
-                    if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type2"]:
-                        sync_robot_value_sum += 1
-                        robot_fixed_value = list(set(sync_robot_value["list_sync_robot_verdicts_type2"]).difference(
-                            set(sync_robot_start_value[company_name_pid_list["pid"]][
-                                    "list_sync_robot_verdicts_type2"])))
-                    else:
-                        robot_fixed_value = []
-                    self.numberCount_verdicts(list_contact_all=list_contact_all["Fixed"],
-                                              list_contact_one=list_contact_all["contacts_one"],
-                                              robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type2"],
-                                              list_robot_stop_canCover=sync_robot_value[
-                                                  "list_sync_robot_repetition_type2"],
-                                              list_sync_robot_filter=sync_robot_value[
-                                                  "list_sync_robot_filter_type2"],
-                                              company_name_pid_list=company_name_pid_list)
-                else:
-                    sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
-                        sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                        company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
-                        hasSmartSyncRobot=hasSmartSyncRobot)
-        else:
-            sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
-                sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
-                company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
-                hasSmartSyncRobot=hasSmartSyncRobot)
-        return sync_robot_value_sum
-
-    #  未转移成功时的判断
-    def sync_robot_failed_verdicts_assert(self, sync_robot_start_value, sync_robot_value,
-                                          company_name_pid_list, list_contact_Api, hasSmartSyncRobot,
-                                          ):
-        sync_robot_value_sum = 0
-        if self.dataColumns == [0]:
-            if list_contact_Api["Mobile"]:
-                self.canCover_verdicts(
-                    robot_stop_canCover_value_list=sync_robot_value["list_sync_robot_verdicts_type1"],
-                    robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
-                    robot_all_value=list_contact_Api["Mobile"],
-                    company_name_pid_list=company_name_pid_list)
-            else:
-                if list_contact_Api["Fixed"] != [] or list_contact_Api["Qq"] != [] or list_contact_Api["Email"] != []:
-                    if self.useQuota is True and sync_robot_start_value[company_name_pid_list["pid"]][
-                        "unfoldNum"] == 0 and hasSmartSyncRobot is False:
-                        sync_robot_value_sum += 1
-        else:
-            if list_contact_Api["Mobile"] != [] or list_contact_Api["Fixed"] != []:
-                list_contact_Api_all = list_contact_Api["Mobile"] + list_contact_Api["Fixed"]
+                list_contact_Api_all = list_contact_all["Mobile"] + list_contact_all["Fixed"]
                 sync_robot_value_all = sync_robot_value["list_sync_robot_verdicts_type1"] + sync_robot_value[
                     "list_sync_robot_verdicts_type2"]
                 sync_robot_value_can_all = sync_robot_value["list_sync_robot_repetition_type1"] + sync_robot_value[
                     "list_sync_robot_repetition_type2"]
-                self.canCover_verdicts(
-                    robot_stop_canCover_value_list=sync_robot_value_can_all,
-                    robot_stop_value=sync_robot_value_all,
-                    robot_all_value=list_contact_Api_all,
-                    company_name_pid_list=company_name_pid_list)
-            else:
+                sync_robot_value_filter_all = sync_robot_value["list_sync_robot_filter_type1"] + sync_robot_value[
+                    "list_sync_robot_filter_type2"]
+
+                sync_robot_value_sum += self.numberCount_verdicts(list_contact_all=list_contact_Api_all,
+                                                                  list_contact_one=list_contact_all["contacts_one"],
+                                                                  robot_stop_value=sync_robot_value_all,
+                                                                  list_robot_stop_canCover=sync_robot_value_can_all,
+                                                                  list_sync_robot_filter=sync_robot_value_filter_all,
+                                                                  company_name_pid_list=company_name_pid_list,
+                                                                  hasSmartSyncRobot=hasSmartSyncRobot)
+                # if sync_robot_value["list_sync_robot_verdicts_type1"] != [] and sync_robot_value[
+                #     "list_sync_robot_verdicts_type2"] != []:
+                #     if sync_robot_start_value[company_name_pid_list["pid"]]["resp_robot_verdicts"] is True:
+                #         sync_robot_value_sum += 1
+                #         robot_start_all_value = list(set(sync_robot_value["list_sync_robot_verdicts_type1"]).difference(
+                #             set(sync_robot_start_value[company_name_pid_list["pid"]][
+                #                     "list_sync_robot_verdicts_type1"]))) + list(
+                #             set(sync_robot_value["list_sync_robot_verdicts_type2"]).difference(
+                #                 set(sync_robot_start_value[company_name_pid_list["pid"]][
+                #                         "list_sync_robot_verdicts_type2"])))
+                #     else:
+                #         robot_start_all_value = []
+                #
+                #
+                #
+                # elif sync_robot_value["list_sync_robot_verdicts_type1"]:
+                #     if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type1"]:
+                #         sync_robot_value_sum += 1
+                #         robot_start_Mobile_value = list(
+                #             set(sync_robot_value["list_sync_robot_verdicts_type1"]).difference(
+                #                 set(sync_robot_start_value[company_name_pid_list["pid"]][
+                #                         "list_sync_robot_verdicts_type1"])))
+                #     else:
+                #         robot_start_Mobile_value = []
+                #     self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
+                #                               list_contact_one=list_contact_all["contacts_one"],
+                #                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type1"],
+                #                               list_robot_stop_canCover=sync_robot_value[
+                #                                   "list_sync_robot_repetition_type1"],
+                #                               list_sync_robot_filter=sync_robot_value[
+                #                                   "list_sync_robot_filter_type1"],
+                #                               company_name_pid_list=company_name_pid_list)
+                # elif sync_robot_value["list_sync_robot_verdicts_type2"]:
+                #     if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type2"]:
+                #         sync_robot_value_sum += 1
+                #         robot_fixed_value = list(set(sync_robot_value["list_sync_robot_verdicts_type2"]).difference(
+                #             set(sync_robot_start_value[company_name_pid_list["pid"]][
+                #                     "list_sync_robot_verdicts_type2"])))
+                #     else:
+                #         robot_fixed_value = []
+                #     self.numberCount_verdicts(list_contact_all=list_contact_all["Fixed"],
+                #                               list_contact_one=list_contact_all["contacts_one"],
+                #                               robot_stop_value=sync_robot_value["list_sync_robot_verdicts_type2"],
+                #                               list_robot_stop_canCover=sync_robot_value[
+                #                                   "list_sync_robot_repetition_type2"],
+                #                               list_sync_robot_filter=sync_robot_value[
+                #                                   "list_sync_robot_filter_type2"],
+                #                               company_name_pid_list=company_name_pid_list)
+                # else:
+                #     sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(
+                #         sync_robot_start_value=sync_robot_start_value, sync_robot_value=sync_robot_value,
+                #         company_name_pid_list=company_name_pid_list, list_contact_Api=list_contact_all,
+                #         hasSmartSyncRobot=hasSmartSyncRobot)
+        else:
+            sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(list_contact_Api=list_contact_all,
+                                                                           hasSmartSyncRobot=hasSmartSyncRobot)
+        return sync_robot_value_sum
+
+    #  未转移成功时的判断
+    def sync_robot_failed_verdicts_assert(self, list_contact_Api,
+                                          hasSmartSyncRobot):
+        sync_robot_value_sum = 0
+        if self.dataColumns == [0]:
+            if not list_contact_Api["Mobile"]:
+                if list_contact_Api["Fixed"] != [] or list_contact_Api["Qq"] != [] or list_contact_Api["Email"] != []:
+                    if self.useQuota is True and list_contact_Api["unfoldNum"] is False and hasSmartSyncRobot is False:
+                        sync_robot_value_sum += 1
+        else:
+            # if list_contact_Api["Mobile"] != [] or list_contact_Api["Fixed"] != []:
+            #     list_contact_Api_all = list_contact_Api["Mobile"] + list_contact_Api["Fixed"]
+            #     sync_robot_value_all = sync_robot_value["list_sync_robot_verdicts_type1"] + sync_robot_value[
+            #         "list_sync_robot_verdicts_type2"]
+            #     sync_robot_value_can_all = sync_robot_value["list_sync_robot_repetition_type1"] + sync_robot_value[
+            #         "list_sync_robot_repetition_type2"]
+            #     self.canCover_verdicts(
+            #         robot_stop_canCover_value_list=sync_robot_value_can_all,
+            #         robot_stop_value=sync_robot_value_all,
+            #         robot_all_value=list_contact_Api_all,
+            #         company_name_pid_list=company_name_pid_list)
+            if list_contact_Api["Mobile"] == [] and list_contact_Api["Fixed"] == []:
                 if list_contact_Api["Qq"] != [] or list_contact_Api["Email"] != []:
-                    if self.useQuota is True and sync_robot_start_value[company_name_pid_list["pid"]][
-                        "unfoldNum"] == 0 and hasSmartSyncRobot is False:
+                    if self.useQuota is True and list_contact_Api["unfoldNum"] is False and hasSmartSyncRobot is False:
                         sync_robot_value_sum += 1
         return sync_robot_value_sum
