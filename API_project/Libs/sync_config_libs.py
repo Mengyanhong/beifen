@@ -161,7 +161,7 @@ class sync_config(Config_api):
 
 class Sync_robot(sync_config):
     def __init__(self, host, way, pages, canCover, dataColumns, numberCounts, headers_parameters=None, useQuota=True):
-        super().__init__(host=host, way=way, pages=pages, headers_parameters=headers_parameters, useQuota=useQuota)
+        super(Sync_robot, self).__init__(host=host, way=way, pages=pages, headers_parameters=headers_parameters, useQuota=useQuota)
         self.canCover = canCover
         self.dataColumns = dataColumns
         self.numberCounts = numberCounts

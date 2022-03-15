@@ -113,22 +113,22 @@ class User_Config(Url_Host_Config):
         if headers_parameters is not None:
             headers = {
                 'app_token': headers_parameters["app_token"],
-                'authorization': headers_parameters["authorization"],
-                'content-type': 'application/json',
+                'Authorization': headers_parameters["authorization"],
+                'Content-Type': 'application/json',
                 'crm_platform_type': headers_parameters["crm_platform_type"]
             }
         elif self.headers_parameters is None:
             headers = {
                 'app_token': self.user_file()["app_token"],
-                'authorization': self.user_file()["authorization"],
-                'content-type': 'application/json',
+                'Authorization': self.user_file()["authorization"],
+                'Content-Type': 'application/json',
                 'crm_platform_type': self.user_file()["crm_platform_type"]
             }
         else:
             headers = {
                 'app_token': self.headers_parameters["app_token"],
-                'authorization': self.headers_parameters["authorization"],
-                'content-type': 'application/json',
+                'Authorization': self.headers_parameters["authorization"],
+                'Content-Type': 'application/json',
                 'crm_platform_type': self.headers_parameters["crm_platform_type"]
             }
         return headers

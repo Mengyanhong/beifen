@@ -529,13 +529,14 @@ class Robot_Api(Skb_Search_Api):
         url = f'https://{self.robot_url_Host()}/api/v1/plan/list'
         response = requests.post(url, json=payload, headers=self.headers_robot())
         return response
-# if __name__ == '__main__':
-#     from pprint import pprint
-#     pprint(Robot_Api("test").robot_out_call_plan().json())
+
+    # if __name__ == '__main__':
+    #     from pprint import pprint
+    #     pprint(Robot_Api("test").robot_out_call_plan().json())
     # 执行转机器人
     def robot_sync(self, out_id=None, pids=None, pages=None, seach_value=None, useQuota=True,
-             dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
-             gatewayId=None, surveyId=None, gatewaysname=None):
+                   dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
+                   gatewayId=None, surveyId=None, gatewaysname=None):
         """
         :param gatewaysname: 计划名称
         :param out_id: 计划ID
@@ -572,7 +573,6 @@ class Robot_Api(Skb_Search_Api):
             "canCover": canCover,  # 重复号码是否导入 true / false
             "needCallPlan": needCallPlan,  # 是否需要创建外呼计划 true / false
         }
-        payload.update(seach_value)
         out_payload = {
             "id": out_id,
             "need_push": 0,
@@ -585,8 +585,7 @@ class Robot_Api(Skb_Search_Api):
             "customers_ids": [],
             "platform": "IK"
         }
-
-        gateway_name = "外呼计划测试" + time.strftime("%Y年%m月%d日%H时%M分")
+        gateway_name = "外呼测试" + time.strftime("%Y年%m月%d日%H时%M分")
         gatewayId_value = {
             "plan_name": gateway_name,
             "survey_id": surveyId,
@@ -604,7 +603,7 @@ class Robot_Api(Skb_Search_Api):
             "customers_ids": [],
             "platform": "IK"
         }
-
+        payload.update(seach_value)
         if pids is None:
             payload.update({"page": 1, "pagesize": pages})
         else:
