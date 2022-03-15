@@ -2,8 +2,8 @@
 # 多选下拉框
 import openpyxl
 import yaml,pytest,time,random,requests
-from ..Configs.search_API import search
-from ..Configs.search_API import getCompanyBaseInfo
+from ..Configs.search_Api import search
+from ..Configs.search_Api import getCompanyBaseInfo
 host = 'test' #设置环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 getCompanyBaseInfo = getCompanyBaseInfo(host)
 search = search(host)

@@ -3,19 +3,19 @@
 import pytest, openpyxl, time
 # from distutils import version
 # from collections import Counter  # 导入表格统计模块
-from API_project.Configs.Configuration import Configuration_Api_File
-from API_project.Configs.search_API import search, getCompanyBaseInfo
+from API_project.Configs.Config_Info import Api_Config_File
+from API_project.Configs.search_Api import search, getCompanyBaseInfo
 from API_project.tools.install_Excel import install_Excel
 
 file_name = time.strftime("%Y年%m月%d日%H时%M分")
 HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
-recruitPlatform_config = Configuration_Api_File(host=HOST).conditionConfig()  # 实例化高级搜索配置并返回配置信息
-recruitPlatformOption_config = Configuration_Api_File(host=HOST).staticConfig_recruitPlatformOption()  # 实例化经营情况详情页筛选项配置并返回配置信息
-staticConfig_IPR_config = Configuration_Api_File(host=HOST).staticConfig_IPR()  # 实例化知识产权详情页筛选项配置并返回配置信息
+recruitPlatform_config = Api_Config_File(host=HOST).conditionConfig()  # 实例化高级搜索配置并返回配置信息
+recruitPlatformOption_config = Api_Config_File(host=HOST).staticConfig_recruitPlatformOption()  # 实例化经营情况详情页筛选项配置并返回配置信息
+staticConfig_IPR_config = Api_Config_File(host=HOST).staticConfig_IPR()  # 实例化知识产权详情页筛选项配置并返回配置信息
 recruitPlatformOption_config_list = recruitPlatformOption_config['recruitPlatformOption']  # 返回企业详情-经营情况-招聘平台筛选配置信息
 templateSuppilerOption_config_list = staticConfig_IPR_config['templateSuppilerOption']  # 返回企业详情-知识产权-建站方筛选配置信息
 getEntSectionInfo_search = getCompanyBaseInfo(HOST)  # 实例化高级搜索搜索接口
-staticConfig = Configuration_Api_File(host=HOST).staticConfig_Api()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
+staticConfig = Api_Config_File(host=HOST).staticConfig_Api()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
 staticConfig_list = []
 
 # staticConfig_list = []

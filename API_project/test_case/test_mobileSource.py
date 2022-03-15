@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #来源站
 import openpyxl
-from ..Configs.Configuration import configuration_file
+from ..Configs.Config_Info import configuration_file
 HOST = 'test' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 configuration_file = configuration_file(HOST)
 

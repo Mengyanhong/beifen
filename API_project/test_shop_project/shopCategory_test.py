@@ -1,12 +1,9 @@
-import pytest, time
-from API_project.Configs.shop_API import shop
-from API_project.Configs.Configuration import configuration_file
+from API_project.Configs.Config_Info import Api_Config_File
 from API_project.tools.Excelread import Excel_Files
 from pprint import pprint
 
 HOST = 'test'  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
-shop = shop(HOST)  # 实例化店铺搜索
-shopCategory = configuration_file(HOST).shopCategory()  # 实例化店铺分类并返回配置信息
+shopCategory = Api_Config_File(HOST).shopCategory()  # 实例化店铺分类并返回配置信息
 # pprint(shopCategory)
 category_list = []
 # category2_list = []

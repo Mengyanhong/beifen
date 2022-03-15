@@ -142,23 +142,23 @@ class User_Config(Url_Host_Config):
         if headers_parameters is not None:
             headers = {
                 'platform': 'IK',
-                'usertoken': headers_parameters["usertoken"],
-                'content-type': 'application/json',
-                'crmplatformtype': headers_parameters["crm_platform_type"]
+                'userToken': headers_parameters["usertoken"],
+                'Content-Type': 'application/json',
+                'CrmPlatformType': headers_parameters["crm_platform_type"]
             }
         elif self.headers_parameters is None:
             headers = {
                 'platform': 'IK',
-                'usertoken': self.user_file()["token"],
-                'content-type': 'application/json',
-                'crmplatformtype': self.user_file()["crm_platform_type"]
+                'userToken': self.user_file()["token"],
+                'Content-Type': 'application/json',
+                'CrmPlatformType': self.user_file()["crm_platform_type"]
             }
         else:
             headers = {
                 'platform': 'IK',
-                'usertoken': self.headers_parameters["token"],
-                'content-type': 'application/json',
-                'crmplatformtype': self.headers_parameters["crm_platform_type"]
+                'userToken': self.headers_parameters["token"],
+                'Content-Type': 'application/json',
+                'CrmPlatformType': self.headers_parameters["crm_platform_type"]
             }
         return headers
         # lxcrm_Headers = {
@@ -211,46 +211,46 @@ class User_Config(Url_Host_Config):
 #     print(hear.skb_url_Host())
 
 
-class Configuration_Api_File(User_Config):  # 配置文件调用
+class Api_Config_File(User_Config):  # 配置文件调用
 
     def conditionGroups_Api(self):  # 高级搜索搜索条件
-        path = '/api_skb/v1/companyDetail/conditionGroups?groupName=enterprise&category=advancedSearch'
-        response = requests.get(self.biz_url_Host() + path, headers=self.headers_skb(), verify=False)
+        path = f'https://{self.biz_url_Host()}/api_skb/v1/companyDetail/conditionGroups?groupName=enterprise&category=advancedSearch'
+        response = requests.get(url=path, headers=self.headers_skb(), verify=False)
         return response
 
     def staticConfig_Api(self):  # 来源（contactSource）站配置
-        path = '/api_skb/v1/companyDetail/staticConfig?namespace=withLevels'
-        response = requests.get(self.biz_url_Host() + path, headers=self.headers_skb(), verify=False)
+        path = f'https://{self.biz_url_Host()}/api_skb/v1/companyDetail/staticConfig?namespace=withLevels'
+        response = requests.get(url=path, headers=self.headers_skb(), verify=False)
         response = response.json()['data']
         return response
 
     def staticConfig_recruitPlatformOption(self):  # 经营情况详情页筛选配置，recruitPlatformOption：招聘平台
-        path = '/api_skb/v1/companyDetail/staticConfig?namespace=semPlatformOption,recruitPlatformOption,' \
+        path = f'https://{self.biz_url_Host()}/api_skb/v1/companyDetail/staticConfig?namespace=semPlatformOption,recruitPlatformOption,' \
                'tenderOption,semTypeOption'
-        response = requests.get(self.biz_url_Host() + path, headers=self.headers_skb(), verify=False)
+        response = requests.get(url=path, headers=self.headers_skb(), verify=False)
         response = response.json()['data']
         return response
 
     def staticConfig_IPR(self):  # 知识产权详情页筛选配置，templateSuppilerOption：建站方，trademarkTypeOption：商标类别
-        path = '/api_skb/v1/companyDetail/staticConfig?namespace=trademarkTypeOption,templateSuppilerOption'
-        response = requests.get(self.biz_url_Host() + path, headers=self.headers_skb(), verify=False)
+        path = f'https://{self.biz_url_Host()}/api_skb/v1/companyDetail/staticConfig?namespace=trademarkTypeOption,templateSuppilerOption'
+        response = requests.get(url=path, headers=self.headers_skb(), verify=False)
         response = response.json()['data']
         return response
 
     def shopCategory(self):  # 店铺分类（shopCategory）配置
-        path = '/api_skb/v1/companyDetail/staticConfig?namespace=shopCategory'
-        response = requests.get(self.biz_url_Host() + path, headers=self.headers_skb(), verify=False)
+        path = f'https://{self.biz_url_Host()}/api_skb/v1/companyDetail/staticConfig?namespace=shopCategory'
+        response = requests.get(url=path, headers=self.headers_skb(), verify=False)
         response = response.json()['data']
         return response
 
     def conditionConfig(self):  # 高级搜索搜索条件（conditionConfig）配置
-        path = '/api_skb/v1/companyDetail/conditionConfig?groupName=enterprise&category=advancedSearch'
-        response = requests.get(self.biz_url_Host() + path, headers=self.headers_skb(), verify=False).json()
+        path = f'https://{self.biz_url_Host()}/api_skb/v1/companyDetail/conditionConfig?groupName=enterprise&category=advancedSearch'
+        response = requests.get(url=path, headers=self.headers_skb(), verify=False).json()
         return response['data']
 
     def shopDivision(self):  # 店铺地区（shopDivision）配置
-        path = '/api_skb/v1/companyDetail/staticConfig?namespace=shopDivision'
-        response = requests.get(self.biz_url_Host() + path, headers=self.headers_skb(), verify=False).json()
+        path = f'https://{self.biz_url_Host()}/api_skb/v1/companyDetail/staticConfig?namespace=shopDivision'
+        response = requests.get(url=path, headers=self.headers_skb(), verify=False).json()
         return response['data']['shopDivision']
         # a = r.text.encode(encoding="utf-8",errors="strict").decode(encoding="utf-8",errors="strict")#decode("unicode_escape")
         # a = json.dumps(r,ensure_ascii=False).encode("utf-8",errors="ignore").decode('utf-8',errors="ignore")
@@ -264,6 +264,13 @@ class Configuration_Api_File(User_Config):  # 配置文件调用
         # data=json.loads(re_file)['data']['shopDivision']
         # data = a
         # print(re_file.json)
+
+
+class Config_info(Api_Config_File):
+    '''
+    配置调用
+    '''
+
 #
 # # if __name__ == '__main__':
 # #     print(user('test').headers())
@@ -294,9 +301,9 @@ class Configuration_Api_File(User_Config):  # 配置文件调用
 #     #     break
 #     print(staticConfig_list)
 #     # print(configuration_file('test').staticConfig_recruitPlatformOption()['recruitPlatformOption'] )
-    # if __name__ == '__main__':
-    #     staticConfig = configuration_file('lxcrm').staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
-    #     print(staticConfig)
-    #     staticConfig_lists = []
-    #     for staticConfig_value in staticConfig:
-    #         staticConfig_list = staticConfig_lists + staticConfig_value['sub']
+# if __name__ == '__main__':
+#     staticConfig = configuration_file('lxcrm').staticConfig()['contactSiteSourceMap']  # 实例化高级搜索配置withLevels并返回配置信息
+#     print(staticConfig)
+#     staticConfig_lists = []
+#     for staticConfig_value in staticConfig:
+#         staticConfig_list = staticConfig_lists + staticConfig_value['sub']

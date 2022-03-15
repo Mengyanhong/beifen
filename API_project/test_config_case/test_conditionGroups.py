@@ -2,7 +2,7 @@
 # 条件测试
 
 import openpyxl
-from ..Configs.Configuration import configuration_file
+from ..Configs.Config_Info import configuration_file
 
 host = 'test' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 

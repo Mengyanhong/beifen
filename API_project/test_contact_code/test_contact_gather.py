@@ -1,15 +1,15 @@
 # 联系方式相关case
 # from collections import Counter  # 导入表格统计模块
-from API_project.Configs.Configuration import configuration_file
+from API_project.Configs.Config_Info import configuration_file
 from API_project.tools.get_yaml_set import get_yaml_data
 import json, sys
 import pytest
 import requests
 import time, sys, json, openpyxl
 from pprint import pprint
-from API_project.Configs.Configuration import user
+from API_project.Configs.Config_Info import user
 from API_project.tools.Excelread import Excel_Files
-from API_project.Configs.search_API import search
+from API_project.Configs.search_Api import search
 from API_project.tools.install_Excel import install_Excel
 
 # excel_file = Excel_Files(file_name="联系方式渠道配置.xlsx", sheel="联系方式渠道配置")  # 实例化Excel用例文件

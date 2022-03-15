@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #资质证书类型
 import pytest,openpyxl,time,sys,random,datetime
-from ..Configs.search_API import search
-from ..Configs.search_API import getCompanyBaseInfo
+from ..Configs.search_Api import search
+from ..Configs.search_Api import getCompanyBaseInfo
 host = 'test' #设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 getCompanyBaseInfo = getCompanyBaseInfo(host)
 search = search(host)

@@ -2,11 +2,11 @@
 # @Author : 孟艳红
 # @File : sync_robot_test.py
 
-from pprint import pprint
+# from pprint import pprint
 import requests, json, time, pytest, os, random
-from API_project.Configs.Configuration import User_Config
-from API_project.Configs.search_API import search
-from API_project.Configs.shop_API import shop_api
+# from API_project.Configs.Config_Info import User_Config
+# from API_project.Configs.search_Api import search
+# from API_project.Configs.shop_API import shop_api
 # from API_project.Libs.sync_robot_libs import Sync_robot
 from API_project.Libs.sync_config_libs import Sync_robot
 
@@ -436,7 +436,7 @@ class Test_sync_robot:
     # 扣除流量额度，仅转移手机or手机+固话，全部号码or仅一条号码, 加入已有外呼计划
     # 转移号码模块'search_list', 'advanced_search_list', 'map_search_list', 'shop_search_list'
     # @pytest.mark.parametrize('way',
-                             # ['search_list', 'map_search_list', 'advanced_search_list', 'shop_search_list'])
+    # ['search_list', 'map_search_list', 'advanced_search_list', 'shop_search_list'])
     @pytest.mark.parametrize('way',
                              ['advanced_search_list'])
     # 转移号码数量
@@ -447,6 +447,8 @@ class Test_sync_robot:
     @pytest.mark.parametrize('numberCounts', [0, 1])
     # 重复是否转移
     @pytest.mark.parametrize('canCover', [False, True])
+    # 是否创建外呼计划方式
+    # @pytest.mark.parametrize('needCallPlan', [False, True])
     # 是否扣点
     # @pytest.mark.parametrize('useQuota', [False, True])
     def testcase05(self, way, page, dataColumns, numberCounts, canCover):
@@ -455,12 +457,11 @@ class Test_sync_robot:
         :param page: None：转移所选, 500：转前500, 1000：转前1000, 2000：转前2000
         :return:
         """
-        print(dataColumns)
         sync_config_Api = Sync_robot(host=test_host, way=way, useQuota=True, pages=page, canCover=canCover,
                                      dataColumns=dataColumns,
                                      numberCounts=numberCounts)
 
-        userinfo = sync_config_Api.user_api.userinfo_skb_Api().json()
+        userinfo = sync_config_Api.userinfo_skb_Api().json()
         quantity_start = userinfo['data']['uRemainQuota']  # 获取初始额度
         hasSmartSyncRobot = userinfo['data']['hasSmartSyncRoobot']  # 获取账户类型是否灰测
 
@@ -469,6 +470,7 @@ class Test_sync_robot:
         # search_values = sync_config_Api.search_value_list()
 
         search_values = sync_config_Api.search_value_list()
+        print(search_values)
         assert search_values["pid_list"] != []
         if page is None and way == "map_search_list":
             pid = None
@@ -480,19 +482,33 @@ class Test_sync_robot:
             pid = None
             pages = page
 
-        resp_out_sync = sync_config_Api.robot_outcallplan().json()  # 获取外呼计划列表
-        resp_out_sync_value = None
-        if resp_out_sync["data"]["list"]:
-            for gatewayId_re in resp_out_sync["data"]["list"]:
-                if gatewayId_re["gatewayId"] == sync_config_Api.user_api.robot_gateway()["gatewayId"]:
-                    resp_out_sync_value = gatewayId_re
-                    break
-            # print("计划id", resp_out_sync_value["id"], "计划号码数量", resp_out_sync_value["callCount"], "计划名称",
-            #       resp_out_sync_value["jobGroupName"])
-        if resp_out_sync_value is None:
-            print("外呼计划列表内没有假线路", resp_out_sync["data"])
-            assert resp_out_sync["data"]["list"] != []
-        out_id = resp_out_sync_value["id"]
+        resp_out_sync = sync_config_Api.robot_out_call_plan().json()  # 获取外呼计划列表
+        if resp_out_sync["data"]["list"]:  # and needCallPlan is True
+            out_ids = resp_out_sync["data"]["list"][0]["id"]
+            out_gatewayId = resp_out_sync["data"]["list"][0]["gatewayId"]
+            out_surveyId = resp_out_sync["data"]["list"][0]["surveyId"]
+            out_jobGroupName = resp_out_sync["data"]["list"][0]["jobGroupName"]
+            out_callCount = resp_out_sync["data"]["list"][0]["callCount"]
+            out_id = random.choices([out_ids, None])
+            print("外呼计划id", out_id)
+        else:
+            print("外呼计划列表为空", resp_out_sync["data"])
+            out_id = None
+            out_gatewayId = None
+            out_surveyId = None
+            out_jobGroupName = None
+            out_callCount = None
+        # for gatewayId_re in resp_out_sync["data"]["list"]:
+        #     if gatewayId_re["gatewayId"] == sync_config_Api.robot_gateway()["gatewayId"]:
+        #         resp_out_sync_value = gatewayId_re
+        #         break
+        # print("计划id", resp_out_sync_value["id"], "计划号码数量", resp_out_sync_value["callCount"], "计划名称",
+        #       resp_out_sync_value["jobGroupName"])
+        # if not resp_out_sync_value:
+        #     print("外呼计划列表内没有假线路", resp_out_sync["data"])
+        #     assert resp_out_sync["data"]["list"] != []
+        # else:
+        #     out_id = resp_out_sync_value["id"]
         sync_robot_start_verdicts_dicde = {}
         for pid_companyName_start in search_values["pid_companyName_list"]:
             sync_robot_start_verdicts_value = sync_config_Api.sync_robot_start_verdicts(
@@ -500,17 +516,24 @@ class Test_sync_robot:
             sync_robot_start_verdicts_dicde.update({pid_companyName_start["pid"]: sync_robot_start_verdicts_value})
 
         unfoldStatistics_Api_value = sync_config_Api.unfoldStatistics_Api(
-            search_payload=search_values["payloads_request"], pid_list=pid, page=pages).json()
+            search_payload=search_values["payloads_request"], pid_list=pid, page=pages, way=way).json()
         if unfoldStatistics_Api_value["error_code"] == 0:
             unfoldNum = unfoldStatistics_Api_value["data"]["unfoldNum"]
+            print("查看状态查询", unfoldStatistics_Api_value)
         else:
             unfoldNum = 0
             print("查看状态查询失败", unfoldStatistics_Api_value)
 
-        resp_sync = sync_config_Api.sync(pids=pid, pages=pages,
-                                         seach_value=search_values["payloads_request"], canCover=canCover,
-                                         way=way, out_id=out_id, needCallPlan=True, dataColumns=dataColumns,
-                                         numberCount=numberCounts).json()
+        resp_syn = sync_config_Api.robot_sync(pids=pid, pages=pages,
+                                               seach_value=search_values["payloads_request"], canCover=canCover,
+                                               way=way, out_id=out_id, needCallPlan=True, dataColumns=dataColumns,
+                                               numberCount=numberCounts, gatewayId=out_gatewayId, surveyId=out_surveyId,
+                                               gatewaysname=out_jobGroupName)
+        print(resp_syn.request.body.decode(encoding="utf-8", errors="unicode_escape"))
+        print(resp_syn.request.url)
+        print(resp_syn.request.headers)
+        resp_sync=resp_syn.json()
+
         quantity_rebate = 0
         if resp_sync['error_code'] == 0:
             start_time = time.time()
@@ -518,7 +541,7 @@ class Test_sync_robot:
             end_time = time.time()
             print("转移耗时", end_time - start_time)
 
-            quantity_stop = sync_config_Api.user_api.userinfo_skb_Api().json()['data']['uRemainQuota']
+            quantity_stop = sync_config_Api.userinfo_skb_Api().json()['data']['uRemainQuota']
             for i in search_values["pid_companyName_list"]:
                 # 获取联系方式
                 list_contact_Api = sync_config_Api.list_contact(pid=i['pid'], entName=i['company_name'])
@@ -534,19 +557,19 @@ class Test_sync_robot:
                     list_contact_all=list_contact_Api,
                     hasSmartSyncRobot=hasSmartSyncRobot)
 
-            resp_out_query = sync_config_Api.robot_outcallplan().json()["data"]["list"]  # 获取外呼计划列表
+            resp_out_query = sync_config_Api.robot_out_call_plan().json()["data"]["list"]  # 获取外呼计划列表
             resp_out_query_value_sum = 0
             resp_out_query_value_value = None
             for resp_out_query_value in resp_out_query:
-                if resp_out_query_value["id"] == resp_out_sync_value["id"]:
+                if resp_out_query_value["id"] == out_id:
                     resp_out_query_value_sum += 1
                     resp_out_query_value_value = resp_out_query_value
                     # assert resp_out_query_value["callCount"] > resp_out_sync_value["callCount"]
-                    assert resp_out_query_value["jobGroupName"] == resp_out_sync_value["jobGroupName"]
+                    assert resp_out_query_value["jobGroupName"] == out_jobGroupName
                     break
             assert resp_out_query_value_sum > 0
         else:
-            quantity_stop = sync_config_Api.user_api.userinfo_skb_Api().json()['data']['uRemainQuota']
+            quantity_stop = sync_config_Api.userinfo_skb_Api().json()['data']['uRemainQuota']
             quantity_rebate = 0
         sync_config_Api.sync_robot_quantity_verdicts(quantity_start=quantity_start,
                                                      quantity_stop=quantity_stop, quantity_rebate=quantity_rebate,

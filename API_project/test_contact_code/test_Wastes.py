@@ -3,7 +3,7 @@
 import pytest
 import time
 from API_project.tools.Excelread import Excel_Files
-from API_project.Configs.search_API import search
+from API_project.Configs.search_Api import search
 from API_project.tools.install_Excel import install_Excel
 file_name = time.strftime("%Y年%m月%d日%H时%M分")  # 实例化测试报告工作表名称
 HOST = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境

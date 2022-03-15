@@ -3,7 +3,7 @@
 # @Author : 孟艳红
 # @File : shop_API.py,找店铺接口
 import requests, json, urllib3
-from API_project.Configs.Configuration import User_Config
+from API_project.Configs.Config_Info import User_Config
 
 urllib3.disable_warnings()
 

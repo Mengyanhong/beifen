@@ -4,7 +4,7 @@
 # @File : sync.py
 # -*- coding: utf-8 -*-
 import requests
-from API_project.Configs.Configuration import user
+from API_project.Configs.Config_Info import user
 
 
 class Sync_robot:

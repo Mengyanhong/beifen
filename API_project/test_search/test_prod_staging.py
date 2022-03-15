@@ -3,7 +3,7 @@ import pytest
 import requests
 import time, sys, json
 from pprint import pprint
-from API_project.Configs.Configuration import user
+from API_project.Configs.Config_Info import user
 from API_project.tools.Excelread import Excel_Files
 from API_project.tools.install_Excel import install_Excel
 

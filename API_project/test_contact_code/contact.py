@@ -1,6 +1,6 @@
 import time
-from API_project.Configs.Configuration import configuration_file
-from API_project.Configs.search_API import search
+from API_project.Configs.Config_Info import configuration_file
+from API_project.Configs.search_Api import search
 from API_project.tools.install_Excel import install_Excel
 
 HOST = "lxcrm"

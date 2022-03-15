@@ -133,5 +133,12 @@
 #
 # print(otherStyleTime)  # 2013--10--10 23:40:00
 
-a = [1,2,3,4,5]
-print(a[:2:-1])
+# a = [1,2,3,4,5]
+# print(a[:2:-1])
+import time
+# # print("外呼计划测试"+time.strftime("%Y年%m月%d日%H时%M分"))
+import random
+print(random.choices(["out_ids", None]))
+
+# foo = ['a', 'b', 'c', 'd', 'e']
+# print(random.choices(['a', 'b', 'c', 'd', 'e']))

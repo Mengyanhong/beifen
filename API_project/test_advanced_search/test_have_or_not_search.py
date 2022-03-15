@@ -3,7 +3,7 @@ import pytest, openpyxl, time
 # from distutils import version
 # from collections import Counter  # 导入表格统计模块
 # from API_project.Configs.config_API import configuration_file
-from API_project.Configs.search_API import search, getCompanyBaseInfo
+from API_project.Configs.search_Api import search, getCompanyBaseInfo
 from API_project.tools.get_yaml_set import get_yaml_data
 from API_project.tools.install_Excel import install_Excel
 
