@@ -135,10 +135,10 @@
 
 # a = [1,2,3,4,5]
 # print(a[:2:-1])
-import time
+import json
 # # print("外呼计划测试"+time.strftime("%Y年%m月%d日%H时%M分"))
 import random
 print(random.choices(["out_ids", None]))
-
+print(json.loads("{\"canCover\":true,\"commonCondition\":false,\"condition\":{\"cn\":\"composite\",\"cr\":\"MUST\",\"cv\":[{\"cn\":\"area\",\"cr\":\"IN\",\"cv\":{\"province\":[\"11\"],\"city\":[],\"district\":[]}},{\"cn\":\"category\",\"cr\":\"IN\",\"cv\":{\"categoryL1\":[\"10\"],\"categoryL2\":[]}},{\"cn\":\"shopStatus\",\"cr\":\"IN\",\"cv\":[\"5\"]},{\"cn\":\"contactType\",\"cr\":\"IN\",\"cv\":[\"2\"]},{\"cn\":\"avgPrice\",\"cr\":\"IN\",\"cv\":[\",30\",\"30,50\"]}]},\"contact\":\"\",\"dataColumns\":[0,1],\"delNoContact\":0,\"distinctUniq\":true,\"dropdown\":1,\"enableDeepSearch\":0,\"extraReturnFields\":[],\"filter\":{\"filterSync\":1,\"filterSyncRobot\":0,\"filterUnfold\":0},\"fromSync\":false,\"hasSyncClue\":\"ALL\",\"hasSyncRobot\":\"ALL\",\"hasUnfolded\":\"ALL\",\"isSimpleHead\":false,\"keyword\":\"\",\"modified\":false,\"needCallPlan\":false,\"note\":\"\",\"numberCount\":1,\"origin\":\"https://lxcrm-test.weiwenjia.com\",\"page\":1,\"pagesize\":10,\"phoneStatus\":[\"0\",\"1\",\"2\",\"3\"],\"pidListHasCondition\":false,\"pids\":[\"44261395\",\"901827600\",\"77681596\",\"28631705\",\"40529561\",\"130906314\",\"68205740\",\"103553967\",\"38174179\",\"102270423\"],\"scope\":\"\",\"searchBusiness\":\"advancedSearch\",\"searchObj\":\"enterprise\",\"searchType\":0,\"shopFilterList\":{\"所在地区\":[\"北京市\"],\"店铺分类\":[\"美食\"],\"营业状态\":[\"营业中\"],\"联系方式\":[\"有固话\"],\"平均消费\":[\"30元以下\",\"30-50元\"]},\"shopName\":\"\",\"source\":\"\",\"start\":-1,\"syncRobotRangeDate\":[],\"templateName\":\"\",\"templateType\":\"NON\",\"useQuota\":true,\"userClicked\":false,\"verify\":0,\"way\":\"shop_search_list\"}"))
 # foo = ['a', 'b', 'c', 'd', 'e']
 # print(random.choices(['a', 'b', 'c', 'd', 'e']))

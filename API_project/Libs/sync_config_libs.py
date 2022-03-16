@@ -169,11 +169,37 @@ class Sync_robot(sync_config):
         print('Sync_robot初始化参数,canCover,{}, dataColumns,{}, numberCounts,{}'.
               format(canCover, dataColumns, numberCounts))
 
-    # 查询转机器人前机器人内是否有该企业
-    def sync_robot_start_verdicts(self, list_pid_company_name, search_payloads_values):
+    # 机器人号码查询
+    def find_phone(self, company_name, phone, page=1):
+        find_phone_list = []
+        resp_robot_cll_value = self.robot_uncalled(query_name=company_name, queryType=2, phoneType=phone,
+                                                   page=page).json()
+        if resp_robot_cll_value["code"] != 0:  # 判断查询接口是否成功
+            print("机器人号码管理接口调用失败,企业为", company_name)
+            assert resp_robot_cll_value["code"] == 0
+        if resp_robot_cll_value['data']['list']:
+            for Mobile_type1 in resp_robot_cll_value['data']['list']:
+                find_phone_list.append(Mobile_type1["phone"])
+        if resp_robot_cll_value['data']['hasNextPage'] is True:
+            time.sleep(2)
+            return find_phone_list + self.find_phone(company_name=company_name, phone=phone, page=(page + 1))
+        else:
+            return find_phone_list
 
-        resp_robot_verdicts_fixed = True
-        resp_robot_verdicts_mobile = True
+# if __name__ == '__main__':
+#     sync_config_Api = Sync_robot(host='lxcrm', way='search_list', useQuota=True, pages=None, canCover=True,
+#                                      dataColumns=[0],
+#                                      numberCounts=True)
+#     value = sync_config_Api.find_phone(company_name="广东省第一建筑工程有限公司", phone=1)
+#     pprint(value)
+#     print(len(value))
+
+    # 查询机器人联系方式数据
+    def find_robot_phone(self, company_name, find_value="company_name", Mobile=None, Fixed=None):
+        if Mobile is None:
+            Mobile = []
+        if Fixed is None:
+            Fixed = []
         list_sync_robot_filter_type1 = []  # 创建未转移的手机集合
         list_sync_robot_verdicts_type1 = []  # 创建手机转移结果集合
         list_sync_robot_repetition_type1 = []  # 创建手机重复转移结果集合
@@ -181,54 +207,48 @@ class Sync_robot(sync_config):
         list_sync_robot_filter_type2 = []  # 创建未转移的固话集合
         list_sync_robot_verdicts_type2 = []  # 创建固话转移结果集合
         list_sync_robot_repetition_type2 = []  # 创建固话重复转移结果集合
-
-        print(list_pid_company_name["pid"])
-        print(self.way)
-        print(search_payloads_values)
-
-        for phone in [0, 1]:
-            print(phone)
-            print(list_pid_company_name)
-            resp_robot_com = self.robot_uncalled(query_name=list_pid_company_name["company_name"], queryType=2,
-                                                 phoneType=phone).json()
-            print(resp_robot_com)
-
-            # 查询企业是否转移到机器人
-            # if resp_robot_com["code"] != 0:  # 判断查询接口是否成功
-            #     print("机器人号码管理接口调用失败,企业为", list_pid_company_name)
-            # elif not resp_robot_com['data']['list']:  # 判断转移的企业在机器人内是否存在
-            #     if phone == 0:
-            #         resp_robot_verdicts_mobile = False
-            #     else:
-            #         resp_robot_verdicts_fixed = False
-            # else:
-            #     if phone == 0:
-            #         for Mobile_type1 in resp_robot_com['data']['list']:
-            #             list_sync_robot_verdicts_type1.append(Mobile_type1["phone"])
-            #     else:
-            #         for Fixed_type1 in resp_robot_com['data']['list']:
-            #             list_sync_robot_verdicts_type2.append(Fixed_type1["phone"])
-        # if resp_robot_verdicts_mobile is False and resp_robot_verdicts_fixed is False:
-        #     resp_robot_verdicts = False
-        # elif resp_robot_verdicts_mobile is False and resp_robot_verdicts_fixed is True:
-        #     resp_robot_verdicts = True
-        # elif resp_robot_verdicts_mobile is True and resp_robot_verdicts_fixed is False:
-        #     resp_robot_verdicts = True
-        # else:
-        #     resp_robot_verdicts = True
-        # print(list_pid_company_name["pid"])
-        # print(self.way)
-        # print(search_payloads_values)
-
-        # unfoldStatistics_Api_value = self.unfoldStatistics_Api(
-        #     search_payload=search_payloads_values, pid_list=[list_pid_company_name["pid"]], way=self.way).json()
-        # if unfoldStatistics_Api_value["error_code"] != 0:
-        #     print("查看状态查询失败", unfoldStatistics_Api_value)
-        #     assert unfoldStatistics_Api_value["error_code"] == 0
-
+        if find_value == "company_name":
+            if Mobile:
+                for Mobile_type1 in Mobile:
+                    resp_robot_type1 = self.robot_uncalled(query_name=Mobile_type1, queryType=3).json()
+                    if resp_robot_type1["code"] != 0:  # 判断查询接口是否成功
+                        print("机器人号码管理接口调用失败,号码为", Mobile_type1)
+                    elif not resp_robot_type1['data']['list']:  # 判断转移的号码在机器人内是否存在
+                        list_sync_robot_filter_type1.append(Mobile_type1)
+                    else:
+                        repetition_mobile = False
+                        for company_name_phone1 in resp_robot_type1['data']['list']:
+                            if company_name_phone1["company_name"] == company_name:  # 判断查询的企业是所转移的企业
+                                list_sync_robot_verdicts_type1.append(Mobile_type1)
+                                repetition_mobile = True
+                                break
+                        if repetition_mobile is False:  # 判断查询的号码是重复号码
+                            list_sync_robot_repetition_type1.append(Mobile_type1)
+            if Fixed:
+                for Fixed_type2 in Fixed:
+                    resp_robot_type2 = self.robot_uncalled(query_name=Fixed_type2, queryType=3).json()
+                    if resp_robot_type2["code"] != 0:  # 判断查询接口是否成功
+                        print("机器人号码管理接口调用失败,号码为", Fixed_type2, "结果为", resp_robot_type2)
+                    elif not resp_robot_type2['data']['list']:  # 判断转移的号码在机器人内是否存在
+                        list_sync_robot_filter_type2.append(Fixed_type2)
+                    else:
+                        repetition_Fixed = False
+                        for company_name_phone2 in resp_robot_type2['data']['list']:
+                            if company_name_phone2["company_name"] == company_name:  # 判断查询的企业是所转移的企业
+                                list_sync_robot_verdicts_type2.append(Fixed_type2)
+                                repetition_Fixed = True
+                                break
+                        if repetition_Fixed is False:  # 判断查询的号码是重复号码
+                            list_sync_robot_repetition_type2.append(Fixed_type2)
+        else:
+            for phone_sum in [0, 1]:
+                if phone_sum == 0:
+                    list_sync_robot_verdicts_type1 = list_sync_robot_verdicts_type1 + self.find_phone(
+                        company_name=company_name, phone=phone_sum)
+                else:
+                    list_sync_robot_verdicts_type2 = list_sync_robot_verdicts_type2 + self.find_phone(
+                        company_name=company_name, phone=phone_sum)
         return {
-            # "unfoldNum": unfoldStatistics_Api_value["data"]["unfoldNum"],
-            # "resp_robot_verdicts": resp_robot_verdicts,
             "list_sync_robot_filter_type1": list_sync_robot_filter_type1,
             "list_sync_robot_verdicts_type1": list_sync_robot_verdicts_type1,
             "list_sync_robot_repetition_type1": list_sync_robot_repetition_type1,
@@ -237,54 +257,47 @@ class Sync_robot(sync_config):
             "list_sync_robot_repetition_type2": list_sync_robot_repetition_type2,
         }
 
-
-# if __name__ == '__main__':
-#
-#     value_code = {}
-#     sync_config_Api = Sync_robot(host='test', way='search_list', useQuota=True, pages=None, canCover=True,
-#                                  dataColumns=[0],
-#                                  numberCounts=True)
-#     search_values=sync_config_Api.search_value_list()
-#     print(search_values["pid_companyName_list"])
-#     sync_robot_start_verdicts_dicde = {}
-#     for pid_companyName_start in search_values["pid_companyName_list"]:
-#         # print(search_values["payloads_request"])
-#         # print(pid_companyName_start)
-#         sync_robot_start_verdicts_value = sync_config_Api.sync_robot_start_verdicts(
-#             list_pid_company_name=pid_companyName_start, search_payloads_values=search_values["payloads_request"])
-#         # print(sync_robot_start_verdicts_value)
-#         sync_robot_start_verdicts_dicde.update({str(pid_companyName_start["pid"]): sync_robot_start_verdicts_value})
-#     print(sync_robot_start_verdicts_dicde)
-    # se = {'keyword': '天津',
-    #       'filter': {'location': [], 'industryshort': [], 'secindustryshort': [], 'registercapital': [],
-    #                  'establishment': [], 'entstatus': [], 'contact': [1, 2], 'sortBy': '0', 'companysource': [],
-    #                  'enttype': [0], 'employees': [0], 'hasrecruit': '0', 'hassem': '0', 'haswebsite': '0',
-    #                  'hastrademark': '0', 'haspatent': '0', 'hastender': '0', 'haswechataccnt': '0', 'filterUnfold': 2,
-    #                  'filterSync': 1, 'filterSyncRobot': 1, 'hasBuildingCert': '0', 'isHighTech': '0',
-    #                  'hasFinanceInfo': '0', 'hasAbnormalInfo': '0', 'syncRobotRangeDate': []}, 'scope': 'companyname',
-    #       'matchType': 'most_fields', 'pagesize': 10, 'page': 4}
-    # pid = {'pid': '6ebda5389fc4716160fd18d3f1549e44', 'company_name': '盛宇（天津）钟表贸易有限公司'}
-    # try:
-    # a = sync_config_Api.sync_robot_start_verdicts(search_payloads_values=se,
-    #                                               list_pid_company_name=pid,
-    #                                               )
-    # value_code.update({str(pid["pid"]):a})
-    # print(value_code)
-
-    # print(a.request.body.decode(errors="unicode-escape"))
-    # print(a.request.url)
-    # print(a.request.headers)
-    # print(a.json())
+        # if __name__ == '__main__':
+        #
+        #     value_code = {}
+        #     sync_config_Api = Sync_robot(host='test', way='search_list', useQuota=True, pages=None, canCover=True,
+        #                                  dataColumns=[0],
+        #                                  numberCounts=True)
+        #     search_values=sync_config_Api.search_value_list()
+        #     print(search_values["pid_companyName_list"])
+        #     sync_robot_start_verdicts_dicde = {}
+        #     for pid_companyName_start in search_values["pid_companyName_list"]:
+        #         # print(search_values["payloads_request"])
+        #         # print(pid_companyName_start)
+        #         sync_robot_start_verdicts_value = sync_config_Api.sync_robot_start_verdicts(
+        #             list_pid_company_name=pid_companyName_start, search_payloads_values=search_values["payloads_request"])
+        #         # print(sync_robot_start_verdicts_value)
+        #         sync_robot_start_verdicts_dicde.update({str(pid_companyName_start["pid"]): sync_robot_start_verdicts_value})
+        #     print(sync_robot_start_verdicts_dicde)
+        # se = {'keyword': '天津',
+        #       'filter': {'location': [], 'industryshort': [], 'secindustryshort': [], 'registercapital': [],
+        #                  'establishment': [], 'entstatus': [], 'contact': [1, 2], 'sortBy': '0', 'companysource': [],
+        #                  'enttype': [0], 'employees': [0], 'hasrecruit': '0', 'hassem': '0', 'haswebsite': '0',
+        #                  'hastrademark': '0', 'haspatent': '0', 'hastender': '0', 'haswechataccnt': '0', 'filterUnfold': 2,
+        #                  'filterSync': 1, 'filterSyncRobot': 1, 'hasBuildingCert': '0', 'isHighTech': '0',
+        #                  'hasFinanceInfo': '0', 'hasAbnormalInfo': '0', 'syncRobotRangeDate': []}, 'scope': 'companyname',
+        #       'matchType': 'most_fields', 'pagesize': 10, 'page': 4}
+        # pid = {'pid': '6ebda5389fc4716160fd18d3f1549e44', 'company_name': '盛宇（天津）钟表贸易有限公司'}
+        # try:
+        # a = sync_config_Api.sync_robot_start_verdicts(search_payloads_values=se,
+        #                                               list_pid_company_name=pid,
+        #                                               )
+        # value_code.update({str(pid["pid"]):a})
+        # print(value_code)
+        #
+        # print(a.request.body.decode(errors="unicode-escape"))
+        # print(a.request.url)
+        # print(a.request.headers)
+        # print(a.json())
 
     # 查询转机器人后的转移结果
-    def sync_robot_verdicts(self, Mobile=None, Fixed=None, company_name=None):
-
-        if Mobile is None:
-            Mobile = []
-        if Fixed is None:
-            Fixed = []
+    def sync_robot_verdicts(self, Mobile, Fixed, company_name):
         resp_robot_verdicts = True  # 收集是否转移成功信息
-
         list_sync_robot_filter_type1 = []  # 创建未转移的手机集合
         list_sync_robot_verdicts_type1 = []  # 创建手机转移结果集合
         list_sync_robot_repetition_type1 = []  # 创建手机重复转移结果集合
@@ -295,43 +308,77 @@ class Sync_robot(sync_config):
 
         resp_robot_com = self.robot_uncalled(query_name=company_name, queryType=2).json()
         # 查询企业是否转移到机器人
-        if resp_robot_com["code"] != 0 and resp_robot_com["message"] != "操作成功":  # 判断查询接口是否成功
+        if resp_robot_com["code"] != 0:  # 判断查询接口是否成功
             print("机器人号码管理接口调用失败,企业为", company_name)
+            assert resp_robot_com["code"] == 0
         elif not resp_robot_com['data']['list']:  # 判断转移的企业在机器人内是否存在
             resp_robot_verdicts = False
-        if Mobile:
-            for Mobile_type1 in Mobile:
-                resp_robot_type1 = self.robot_uncalled(query_name=Mobile_type1, queryType=3).json()
-                if resp_robot_type1["code"] != 0:  # 判断查询接口是否成功
-                    print("机器人号码管理接口调用失败,号码为", Mobile_type1)
-                elif not resp_robot_type1['data']['list']:  # 判断转移的号码在机器人内是否存在
-                    list_sync_robot_filter_type1.append(Mobile_type1)
-                else:
-                    repetition_mobile = False
-                    for company_name_phone1 in resp_robot_type1['data']['list']:
-                        if company_name_phone1["company_name"] == company_name:  # 判断查询的企业是所转移的企业
-                            list_sync_robot_verdicts_type1.append(Mobile_type1)
-                            repetition_mobile = True
-                            break
-                    if repetition_mobile is False:  # 判断查询的号码是重复号码
-                        list_sync_robot_repetition_type1.append(Mobile_type1)
+            pho_value = self.find_robot_phone(company_name, Mobile=Mobile, Fixed=Fixed)
+            list_sync_robot_filter_type1 = list_sync_robot_filter_type1 + pho_value["list_sync_robot_filter_type1"]
+            list_sync_robot_verdicts_type1 = list_sync_robot_verdicts_type1 + pho_value[
+                "list_sync_robot_verdicts_type1"]
+            list_sync_robot_repetition_type1 = list_sync_robot_repetition_type1 + pho_value[
+                "list_sync_robot_repetition_type1"]
+            list_sync_robot_filter_type2 = list_sync_robot_filter_type2 + pho_value["list_sync_robot_filter_type2"]
+            list_sync_robot_verdicts_type2 = list_sync_robot_verdicts_type2 + pho_value[
+                "list_sync_robot_verdicts_type2"]
+            list_sync_robot_repetition_type2 = list_sync_robot_repetition_type2 + pho_value[
+                "list_sync_robot_repetition_type2"]
+            # if Mobile:
+            #     for Mobile_type1 in Mobile:
+            #         resp_robot_type1 = self.robot_uncalled(query_name=Mobile_type1, queryType=3).json()
+            #         if resp_robot_type1["code"] != 0:  # 判断查询接口是否成功
+            #             print("机器人号码管理接口调用失败,号码为", Mobile_type1)
+            #         elif not resp_robot_type1['data']['list']:  # 判断转移的号码在机器人内是否存在
+            #             list_sync_robot_filter_type1.append(Mobile_type1)
+            #         else:
+            #             repetition_mobile = False
+            #             for company_name_phone1 in resp_robot_type1['data']['list']:
+            #                 if company_name_phone1["company_name"] == company_name:  # 判断查询的企业是所转移的企业
+            #                     list_sync_robot_verdicts_type1.append(Mobile_type1)
+            #                     repetition_mobile = True
+            #                     break
+            #             if repetition_mobile is False:  # 判断查询的号码是重复号码
+            #                 list_sync_robot_repetition_type1.append(Mobile_type1)
+            # if Fixed:
+            #     for Fixed_type2 in Fixed:
+            #         resp_robot_type2 = self.robot_uncalled(query_name=Fixed_type2, queryType=3).json()
+            #         if resp_robot_type2["code"] != 0:  # 判断查询接口是否成功
+            #             print("机器人号码管理接口调用失败,号码为", Fixed_type2, "结果为", resp_robot_type2)
+            #         elif not resp_robot_type2['data']['list']:  # 判断转移的号码在机器人内是否存在
+            #             list_sync_robot_filter_type2.append(Fixed_type2)
+            #         else:
+            #             repetition_Fixed = False
+            #             for company_name_phone2 in resp_robot_type2['data']['list']:
+            #                 if company_name_phone2["company_name"] == company_name:  # 判断查询的企业是所转移的企业
+            #                     list_sync_robot_verdicts_type2.append(Fixed_type2)
+            #                     repetition_Fixed = True
+            #                     break
+            #             if repetition_Fixed is False:  # 判断查询的号码是重复号码
+            #                 list_sync_robot_repetition_type2.append(Fixed_type2)
+        else:
+            pho_value = self.find_robot_phone(company_name, find_value="find_phone")
+            list_sync_robot_verdicts_type1 = list_sync_robot_verdicts_type1 + pho_value[
+                "list_sync_robot_verdicts_type1"]
+            list_sync_robot_verdicts_type2 = list_sync_robot_verdicts_type2 + pho_value[
+                "list_sync_robot_verdicts_type2"]
+            if len(list(set(Mobile).difference(set(list_sync_robot_verdicts_type1)))) != 0 or len(
+                    list(set(Fixed).difference(set(list_sync_robot_verdicts_type2)))) != 0:
+                phones_value = self.find_robot_phone(company_name, Mobile=list(
+                    set(Mobile).difference(set(list_sync_robot_verdicts_type1))), Fixed=list(
+                    set(Fixed).difference(set(list_sync_robot_verdicts_type2))))
+                list_sync_robot_filter_type1 = list_sync_robot_filter_type1 + phones_value[
+                    "list_sync_robot_filter_type1"]
+                list_sync_robot_verdicts_type1 = list_sync_robot_verdicts_type1 + phones_value[
+                    "list_sync_robot_verdicts_type1"]
+                list_sync_robot_repetition_type1 = list_sync_robot_repetition_type1 + phones_value[
+                    "list_sync_robot_repetition_type1"]
+                list_sync_robot_filter_type2 = list_sync_robot_filter_type2 + pho_value["list_sync_robot_filter_type2"]
+                list_sync_robot_verdicts_type2 = list_sync_robot_verdicts_type2 + phones_value[
+                    "list_sync_robot_verdicts_type2"]
+                list_sync_robot_repetition_type2 = list_sync_robot_repetition_type2 + phones_value[
+                    "list_sync_robot_repetition_type2"]
 
-        if Fixed:
-            for Fixed_type2 in Fixed:
-                resp_robot_type2 = self.robot_uncalled(query_name=Fixed_type2, queryType=3).json()
-                if resp_robot_type2["code"] != 0:  # 判断查询接口是否成功
-                    print("机器人号码管理接口调用失败,号码为", Fixed_type2, "结果为", resp_robot_type2)
-                elif not resp_robot_type2['data']['list']:  # 判断转移的号码在机器人内是否存在
-                    list_sync_robot_filter_type2.append(Fixed_type2)
-                else:
-                    repetition_Fixed = False
-                    for company_name_phone2 in resp_robot_type2['data']['list']:
-                        if company_name_phone2["company_name"] == company_name:  # 判断查询的企业是所转移的企业
-                            list_sync_robot_verdicts_type2.append(Fixed_type2)
-                            repetition_Fixed = True
-                            break
-                    if repetition_Fixed is False:  # 判断查询的号码是重复号码
-                        list_sync_robot_repetition_type2.append(Fixed_type2)
         return {
             "resp_robot_verdicts": resp_robot_verdicts,
             "list_sync_robot_filter_type1": list_sync_robot_filter_type1,
@@ -341,7 +388,6 @@ class Sync_robot(sync_config):
             "list_sync_robot_verdicts_type2": list_sync_robot_verdicts_type2,
             "list_sync_robot_repetition_type2": list_sync_robot_repetition_type2,
         }
-
 
     # 转移方式，仅1条or全部
     def numberCount_verdicts(self, list_contact_all, list_contact_one, robot_stop_value,
@@ -424,7 +470,6 @@ class Sync_robot(sync_config):
                 print(company_name_pid_list, '\n转移全部，联系方式为空')
         return sync_robot_value_sum
 
-
     # 重复判断
     def canCover_verdicts(self, list_robot_stop_canCover, list_contact_one, list_contact_all,
                           company_name_pid_list):
@@ -463,7 +508,6 @@ class Sync_robot(sync_config):
             #           self.canCover, 'way', self.way, 'page',
             #           self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
         # return robot_stop_canCover_value_list_sum
-
 
     #  转移结果判断
     def sync_robot_value_verdicts_assert(self, sync_robot_value,
@@ -527,7 +571,6 @@ class Sync_robot(sync_config):
             sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(list_contact_Api=list_contact_all,
                                                                            hasSmartSyncRobot=hasSmartSyncRobot)
         return sync_robot_value_sum
-
 
     #  未转移成功时的判断
     def sync_robot_failed_verdicts_assert(self, list_contact_Api,

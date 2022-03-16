@@ -489,9 +489,10 @@ class Get_Company_Info(Skb_Search_Api):
 #     print(startDate_list)
 class Robot_Api(Skb_Search_Api):
     # 查询号码管理内号码是否存在
-    def robot_uncalled(self, query_name, queryType=2, created_at=None, phoneType=None, per_page=1000):
+    def robot_uncalled(self, query_name, queryType=2, created_at=None, phoneType=None, page=1, per_page=100):
         """
          # 查询号码管理内号码是否存在
+        :param page:
         :param per_page: 查询数量
         :param phoneType: 查询时号码类型筛选，1：固话，0：手机
         :param created_at:  时间过滤
@@ -501,7 +502,7 @@ class Robot_Api(Skb_Search_Api):
         """
         url = f'https://{self.robot_url_Host()}/api/v1/customers/uncalled'
         uncalled_payload = {
-            'page': 1,
+            'page': page,
             'per_page': per_page,
             'queryType': queryType,
             'query': query_name

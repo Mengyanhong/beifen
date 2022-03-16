@@ -5,8 +5,9 @@
 # from pprint import pprint
 import requests, json, time, pytest, os, random
 from API_project.Libs.sync_config_libs import Sync_robot
+from API_project.Configs.Config_Info import User_Config
 
-test_host = "staging"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+test_host = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 
 
 class Test_sync_robot:
@@ -34,7 +35,8 @@ class Test_sync_robot:
         """
         sync_config_Api = Sync_robot(host=test_host, way=way, useQuota=useQuota, pages=page, canCover=canCover,
                                      dataColumns=dataColumns,
-                                     numberCounts=numberCounts)
+                                     numberCounts=numberCounts,
+                                     )
         userinfo = sync_config_Api.userinfo_skb_Api().json()
         quantity_start = userinfo['data']['uRemainQuota']  # 获取初始额度
         hasSmartSyncRobot = userinfo['data']['hasSmartSyncRoobot']  # 获取账户类型是否灰测

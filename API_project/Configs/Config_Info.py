@@ -51,6 +51,44 @@ class User_Config(Url_Host_Config):
         self.headers_parameters = headers_parameters
 
     def user_file(self):  # 用户headers环境配置,用户信息
+        if self.host == 'test':  # 13162863099,Ik123456,访客测试企业
+            app_token = 'f6620ff6729345c8b6101174e695d0ab'
+            token = "fdc7cd52a1808e344b490b9457bb70e3"
+            platform = 'lixiaoyun'
+            gatewayId = 937
+        elif self.host == 'staging':  # 17388888888,Ik123456
+            app_token = 'f6620ff6729345c8b6101174e695d0ab'
+            token = 'b1a2727816c5a1bd7405a545e0927e81'
+            platform = 'ikcrm'
+            gatewayId = None
+        else:  # 13162863099,励销云(CRM+机器人+skb)
+            app_token = 'a14cc8b00f84e64b438af540390531e4'
+            token = '18033bf7b969d9b12ef830c66c1f2464'
+            platform = 'lixiaoyun'
+            gatewayId = 9683
+        return {'app_token': app_token, 'authorization': f'Token token={token}', 'crm_platform_type': platform,
+                'gatewayId': gatewayId, 'token': f'{token}'}
+
+    def user_file02(self):  # 用户headers环境配置,用户信息
+        if self.host == 'test':  # 13162863099,Ik123456,爱客访客测试企业
+            app_token = 'f6620ff6729345c8b6101174e695d0ab'
+            token = "b792810fccc3ab092d476927049d4643"
+            platform = 'ikcrm'
+            gatewayId = 1181
+        elif self.host == 'staging':  # 17388888888,Ik123456
+            app_token = 'f6620ff6729345c8b6101174e695d0ab'
+            token = 'b1a2727816c5a1bd7405a545e0927e81'
+            platform = 'ikcrm'
+            gatewayId = None
+        else:  # 13162863099,励销云(CRM+机器人+skb)
+            app_token = 'a14cc8b00f84e64b438af540390531e4'
+            token = '18033bf7b969d9b12ef830c66c1f2464'
+            platform = 'lixiaoyun'
+            gatewayId = 9683
+        return {'app_token': app_token, 'authorization': f'Token token={token}', 'crm_platform_type': platform,
+                'gatewayId': gatewayId, 'token': f'{token}'}
+
+    def user_file03(self):  # 用户headers环境配置,用户信息
         if self.host == 'test':  # 13162863099,Ik123456,python专用
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
             token = "ad99f29c019e31af42ae5aa5b3db90ec"
@@ -66,46 +104,6 @@ class User_Config(Url_Host_Config):
             token = '18033bf7b969d9b12ef830c66c1f2464'
             platform = 'lixiaoyun'
             gatewayId = 9683
-        return {'app_token': app_token, 'authorization': f'Token token={token}', 'crm_platform_type': platform,
-                'gatewayId': gatewayId, 'token': f'{token}'}
-
-    def user_file02(self):  # 用户headers环境配置,用户信息
-        if self.host == 'test':  # 13162863099,Ik123456,python专用
-            app_token = '2'
-            token = "2"
-            platform = 'lixiaoyun'
-            gatewayId = 1181
-        elif self.host == 'staging':  # 17388888888,Ik123456
-            app_token = '2'
-            token = '2'
-            platform = 'ikcrm'
-            gatewayId = None
-        else:  # 13162863099,励销云(CRM+机器人+skb)
-            app_token = '2'
-            token = '2'
-            platform = 'lixiaoyun'
-            gatewayId = 9683
-
-        return {'app_token': app_token, 'authorization': f'Token token={token}', 'crm_platform_type': platform,
-                'gatewayId': gatewayId, 'token': f'{token}'}
-
-    def user_file03(self):  # 用户headers环境配置,用户信息
-        if self.host == 'test':  # 13162863099,Ik123456,python专用
-            app_token = '3'
-            token = "3"
-            platform = 'lixiaoyun'
-            gatewayId = 1181
-        elif self.host == 'staging':  # 17388888888,Ik123456
-            app_token = '3'
-            token = '3'
-            platform = 'ikcrm'
-            gatewayId = None
-        else:  # 13162863099,励销云(CRM+机器人+skb)
-            app_token = '3'
-            token = '3'
-            platform = 'lixiaoyun'
-            gatewayId = 9683
-
         return {'app_token': app_token, 'authorization': f'Token token={token}', 'crm_platform_type': platform,
                 'gatewayId': gatewayId, 'token': f'{token}'}
 
