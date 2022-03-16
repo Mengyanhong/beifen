@@ -489,7 +489,7 @@ class Get_Company_Info(Skb_Search_Api):
 #     print(startDate_list)
 class Robot_Api(Skb_Search_Api):
     # 查询号码管理内号码是否存在
-    def robot_uncalled(self, query_name, queryType=2, created_at=None, phoneType=None, page=1, per_page=100):
+    def robot_uncalled(self, query_name, queryType=2, created_at=None, phoneType=None, page=1, per_page=500):
         """
          # 查询号码管理内号码是否存在
         :param page:

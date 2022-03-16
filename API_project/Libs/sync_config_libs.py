@@ -180,9 +180,11 @@ class Sync_robot(sync_config):
         if resp_robot_cll_value['data']['list']:
             for Mobile_type1 in resp_robot_cll_value['data']['list']:
                 find_phone_list.append(Mobile_type1["phone"])
-        if resp_robot_cll_value['data']['hasNextPage'] is True:
-            time.sleep(2)
-            return find_phone_list + self.find_phone(company_name=company_name, phone=phone, page=(page + 1))
+            if resp_robot_cll_value['data']['hasNextPage'] is True:
+                time.sleep(2)
+                return find_phone_list + self.find_phone(company_name=company_name, phone=phone, page=(page + 1))
+            else:
+                return find_phone_list
         else:
             return find_phone_list
 
@@ -378,7 +380,6 @@ class Sync_robot(sync_config):
                     "list_sync_robot_verdicts_type2"]
                 list_sync_robot_repetition_type2 = list_sync_robot_repetition_type2 + phones_value[
                     "list_sync_robot_repetition_type2"]
-
         return {
             "resp_robot_verdicts": resp_robot_verdicts,
             "list_sync_robot_filter_type1": list_sync_robot_filter_type1,
