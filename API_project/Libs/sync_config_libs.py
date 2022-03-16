@@ -161,7 +161,8 @@ class sync_config(Config_api):
 
 class Sync_robot(sync_config):
     def __init__(self, host, way, pages, canCover, dataColumns, numberCounts, headers_parameters=None, useQuota=True):
-        super(Sync_robot, self).__init__(host=host, way=way, pages=pages, headers_parameters=headers_parameters, useQuota=useQuota)
+        super(Sync_robot, self).__init__(host=host, way=way, pages=pages, headers_parameters=headers_parameters,
+                                         useQuota=useQuota)
         self.canCover = canCover
         self.dataColumns = dataColumns
         self.numberCounts = numberCounts
@@ -181,42 +182,53 @@ class Sync_robot(sync_config):
         list_sync_robot_verdicts_type2 = []  # 创建固话转移结果集合
         list_sync_robot_repetition_type2 = []  # 创建固话重复转移结果集合
 
+        print(list_pid_company_name["pid"])
+        print(self.way)
+        print(search_payloads_values)
+
         for phone in [0, 1]:
+            print(phone)
+            print(list_pid_company_name)
             resp_robot_com = self.robot_uncalled(query_name=list_pid_company_name["company_name"], queryType=2,
                                                  phoneType=phone).json()
-            # 查询企业是否转移到机器人
-            if resp_robot_com["code"] != 0:  # 判断查询接口是否成功
-                print("机器人号码管理接口调用失败,企业为", list_pid_company_name)
-            elif not resp_robot_com['data']['list']:  # 判断转移的企业在机器人内是否存在
-                if phone == 0:
-                    resp_robot_verdicts_mobile = False
-                else:
-                    resp_robot_verdicts_fixed = False
-            else:
-                if phone == 0:
-                    for Mobile_type1 in resp_robot_com['data']['list']:
-                        list_sync_robot_verdicts_type1.append(Mobile_type1["phone"])
-                else:
-                    for Fixed_type1 in resp_robot_com['data']['list']:
-                        list_sync_robot_verdicts_type2.append(Fixed_type1["phone"])
-        if resp_robot_verdicts_mobile is False and resp_robot_verdicts_fixed is False:
-            resp_robot_verdicts = False
-        elif resp_robot_verdicts_mobile is False and resp_robot_verdicts_fixed is True:
-            resp_robot_verdicts = True
-        elif resp_robot_verdicts_mobile is True and resp_robot_verdicts_fixed is False:
-            resp_robot_verdicts = True
-        else:
-            resp_robot_verdicts = True
+            print(resp_robot_com)
 
-        unfoldStatistics_Api_value = self.unfoldStatistics_Api(
-            search_payload=search_payloads_values, pid_list=[list_pid_company_name["pid"]], way=self.way).json()
-        if unfoldStatistics_Api_value["error_code"] != 0:
-            print("查看状态查询失败", unfoldStatistics_Api_value)
-            assert unfoldStatistics_Api_value["error_code"] == 0
+            # 查询企业是否转移到机器人
+            # if resp_robot_com["code"] != 0:  # 判断查询接口是否成功
+            #     print("机器人号码管理接口调用失败,企业为", list_pid_company_name)
+            # elif not resp_robot_com['data']['list']:  # 判断转移的企业在机器人内是否存在
+            #     if phone == 0:
+            #         resp_robot_verdicts_mobile = False
+            #     else:
+            #         resp_robot_verdicts_fixed = False
+            # else:
+            #     if phone == 0:
+            #         for Mobile_type1 in resp_robot_com['data']['list']:
+            #             list_sync_robot_verdicts_type1.append(Mobile_type1["phone"])
+            #     else:
+            #         for Fixed_type1 in resp_robot_com['data']['list']:
+            #             list_sync_robot_verdicts_type2.append(Fixed_type1["phone"])
+        # if resp_robot_verdicts_mobile is False and resp_robot_verdicts_fixed is False:
+        #     resp_robot_verdicts = False
+        # elif resp_robot_verdicts_mobile is False and resp_robot_verdicts_fixed is True:
+        #     resp_robot_verdicts = True
+        # elif resp_robot_verdicts_mobile is True and resp_robot_verdicts_fixed is False:
+        #     resp_robot_verdicts = True
+        # else:
+        #     resp_robot_verdicts = True
+        # print(list_pid_company_name["pid"])
+        # print(self.way)
+        # print(search_payloads_values)
+
+        # unfoldStatistics_Api_value = self.unfoldStatistics_Api(
+        #     search_payload=search_payloads_values, pid_list=[list_pid_company_name["pid"]], way=self.way).json()
+        # if unfoldStatistics_Api_value["error_code"] != 0:
+        #     print("查看状态查询失败", unfoldStatistics_Api_value)
+        #     assert unfoldStatistics_Api_value["error_code"] == 0
 
         return {
-            "unfoldNum": unfoldStatistics_Api_value["data"]["unfoldNum"],
-            "resp_robot_verdicts": resp_robot_verdicts,
+            # "unfoldNum": unfoldStatistics_Api_value["data"]["unfoldNum"],
+            # "resp_robot_verdicts": resp_robot_verdicts,
             "list_sync_robot_filter_type1": list_sync_robot_filter_type1,
             "list_sync_robot_verdicts_type1": list_sync_robot_verdicts_type1,
             "list_sync_robot_repetition_type1": list_sync_robot_repetition_type1,
@@ -224,6 +236,45 @@ class Sync_robot(sync_config):
             "list_sync_robot_verdicts_type2": list_sync_robot_verdicts_type2,
             "list_sync_robot_repetition_type2": list_sync_robot_repetition_type2,
         }
+
+
+# if __name__ == '__main__':
+#
+#     value_code = {}
+#     sync_config_Api = Sync_robot(host='test', way='search_list', useQuota=True, pages=None, canCover=True,
+#                                  dataColumns=[0],
+#                                  numberCounts=True)
+#     search_values=sync_config_Api.search_value_list()
+#     print(search_values["pid_companyName_list"])
+#     sync_robot_start_verdicts_dicde = {}
+#     for pid_companyName_start in search_values["pid_companyName_list"]:
+#         # print(search_values["payloads_request"])
+#         # print(pid_companyName_start)
+#         sync_robot_start_verdicts_value = sync_config_Api.sync_robot_start_verdicts(
+#             list_pid_company_name=pid_companyName_start, search_payloads_values=search_values["payloads_request"])
+#         # print(sync_robot_start_verdicts_value)
+#         sync_robot_start_verdicts_dicde.update({str(pid_companyName_start["pid"]): sync_robot_start_verdicts_value})
+#     print(sync_robot_start_verdicts_dicde)
+    # se = {'keyword': '天津',
+    #       'filter': {'location': [], 'industryshort': [], 'secindustryshort': [], 'registercapital': [],
+    #                  'establishment': [], 'entstatus': [], 'contact': [1, 2], 'sortBy': '0', 'companysource': [],
+    #                  'enttype': [0], 'employees': [0], 'hasrecruit': '0', 'hassem': '0', 'haswebsite': '0',
+    #                  'hastrademark': '0', 'haspatent': '0', 'hastender': '0', 'haswechataccnt': '0', 'filterUnfold': 2,
+    #                  'filterSync': 1, 'filterSyncRobot': 1, 'hasBuildingCert': '0', 'isHighTech': '0',
+    #                  'hasFinanceInfo': '0', 'hasAbnormalInfo': '0', 'syncRobotRangeDate': []}, 'scope': 'companyname',
+    #       'matchType': 'most_fields', 'pagesize': 10, 'page': 4}
+    # pid = {'pid': '6ebda5389fc4716160fd18d3f1549e44', 'company_name': '盛宇（天津）钟表贸易有限公司'}
+    # try:
+    # a = sync_config_Api.sync_robot_start_verdicts(search_payloads_values=se,
+    #                                               list_pid_company_name=pid,
+    #                                               )
+    # value_code.update({str(pid["pid"]):a})
+    # print(value_code)
+
+    # print(a.request.body.decode(errors="unicode-escape"))
+    # print(a.request.url)
+    # print(a.request.headers)
+    # print(a.json())
 
     # 查询转机器人后的转移结果
     def sync_robot_verdicts(self, Mobile=None, Fixed=None, company_name=None):
@@ -244,7 +295,6 @@ class Sync_robot(sync_config):
 
         resp_robot_com = self.robot_uncalled(query_name=company_name, queryType=2).json()
         # 查询企业是否转移到机器人
-
         if resp_robot_com["code"] != 0 and resp_robot_com["message"] != "操作成功":  # 判断查询接口是否成功
             print("机器人号码管理接口调用失败,企业为", company_name)
         elif not resp_robot_com['data']['list']:  # 判断转移的企业在机器人内是否存在
@@ -291,6 +341,7 @@ class Sync_robot(sync_config):
             "list_sync_robot_verdicts_type2": list_sync_robot_verdicts_type2,
             "list_sync_robot_repetition_type2": list_sync_robot_repetition_type2,
         }
+
 
     # 转移方式，仅1条or全部
     def numberCount_verdicts(self, list_contact_all, list_contact_one, robot_stop_value,
@@ -373,6 +424,7 @@ class Sync_robot(sync_config):
                 print(company_name_pid_list, '\n转移全部，联系方式为空')
         return sync_robot_value_sum
 
+
     # 重复判断
     def canCover_verdicts(self, list_robot_stop_canCover, list_contact_one, list_contact_all,
                           company_name_pid_list):
@@ -412,8 +464,9 @@ class Sync_robot(sync_config):
             #           self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
         # return robot_stop_canCover_value_list_sum
 
+
     #  转移结果判断
-    def sync_robot_value_verdicts_assert(self, sync_robot_start_value, sync_robot_value,
+    def sync_robot_value_verdicts_assert(self, sync_robot_value,
                                          company_name_pid_list, list_contact_all, hasSmartSyncRobot):
         '''
         :param list_contact_all:
@@ -431,18 +484,18 @@ class Sync_robot(sync_config):
                 if sync_robot_value["list_sync_robot_verdicts_type2"]:
                     # if sync_robot_start_value[company_name_pid_list["pid"]]["resp_robot_verdicts"] is True:
                     #     sync_robot_value_sum += 1
-                    if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type2"]:
-                        robot_fixed_value = set(sync_robot_value["list_sync_robot_verdicts_type2"]).difference(
-                            set(sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type2"]))
-                        if len(list(robot_fixed_value)) != 0:
-                            print(company_name_pid_list, '\n转移出错固话进行了转移,转移的固话为',
-                                  list(robot_fixed_value), '\n条件，canCover', self.canCover, 'way', self.way, 'page',
-                                  self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
-                    else:
-                        print(company_name_pid_list, '\n转移出错固话进行了转移,转移的固话为',
-                              sync_robot_value["list_sync_robot_verdicts_type2"], '\n条件，canCover', self.canCover, 'way',
-                              self.way, 'page', self.pages, 'dataColumns', self.dataColumns, 'numberCounts',
-                              self.numberCounts)
+                    # if sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type2"]:
+                    #     robot_fixed_value = set(sync_robot_value["list_sync_robot_verdicts_type2"]).difference(
+                    #         set(sync_robot_start_value[company_name_pid_list["pid"]]["list_sync_robot_verdicts_type2"]))
+                    #     if len(list(robot_fixed_value)) != 0:
+                    #         print(company_name_pid_list, '\n转移出错固话进行了转移,转移的固话为',
+                    #               list(robot_fixed_value), '\n条件，canCover', self.canCover, 'way', self.way, 'page',
+                    #               self.pages, 'dataColumns', self.dataColumns, 'numberCounts', self.numberCounts)
+                    # else:
+                    print(company_name_pid_list, '\n转移出错固话进行了转移,转移的固话为',
+                          sync_robot_value["list_sync_robot_verdicts_type2"], '\n条件，canCover', self.canCover, 'way',
+                          self.way, 'page', self.pages, 'dataColumns', self.dataColumns, 'numberCounts',
+                          self.numberCounts)
                 sync_robot_value_sum += self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
                                                                   list_contact_one=list_contact_all[
                                                                       "contacts_one_mobile"],
@@ -474,6 +527,7 @@ class Sync_robot(sync_config):
             sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(list_contact_Api=list_contact_all,
                                                                            hasSmartSyncRobot=hasSmartSyncRobot)
         return sync_robot_value_sum
+
 
     #  未转移成功时的判断
     def sync_robot_failed_verdicts_assert(self, list_contact_Api,

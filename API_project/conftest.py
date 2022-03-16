@@ -41,9 +41,23 @@ def connect_db():
     yield conn
     conn.close()
     server.close()
-
 @pytest.fixture()
 def ES():
+    # def _ES(host):
+    #     if host == "lxcrm":
+    #         es_client = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200',  # 最新地址，prod
+    #                                   http_auth=('mengyanhong', 'Aa123456'))
+    #         return es_client
+    #         # print(host,1)
+    #     elif host == "staging":
+    #         yield Elasticsearch('es-cn-2r42j6jsc00079qtt.kibana.elasticsearch.aliyuncs.com:9200',  # 最新地址，staging
+    #                           http_auth=('elastic', 'Stagprod#985'))
+    #         print(host, 2)
+    #     else:
+    #         yield Elasticsearch('es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com:9200',   # 最新地址，test
+    #                           http_auth=('tester', 'tester_Aa123456'))
+    #         print(host, 3)
+    # return _ES
     # es_client = Elasticsearch('es-cn-nif1oiv5w0009di0f.public.elasticsearch.aliyuncs.com:9200',
     #                           http_auth=('lihexiang', 'Aa123456'))
     es_client = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200', #最新地址，prod
@@ -51,6 +65,16 @@ def ES():
     # es_client = Elasticsearch('es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com:9200', #最新地址，test
     #                           http_auth=('tester', 'tester_Aa123456'))
     yield es_client
+
+# @pytest.fixture()
+# def ES():
+#     # es_client = Elasticsearch('es-cn-nif1oiv5w0009di0f.public.elasticsearch.aliyuncs.com:9200',
+#     #                           http_auth=('lihexiang', 'Aa123456'))
+#     es_client = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200', #最新地址，prod
+#                               http_auth=('mengyanhong', 'Aa123456'))
+#     # es_client = Elasticsearch('es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com:9200', #最新地址，test
+#     #                           http_auth=('tester', 'tester_Aa123456'))
+#     yield es_client
 
 @pytest.fixture()
 def ES_test():

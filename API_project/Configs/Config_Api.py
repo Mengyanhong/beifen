@@ -296,21 +296,22 @@ class Skb_Search_Api(Config_info):
             "way": way,
             "from": sync_from
         }
+        payload.update(search_payload)
         if page is not None:
             payload.update({"page": 1, "pagesize": page})
             payload.pop("pids")
+        else:
+            payload.pop("page")
+            payload.pop("pagesize")
         if way == "shop_search_list":
             payload.pop("from")
             url = f'https://{self.skb_url_Host()}/api_skb/v1/shop/unfoldStatistics'
-        payload.update(search_payload)
         response = requests.post(url=url, headers=self.headers_skb(), json=payload)
         return response
 
 
-# if __name__ == '__main__':
-#     a = search('test').skb_contacts(id='b5762ab2d44d7bd35fb6a7ea12fd3d4a', entName='北京恒发嘉业展览展示有限公司',
-#                                                             module='search_detail')
-#     print(a.json())
+
+
 
 class Get_Company_Info(Skb_Search_Api):
     # def __init__(self, test):
@@ -499,18 +500,23 @@ class Robot_Api(Skb_Search_Api):
         :return:
         """
         url = f'https://{self.robot_url_Host()}/api/v1/customers/uncalled'
-        payload = {
+        uncalled_payload = {
             'page': 1,
             'per_page': per_page,
             'queryType': queryType,
             'query': query_name
         }
         if created_at is not None:
-            payload.update({'created_at': created_at})
+            uncalled_payload.update({'created_at': created_at})
         if phoneType is not None:
-            payload.update({'phoneType': phoneType})
-        response = requests.get(url, params=payload, headers=self.headers_robot())
+            uncalled_payload.update({'phoneType': phoneType})
+        response = requests.get(url, params=uncalled_payload, headers=self.headers_robot())
         return response
+
+# if __name__=="__main__":
+#     a={'pid': '394a27a9b217a903699f914b90f3baf8', 'company_name': '天津海泰旅游管理有限公司'}
+#     b = Robot_Api("test").robot_uncalled(query_name=a["company_name"],phoneType=str(1), queryType=2)
+#     print(b.json())
 
     # 查询外呼计划
     def robot_out_call_plan(self):
@@ -530,10 +536,10 @@ class Robot_Api(Skb_Search_Api):
         response = requests.post(url, json=payload, headers=self.headers_robot())
         return response
 
-    # if __name__ == '__main__':
-    #     from pprint import pprint
-    #     pprint(Robot_Api("test").robot_out_call_plan().json())
-    # 执行转机器人
+# if __name__ == '__main__':
+#     from pprint import pprint
+#     pprint(Robot_Api("test").robot_out_call_plan().json())
+# 执行转机器人
     def robot_sync(self, out_id=None, pids=None, pages=None, seach_value=None, useQuota=True,
                    dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
                    gatewayId=None, surveyId=None, gatewaysname=None):
