@@ -6,9 +6,7 @@
 import requests, json, time, pytest, os, random
 from API_project.Libs.sync_config_libs import Sync_robot
 from API_project.Configs.Config_Info import User_Config
-
-test_host = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
-
+test_host = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 
 class Test_sync_robot:
     # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', 'map_search_list' , 'shop_search_list'])
@@ -18,13 +16,13 @@ class Test_sync_robot:
     # 转移号码数量
     @pytest.mark.parametrize('page', [None])
     # 转移号码类型
-    @pytest.mark.parametrize('dataColumns', [[0], [0, 1]])
+    @pytest.mark.parametrize('dataColumns', [[0, 1]])
     # 转移号码方式
-    @pytest.mark.parametrize('numberCounts', [0, 1])
+    @pytest.mark.parametrize('numberCounts', [1])
     # 重复是否转移
-    @pytest.mark.parametrize('canCover', [False, True])
+    @pytest.mark.parametrize('canCover', [True])
     # 是否创建外呼计划方式
-    @pytest.mark.parametrize('needCallPlan', [False, True])
+    @pytest.mark.parametrize('needCallPlan', [True])
     # 是否扣点
     @pytest.mark.parametrize('useQuota', [True])
     def test_sync_robot(self, way, page, dataColumns, numberCounts, canCover, needCallPlan, useQuota, ES):
@@ -54,17 +52,18 @@ class Test_sync_robot:
             pid = None
             pages = page
 
-        resp_out_sync = sync_config_Api.robot_out_call_plan().json()  # 获取外呼计划列表
-        if resp_out_sync["data"]["list"]:  # and needCallPlan is True
-            out_ids = resp_out_sync["data"]["list"][0]["id"]
-            out_gatewayId = resp_out_sync["data"]["list"][0]["gatewayId"]
-            out_surveyId = resp_out_sync["data"]["list"][0]["surveyId"]
-            out_jobGroupName = resp_out_sync["data"]["list"][0]["jobGroupName"]
-            out_callCount = resp_out_sync["data"]["list"][0]["callCount"]
+        resp_out_sync = sync_config_Api.robot_out_call_plan().json()["data"]["list"]  # 获取外呼计划列表
+        if resp_out_sync:  # and needCallPlan is True
+            resp_out_sync = resp_out_sync[0]
+            out_ids = resp_out_sync["id"]
+            out_gatewayId = resp_out_sync["gatewayId"]
+            out_surveyId = resp_out_sync["surveyId"]
+            out_jobGroupName = resp_out_sync["jobGroupName"]
+            out_callCount = resp_out_sync["callCount"]
             out_id = random.choices([out_ids, None])
             print("外呼计划id", out_id)
         else:
-            print("外呼计划列表为空", resp_out_sync["data"])
+            print("外呼计划列表为空", resp_out_sync)
             out_id = None
             out_gatewayId = None
             out_surveyId = None
@@ -83,11 +82,10 @@ class Test_sync_robot:
             search_payload=search_values["payloads_request"], pid_list=pid, page=pages, way=way).json()
         if unfoldStatistics_Api_value["error_code"] == 0:
             unfoldNum = unfoldStatistics_Api_value["data"]["unfoldNum"]
-            print("查看状态查询", unfoldStatistics_Api_value)
+            # print("查看状态查询", unfoldStatistics_Api_value)
         else:
             unfoldNum = 0
             print("查看状态查询失败", unfoldStatistics_Api_value)
-        print(unfoldStatistics_Api_value)
 
         resp_syn = sync_config_Api.robot_sync(pids=pid, pages=pages,
                                               seach_value=search_values["payloads_request"], canCover=canCover,
@@ -96,43 +94,49 @@ class Test_sync_robot:
                                               numberCount=numberCounts, gatewayId=out_gatewayId, surveyId=out_surveyId,
                                               gatewaysname=out_jobGroupName, useQuota=useQuota)
         print(resp_syn.request.body.decode(encoding="utf-8", errors="unicode_escape"))
-        print(resp_syn.request.url)
-        print(resp_syn.request.headers)
+        # print(resp_syn.request.url)
+        # print(resp_syn.request.headers)
         resp_sync = resp_syn.json()
         quantity_rebate = 0
         if resp_sync['error_code'] == 0:
-            quantity_stop = sync_config_Api.userinfo_skb_Api().json()['data']['uRemainQuota']
             start_time = time.time()
             sync_config_Api.search_elapsed_time()
             end_time = time.time()
             print("转移耗时", end_time - start_time)
+            quantity_stop = sync_config_Api.userinfo_skb_Api().json()['data']['uRemainQuota']
             for i in search_values["pid_companyName_list"]:
                 # 获取联系方式
                 list_contact_Api = sync_config_Api.list_contact(pid=i['pid'], entName=i['company_name'])
                 # 获取转机器人结果
+                start_time = time.time()
                 sync_robot_value = sync_config_Api.sync_robot_verdicts(Mobile=list_contact_Api["Mobile"],
                                                                        Fixed=list_contact_Api["Fixed"],
                                                                        company_name=i['company_name'])
+                end_time = time.time()
+                print("获取转机器人结果耗时", end_time - start_time)
                 #  已转未转筛选判断
-                ES_search_value = ES.get(index="company_info_prod", id=i['pid'])['_source']
-                if test_host == "lxcrm":
-                    transferredRobotOrgs = "transferredRobotOrgs"
-                else:
-                    transferredRobotOrgs = "transferredRobotOrgsNonProd"
-                if sync_robot_value["resp_robot_verdicts"] is True:
-                    # print(ES(host="staging"))
-                    assert transferredRobotOrgs in ES_search_value.keys()
-                    assert str(oid) in ES_search_value[transferredRobotOrgs]
-                else:
-                    assert transferredRobotOrgs not in ES_search_value.keys() or str(oid) not in ES_search_value[
-                        transferredRobotOrgs]
+                # ES_search_value = ES.get(index="company_info_prod", id=i['pid'])['_source']
+                # if test_host == "lxcrm":
+                #     transferredRobotOrgs = "transferredRobotOrgs"
+                # else:
+                #     transferredRobotOrgs = "transferredRobotOrgsNonProd"
+                # if sync_robot_value["resp_robot_verdicts"] is True:
+                #     # print(ES(host="staging"))
+                #     assert transferredRobotOrgs in ES_search_value.keys()
+                #     assert str(oid) in ES_search_value[transferredRobotOrgs]
+                # else:
+                #     assert transferredRobotOrgs not in ES_search_value.keys() or str(oid) not in ES_search_value[
+                #         transferredRobotOrgs]
                 # 执行转移判断
+                start_time = time.time()
                 quantity_rebate += sync_config_Api.sync_robot_value_verdicts_assert(
                     # sync_robot_start_value=sync_robot_start_verdicts_dicde,
                     sync_robot_value=sync_robot_value,
                     company_name_pid_list=i,
                     list_contact_all=list_contact_Api,
                     hasSmartSyncRobot=hasSmartSyncRobot)
+                end_time = time.time()
+                print("执行转移判断耗时", end_time - start_time)
             # resp_out_query = sync_config_Api.robot_out_call_plan().json()["data"]["list"]  # 获取外呼计划列表
             # resp_out_query_value_sum = 0
             # resp_out_query_value_value = None

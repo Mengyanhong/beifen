@@ -1,0 +1,77 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "children" : [ {
+    "name" : "ip_user_test",
+    "children" : [ {
+      "name" : "Test_ips",
+      "children" : [ {
+        "name" : "test_ips_user_case[IP0]",
+        "uid" : "d8f39cbb9d0f5f99",
+        "parentUid" : "175cd0bfa8ed0175ed9676ffa5066958",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647574669299,
+          "stop" : 1647574669802,
+          "duration" : 503
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "['1.1.8.11', '1.1.8.19', '36.33.24.179', '117.184.79.238']" ]
+      }, {
+        "name" : "test_ips_user_case[IP1]",
+        "uid" : "8e7423c48dcef10d",
+        "parentUid" : "175cd0bfa8ed0175ed9676ffa5066958",
+        "status" : "passed",
+        "time" : {
+          "start" : 1647574669818,
+          "stop" : 1647574669995,
+          "duration" : 177
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "['117.184.79.238']" ]
+      } ],
+      "uid" : "175cd0bfa8ed0175ed9676ffa5066958"
+    } ],
+    "uid" : "0bb738f438b85fb8585457bc84a9b594"
+  }, {
+    "name" : "test_unit_api",
+    "children" : [ {
+      "name" : "ip_user_test",
+      "children" : [ {
+        "name" : "Test_ips",
+        "children" : [ {
+          "name" : "test_ips_user_case[IP0]",
+          "uid" : "e2f4060a5cecdf40",
+          "parentUid" : "a8d42e032a19fcf81d79d8766eb0ed6f",
+          "status" : "passed",
+          "time" : {
+            "start" : 1647574903531,
+            "stop" : 1647574904306,
+            "duration" : 775
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "['1.1.8.11', '1.1.8.19', '36.33.24.179', '117.184.79.238']" ]
+        }, {
+          "name" : "test_ips_user_case[IP1]",
+          "uid" : "52b37422b3b6f6a4",
+          "parentUid" : "a8d42e032a19fcf81d79d8766eb0ed6f",
+          "status" : "passed",
+          "time" : {
+            "start" : 1647574904322,
+            "stop" : 1647574904435,
+            "duration" : 113
+          },
+          "flaky" : false,
+          "newFailed" : false,
+          "parameters" : [ "['117.184.79.238']" ]
+        } ],
+        "uid" : "a8d42e032a19fcf81d79d8766eb0ed6f"
+      } ],
+      "uid" : "8829b11e7586668d2d20f9c1a38a90f0"
+    } ],
+    "uid" : "655907d27d2ad7a84664a49174c9db65"
+  } ],
+  "name" : "suites"
+}

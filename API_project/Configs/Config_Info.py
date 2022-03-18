@@ -16,6 +16,13 @@ class Url_Host_Config:
             url_Host = 'skb.weiwenjia.com'
         return url_Host
 
+    def telephone_url_Host(self):
+        if self.host == 'lxcrm':
+            url_telephone_Host = 'telephone-status.weiwenjia.com'
+        else:
+            url_telephone_Host = 'telephone-status-test.weiwenjia.com'
+        return url_telephone_Host
+
     def biz_url_Host(self):  # 老搜客宝host
         if self.host == 'test':
             url_Host = 'test.lixiaoskb.com'
@@ -131,9 +138,23 @@ class User_Config(Url_Host_Config):
             }
         return headers
 
+    def headers_telephone(self):
+        if self.host == 'lxcrm':
+            telephone_headers = {"appid": "10000005",
+                                 "orgid": "69296",
+                                 "appkey": "BC3E6D63C4C4462F8952F785ADE8CB83"
+                                 }
+        else:
+            telephone_headers = {"appid": "10000004",
+                                 "orgid": "69298",
+                                 "appkey": "00C2c5122AF1468baf1764001c398Dd6"
+                                 }
+        return telephone_headers
+
     def userinfo_skb_Api(self):  # 查询新SKB用户信息
         url = f'https://{self.skb_url_Host()}/api_skb/v1/user/userInfo'
         response = requests.get(url=url, headers=self.headers_skb(), verify=False)
+        assert response.status_code == 200
         return response
 
     def headers_robot(self, headers_parameters=None):  # 机器人headers配置

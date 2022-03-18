@@ -20,6 +20,7 @@ DEV_HOST = HOST.search_fin_staging()
 
 # 引入框架 pytest
 # py测试文件必须以test_开头（或者以_test结尾）
+# from API_project.Configs.Config_Info import Config_info
 import pytest
 class Test_search_fin:
     #测试方法

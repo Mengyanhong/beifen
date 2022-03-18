@@ -1,0 +1,41 @@
+[ {
+  "uid" : "d8f39cbb9d0f5f99",
+  "name" : "test_ips_user_case[IP0]",
+  "time" : {
+    "start" : 1647574669299,
+    "stop" : 1647574669802,
+    "duration" : 503
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "52b37422b3b6f6a4",
+  "name" : "test_ips_user_case[IP1]",
+  "time" : {
+    "start" : 1647574904322,
+    "stop" : 1647574904435,
+    "duration" : 113
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "e2f4060a5cecdf40",
+  "name" : "test_ips_user_case[IP0]",
+  "time" : {
+    "start" : 1647574903531,
+    "stop" : 1647574904306,
+    "duration" : 775
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "8e7423c48dcef10d",
+  "name" : "test_ips_user_case[IP1]",
+  "time" : {
+    "start" : 1647574669818,
+    "stop" : 1647574669995,
+    "duration" : 177
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

@@ -1,0 +1,59 @@
+{
+  "uid" : "e2f4060a5cecdf40",
+  "name" : "test_ips_user_case[IP0]",
+  "fullName" : "test_unit_api.ip_user_test.Test_ips#test_ips_user_case",
+  "historyId" : "ed0dd49758cf05743194c42d3886681b",
+  "time" : {
+    "start" : 1647574903531,
+    "stop" : 1647574904306,
+    "duration" : 775
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "test_unit_api"
+  }, {
+    "name" : "suite",
+    "value" : "ip_user_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "Test_ips"
+  }, {
+    "name" : "host",
+    "value" : "DELL-HSUHG7CVLL"
+  }, {
+    "name" : "thread",
+    "value" : "5948-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_unit_api.ip_user_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "IP",
+    "value" : "['1.1.8.11', '1.1.8.19', '36.33.24.179', '117.184.79.238']"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "e2f4060a5cecdf40.json",
+  "parameterValues" : [ "['1.1.8.11', '1.1.8.19', '36.33.24.179', '117.184.79.238']" ]
+}

@@ -1,0 +1,65 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "children" : [ {
+    "name" : "ip_user_test",
+    "children" : [ {
+      "name" : "test_ips_user_case[IP0]",
+      "uid" : "d8f39cbb9d0f5f99",
+      "parentUid" : "e4fa4578ab322985d3432eeb5c67d55d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1647574669299,
+        "stop" : 1647574669802,
+        "duration" : 503
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "['1.1.8.11', '1.1.8.19', '36.33.24.179', '117.184.79.238']" ]
+    }, {
+      "name" : "test_ips_user_case[IP1]",
+      "uid" : "8e7423c48dcef10d",
+      "parentUid" : "e4fa4578ab322985d3432eeb5c67d55d",
+      "status" : "passed",
+      "time" : {
+        "start" : 1647574669818,
+        "stop" : 1647574669995,
+        "duration" : 177
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "['117.184.79.238']" ]
+    } ],
+    "uid" : "e4fa4578ab322985d3432eeb5c67d55d"
+  }, {
+    "name" : "test_unit_api.ip_user_test",
+    "children" : [ {
+      "name" : "test_ips_user_case[IP0]",
+      "uid" : "e2f4060a5cecdf40",
+      "parentUid" : "b8cc8c18cb3466a2c4382b49e154f573",
+      "status" : "passed",
+      "time" : {
+        "start" : 1647574903531,
+        "stop" : 1647574904306,
+        "duration" : 775
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "['1.1.8.11', '1.1.8.19', '36.33.24.179', '117.184.79.238']" ]
+    }, {
+      "name" : "test_ips_user_case[IP1]",
+      "uid" : "52b37422b3b6f6a4",
+      "parentUid" : "b8cc8c18cb3466a2c4382b49e154f573",
+      "status" : "passed",
+      "time" : {
+        "start" : 1647574904322,
+        "stop" : 1647574904435,
+        "duration" : 113
+      },
+      "flaky" : false,
+      "newFailed" : false,
+      "parameters" : [ "['117.184.79.238']" ]
+    } ],
+    "uid" : "test_unit_api.ip_user_test"
+  } ],
+  "name" : "packages"
+}

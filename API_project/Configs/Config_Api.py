@@ -151,7 +151,7 @@ class Skb_Search_Api(Config_info):
                               "filterSyncRobot": filterSyncRobot, "hasBuildingCert": "0",
                               "isHighTech": "0", "hasFinanceInfo": "0", "hasAbnormalInfo": "0",
                               "syncRobotRangeDate": []}, "scope": "companyname", "matchType": "most_fields",
-                   "pagesize": 10, "page": 4}
+                   "pagesize": 10, "page": 2}
         response = requests.post(url, headers=self.headers_skb(), json=payload,
                                  verify=False)  # 搜索未查看，未转机器人,未转crm，有手机，有固话的数据
         return response
@@ -308,9 +308,6 @@ class Skb_Search_Api(Config_info):
             url = f'https://{self.skb_url_Host()}/api_skb/v1/shop/unfoldStatistics'
         response = requests.post(url=url, headers=self.headers_skb(), json=payload)
         return response
-
-
-
 
 
 class Get_Company_Info(Skb_Search_Api):
@@ -489,7 +486,7 @@ class Get_Company_Info(Skb_Search_Api):
 #     print(startDate_list)
 class Robot_Api(Skb_Search_Api):
     # 查询号码管理内号码是否存在
-    def robot_uncalled(self, query_name, queryType=2, created_at=None, phoneType=None, page=1, per_page=500):
+    def robot_uncalled(self, query_name, queryType=2, created_at=None, phoneType=None, page=1, per_page=1000):
         """
          # 查询号码管理内号码是否存在
         :param page:
@@ -501,23 +498,31 @@ class Robot_Api(Skb_Search_Api):
         :return:
         """
         url = f'https://{self.robot_url_Host()}/api/v1/customers/uncalled'
-        uncalled_payload = {
-            'page': page,
-            'per_page': per_page,
-            'queryType': queryType,
-            'query': query_name
-        }
+        if phoneType is not None:
+            uncalled_payload = {
+                'page': page,
+                'per_page': per_page,
+                'queryType': queryType,
+                'query': query_name,
+                'phoneType': phoneType
+            }
+        else:
+            uncalled_payload = {
+                'page': page,
+                'per_page': per_page,
+                'queryType': queryType,
+                'query': query_name
+            }
         if created_at is not None:
             uncalled_payload.update({'created_at': created_at})
-        if phoneType is not None:
-            uncalled_payload.update({'phoneType': phoneType})
         response = requests.get(url, params=uncalled_payload, headers=self.headers_robot())
+        # assert response.status_code == 200
         return response
 
-# if __name__=="__main__":
-#     a={'pid': '394a27a9b217a903699f914b90f3baf8', 'company_name': '天津海泰旅游管理有限公司'}
-#     b = Robot_Api("test").robot_uncalled(query_name=a["company_name"],phoneType=str(1), queryType=2)
-#     print(b.json())
+    # if __name__=="__main__":
+    #     a={'pid': '394a27a9b217a903699f914b90f3baf8', 'company_name': '天津海泰旅游管理有限公司'}
+    #     b = Robot_Api("test").robot_uncalled(query_name=a["company_name"],phoneType=str(1), queryType=2)
+    #     print(b.json())
 
     # 查询外呼计划
     def robot_out_call_plan(self):
@@ -535,12 +540,13 @@ class Robot_Api(Skb_Search_Api):
         #     payload = {"page": 1, "per_page": 10, "gatewayId": gatewayId}
         url = f'https://{self.robot_url_Host()}/api/v1/plan/list'
         response = requests.post(url, json=payload, headers=self.headers_robot())
+        assert response.status_code == 200
         return response
 
-# if __name__ == '__main__':
-#     from pprint import pprint
-#     pprint(Robot_Api("test").robot_out_call_plan().json())
-# 执行转机器人
+    # if __name__ == '__main__':
+    #     from pprint import pprint
+    #     pprint(Robot_Api("test").robot_out_call_plan().json())
+    # 执行转机器人
     def robot_sync(self, out_id=None, pids=None, pages=None, seach_value=None, useQuota=True,
                    dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
                    gatewayId=None, surveyId=None, gatewaysname=None):
