@@ -525,19 +525,17 @@ class Robot_Api(Skb_Search_Api):
     #     print(b.json())
 
     # 查询外呼计划
-    def robot_out_call_plan(self):
+    def robot_out_call_plan(self, gateway_Id=None):
         """
-        :param gatewayId: 计划线路，str类型
+        :param gateway_Id: 计划线路，str类型
         :return:
         """
         if self.host == "lxcrm":
-            payload = {"page": 1, "per_page": 10, "gatewayId": self.robot_gateway()["gatewayId"]}
-        else:
+            gateway_Id = self.robot_gateway()["gatewayId"]
+        if gateway_Id is None:
             payload = {"page": 1, "per_page": 10}
-        # if gatewayId is None:
-        #     payload = {"page": 1, "per_page": 10}
-        # else:
-        #     payload = {"page": 1, "per_page": 10, "gatewayId": gatewayId}
+        else:
+            payload = {"page": 1, "per_page": 10, "gatewayId": gateway_Id}
         url = f'https://{self.robot_url_Host()}/api/v1/plan/list'
         response = requests.post(url, json=payload, headers=self.headers_robot())
         assert response.status_code == 200
@@ -549,9 +547,9 @@ class Robot_Api(Skb_Search_Api):
     # 执行转机器人
     def robot_sync(self, out_id=None, pids=None, pages=None, seach_value=None, useQuota=True,
                    dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
-                   gatewayId=None, surveyId=None, gatewaysname=None):
+                   gatewayId=None, surveyId=None, gateway_name=None):
         """
-        :param gatewaysname: 计划名称
+        :param gateway_name: 计划名称
         :param out_id: 计划ID
         :param pids: pid数量
         :param pages: 页码
@@ -598,7 +596,7 @@ class Robot_Api(Skb_Search_Api):
             "customers_ids": [],
             "platform": "IK"
         }
-        gateway_name = "外呼测试" + time.strftime("%Y年%m月%d日%H时%M分")
+
         gatewayId_value = {
             "plan_name": gateway_name,
             "survey_id": surveyId,
@@ -630,7 +628,7 @@ class Robot_Api(Skb_Search_Api):
             clues = 'clues'
         if needCallPlan is True:
             if out_id is not None:
-                print("加入的外呼计划为，" + gatewaysname)
+                print("加入的外呼计划为，" + gateway_name)
                 payload.update({"payload": out_payload})
             else:
                 print("创建的外呼计划为，" + gateway_name)

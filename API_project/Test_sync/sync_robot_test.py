@@ -6,7 +6,9 @@
 import requests, json, time, pytest, os, random
 from API_project.Libs.sync_config_libs import Sync_robot
 from API_project.Configs.Config_Info import User_Config
-test_host = "lxcrm"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+
+test_host = "test"  # 设置测试环境 test:测试环境，staging:回归环境，lxcrm:正式环境
+
 
 class Test_sync_robot:
     # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', 'map_search_list' , 'shop_search_list'])
@@ -16,7 +18,7 @@ class Test_sync_robot:
     # 转移号码数量
     @pytest.mark.parametrize('page', [None])
     # 转移号码类型
-    @pytest.mark.parametrize('dataColumns', [[0, 1]])
+    @pytest.mark.parametrize('dataColumns', [[0]])
     # 转移号码方式
     @pytest.mark.parametrize('numberCounts', [1])
     # 重复是否转移
@@ -51,19 +53,30 @@ class Test_sync_robot:
         else:
             pid = None
             pages = page
-
-        resp_out_sync = sync_config_Api.robot_out_call_plan().json()["data"]["list"]  # 获取外呼计划列表
-        if resp_out_sync:  # and needCallPlan is True
-            resp_out_sync = resp_out_sync[0]
-            out_ids = resp_out_sync["id"]
-            out_gatewayId = resp_out_sync["gatewayId"]
-            out_surveyId = resp_out_sync["surveyId"]
-            out_jobGroupName = resp_out_sync["jobGroupName"]
-            out_callCount = resp_out_sync["callCount"]
-            out_id = random.choices([out_ids, None])
-            print("外呼计划id", out_id)
+        if needCallPlan is True:
+            resp_out_sync = sync_config_Api.robot_out_call_plan().json()["data"]["list"]  # 获取外呼计划列表
+            if resp_out_sync:
+                resp_out_sync = resp_out_sync[0]
+                out_ids = resp_out_sync["id"]
+                out_gatewayId = resp_out_sync["gatewayId"]
+                out_surveyId = resp_out_sync["surveyId"]
+                out_callCount = resp_out_sync["callCount"]
+                out_id = random.choices([out_ids, None])[0]
+                if out_id is None:
+                    out_jobGroupName = "外呼测试" + time.strftime("%Y年%m月%d日%H时%M分")
+                else:
+                    out_jobGroupName = resp_out_sync["jobGroupName"]
+                # print(resp_out_sync)
+                # print("外呼计划id", out_id)
+            else:
+                # print("需要创建外呼计划，但是外呼计划列表为空", resp_out_sync)
+                out_id = None
+                out_gatewayId = None
+                out_surveyId = None
+                out_jobGroupName = None
+                out_callCount = None
+                assert resp_out_sync
         else:
-            print("外呼计划列表为空", resp_out_sync)
             out_id = None
             out_gatewayId = None
             out_surveyId = None
@@ -87,16 +100,16 @@ class Test_sync_robot:
             unfoldNum = 0
             print("查看状态查询失败", unfoldStatistics_Api_value)
 
-        resp_syn = sync_config_Api.robot_sync(pids=pid, pages=pages,
-                                              seach_value=search_values["payloads_request"], canCover=canCover,
-                                              way=way, out_id=out_id, needCallPlan=needCallPlan,
-                                              dataColumns=dataColumns,
-                                              numberCount=numberCounts, gatewayId=out_gatewayId, surveyId=out_surveyId,
-                                              gatewaysname=out_jobGroupName, useQuota=useQuota)
-        print(resp_syn.request.body.decode(encoding="utf-8", errors="unicode_escape"))
+        resp_sync = sync_config_Api.robot_sync(pids=pid, pages=pages,
+                                               seach_value=search_values["payloads_request"], canCover=canCover,
+                                               way=way, out_id=out_id, needCallPlan=needCallPlan,
+                                               dataColumns=dataColumns,
+                                               numberCount=numberCounts, gatewayId=out_gatewayId, surveyId=out_surveyId,
+                                               gateway_name=out_jobGroupName, useQuota=useQuota).json()
+        # print(resp_syn.request.body.decode(encoding="utf-8", errors="unicode_escape"))
         # print(resp_syn.request.url)
         # print(resp_syn.request.headers)
-        resp_sync = resp_syn.json()
+        # resp_sync = resp_syn.json()
         quantity_rebate = 0
         if resp_sync['error_code'] == 0:
             start_time = time.time()
@@ -137,17 +150,39 @@ class Test_sync_robot:
                     hasSmartSyncRobot=hasSmartSyncRobot)
                 end_time = time.time()
                 print("执行转移判断耗时", end_time - start_time)
-            # resp_out_query = sync_config_Api.robot_out_call_plan().json()["data"]["list"]  # 获取外呼计划列表
-            # resp_out_query_value_sum = 0
-            # resp_out_query_value_value = None
-            # for resp_out_query_value in resp_out_query:
-            #     if resp_out_query_value["id"] == out_id:
-            #         resp_out_query_value_sum += 1
-            #         resp_out_query_value_value = resp_out_query_value
-            #         # assert resp_out_query_value["callCount"] > resp_out_sync_value["callCount"]
-            #         assert resp_out_query_value["jobGroupName"] == out_jobGroupName
-            #         break
-            # assert resp_out_query_value_sum > 0
+            if needCallPlan is True:
+                resp_out_query = sync_config_Api.robot_out_call_plan(gateway_Id=out_gatewayId).json()["data"][
+                    "list"]  # 获取外呼计划列表
+                # print("获取外呼计划列表", resp_out_query)
+                resp_out_query_value_value = False
+                for resp_out_query_value in resp_out_query:
+                    if out_id is None:
+                        if resp_out_query_value["jobGroupName"] == str(out_jobGroupName):
+                            # print("创建外呼计划{}".format(out_jobGroupName))
+                            resp_out_query_value_value = True
+                            assert resp_out_query_value["callCount"] > 0
+                            break
+                        # assert out_jobGroupName in resp_out_query_value.values()
+                    else:
+                        if str(resp_out_query_value["id"]) == str(out_id):
+                            resp_out_query_value_value = True
+                            # print("加入外呼计划加入前{}，加入后{}".format(out_callCount, resp_out_query_value["callCount"]))
+                            assert out_jobGroupName == resp_out_query_value["jobGroupName"]
+                            assert out_gatewayId == resp_out_query_value["gatewayId"]
+                            assert out_surveyId == resp_out_query_value["surveyId"]
+                            assert out_callCount < resp_out_query_value["callCount"]
+                            assert resp_out_query_value["jobGroupName"] == out_jobGroupName
+                            if out_callCount >= resp_out_query_value["callCount"]:
+                                print("加入外呼计划失败加入前{}，加入后{}".format(out_callCount, resp_out_query_value["callCount"]))
+                                assert out_callCount < resp_out_query_value["callCount"]
+                            break
+                if out_id is None:
+                    if resp_out_query_value_value is False:
+                        print("创建外呼计划失败,计划名称为{}".format(out_jobGroupName))
+                else:
+                    if resp_out_query_value_value is False:
+                        print("加入外呼计划失败,计划名称为{}，外呼计划ID为{}".format(out_jobGroupName, out_id))
+                        assert resp_out_query_value_value is True
         else:
             quantity_stop = sync_config_Api.userinfo_skb_Api().json()['data']['uRemainQuota']
             quantity_rebate = 0
