@@ -92,7 +92,7 @@ class Skb_Search_Api(Config_info):
                 else:
                     details_response_contacts_value = []
             else:
-                unfoldNum = False
+                unfoldNum = True
                 # print('pid:', pid, '企业名称', entName, '\n该企业联系方式为空', contact_response)
                 details_response_contacts_value = []
 
@@ -516,8 +516,43 @@ class Robot_Api(Skb_Search_Api):
         if created_at is not None:
             uncalled_payload.update({'created_at': created_at})
         response = requests.get(url, params=uncalled_payload, headers=self.headers_robot())
-        # assert response.status_code == 200
+        assert response.status_code == 200
         return response
+
+    def task_list(self):
+        url = "https://{}/api_skb/v1/clues/task_list?pageNum=1&pageSize=10".format(self.skb_url_Host())
+        # payload = {}
+        response = requests.get(url=url, headers=self.headers_skb())
+        # assert response.status_code == 200
+        # request_payloads = json.loads(response.request.body.decode("unicode_escape"))
+        status_code = response.status_code
+        request_url = response.request.url
+        request_headers = response.request.headers
+        response_value = response.json()
+        response.close()
+        if status_code != 200:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert status_code == 200
+        elif response_value["error_code"] != 0:
+            print("搜索结果有误", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['error_code'] == 0
+        elif not response_value['data']['result']:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['data']['result']
+        elif response_value['data']['result'][0] == {}:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['data']['result'][0] != {}
+        return response_value
+
+
+# if __name__ == "__main__":
+#     response = Robot_Api("test").task_list()
+#     print(response)
+
 
     # if __name__=="__main__":
     #     a={'pid': '394a27a9b217a903699f914b90f3baf8', 'company_name': '天津海泰旅游管理有限公司'}
@@ -540,6 +575,7 @@ class Robot_Api(Skb_Search_Api):
         response = requests.post(url, json=payload, headers=self.headers_robot())
         assert response.status_code == 200
         return response
+
 
     # if __name__ == '__main__':
     #     from pprint import pprint

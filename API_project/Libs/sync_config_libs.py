@@ -476,7 +476,6 @@ class Sync_robot(sync_config):
         :param hasSmartSyncRobot: 账户是否灰测
         :return:
         '''
-
         sync_robot_value_sum = 0
         if sync_robot_value["resp_robot_verdicts"] is True:  # 判断转移结果不为空
             if self.dataColumns == [0]:
@@ -495,6 +494,7 @@ class Sync_robot(sync_config):
                           sync_robot_value["list_sync_robot_verdicts_type2"], '\n条件，canCover', self.canCover, 'way',
                           self.way, 'page', self.pages, 'dataColumns', self.dataColumns, 'numberCounts',
                           self.numberCounts)
+                # 判断转移方式，仅1条or全部，并返回未扣点数量
                 sync_robot_value_sum += self.numberCount_verdicts(list_contact_all=list_contact_all["Mobile"],
                                                                   list_contact_one=list_contact_all[
                                                                       "contacts_one_mobile"],
@@ -514,7 +514,7 @@ class Sync_robot(sync_config):
                     "list_sync_robot_repetition_type2"]
                 sync_robot_value_filter_all = sync_robot_value["list_sync_robot_filter_type1"] + sync_robot_value[
                     "list_sync_robot_filter_type2"]
-
+                # 判断转移方式，仅1条or全部，并返回未扣点数量
                 sync_robot_value_sum += self.numberCount_verdicts(list_contact_all=list_contact_Api_all,
                                                                   list_contact_one=list_contact_all["contacts_one"],
                                                                   robot_stop_value=sync_robot_value_all,
@@ -523,8 +523,10 @@ class Sync_robot(sync_config):
                                                                   company_name_pid_list=company_name_pid_list,
                                                                   hasSmartSyncRobot=hasSmartSyncRobot)
         else:
+            # 执行转移失败时的判断，并返回未扣点数量
             sync_robot_value_sum += self.sync_robot_failed_verdicts_assert(list_contact_Api=list_contact_all,
                                                                            hasSmartSyncRobot=hasSmartSyncRobot)
+        # 返回未扣点数量
         return sync_robot_value_sum
 
     #  未转移成功时的判断
@@ -553,3 +555,106 @@ class Sync_robot(sync_config):
                     if self.useQuota is True and list_contact_Api["unfoldNum"] is False and hasSmartSyncRobot is False:
                         sync_robot_value_sum += 1
         return sync_robot_value_sum
+
+    #  获取转移任务并执行任务判断
+    def sync_robot_task_list(self, list_robot_filter_Mobile, list_robot_repetition_Mobile, list_robot_verdicts_Mobile,
+                             list_robot_verdicts_Fixed, list_robot_filter_Fixed, list_robot_repetition_Fixed,
+                             start_robot_sync_time, quantity_stop, quantity_start, search_response_body, pages):
+        '''
+        获取转移任务并执行任务判断
+        :param quantity_start: 转移前的额度
+        :param quantity_stop: 转移后的额度
+        :param start_robot_sync_time: 转机器人时间
+        :param list_robot_filter_Mobile: 创建未转移的手机集合
+        :param list_robot_repetition_Mobile:  创建手机重复转移结果集合
+        :param list_robot_verdicts_Mobile: 创建手机转移结果集合
+        :param list_robot_verdicts_Fixed: 创建固话转移结果集合
+        :param list_robot_filter_Fixed: 创建未转移的固话集合
+        :param list_robot_repetition_Fixed: 创建固话重复转移结果集合
+        :return:
+        '''
+
+        # if self.pages is None and self.way == "map_search_list":
+        #     Unfolded_sum = 500
+        # elif self.pages is None:
+        #     Unfolded_sum = None
+        # else:
+        #     Unfolded_sum = self.pages
+        task_list_value = self.task_list()["data"]["result"][0]
+        # a = ['id', 'name', '', '', '', '']
+        # createTime_num = int(task_list_value["createTime"]/1000)
+        createTime = time.strftime("%Y-%m-%b-%H-%%", time.localtime(int(int(task_list_value["createTime"]) / 1000)))
+        start_robot_sync_times = time.strftime("%Y-%m-%b-%H-%%", time.localtime(int(start_robot_sync_time)))
+        assert self.way == task_list_value["source"]
+        assert start_robot_sync_times == createTime
+        assert int(4) == int(task_list_value["status"])
+        assert int(task_list_value["operationType"]) == int(1)
+        assert int(quantity_start) == int(task_list_value["deductionCount"] + quantity_stop)
+        if int(task_list_value["filteredNumbers"]) == 0 and int(task_list_value["importedNumbers"]) == 0:
+            assert task_list_value["hasDetails"] is True
+        if pages is None:
+            assert int(task_list_value["filteredNumbers"]) == int(
+                len(list_robot_filter_Mobile) + len(list_robot_repetition_Mobile) + len(
+                    list_robot_repetition_Fixed) + len(
+                    list_robot_filter_Fixed))
+            assert int(task_list_value["importedNumbers"]) == int(
+                len(list_robot_verdicts_Mobile) + len(list_robot_verdicts_Fixed))
+        else:
+            assert int(task_list_value["filteredNumbers"]) >= int(
+                len(list_robot_filter_Mobile) + len(list_robot_repetition_Mobile) + len(
+                    list_robot_repetition_Fixed) + len(
+                    list_robot_filter_Fixed))
+            assert int(task_list_value["importedNumbers"]) >= int(
+                len(list_robot_verdicts_Mobile) + len(list_robot_verdicts_Fixed))
+        searchCondition = json.loads(task_list_value["searchCondition"])["filter"]
+        # assert search_response_body == searchCondition
+
+    def sync_Unfold(self, oid, sync_robot_value, ES_search_value, i, list_contact_Api):
+        if self.host == "lxcrm":
+            transferredRobotOrgs = "transferredRobotOrgs"
+            unfoldedOrgs = "unfoldedOrgs"
+        else:
+            unfoldedOrgs = "unfoldedOrgsNonProd"
+            transferredRobotOrgs = "transferredRobotOrgsNonProd"
+        if sync_robot_value["resp_robot_verdicts"] is True:
+            # print(ES(host="staging"))
+            if str(oid) not in ES_search_value[
+                transferredRobotOrgs] and transferredRobotOrgs not in ES_search_value.keys():
+                print('{}转移状态有误'.format(i))
+                assert str(oid) in ES_search_value[
+                    transferredRobotOrgs] and transferredRobotOrgs in ES_search_value.keys()
+            if str(oid) not in ES_search_value[unfoldedOrgs] and unfoldedOrgs in ES_search_value.keys():
+                print('{}查看状态有误'.format(i))
+                assert str(oid) in ES_search_value[
+                    unfoldedOrgs] and unfoldedOrgs in ES_search_value.keys()
+        else:
+            if transferredRobotOrgs in ES_search_value.keys() and str(oid) in ES_search_value[transferredRobotOrgs]:
+                print('{}转移状态有误'.format(i))
+                assert transferredRobotOrgs not in ES_search_value.keys() or str(oid) not in ES_search_value[
+                    transferredRobotOrgs]
+            if self.dataColumns == [0]:
+                if not list_contact_Api["Mobile"]:
+                    if list_contact_Api["Fixed"] != [] or list_contact_Api["Qq"] != [] or list_contact_Api[
+                        "Email"] != []:
+                        if self.useQuota is False and list_contact_Api["unfoldNum"] is False:
+                            if unfoldedOrgs in ES_search_value.keys() and str(oid) in ES_search_value[
+                                unfoldedOrgs]:
+                                print('{}查看状态有误'.format(i))
+                                assert str(oid) not in ES_search_value[unfoldedOrgs]
+                        else:
+                            assert str(oid) in ES_search_value[unfoldedOrgs]
+                    else:
+                        assert ES_search_value["hasContact"] is False
+
+            else:
+                if list_contact_Api["Mobile"] == [] and list_contact_Api["Fixed"] == []:
+                    if list_contact_Api["Qq"] != [] or list_contact_Api["Email"] != []:
+                        if self.useQuota is False and list_contact_Api["unfoldNum"] is False:
+                            if unfoldedOrgs in ES_search_value.keys() and str(oid) in ES_search_value[
+                                unfoldedOrgs]:
+                                print('{}查看状态有误'.format(i))
+                                assert str(oid) not in ES_search_value[unfoldedOrgs]
+                        else:
+                            assert str(oid) in ES_search_value[unfoldedOrgs]
+                    else:
+                        assert ES_search_value["hasContact"] is False

@@ -14,9 +14,9 @@ class Test_sync_robot:
     # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', 'map_search_list' , 'shop_search_list'])
     # @pytest.mark.parametrize('page', [None, 500, 1000, 2000])
     # 扣除流量额度，仅转移手机or手机+固话，全部号码or仅一条号码, 加入已有外呼计划
-    @pytest.mark.parametrize('way', ['search_list'])
+    @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', 'map_search_list'])
     # 转移号码数量
-    @pytest.mark.parametrize('page', [None])
+    @pytest.mark.parametrize('page', [500])
     # 转移号码类型
     @pytest.mark.parametrize('dataColumns', [[0]])
     # 转移号码方式
@@ -100,16 +100,18 @@ class Test_sync_robot:
             unfoldNum = 0
             print("查看状态查询失败", unfoldStatistics_Api_value)
 
-        resp_sync = sync_config_Api.robot_sync(pids=pid, pages=pages,
-                                               seach_value=search_values["payloads_request"], canCover=canCover,
-                                               way=way, out_id=out_id, needCallPlan=needCallPlan,
-                                               dataColumns=dataColumns,
-                                               numberCount=numberCounts, gatewayId=out_gatewayId, surveyId=out_surveyId,
-                                               gateway_name=out_jobGroupName, useQuota=useQuota).json()
-        # print(resp_syn.request.body.decode(encoding="utf-8", errors="unicode_escape"))
+        start_robot_sync_time = time.time()
+        resp_syn = sync_config_Api.robot_sync(pids=pid, pages=pages,
+                                              seach_value=search_values["payloads_request"], canCover=canCover,
+                                              way=way, out_id=out_id, needCallPlan=needCallPlan,
+                                              dataColumns=dataColumns,
+                                              numberCount=numberCounts, gatewayId=out_gatewayId, surveyId=out_surveyId,
+                                              gateway_name=out_jobGroupName, useQuota=useQuota)
+        syn_response_body = json.loads(resp_syn.request.body.decode("unicode_escape"))
         # print(resp_syn.request.url)
         # print(resp_syn.request.headers)
-        # resp_sync = resp_syn.json()
+        resp_sync = resp_syn.json()
+        resp_syn.close()
         quantity_rebate = 0
         if resp_sync['error_code'] == 0:
             start_time = time.time()
@@ -117,6 +119,12 @@ class Test_sync_robot:
             end_time = time.time()
             print("转移耗时", end_time - start_time)
             quantity_stop = sync_config_Api.userinfo_skb_Api().json()['data']['uRemainQuota']
+            list_robot_filter_Mobile = []  # 创建未转移的手机集合
+            list_robot_repetition_Mobile = []  # 创建手机重复转移结果集合
+            list_robot_verdicts_Mobile = []  # 创建手机转移结果集合
+            list_robot_verdicts_Fixed = []  # 创建固话转移结果集合
+            list_robot_filter_Fixed = []  # 创建未转移的固话集合
+            list_robot_repetition_Fixed = []  # 创建固话重复转移结果集合
             for i in search_values["pid_companyName_list"]:
                 # 获取联系方式
                 list_contact_Api = sync_config_Api.list_contact(pid=i['pid'], entName=i['company_name'])
@@ -127,21 +135,69 @@ class Test_sync_robot:
                                                                        company_name=i['company_name'])
                 end_time = time.time()
                 print("获取转机器人结果耗时", end_time - start_time)
-                #  已转未转筛选判断
-                # ES_search_value = ES.get(index="company_info_prod", id=i['pid'])['_source']
+                list_robot_filter_Mobile.extend(sync_robot_value["list_sync_robot_filter_type1"])
+                list_robot_repetition_Mobile.extend(sync_robot_value["list_sync_robot_repetition_type1"])
+                list_robot_verdicts_Mobile.extend(sync_robot_value["list_sync_robot_verdicts_type1"])
+                list_robot_verdicts_Fixed.extend(sync_robot_value["list_sync_robot_verdicts_type2"])
+                list_robot_filter_Fixed.extend(sync_robot_value["list_sync_robot_filter_type2"])
+                list_robot_repetition_Fixed.extend(sync_robot_value["list_sync_robot_repetition_type2"])
+
+                ES_search_value = ES.get(index="company_info_prod", id=i['pid'])['_source']
+                # 查看转移筛选判断
+                sync_config_Api.sync_Unfold(oid=oid, sync_robot_value=sync_robot_value, ES_search_value=ES_search_value,
+                                            i=i, list_contact_Api=list_contact_Api)
                 # if test_host == "lxcrm":
                 #     transferredRobotOrgs = "transferredRobotOrgs"
+                #     unfoldedOrgs = "unfoldedOrgs"
                 # else:
+                #     unfoldedOrgs = "unfoldedOrgsNonProd"
                 #     transferredRobotOrgs = "transferredRobotOrgsNonProd"
                 # if sync_robot_value["resp_robot_verdicts"] is True:
                 #     # print(ES(host="staging"))
-                #     assert transferredRobotOrgs in ES_search_value.keys()
-                #     assert str(oid) in ES_search_value[transferredRobotOrgs]
+                #     if str(oid) not in ES_search_value[
+                #         transferredRobotOrgs] and transferredRobotOrgs not in ES_search_value.keys():
+                #         print('{}转移状态有误'.format(i))
+                #         assert str(oid) in ES_search_value[
+                #             transferredRobotOrgs] and transferredRobotOrgs in ES_search_value.keys()
+                #     if str(oid) not in ES_search_value[unfoldedOrgs] and unfoldedOrgs in ES_search_value.keys():
+                #         print('{}查看状态有误'.format(i))
+                #         assert str(oid) in ES_search_value[
+                #             unfoldedOrgs] and unfoldedOrgs in ES_search_value.keys()
                 # else:
-                #     assert transferredRobotOrgs not in ES_search_value.keys() or str(oid) not in ES_search_value[
-                #         transferredRobotOrgs]
-                # 执行转移判断
+                #     if transferredRobotOrgs in ES_search_value.keys() and str(oid) in ES_search_value[
+                #         transferredRobotOrgs]:
+                #         print('{}转移状态有误'.format(i))
+                #         assert transferredRobotOrgs not in ES_search_value.keys() or str(oid) not in ES_search_value[
+                #             transferredRobotOrgs]
+                #     if dataColumns == [0]:
+                #         if not list_contact_Api["Mobile"]:
+                #             if list_contact_Api["Fixed"] != [] or list_contact_Api["Qq"] != [] or list_contact_Api[
+                #                 "Email"] != []:
+                #                 if useQuota is False and list_contact_Api["unfoldNum"] is False:
+                #                     if unfoldedOrgs in ES_search_value.keys() and str(oid) in ES_search_value[
+                #                         unfoldedOrgs]:
+                #                         print('{}查看状态有误'.format(i))
+                #                         assert str(oid) not in ES_search_value[unfoldedOrgs]
+                #                 else:
+                #                     assert str(oid) in ES_search_value[unfoldedOrgs]
+                #             else:
+                #                 assert ES_search_value["hasContact"] is False
+                #
+                #     else:
+                #         if list_contact_Api["Mobile"] == [] and list_contact_Api["Fixed"] == []:
+                #             if list_contact_Api["Qq"] != [] or list_contact_Api["Email"] != []:
+                #                 if useQuota is False and list_contact_Api["unfoldNum"] is False:
+                #                     if unfoldedOrgs in ES_search_value.keys() and str(oid) in ES_search_value[
+                #                         unfoldedOrgs]:
+                #                         print('{}查看状态有误'.format(i))
+                #                         assert str(oid) not in ES_search_value[unfoldedOrgs]
+                #                 else:
+                #                     assert str(oid) in ES_search_value[unfoldedOrgs]
+                #             else:
+                #                 assert ES_search_value["hasContact"] is False
+
                 start_time = time.time()
+                # 执行转移判断
                 quantity_rebate += sync_config_Api.sync_robot_value_verdicts_assert(
                     # sync_robot_start_value=sync_robot_start_verdicts_dicde,
                     sync_robot_value=sync_robot_value,
@@ -150,6 +206,18 @@ class Test_sync_robot:
                     hasSmartSyncRobot=hasSmartSyncRobot)
                 end_time = time.time()
                 print("执行转移判断耗时", end_time - start_time)
+            # task_list_value = sync_config_Api.task_list()["data"]["result"][0]
+            #  转机器人任务记录判断
+            sync_config_Api.sync_robot_task_list(list_robot_filter_Mobile=list_robot_filter_Mobile,
+                                                 list_robot_repetition_Mobile=list_robot_repetition_Mobile,
+                                                 list_robot_verdicts_Mobile=list_robot_verdicts_Mobile,
+                                                 list_robot_verdicts_Fixed=list_robot_verdicts_Fixed,
+                                                 list_robot_filter_Fixed=list_robot_filter_Fixed,
+                                                 list_robot_repetition_Fixed=list_robot_repetition_Fixed,
+                                                 start_robot_sync_time=start_robot_sync_time,
+                                                 quantity_stop=quantity_stop, pages=pages,
+                                                 quantity_start=quantity_start,
+                                                 search_response_body=search_values["payloads_request"])
             if needCallPlan is True:
                 resp_out_query = sync_config_Api.robot_out_call_plan(gateway_Id=out_gatewayId).json()["data"][
                     "list"]  # 获取外呼计划列表
