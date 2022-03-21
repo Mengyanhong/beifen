@@ -143,7 +143,7 @@ class Test_sync_robot:
                 list_robot_repetition_Fixed.extend(sync_robot_value["list_sync_robot_repetition_type2"])
 
                 ES_search_value = ES.get(index="company_info_prod", id=i['pid'])['_source']
-                # 查看转移筛选判断
+                # git
                 sync_config_Api.sync_Unfold(oid=oid, sync_robot_value=sync_robot_value, ES_search_value=ES_search_value,
                                             i=i, list_contact_Api=list_contact_Api)
                 # if test_host == "lxcrm":
