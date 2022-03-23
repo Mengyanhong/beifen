@@ -519,6 +519,7 @@ class Robot_Api(Skb_Search_Api):
         assert response.status_code == 200
         return response
 
+    # 查询任务记录
     def task_list(self):
         url = "https://{}/api_skb/v1/clues/task_list?pageNum=1&pageSize=10".format(self.skb_url_Host())
         # payload = {}
@@ -548,17 +549,6 @@ class Robot_Api(Skb_Search_Api):
             assert response_value['data']['result'][0] != {}
         return response_value
 
-
-# if __name__ == "__main__":
-#     response = Robot_Api("test").task_list()
-#     print(response)
-
-
-    # if __name__=="__main__":
-    #     a={'pid': '394a27a9b217a903699f914b90f3baf8', 'company_name': '天津海泰旅游管理有限公司'}
-    #     b = Robot_Api("test").robot_uncalled(query_name=a["company_name"],phoneType=str(1), queryType=2)
-    #     print(b.json())
-
     # 查询外呼计划
     def robot_out_call_plan(self, gateway_Id=None):
         """
@@ -574,12 +564,9 @@ class Robot_Api(Skb_Search_Api):
         url = f'https://{self.robot_url_Host()}/api/v1/plan/list'
         response = requests.post(url, json=payload, headers=self.headers_robot())
         assert response.status_code == 200
+        assert response.json()["data"]["list"] != []
         return response
 
-
-    # if __name__ == '__main__':
-    #     from pprint import pprint
-    #     pprint(Robot_Api("test").robot_out_call_plan().json())
     # 执行转机器人
     def robot_sync(self, out_id=None, pids=None, pages=None, seach_value=None, useQuota=True,
                    dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
@@ -672,6 +659,16 @@ class Robot_Api(Skb_Search_Api):
         url = f'https://{self.skb_url_Host()}/api_skb/v1/{clues}/sync_robot'
         response = requests.post(url=url, headers=self.headers_skb(), json=payload)
         return response
+# if __name__ == "__main__":
+#     response = Robot_Api("test").task_list()
+#     print(response)
+# if __name__=="__main__":
+#     a={'pid': '394a27a9b217a903699f914b90f3baf8', 'company_name': '天津海泰旅游管理有限公司'}
+#     b = Robot_Api("test").robot_uncalled(query_name=a["company_name"],phoneType=str(1), queryType=2)
+#     print(b.json())
+# if __name__ == '__main__':
+#     from pprint import pprint
+#     pprint(Robot_Api("test").robot_out_call_plan().json())
 
 
 class Skb_Shop_Api(Robot_Api):

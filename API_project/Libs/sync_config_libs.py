@@ -164,12 +164,13 @@ class sync_config(Config_api):
 
 
 class Sync_robot(sync_config):
-    def __init__(self, host, way, pages, canCover, dataColumns, numberCounts, headers_parameters=None, useQuota=True):
+    def __init__(self, host, way, pages, canCover, dataColumns, numberCounts, needCallPlan, headers_parameters=None, useQuota=True):
         super(Sync_robot, self).__init__(host=host, way=way, pages=pages, headers_parameters=headers_parameters,
                                          useQuota=useQuota)
         self.canCover = canCover
         self.dataColumns = dataColumns
         self.numberCounts = numberCounts
+        self.needCallPlan = needCallPlan
         print('Sync_robot初始化参数,canCover,{}, dataColumns,{}, numberCounts,{}'.
               format(canCover, dataColumns, numberCounts))
 
@@ -558,10 +559,13 @@ class Sync_robot(sync_config):
 
     #  获取转移任务并执行任务判断
     def sync_robot_task_list(self, list_robot_filter_Mobile, list_robot_repetition_Mobile, list_robot_verdicts_Mobile,
-                             list_robot_verdicts_Fixed, list_robot_filter_Fixed, list_robot_repetition_Fixed,
-                             start_robot_sync_time, quantity_stop, quantity_start, search_response_body, pages):
+                             list_robot_verdicts_Fixed, list_robot_filter_Fixed, list_robot_repetition_Fixed, out_id,
+                             start_robot_sync_time, quantity_stop, quantity_start, search_response_body, pages,
+                             out_callCount, resp_out_query_value_value):
         '''
         获取转移任务并执行任务判断
+        :param resp_out_query_value_value: 转移结束后的外呼计划数量
+        :param out_callCount: 外呼计划数量
         :param quantity_start: 转移前的额度
         :param quantity_stop: 转移后的额度
         :param start_robot_sync_time: 转机器人时间
@@ -573,21 +577,15 @@ class Sync_robot(sync_config):
         :param list_robot_repetition_Fixed: 创建固话重复转移结果集合
         :return:
         '''
-
-        # if self.pages is None and self.way == "map_search_list":
-        #     Unfolded_sum = 500
-        # elif self.pages is None:
-        #     Unfolded_sum = None
-        # else:
-        #     Unfolded_sum = self.pages
         task_list_value = self.task_list()["data"]["result"][0]
         # a = ['id', 'name', '', '', '', '']
         # createTime_num = int(task_list_value["createTime"]/1000)
-        createTime = time.strftime("%Y-%m-%b-%H-%%", time.localtime(int(int(task_list_value["createTime"]) / 1000)))
-        start_robot_sync_times = time.strftime("%Y-%m-%b-%H-%%", time.localtime(int(start_robot_sync_time)))
+        createTime = time.strftime("%Y-%m-%d-%H-%M", time.localtime(int(int(task_list_value["createTime"]) / 1000)))
+        start_robot_sync_times = time.strftime("%Y-%m-%d-%H-%M", time.localtime(int(start_robot_sync_time)))
+        print("开始判断任务记录，任务id{},任务开始时间{}".format(task_list_value["id"], createTime))
         assert self.way == task_list_value["source"]
         assert start_robot_sync_times == createTime
-        assert int(4) == int(task_list_value["status"])
+        # assert int(4) == int(task_list_value["status"])
         assert int(task_list_value["operationType"]) == int(1)
         assert int(quantity_start) == int(task_list_value["deductionCount"] + quantity_stop)
         if int(task_list_value["filteredNumbers"]) == 0 and int(task_list_value["importedNumbers"]) == 0:
@@ -606,8 +604,17 @@ class Sync_robot(sync_config):
                     list_robot_filter_Fixed))
             assert int(task_list_value["importedNumbers"]) >= int(
                 len(list_robot_verdicts_Mobile) + len(list_robot_verdicts_Fixed))
-        searchCondition = json.loads(task_list_value["searchCondition"])["filter"]
+        # 判断外呼计划数量
+        if self.needCallPlan is True:
+            if out_id is None:
+                assert int(task_list_value["filteredNumbers"]) == resp_out_query_value_value
+            else:
+                assert (out_callCount+int(task_list_value["filteredNumbers"])) == resp_out_query_value_value
+
+        # searchCondition = json.loads(task_list_value["searchCondition"])["filter"]
         # assert search_response_body == searchCondition
+        if task_list_value["hasDetails"] is True:
+            id = task_list_value["id"]
 
     def sync_Unfold(self, oid, sync_robot_value, ES_search_value, i, list_contact_Api):
         if self.host == "lxcrm":
@@ -616,7 +623,7 @@ class Sync_robot(sync_config):
         else:
             unfoldedOrgs = "unfoldedOrgsNonProd"
             transferredRobotOrgs = "transferredRobotOrgsNonProd"
-        if sync_robot_value["resp_robot_verdicts"] is True:
+        if sync_robot_value is True:
             # print(ES(host="staging"))
             if str(oid) not in ES_search_value[
                 transferredRobotOrgs] and transferredRobotOrgs not in ES_search_value.keys():
@@ -642,8 +649,11 @@ class Sync_robot(sync_config):
                                 print('{}查看状态有误'.format(i))
                                 assert str(oid) not in ES_search_value[unfoldedOrgs]
                         else:
+                            print('{}查看状态有误'.format(i))
                             assert str(oid) in ES_search_value[unfoldedOrgs]
                     else:
+                        if ES_search_value["hasContact"] is not False:
+                            print('{}联系方式有误'.format(i))
                         assert ES_search_value["hasContact"] is False
 
             else:
