@@ -549,6 +549,47 @@ class Robot_Api(Skb_Search_Api):
             assert response_value['data']['result'][0] != {}
         return response_value
 
+    # 查询任务记录详情
+    def task_contact_list(self, taskId, errorReason='', contactType='', success='', pageSize=10, pageNum=1):
+        '''
+        查询任务记录详情
+        :param taskId: 任务id
+        :param errorReason:转移失败原因
+        :param contactType:号码类型1：手机，2:固话
+        :param success:转移状态，True,False
+        :param pageSize: 展示数量
+        :param pageNum: 页码
+        :return:
+        '''
+        url = "https://{}/api_skb/v1/clues/task_contact_list?".format(self.skb_url_Host())
+        payload = {'taskId': taskId,
+                   'errorReason': errorReason,
+                   'contactType': contactType,
+                   'success': success,
+                   'pageSize': pageSize,
+                   'pageNum': pageNum
+                   }
+        response = requests.get(url=url, params=payload, headers=self.headers_skb())
+        status_code = response.status_code
+        request_url = response.request.url
+        request_headers = response.request.headers
+        response_value = response.json()
+        if status_code != 200:
+            print("搜索接口报错", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert status_code == 200
+        elif response_value["error_code"] != 0:
+            print("搜索结果有误", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['error_code'] == 0
+        elif response_value['data'] == {}:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['data'] != {}
+        else:
+            response.close()
+        return response_value
+
     # 查询外呼计划
     def robot_out_call_plan(self, gateway_Id=None):
         """
@@ -659,6 +700,8 @@ class Robot_Api(Skb_Search_Api):
         url = f'https://{self.skb_url_Host()}/api_skb/v1/{clues}/sync_robot'
         response = requests.post(url=url, headers=self.headers_skb(), json=payload)
         return response
+
+
 # if __name__ == "__main__":
 #     response = Robot_Api("test").task_list()
 #     print(response)
@@ -669,7 +712,9 @@ class Robot_Api(Skb_Search_Api):
 # if __name__ == '__main__':
 #     from pprint import pprint
 #     pprint(Robot_Api("test").robot_out_call_plan().json())
-
+# if __name__ == "__main__":
+#     from pprint import pprint
+#     pprint(Robot_Api("staging").task_contact_list())
 
 class Skb_Shop_Api(Robot_Api):
     # def __init__(self, test):

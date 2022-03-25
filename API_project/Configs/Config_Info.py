@@ -65,8 +65,8 @@ class User_Config(Url_Host_Config):
             gatewayId = 937
         elif self.host == 'staging':  # 17388888888,Ik123456
             app_token = 'f6620ff6729345c8b6101174e695d0ab'
-            token = 'b1a2727816c5a1bd7405a545e0927e81'
-            platform = 'ikcrm'
+            token = '8135ba69c8ef715e967075d206cf7455'
+            platform = 'lixiaoyun'
             gatewayId = None
         else:  # 13162863099,励销云(CRM+机器人+skb)
             app_token = 'a14cc8b00f84e64b438af540390531e4'

@@ -14,7 +14,7 @@ class Test_sync_robot:
     # @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', 'map_search_list' , 'shop_search_list'])
     # @pytest.mark.parametrize('page', [None, 500, 1000, 2000])
     # 扣除流量额度，仅转移手机or手机+固话，全部号码or仅一条号码, 加入已有外呼计划
-    @pytest.mark.parametrize('way', ['search_list', 'advanced_search_list', 'map_search_list' , 'shop_search_list'])
+    @pytest.mark.parametrize('way', ['advanced_search_list'])
     # 转移号码数量
     @pytest.mark.parametrize('page', [None])
     # 转移号码类型
@@ -24,7 +24,7 @@ class Test_sync_robot:
     # 重复是否转移
     @pytest.mark.parametrize('canCover', [True])
     # 是否创建外呼计划方式
-    @pytest.mark.parametrize('needCallPlan', [False])
+    @pytest.mark.parametrize('needCallPlan', [True])
     # 是否扣点
     @pytest.mark.parametrize('useQuota', [True])
     def test_sync_robot(self, way, page, dataColumns, numberCounts, canCover, needCallPlan, useQuota, ES):
@@ -39,7 +39,6 @@ class Test_sync_robot:
                                      )
         userinfo = sync_config_Api.userinfo_skb_Api().json()
         quantity_start = userinfo['data']['uRemainQuota']  # 获取初始额度
-        hasSmartSyncRobot = userinfo['data']['hasSmartSyncRoobot']  # 获取账户类型是否灰测
         oid = userinfo['data']['oid']  # 获取账户类型是否灰测
         # 执行搜索
         search_values = sync_config_Api.search_value_list()
@@ -93,13 +92,14 @@ class Test_sync_robot:
             unfoldNum = 0
             print("查看状态查询失败", unfoldStatistics_Api_value)
 
-        start_robot_sync_time = time.time()
+        # 执行转移操作
         resp_sync = sync_config_Api.robot_sync(pids=pid, pages=pages,
                                                seach_value=search_values["payloads_request"], canCover=canCover,
                                                way=way, out_id=out_id, needCallPlan=needCallPlan,
                                                dataColumns=dataColumns,
                                                numberCount=numberCounts, gatewayId=out_gatewayId, surveyId=out_surveyId,
                                                gateway_name=out_jobGroupName, useQuota=useQuota).json()
+        start_robot_sync_time = time.strftime("%Y-%m-%d-%H:%M", time.localtime())
         # syn_response_body = json.loads(resp_syn.request.body.decode("unicode_escape"))
         # print(resp_syn.request.url)
         # print(resp_syn.request.headers)
@@ -123,9 +123,9 @@ class Test_sync_robot:
                 list_contact_Api = sync_config_Api.list_contact(pid=i['pid'], entName=i['company_name'])
                 # 获取转机器人结果
                 start_time = time.time()
-                sync_robot_value = sync_config_Api.sync_robot_verdicts(Mobile=list_contact_Api["Mobile"],
-                                                                       Fixed=list_contact_Api["Fixed"],
-                                                                       company_name=i['company_name'])
+                sync_robot_value = sync_config_Api.sync_robot_verdicts_tow(Mobile=list_contact_Api["Mobile"],
+                                                                           Fixed=list_contact_Api["Fixed"],
+                                                                           company_name=i['company_name'])
                 end_time = time.time()
                 print("获取转机器人结果耗时", end_time - start_time)
                 list_robot_filter_Mobile.extend(sync_robot_value["list_sync_robot_filter_type1"])
@@ -135,18 +135,18 @@ class Test_sync_robot:
                 list_robot_filter_Fixed.extend(sync_robot_value["list_sync_robot_filter_type2"])
                 list_robot_repetition_Fixed.extend(sync_robot_value["list_sync_robot_repetition_type2"])
 
-                # ES_search_value = ES.get(index="company_info_prod", id=i['pid'])['_source']
-                # # 执行转移筛选查看筛选判断
-                # sync_config_Api.sync_Unfold(oid=oid, sync_robot_value=sync_robot_value["resp_robot_verdicts"],
-                #                             ES_search_value=ES_search_value, i=i, list_contact_Api=list_contact_Api)
+                ES_search_value = ES.get(index="company_info_prod", id=i['pid'])['_source']
+                # 执行转移筛选查看筛选判断
+                sync_config_Api.sync_Unfold(oid=oid, sync_robot_value=sync_robot_value["resp_robot_verdicts"],
+                                            ES_search_value=ES_search_value, i=i, list_contact_Api=list_contact_Api)
                 start_time = time.time()
                 # 执行转移判断
-                quantity_rebate += sync_config_Api.sync_robot_value_verdicts_assert(
+                sync_config_Api.sync_robot_value_verdicts_assert(
                     # sync_robot_start_value=sync_robot_start_verdicts_dicde,
                     sync_robot_value=sync_robot_value,
                     company_name_pid_list=i,
                     list_contact_all=list_contact_Api,
-                    hasSmartSyncRobot=hasSmartSyncRobot)
+                )
                 end_time = time.time()
                 print("执行转移判断耗时", end_time - start_time)
             # task_list_value = sync_config_Api.task_list()["data"]["result"][0]
@@ -183,13 +183,15 @@ class Test_sync_robot:
                             if pages is None:
                                 if resp_out_query_value["callCount"] != (len(list_robot_verdicts_Mobile) + len(
                                         list_robot_verdicts_Fixed) + out_callCount):
-                                    print("加入外呼计划失败加入前{}，加入后{}".format(out_callCount, resp_out_query_value["callCount"]))
+                                    print(
+                                        "加入外呼计划失败加入前{}，加入后{}".format(out_callCount, resp_out_query_value["callCount"]))
                                     assert resp_out_query_value["callCount"] == (len(list_robot_verdicts_Mobile) + len(
                                         list_robot_verdicts_Fixed) + out_callCount)
                             else:
                                 if resp_out_query_value["callCount"] < (len(list_robot_verdicts_Mobile) + len(
                                         list_robot_verdicts_Fixed) + out_callCount):
-                                    print("加入外呼计划失败加入前{}，加入后{}".format(out_callCount, resp_out_query_value["callCount"]))
+                                    print(
+                                        "加入外呼计划失败加入前{}，加入后{}".format(out_callCount, resp_out_query_value["callCount"]))
                                     assert resp_out_query_value["callCount"] > (len(list_robot_verdicts_Mobile) + len(
                                         list_robot_verdicts_Fixed) + out_callCount)
                             break
@@ -214,11 +216,10 @@ class Test_sync_robot:
                                                  resp_out_query_value_value=resp_out_query_value_callCount)
         else:
             quantity_stop = sync_config_Api.userinfo_skb_Api().json()['data']['uRemainQuota']
-            quantity_rebate = 0
         # 执行扣点判断
         sync_config_Api.sync_robot_quantity_verdicts(quantity_start=quantity_start,
-                                                     quantity_stop=quantity_stop, quantity_rebate=quantity_rebate,
-                                                     hasSmartSyncRobot=hasSmartSyncRobot, unfoldNum=unfoldNum,
+                                                     quantity_stop=quantity_stop,
+                                                     unfoldNum=unfoldNum,
                                                      pid_companyName_list_sum=search_values["pid_companyName_list"])
 
         return '测试结束，扣除流量额度，仅转移手机，全部号码,加入已有外呼计划'
