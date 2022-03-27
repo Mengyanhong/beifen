@@ -535,7 +535,7 @@ class Sync_robot(sync_config):
         assert int(task_list_value["operationType"]) == int(1)
         assert int(quantity_start) == int(task_list_value["deductionCount"] + quantity_stop)
         if int(task_list_value["filteredNumbers"]) == 0 and int(task_list_value["importedNumbers"]) == 0:
-            assert task_list_value["hasDetails"] is True
+            assert task_list_value["hasDetails"] is False
             # 判断外呼计划数量
         if self.needCallPlan is True:
             if out_id is None:
@@ -561,11 +561,12 @@ class Sync_robot(sync_config):
                 task_contact_Fixed_sum = self.task_contact_list(taskId=task_id_value, contactType=2)["data"]["count"]
                 list_robot_all_Mobile_sum = len(list_robot_filter_Mobile) + len(list_robot_repetition_Mobile) + len(
                     list_robot_verdicts_Mobile)
-                list_robot_all_Fixed_sum = len(list_robot_verdicts_Fixed) + len(list_robot_filter_Fixed) + len(list_robot_repetition_Fixed)
+                list_robot_all_Fixed_sum = len(list_robot_verdicts_Fixed) + len(list_robot_filter_Fixed) + len(
+                    list_robot_repetition_Fixed)
                 if pages is None:
                     if task_contact_Mobile_sum != list_robot_all_Mobile_sum:
                         print("转移出错，实际转移的手机的数量和任务详情手机的数量不一致，任务id{},详情内数量{}，企业内的数量{}".
-                              format(task_id_value,task_contact_Mobile_sum,list_robot_all_Mobile_sum))
+                              format(task_id_value, task_contact_Mobile_sum, list_robot_all_Mobile_sum))
                     if task_contact_Fixed_sum != list_robot_all_Fixed_sum:
                         print("转移出错，实际转移的固话的数量和任务详情固话的数量不一致，任务id{},详情内数量{}，企业内的数量{}".
                               format(task_id_value, task_contact_Mobile_sum, list_robot_all_Mobile_sum))
@@ -620,6 +621,77 @@ class Sync_robot(sync_config):
                         print("转移出错，实际转移的手机的成功数量和任务详情手机的成功数量出错，任务id{}".format(task_id_value))
                     if task_contact_Fixed_sum > list_robot_all_Fixed_sum:
                         print("转移出错，实际转移的固话的成功数量和任务详情固话成功的数量出错，任务id{}".format(task_id_value))
+
+    #  获取自动转移任务并执行任务判断
+    def sync_robot_automation_task_list(self, start_robot_sync_time, search_response_body=None):
+        '''
+        获取自动转移任务并执行任务判断
+        :param search_response_body: 转移参数
+        :param start_robot_sync_time: 转机器人时间
+        :return:
+        '''
+        task_list_value = self.task_list()["data"]["result"][0]
+        createTime = time.strftime("%Y-%m-%d-%H:%M", time.localtime(int(int(task_list_value["createTime"]) / 1000)))
+        task_id_value = task_list_value["id"]
+        print("开始判断任务记录，任务id{},任务开始时间{}".format(task_id_value, createTime))
+        assert self.way == task_list_value["source"]
+        assert start_robot_sync_time == createTime
+        assert int(0) == int(task_list_value["status"])
+        assert int(task_list_value["operationType"]) == int(2)
+        assert int(task_list_value["filteredNumbers"]) == 0
+        assert int(task_list_value["importedNumbers"]) == 0
+        assert task_list_value["hasDetails"] is False
+        assert task_list_value["deductionCount"] == 0
+
+        # searchCondition = json.loads(task_list_value["searchCondition"])["filter"]
+        # assert search_response_body == searchCondition
+        # 暂停任务
+        self.suspend_task(taskId=task_id_value)
+        suspend_task_value = self.task_list()["data"]["result"]
+        suspend_task_value_id_value = False
+        for suspend_task_value_id in suspend_task_value:
+            if suspend_task_value_id["id"] == task_id_value:
+                suspend_task_value_id_value = True
+                if suspend_task_value_id["status"] != 2:
+                    print("任务暂停失败,任务id{}".format(task_id_value))
+                    assert suspend_task_value_id["status"] == 2
+                break
+        assert suspend_task_value_id_value is True
+        # 开始任务
+        self.run_task(taskId=task_id_value)
+        run_task_value = self.task_list()["data"]["result"]
+        run_task_value_id_value = False
+        for run_task_value_id in run_task_value:
+            if run_task_value_id["id"] == task_id_value:
+                run_task_value_id_value = True
+                if run_task_value_id["status"] != 0:
+                    print("任务启动失败,任务id{}".format(task_id_value))
+                    assert run_task_value_id["status"] == 0
+                break
+        assert run_task_value_id_value is True
+        # 停止任务
+        self.stop_task(taskId=task_id_value)
+        stop_task_value = self.task_list()["data"]["result"]
+        stop_task_value_id_value = False
+        for stop_task_value_id in stop_task_value:
+            if stop_task_value_id["id"] == task_id_value:
+                stop_task_value_id_value = True
+                if stop_task_value_id["status"] != 3:
+                    print("任务停止失败,任务id{}".format(task_id_value))
+                    assert stop_task_value_id["status"] == 3
+                break
+        assert stop_task_value_id_value is True
+        # 删除任务
+        self.delete_task(taskId=task_id_value)
+        delete_task_value = self.task_list()["data"]["result"]
+        delete_task_value_id_value = False
+        for delete_task_value_id in delete_task_value:
+            if delete_task_value_id["id"] == task_id_value:
+                delete_task_value_id_value = True
+                print("任务删除失败,任务id{}".format(task_id_value))
+                assert delete_task_value_id["id"] != task_id_value
+                break
+        assert delete_task_value_id_value is False
 
     def sync_Unfold(self, oid, sync_robot_value, ES_search_value, i, list_contact_Api):
         if self.host == "lxcrm":

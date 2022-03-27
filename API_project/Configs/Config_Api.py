@@ -590,6 +590,113 @@ class Robot_Api(Skb_Search_Api):
             response.close()
         return response_value
 
+    # 查询是否有自动任务
+    def can_create_task(self, taskId):
+        url = "https://{}/api_skb/v1/smart_clue/can_create_task".format(self.skb_url_Host())
+        response = requests.get(url=url, headers=self.headers_skb())
+        status_code = response.status_code
+        request_url = response.request.url
+        request_headers = response.request.headers
+        response_value = response.json()
+        response.close()
+        if status_code != 200:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert status_code == 200
+        elif response_value["error_code"] != 0:
+            print("搜索结果有误", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['error_code'] == 0
+        return response_value
+
+    # 暂停任务
+    def suspend_task(self, taskId):
+        url = "https://{}/api_skb/v1/smart_clue/suspend_task".format(self.skb_url_Host())
+        payload = {"taskId": taskId}
+        response = requests.put(url=url, headers=self.headers_skb(), json=payload)
+        status_code = response.status_code
+        request_url = response.request.url
+        request_headers = response.request.headers
+        response_value = response.json()
+        response.close()
+        if status_code != 200:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert status_code == 200
+        elif response_value["error_code"] != 0:
+            print("搜索结果有误", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['error_code'] == 0
+        return response_value
+
+    # 启动任务
+    def run_task(self, taskId):
+
+        url = "https://{}/api_skb/v1/smart_clue/run_task".format(self.skb_url_Host())
+        payload = {"taskId": taskId}
+        response = requests.put(url=url, headers=self.headers_skb(), json=payload)
+        # assert response.status_code == 200
+        # request_payloads = json.loads(response.request.body.decode("unicode_escape"))
+        status_code = response.status_code
+        request_url = response.request.url
+        request_headers = response.request.headers
+        response_value = response.json()
+        response.close()
+        if status_code != 200:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert status_code == 200
+        elif response_value["error_code"] != 0:
+            print("搜索结果有误", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['error_code'] == 0
+        return response_value
+
+    # 停止任务
+    def stop_task(self, taskId):
+
+        url = "https://{}/api_skb/v1/smart_clue/stop_task".format(self.skb_url_Host())
+        payload = {"taskId": taskId}
+        response = requests.put(url=url, headers=self.headers_skb(), json=payload)
+        # assert response.status_code == 200
+        # request_payloads = json.loads(response.request.body.decode("unicode_escape"))
+        status_code = response.status_code
+        request_url = response.request.url
+        request_headers = response.request.headers
+        response_value = response.json()
+        response.close()
+        if status_code != 200:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert status_code == 200
+        elif response_value["error_code"] != 0:
+            print("搜索结果有误", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['error_code'] == 0
+        return response_value
+
+    # 删除任务
+    def delete_task(self, taskId):
+        url = "https://{}/api_skb/v1/smart_clue/delete_task".format(self.skb_url_Host())
+        payload = {"taskId": taskId}
+        response = requests.put(url=url, headers=self.headers_skb(), json=payload)
+        # assert response.status_code == 200
+        # request_payloads = json.loads(response.request.body.decode("unicode_escape"))
+        status_code = response.status_code
+        request_url = response.request.url
+        request_headers = response.request.headers
+        response_value = response.json()
+        response.close()
+        if status_code != 200:
+            print("搜索结果为空", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert status_code == 200
+        elif response_value["error_code"] != 0:
+            print("搜索结果有误", response_value, "\n搜索url", request_url, "\n搜索heardes",
+                  request_headers)
+            assert response_value['error_code'] == 0
+        return response_value
+
     # 查询外呼计划
     def robot_out_call_plan(self, gateway_Id=None):
         """
@@ -609,10 +716,105 @@ class Robot_Api(Skb_Search_Api):
         return response
 
     # 执行转机器人
+    # def robot_sync(self, out_id=None, pids=None, pages=None, seach_value=None, useQuota=True,
+    #                dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
+    #                gatewayId=None, surveyId=None, gateway_name=None):
+    #     """
+    #     :param gateway_name: 计划名称
+    #     :param out_id: 计划ID
+    #     :param pids: pid数量
+    #     :param pages: 页码
+    #     :param seach_value: 搜索传参
+    #     :param useQuota: 扣点方式
+    #     :param dataColumns: 号码类型
+    #     :param phoneStatus: 过滤方式
+    #     :param numberCount: 转移号码方式
+    #     :param needCallPlan: 是否需要创建外呼计划
+    #     :param canCover: 重复号码是否导入
+    #     :param way: 模块
+    #     :param gatewayId: 外呼线路
+    #     :param surveyId: 话术id
+    #     :return:
+    #     """
+    #
+    #     if phoneStatus is None:
+    #         phone = [0, 1, 2, 3]
+    #     else:
+    #         phone = phoneStatus
+    #     if dataColumns is None:
+    #         dataColumns = [0]
+    #     if self.host == "lxcrm":
+    #         gatewayId = self.robot_gateway()["gatewayId"]
+    #     payload = {
+    #         "way": way,
+    #         "from": "syncRobot",
+    #         "useQuota": useQuota,  # 是否使用额度
+    #         "dataColumns": dataColumns,  # 数据字段[0, 1] // 0: 手机，1：固话
+    #         "phoneStatus": phone,  # 手机过滤 [0, 1, 2 , 3] //[0, 1, 3]: 过滤疑似代理记账号码 [0, 1, 2]: 过滤异常号码
+    #         "numberCount": numberCount,  # 号码数量 0: 全部,1: 仅一条
+    #         "canCover": canCover,  # 重复号码是否导入 true / false
+    #         "needCallPlan": needCallPlan,  # 是否需要创建外呼计划 true / false
+    #     }
+    #     out_payload = {
+    #         "id": out_id,
+    #         "need_push": 0,
+    #         "retry_interval": None,
+    #         "max_retry": None,
+    #         "gatewayNumberId": None,
+    #         "start_date": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+    #         "hangup_message_rules": [],
+    #         "call_type": 0,
+    #         "customers_ids": [],
+    #         "platform": "IK"
+    #     }
+    #
+    #     gatewayId_value = {
+    #         "plan_name": gateway_name,
+    #         "survey_id": surveyId,
+    #         "gatewayId": gatewayId,
+    #         "strategy": 1,
+    #         "need_push": 1,
+    #         "need_finish_message": True,
+    #         "start_date": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+    #         "need_hangup_message": False,
+    #         "retry_interval": None,
+    #         "max_retry": None,
+    #         "gatewayNumberId": None,
+    #         "hangup_message_rules": [],
+    #         "call_type": 0,
+    #         "customers_ids": [],
+    #         "platform": "IK"
+    #     }
+    #     payload.update(seach_value)
+    #     if pids is None:
+    #         payload.update({"page": 1, "pagesize": pages})
+    #     else:
+    #         payload.update({"pids": pids})
+    #         payload.pop('page')
+    #         payload.pop('pagesize')
+    #     if way == 'shop_search_list':
+    #         payload.pop("from")
+    #         clues = 'shopClues'
+    #     else:
+    #         clues = 'clues'
+    #     if needCallPlan is True:
+    #         if out_id is not None:
+    #             print("加入的外呼计划为，" + gateway_name)
+    #             payload.update({"payload": out_payload})
+    #         else:
+    #             print("创建的外呼计划为，" + gateway_name)
+    #             payload.update({"payload": gatewayId_value})
+    #     url = f'https://{self.skb_url_Host()}/api_skb/v1/{clues}/sync_robot'
+    #     response = requests.post(url=url, headers=self.headers_skb(), json=payload)
+    #     return response
+
+    # 创建转机器人自动任务
+
     def robot_sync(self, out_id=None, pids=None, pages=None, seach_value=None, useQuota=True,
-                   dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False, way=None,
-                   gatewayId=None, surveyId=None, gateway_name=None):
+                   dataColumns=None, phoneStatus=None, numberCount=0, needCallPlan=False, canCover=False,
+                   way=None, gatewayId=None, surveyId=None, gateway_name=None, automation_taskName=None):
         """
+        :param automation_taskName: 自动任务名称
         :param gateway_name: 计划名称
         :param out_id: 计划ID
         :param pids: pid数量
@@ -690,6 +892,8 @@ class Robot_Api(Skb_Search_Api):
             clues = 'shopClues'
         else:
             clues = 'clues'
+            if automation_taskName is not None:
+                payload.pop("from")
         if needCallPlan is True:
             if out_id is not None:
                 print("加入的外呼计划为，" + gateway_name)
@@ -698,6 +902,12 @@ class Robot_Api(Skb_Search_Api):
                 print("创建的外呼计划为，" + gateway_name)
                 payload.update({"payload": gatewayId_value})
         url = f'https://{self.skb_url_Host()}/api_skb/v1/{clues}/sync_robot'
+        if automation_taskName is not None:
+            url = f'https://{self.skb_url_Host()}/api_skb/v1/smart_clue/create_task'
+            automation_payload = {"taskName": automation_taskName, "taskType": 2}
+            automation_payload.update({"searchCondition": payload})
+            payload = automation_payload
+
         response = requests.post(url=url, headers=self.headers_skb(), json=payload)
         return response
 

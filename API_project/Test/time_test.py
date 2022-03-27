@@ -6,8 +6,10 @@ print(time.strftime("%Y-%m-%d-%H", time.localtime(int(1647267973000/1000))))
 import time
 
 # 获得当前时间时间戳
-# now = int(int(1647267973000/1000))
-# # 转换为其他日期格式,如:"%Y-%m-%d %H:%M:%S"
-# timeArray = time.localtime(now)
+now = int(int(1647267973000/1000))
+# 转换为其他日期格式,如:"%Y-%m-%d %H:%M:%S"
+timeArray = time.localtime(now)
+print(timeArray)
 # otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
 # print(time.strftime("%Y-%m-%d %H:%M:%S", timeArray))
+print(time.strftime("%Y-%m-%d-%H-%M"))
