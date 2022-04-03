@@ -16,74 +16,12 @@ POST company_info_prod/_analyze
 
 
 
-在此优化中，非正式环境的店铺的es索引将改为使用新的es实例，内网地址：
-
-http://es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com:9200）
-因为之前的搜索服务没有支持连接多个es实例，现在修改了代码，根据es索引的类型来区分是使用企业的索引连接还是店铺的索引连接
-
-故需要多企业的相关搜索做回归
-
-新es实例：es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com 9200
-新es实例 kibana：https://es-cn-i7m27x1em002z5u9d.kibana.elasticsearch.aliyuncs.com:5601/login?msg=LOGGED_OUT
+店铺es实例：es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com 9200
+店铺es实例 kibana：https://es-cn-i7m27x1em002z5u9d.kibana.elasticsearch.aliyuncs.com:5601/login?msg=LOGGED_OUT
 店铺索引名：
 "index": "shop_info_test_20210823",
 "alias": "shop_info_test"
 
-搜客宝专利表切换
-搜客宝专利表切换
-TenderContractInfoHive
-TenderProjectInfoHive
-TenderRelationInfoHive
-@李星亮(cyril) @李荷香(Bliss)
-
-
-问题！
-汇总一下推荐的问题：
-1）根据市推荐，市缺失，推荐区域扩展到省。是冷启动的时候是这样，还是用户选择地区条件了，还会推荐其他市的企业。只写了市，区也是这个逻辑吗？
-2）不感兴趣的30天内部推荐。感兴趣的也要同样屏蔽30天吗？种子企业需要屏蔽吗？转线索的和转客户的要屏蔽吗？
-3）前面和颖琦讨论说旧种子企业要算作企业内每个人的种子企业。这个确认一下吧。
-1、只有冷启动的时候，由市级拓展到省级，冷启动的时候是按照ip所在的市级推荐，当没有数据时，拓展至省；不涉及到区
-2、转过crm或种子客户不会推荐
-3、旧种子企业算作企业内每个人
-
-
-
-# 群公告 #
-当前迭代
-【腾讯文档】【搜客宝】常规迭代210915
-https://docs.qq.com/sheet/DUG1FYm1iVFd1S2xm
-
-测试用例评审日期：9月8日下午
-提测日期：9月14日
-UI走查日期：9月14日-9月18日
-封版日期：9月18日
-发版日期：9月23日
-
-0907启动会：
-①标签展现的控制逻辑，需要凯丽在需求中描述清晰。
-处理人：凯丽。
-
-②【技术故事】在线客服优化，支持多机器部署 由张进参与测试。
-处理人：张进
-
-③汪洋、王旭先完成需求：【励销搜客宝】-店铺支持批量转机器人。
-处理人：汪洋、王旭
-
-④KA新需求可能会导致王进与本次迭代冲突，需要确认KA的排期。
-处理人：王华安
-
-===========================
-【腾讯文档】21年月度目标
-https://docs.qq.com/sheet/DUGN1T3V2cXBWQXpH
-
-===========================
-【腾讯文档】迭代各节点需要核实的事项规范
-https://docs.qq.com/sheet/DUHRsV2NvSEt4dWVF
-@所有人
-
-大家可以看一下9月月度目标，重要的目标事项已经用背景色标记出来。@所有人
-【腾讯文档】21年月度目标
-https://docs.qq.com/sheet/DUGN1T3V2cXBWQXpH
 
 经纬度坐标距离查询
 GET shop_info_test_20210823/_search

@@ -7,7 +7,7 @@ host = 'test' #设置测试环境 test:测试环境，staging:回归环境，lxc
 getCompanyBaseInfo = getCompanyBaseInfo(host)
 search = search(host)
 
-file = openpyxl.load_workbook('..\data\Excel\涵盖证书类型.xlsx')
+file = openpyxl.load_workbook('../data\Excel\涵盖证书类型.xlsx')
 sheet = file['涵盖证书类型']
 sheet_name = ['A','B','C','D','E','F','G','H','I','J','K']
 row_list = [] #创建case标题列表

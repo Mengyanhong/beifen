@@ -1,0 +1,33 @@
+#yaml基本语法
+#大小写敏感
+#使用缩进表示层级关系
+#缩进不允许使用tab，只允许使用空格
+#缩进空格数不重要，只要相同层级的元素左对齐就行
+##表示注释从他开头到行尾被忽略
+# -表示1个列表
+#  URL: TEST_HOST
+#  method: post
+#'''----------详情类测试数据----------'''
+'getCompanyBaseInfo':
+  {
+      'softWareCopyright':
+        {
+            'label': 'softWareCopyright',#软件著作label
+            'V_doing': 'softWareCopyright', #接口返回值路径
+            'major_key': 'registNo',#自定义dict主键
+            'searchName': 'softwareName', #详情搜索字段名
+            'has_fieldName': 'hasSoftware',#ES有无字段名
+            'number_fieldName': 'softwareCount', #ES数量字段名
+            'list_fieldName': 'softwareProductName',#ES搜索字段名
+        },
+      'opusCopyright':
+        {
+            'label': 'opusCopyright',#软件著作label
+            'V_doing': 'opusCopyright', #接口返回值路径
+            'major_key': 'registNo',#自定义dict主键
+            'searchName': 'worksName', #详情搜索字段名
+            'has_fieldName': 'hasWorks',#ES有无字段名
+            'number_fieldName': 'worksCount', #ES数量字段名
+            'list_fieldName': 'worksName',#ES搜索字段名
+        }
+  }

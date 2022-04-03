@@ -13,7 +13,7 @@ def get_yaml_data(fileDir):
         reslist.append((one['data'],one['resp']))
     return reslist
 if __name__ == '__main__':
-    res = get_yaml_data('../Data/staging_se_files.yaml')
+    res = get_yaml_data('../data/staging_se_files.yaml')
     print(res[0][0]["file_name"])
     # for one in res:
     #     print(one)

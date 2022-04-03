@@ -17,7 +17,7 @@ from openpyxl import load_workbook
 # rows=identify_table.max_row   #获取行数
 # cols=identify_table.max_column    #获取列数
 # for i in range(2,rows+1):
-#     print(table.cell(row=i,column=site_id).value,str(table.cell(row=i,column=latest_visit_time).value).split(".")[0]) #获取单元格值：Data=table.cell(row=row,column=col).value  #获取表格内容，是从第row行第col列开始的，注意不要丢掉 .value
+#     print(table.cell(row=i,column=site_id).value,str(table.cell(row=i,column=latest_visit_time).value).split(".")[0]) #获取单元格值：data=table.cell(row=row,column=col).value  #获取表格内容，是从第row行第col列开始的，注意不要丢掉 .value
 
 site_id = 1099
 oid = 5005648

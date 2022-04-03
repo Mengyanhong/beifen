@@ -1,6 +1,6 @@
 import openpyxl, sys, json
-projectname='API_project'
-print(f"{sys.argv[0].split(projectname)[0]}{projectname}/data/Excel/search_keyword.xlsx")
+# projectname='API_project'
+# print(f"{sys.argv[0].split(projectname)[0]}{projectname}/data/Excel/search_keyword.xlsx")
 class Excel_Files:
     def __init__(self, file_name='访客识别-用例.xlsx', sheel='中企接口', projectname='home'):
         '''
@@ -31,13 +31,13 @@ class Excel_Files:
             row_list.append(i.value)  # 将case标题添加到名称标题列表，追加模式
         files_list = []
         # print(list(self.sheel_file.rows))
-        for i in list(self.sheel_file.rows):
-            if i[row_list.index(index)].value == None:
+        for j in list(self.sheel_file.rows):
+            if j[row_list.index(index)].value == None:
                 continue
-            elif i[row_list.index(index)].value == index:
+            elif j[row_list.index(index)].value == index:
                 continue
             else:
-                files_list.append(i[row_list.index(index)].value)
+                files_list.append(j[row_list.index(index)].value)
         # print(self.sheel_file.cell("A").value)  # 获取用例标题
         return files_list
 
@@ -141,7 +141,7 @@ class Excel_Files:
                     case_list.append((request_value, response_value))  # 若不进行筛选 直接将用例入参和出餐写入用例表格
         return case_list
 
-    def open_case3(self, *Sizer_row_value, request_name='入参', response_name='出餐', Sizer_column_value=[]):
+    def open_case3(self, *Sizer_row_value, request_name='入参', response_name='出餐'):
         '''
         :param request_name: 入参表头
         :param response_name: 出参表头
@@ -193,12 +193,52 @@ class Excel_Files:
             # print(case_list)
         return case_list
 
+    def open_case4(self, *Sizer_row_value, request_name='入参', response_name='出餐'):
+        '''
+        :param request_name: 入参表头
+        :param response_name: 出参表头
+        :param Sizer_name: 用例标题表头
+        :param Sizer_value: 用例标题
+        :return: 用例
+        '''
+        case_list = []
+        # max_rows = self.sheel_file.max_row + 1
+        # row_data = self.sheel_file.iter_cols()
+        column_data = self.sheel_file.iter_rows()
+        row_list = []  # 创建case名称标题列表
+        # for one_row_data in row_data:
+        #     row_list.append(one_row_data[0].value)
+            # print(one_row_data[0].value, end="\t")
+        for i in self.sheel_file[1]:  # 获取case列表标题
+            row_list.append(i.value)
+        # for one_column_data in self.sheel_file.iter_rows():
+        #     print(one_column_data[0].value)
+        request_value_test = None
+        for column_one_value in column_data:
+            if column_one_value[row_list.index(request_name)].value == request_name:
+                continue
+            if column_one_value[row_list.index(request_name)].value is not None:
+                request_value_test = column_one_value[row_list.index(request_name)].value
+            if Sizer_row_value:  # 判断用例筛选不为空
+                if request_value_test in Sizer_row_value:
+                    response_value = column_one_value[row_list.index(response_name)].value  # 通过响应索获取响应内容
+                    if response_value is not None:
+                        case_list.append({"categoryL1_value": request_value_test, "categoryL2_value": response_value})
+                else:
+                    continue
+            else:
+                response_value = column_one_value[row_list.index(response_name)].value  # 通过响应索获取响应内容
+                if response_value is not None:
+                    case_list.append({"categoryL1_value": request_value_test, "categoryL2_value": response_value})
+        return case_list
+
 if __name__ == '__main__':
     print(sys.path[0])
+    print(sys.argv[0])
     # EXcel_file = Excel_Files(file_name="联系方式渠道配置.xlsx", sheel="联系方式渠道配置")
     # EXcel_file = Excel_Files(file_name="search_keyword.xlsx", sheel="search_keyword")
     excel_file = Excel_Files(file_name="店铺数据准备.xlsx", sheel="店铺分类")
-    file = excel_file.open_case3("美食", request_name="一级分类", response_name="二级分类")
+    file = excel_file.open_case4("美食", "爱车", "丽人",  request_name="一级分类", response_name="二级分类")
 
     # EXcel_file = Excel_Files(file_name="联系方式渠道配置test.xlsx", sheel="联系方式渠道配置").open_case2(request_name="name", response_name="value",
     #                                                                        Sizer_name="name")[90:100]

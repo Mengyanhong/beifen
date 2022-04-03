@@ -7,7 +7,7 @@ from ..Configs.search_Api import getCompanyBaseInfo
 host = 'test' #设置环境 test:测试环境，staging:回归环境，lxcrm:正式环境
 getCompanyBaseInfo = getCompanyBaseInfo(host)
 search = search(host)
-with open('..\data\yaml\multiSelect.yaml') as f:
+with open('../data\yaml\multiSelect.yaml') as f:
     yaml_data = yaml.safe_load(f)
     f.close()
 

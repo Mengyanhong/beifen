@@ -19,7 +19,7 @@ class industry_labels():
 
         return requests.post(url=url, headers=headers, json=json).json()
 if __name__ == '__main__':
-    file = get_yaml_data('../Data/test_se_fin.yaml')
+    file = get_yaml_data('../data/test_se_fin.yaml')
     print(file[2][0])
     host = HOST.search_fin_test()
     for i in file:

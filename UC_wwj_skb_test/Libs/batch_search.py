@@ -47,8 +47,8 @@ class upload_batch_search_file():
 # verify=False #关闭证书验证，若开启代理则需要在请求内加此说明，关闭证书验证
 # if __name__ == '__main__':
 #     Login('13523390917', 'Ik123456').logins()
-    # fin = get_yaml_data('../Data/staging_se_fin.yaml')
-    # file = get_yaml_data('../Data/staging_se_files.yaml')
+    # fin = get_yaml_data('../data/staging_se_fin.yaml')
+    # file = get_yaml_data('../data/staging_se_files.yaml')
     # # print(fin[8])
     # print(len(file))
     # # print(len(file))

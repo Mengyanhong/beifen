@@ -138,7 +138,70 @@
 import json
 # # print("外呼计划测试"+time.strftime("%Y年%m月%d日%H时%M分"))
 import random
-print(random.choices(["out_ids", None]))
-print(json.loads("{\"canCover\":true,\"commonCondition\":false,\"condition\":{\"cn\":\"composite\",\"cr\":\"MUST\",\"cv\":[{\"cn\":\"area\",\"cr\":\"IN\",\"cv\":{\"province\":[\"11\"],\"city\":[],\"district\":[]}},{\"cn\":\"category\",\"cr\":\"IN\",\"cv\":{\"categoryL1\":[\"10\"],\"categoryL2\":[]}},{\"cn\":\"shopStatus\",\"cr\":\"IN\",\"cv\":[\"5\"]},{\"cn\":\"contactType\",\"cr\":\"IN\",\"cv\":[\"2\"]},{\"cn\":\"avgPrice\",\"cr\":\"IN\",\"cv\":[\",30\",\"30,50\"]}]},\"contact\":\"\",\"dataColumns\":[0,1],\"delNoContact\":0,\"distinctUniq\":true,\"dropdown\":1,\"enableDeepSearch\":0,\"extraReturnFields\":[],\"filter\":{\"filterSync\":1,\"filterSyncRobot\":0,\"filterUnfold\":0},\"fromSync\":false,\"hasSyncClue\":\"ALL\",\"hasSyncRobot\":\"ALL\",\"hasUnfolded\":\"ALL\",\"isSimpleHead\":false,\"keyword\":\"\",\"modified\":false,\"needCallPlan\":false,\"note\":\"\",\"numberCount\":1,\"origin\":\"https://lxcrm-test.weiwenjia.com\",\"page\":1,\"pagesize\":10,\"phoneStatus\":[\"0\",\"1\",\"2\",\"3\"],\"pidListHasCondition\":false,\"pids\":[\"44261395\",\"901827600\",\"77681596\",\"28631705\",\"40529561\",\"130906314\",\"68205740\",\"103553967\",\"38174179\",\"102270423\"],\"scope\":\"\",\"searchBusiness\":\"advancedSearch\",\"searchObj\":\"enterprise\",\"searchType\":0,\"shopFilterList\":{\"所在地区\":[\"北京市\"],\"店铺分类\":[\"美食\"],\"营业状态\":[\"营业中\"],\"联系方式\":[\"有固话\"],\"平均消费\":[\"30元以下\",\"30-50元\"]},\"shopName\":\"\",\"source\":\"\",\"start\":-1,\"syncRobotRangeDate\":[],\"templateName\":\"\",\"templateType\":\"NON\",\"useQuota\":true,\"userClicked\":false,\"verify\":0,\"way\":\"shop_search_list\"}"))
+# print(random.choices(["out_ids", None]))
+# print(json.loads("{\"canCover\":true,\"commonCondition\":false,\"condition\":{\"cn\":\"composite\",\"cr\":\"MUST\",\"cv\":[{\"cn\":\"area\",\"cr\":\"IN\",\"cv\":{\"province\":[\"11\"],\"city\":[],\"district\":[]}},{\"cn\":\"category\",\"cr\":\"IN\",\"cv\":{\"categoryL1\":[\"10\"],\"categoryL2\":[]}},{\"cn\":\"shopStatus\",\"cr\":\"IN\",\"cv\":[\"5\"]},{\"cn\":\"contactType\",\"cr\":\"IN\",\"cv\":[\"2\"]},{\"cn\":\"avgPrice\",\"cr\":\"IN\",\"cv\":[\",30\",\"30,50\"]}]},\"contact\":\"\",\"dataColumns\":[0,1],\"delNoContact\":0,\"distinctUniq\":true,\"dropdown\":1,\"enableDeepSearch\":0,\"extraReturnFields\":[],\"filter\":{\"filterSync\":1,\"filterSyncRobot\":0,\"filterUnfold\":0},\"fromSync\":false,\"hasSyncClue\":\"ALL\",\"hasSyncRobot\":\"ALL\",\"hasUnfolded\":\"ALL\",\"isSimpleHead\":false,\"keyword\":\"\",\"modified\":false,\"needCallPlan\":false,\"note\":\"\",\"numberCount\":1,\"origin\":\"https://lxcrm-test.weiwenjia.com\",\"page\":1,\"pagesize\":10,\"phoneStatus\":[\"0\",\"1\",\"2\",\"3\"],\"pidListHasCondition\":false,\"pids\":[\"44261395\",\"901827600\",\"77681596\",\"28631705\",\"40529561\",\"130906314\",\"68205740\",\"103553967\",\"38174179\",\"102270423\"],\"scope\":\"\",\"searchBusiness\":\"advancedSearch\",\"searchObj\":\"enterprise\",\"searchType\":0,\"shopFilterList\":{\"所在地区\":[\"北京市\"],\"店铺分类\":[\"美食\"],\"营业状态\":[\"营业中\"],\"联系方式\":[\"有固话\"],\"平均消费\":[\"30元以下\",\"30-50元\"]},\"shopName\":\"\",\"source\":\"\",\"start\":-1,\"syncRobotRangeDate\":[],\"templateName\":\"\",\"templateType\":\"NON\",\"useQuota\":true,\"userClicked\":false,\"verify\":0,\"way\":\"shop_search_list\"}"))
 # foo = ['a', 'b', 'c', 'd', 'e']
 # print(random.choices(['a', 'b', 'c', 'd', 'e']))
+# '''shanghai'''
+# print('---------')
+import pytest
+from API_project.tools.get_yaml_set import get_yaml_data
+print(get_yaml_data('../data/yaml/IPR.yaml')['getCompanyBaseInfo'])
+
+# class Testdf:
+#     @pytest.mark.parametrize("indo", [get_yaml_data('../data/yaml/IPR.yaml')['getCompanyBaseInfo']])
+#     def testo(self,indo):
+#         print(indo["conditions"])
+#         assert indo
+#  五、Python内置类属性
+# __doc__：类的文档字符创
+# __name__：类名
+# __module__：类定义所在的模块（类的全名是'__main__.className'，如果累位于一个导入模块mymod中，那么className.__module__等于mymod）
+# __bases__：类的所有父类构成元素（包含了一个由所有父类组成的元组）
+# __dict__：类的属性（包含一个字典，由类的数据属性组成）
+
+
+def simple_class_decorator(obj):
+    name = obj.__name__
+    doc = obj.__doc__
+    # module = obj.__module__
+    # bases = obj.__bases__
+    # dicts = obj.__dict__
+    # dico = obj
+    print(' '.join([name, "is used"]))
+    print(''.join([doc]).replace('\n', '').strip()+" is doc")
+    # print(dicts)
+    return obj
+
+
+@simple_class_decorator
+class TestModule(object):
+    """
+    123451234567
+    """
+    def __init__(self):
+        pass
+
+
+    def do_something1(self):
+        '''
+        0987
+        :return:
+        '''
+        print("do something1")
+
+
+    def do_something2(self):
+        '''
+        2134567890
+        :return:
+        '''
+        print("do something2")
+
+
+test_instance1 = TestModule()
+test_instance1.do_something1()
+
+test_instance2 = TestModule()
+test_instance2.do_something2()
+

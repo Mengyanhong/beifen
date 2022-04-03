@@ -1,24 +1,20 @@
 from pprint import pprint
 import requests, json, time, pytest, os, random
 from API_project.Configs.Config_Info import User_Config
-from API_project.Configs.Config_Api import Config_api
+from API_project.Configs.Config_Api import Robot_Api
 
 
 # from API_project.Configs.shop_API import shop_api
 
 
 # 转移操作通用Api
-class sync_config(Config_api):
+class sync_config(Robot_Api):
     def __init__(self, host, way, pages, headers_parameters=None, useQuota=True):
         '''
         初始化参数
         :param host:
         :param way:
         :param pages:
-        :param canCover:
-        :param dataColumns:
-        :param numberCounts:
-        :param headers:
         :param useQuota:
         '''
         super(sync_config, self).__init__(host=host, headers_parameters=headers_parameters)
@@ -630,6 +626,9 @@ class Sync_robot(sync_config):
         :param start_robot_sync_time: 转机器人时间
         :return:
         '''
+        can_create_task_value = self.can_create_task()
+        if can_create_task_value["data"] is True:
+            print("自动任务创建失败")
         task_list_value = self.task_list()["data"]["result"][0]
         createTime = time.strftime("%Y-%m-%d-%H:%M", time.localtime(int(int(task_list_value["createTime"]) / 1000)))
         task_id_value = task_list_value["id"]
@@ -647,6 +646,7 @@ class Sync_robot(sync_config):
         # assert search_response_body == searchCondition
         # 暂停任务
         self.suspend_task(taskId=task_id_value)
+        assert self.can_create_task()["data"] is False
         suspend_task_value = self.task_list()["data"]["result"]
         suspend_task_value_id_value = False
         for suspend_task_value_id in suspend_task_value:
@@ -659,6 +659,7 @@ class Sync_robot(sync_config):
         assert suspend_task_value_id_value is True
         # 开始任务
         self.run_task(taskId=task_id_value)
+        assert self.can_create_task()["data"] is False
         run_task_value = self.task_list()["data"]["result"]
         run_task_value_id_value = False
         for run_task_value_id in run_task_value:
@@ -672,6 +673,8 @@ class Sync_robot(sync_config):
         # 停止任务
         self.stop_task(taskId=task_id_value)
         stop_task_value = self.task_list()["data"]["result"]
+        if self.can_create_task()["data"] is False:
+            print("自动任务停止失败")
         stop_task_value_id_value = False
         for stop_task_value_id in stop_task_value:
             if stop_task_value_id["id"] == task_id_value:
@@ -692,6 +695,8 @@ class Sync_robot(sync_config):
                 assert delete_task_value_id["id"] != task_id_value
                 break
         assert delete_task_value_id_value is False
+        if self.can_create_task()["data"] is False:
+            print("自动任务删除失败")
 
     def sync_Unfold(self, oid, sync_robot_value, ES_search_value, i, list_contact_Api):
         if self.host == "lxcrm":

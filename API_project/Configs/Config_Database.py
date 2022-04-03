@@ -1,12 +1,13 @@
-import pymongo, pymysql, pytest, sys
+import pymongo, pymysql, pytest, sys, datetime
 from sshtunnel import SSHTunnelForwarder
+from elasticsearch import Elasticsearch
 
 
-class to_database:
+class DataBase_All:
     def __init__(self, projectname="home"):
         self.ssh_pkey_path = sys.path[0].split(projectname)[0]
 
-    def pymysql(self, host):
+    def to_pymysql(self, host):
         if host == 'test':
             connect = pymysql.connect(host="sh-cdb-mvw92zno.sql.tencentcdb.com", port=59837, user="yxy_skb_test",
                                       password="9JqfEOe3kJjFWuTGx1l6", database="yxy_skb_test")
@@ -28,7 +29,7 @@ class to_database:
             # connect.close
         return connect
 
-    def pymongo(self):
+    def to_pymongo(self):
         # 连接数据库
         mongo_port = 3717
         mongo_address = "dds-m5e44df0967967a42.mongodb.rds.aliyuncs.com"
@@ -48,7 +49,7 @@ class to_database:
         db = conn["admin"]
         db.authenticate(mongo_user, mongo_password)
 
-        def _pymongo(serve="start"):
+        def _to_pymongo(serve="start"):
             if serve == "close":
                 conn.close()  # 关闭游标
                 server.close()  # 关闭跳板机
@@ -56,9 +57,9 @@ class to_database:
             else:
                 return conn  # 返回游标
 
-        return _pymongo
+        return _to_pymongo
 
-    def pymongo_test(self):
+    def to_pymongo_test(self):
         # 连接数据库
         mongo_host = "skb-test-mongodb.lixiaoskb.com"
         port = 27017
@@ -72,17 +73,50 @@ class to_database:
         )
         db = conn["admin"]
         db.authenticate(mongo_user, mongo_password)
-        return conn
-        # conn.close()
+        yield conn
+        print(22)
+        conn.close()  # 关闭游标
+        # server.close()  # 关闭跳板机
+
+
+class ES_All:
+    def __init__(self, environment):
+        self.environment = environment
+
+    def ES(self):
+        if self.environment == "lxcrm":
+            es_client = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200',  # 最新地址，prod
+                                      http_auth=('mengyanhong', 'Aa123456'))
+            # return es_client
+            # print(host,1)
+        elif self.environment == "staging":
+            es_client = Elasticsearch('es-cn-2r42j6jsc00079qtt.public.elasticsearch.aliyuncs.com:9200',  # 最新地址，staging
+                                      http_auth=('elastic', 'Stagprod#985'))
+        # print(host, 2)
+        else:
+            es_client = Elasticsearch('es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com:9200',  # 最新地址，test
+                                      http_auth=('tester', 'tester_Aa123456'))
+        # es_client = Elasticsearch('es-cn-nif1oiv5w0009di0f.public.elasticsearch.aliyuncs.com:9200',
+        #                           http_auth=('lihexiang', 'Aa123456'))
+        # es_client = Elasticsearch('es-cn-tl3280yva0001mwg8.public.elasticsearch.aliyuncs.com:9200',  # 最新地址，prod
+        #                           http_auth=('mengyanhong', 'Aa123456'))
+        # es_client = Elasticsearch('es-cn-tl3280yva0001mwg8.kibana.elasticsearch.aliyuncs.com:5601',  # 最新地址，prod
+        #                           http_auth=('mengyanhong', 'Aa123456'))
+        # es_client = Elasticsearch('es-cn-i7m27x1em002z5u9d.public.elasticsearch.aliyuncs.com:9200', #最新地址，test
+        #                           http_auth=('tester', 'tester_Aa123456'))
+        return es_client
 
 
 if __name__ == '__main__':
-    b = to_database().pymongo()
-    s = b().enterprise.EnterpriseBaseInfo.find().limit(10).skip(0)
-    a = b().enterprise.EnterpriseBaseInfo.find_one({'PID': '9be95194807a7c6d509dd67761517f4e'})
+    b = DataBase_All().to_pymongo()
+    db = b()
+    s = db.enterprise.EnterpriseAlterInfo.find({}, {"PID": -1, "alterInfo": -1}).limit(10).skip(0)
+    a = db.enterprise.EnterpriseBaseInfo.find_one({'PID': '9be95194807a7c6d509dd67761517f4e'})
+
     for i in s:
         print(i)
-    print(a)
+    # print(a)
     print(b("close"))
+    # print(datetime.datetime(2013, 12, 6, 0, 0))
     # print(type(a))
-    # print(b)
+    # print(s)
