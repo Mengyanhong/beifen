@@ -1,9 +1,11 @@
-from Configs.uiconfig import driver, ActionChains
+# from UC_wwj_skb_test.Configs.uiconfig import driver, ActionChains
 import time
 import win32gui
 import win32com.client
 from selenium.webdriver.common.keys import Keys
-
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains  # 导入鼠标事件的方法
+driver = webdriver.Edge(r'C:\Users\dell\PycharmProjects\workbook\venv\Scripts\msedgedriver.exe')
 
 # import pypiwin32
 class Login:
